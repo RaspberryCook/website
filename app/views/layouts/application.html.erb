@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head><%= render 'layouts/head' %></head>
+<body>
+
+	<a id="nav-toggle" href="#">&#9776;</a>
+
+	<header><%= render 'layouts/header' %></header>
+	<nav id="nav" ><%= render 'layouts/navigation' %></nav>
+
+
+	<% flash.each do |key, value| %>
+		<div class="flash_<%= key %>"><%= value %></div>
+	<% end %> 
+
+	<section>
+
+		<%= yield %>
+	</section>
+
+	<footer><%= render 'layouts/footer' %></footer>
+
+
+	<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  	<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+	<%= javascript_include_tag "application" %>
+
+	</body>
+</html>

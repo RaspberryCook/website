@@ -1,0 +1,152 @@
+<h1 class="recipe"><%= @recipe.name  %></h1>
+
+<%= form_for @recipe , :html => {:multipart => true } do |f| %>
+  <%= render 'shared/error_messages', :object => f.object %>
+
+  
+
+
+
+
+
+
+	
+
+<!-- NOUVELLE MANIEREE -->
+<div id="header_recipe">
+
+
+	<div id="times">
+
+		<div style="background-image:url(/assets/images/time/cooking.png)" >
+			<!-- préparation  -->
+			<%= f.number_field :t_cooking  %>
+		</div>
+		<div style="background-image:url(/assets/images/time/baking.png)" >
+			<!-- cuisson -->
+			<%= f.number_field :t_baking  %>
+		</div>
+		<div style="background-image:url(/assets/images/time/cooling.png)" >
+			<!-- réfrigération -->
+			<%= f.number_field :t_cooling  %>
+		</div>
+		<div style="background-image:url(/assets/images/time/rest.png)" >
+			<!-- repos -->
+			<%= f.number_field :t_rest  %>
+		</div>
+	</div>
+
+	<figure>
+		<%= f.file_field :image  %>
+		<%= image_tag @recipe.image_url %>
+		<figcaption><%= f.text_field :description , :placeholder => "entrez une description"%></figcaption>
+	</figure>
+
+
+</div>
+<small>ajoutée le <date><%= @recipe.created_at.strftime("%d/%m/%Y") %></date></small>
+
+
+
+
+
+<!--<%= @recipe.category  %>
+<%= @recipe.season  %>
+<br/>
+
+<!-- display times  & steps-->
+<div id="ing_n_steps">
+	<!-- display ingredients -->
+	<div id="ing">
+		<%= f.text_area :ingredients , :placeholder => "listez les ingrédients en revant à la ligne, simplement"%>
+	</div>
+
+	<!-- display steps -->
+	<div id="steps">
+		<%= f.text_area :steps %>
+	</div>
+</div>
+
+
+<div style="background-color: coral ; min-height: 100px">
+
+	<fieldset>
+		<legend>ajouter un ingrédient</legend>
+
+		<%= f.label :ingredient , "ingrédient" %>
+		<%= autocomplete_field_tag :ingredient_prepa, 
+  		params[:ingredient], 
+  		autocomplete_ingredient_name_recipes_path ,
+  		{
+  			class: "search-query", 
+  			placeholder: "ajouter un ingrédient", 
+  			type: "search"
+  		} %>
+
+		<%= f.label   "quantité" %>
+		<input type="number" />
+
+		<button id='confirm_ingredient' href="#">ajouter</button>
+
+		<script type="text/javascript">
+			$('#confirm_ingredient').click(function(e){
+				e.preventDefault();
+				$('#ingredients_result').append("<tr><td>coucouc</td><td>" +  + "</td></tr>")
+			});
+		</script>
+
+
+
+	</fieldset>
+  
+
+
+
+
+	<table style="width: 100%">
+		
+		<thead>
+			<tr>
+				<th>ingrédient</th>
+				<th>qté</th>
+			</tr>
+		</thead>
+
+		<tbody id="ingredients_result">
+		</tbody>
+
+
+	</table>
+
+</div>
+
+
+
+<!-- NOUVELLE MANIEREE -->
+
+  	<fieldset>
+  		<legend>infos de bases</legend>
+
+  		
+    	
+		<%= f.label :category , "catégorie" %>
+		<%= f.text_field :category %>
+
+		<%= f.label :season , "saison" %>
+		<%= select_tag :season, options_for_select( 
+			[
+				['toutes',0], 
+				['prinptemps',1], 
+				['été',2], 
+				['automne',3], 
+				['hiver',4] 
+			] 
+		) %>
+  	</fieldset>
+
+
+
+
+	<%= f.submit "Mettre à jour" %>
+  
+<% end %>

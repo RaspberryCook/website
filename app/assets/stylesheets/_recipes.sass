@@ -1,0 +1,168 @@
+@import colors
+@import mixin
+
+
+@import url(https://fonts.googleapis.com/css?family=Pacifico)
+
+h1.recipe
+	font-family: 'Pacifico', cursive
+	font-size: 50px
+	font-weight: 100
+	text-align: center
+
+
+// display of recipes list
+ul.recipes
+	margin: auto
+	display: block
+	padding-left: 0px
+
+
+	li
+		margin: 30px
+		width: 200px
+		display: inline-block
+		font-family: 'Pacifico', cursive
+		font-size: 20px
+		text-align: center
+
+
+		figure
+			width: 100%
+
+			img
+				width: 200px
+				height: 200px
+				@include border-radius(20px)
+
+
+
+			a
+				text-decoration: none
+				color: #2c3e50
+
+
+
+//recipe sheet
+#times
+	background-color: #D2D7D3 
+	display: inline-block
+	width: 200px
+	text-align: center
+	vertical-align: center
+
+
+	div 
+		background-size: 60% 60% 
+		background-repeat: no-repeat
+		background-position : center center
+		display: inline-block
+		width: 100px
+		height: 100px
+		display: inline-block 
+		font-weight: lighter
+		font-size: 20px
+		text-align: center
+		vertical-align: center
+		line-height: 100px 
+
+		time 
+			display: block
+			font-size: 30px
+
+		time:after
+			content: '"'
+
+
+#header_recipe
+	background-color: #ECF0F1 
+	margin-top: 50px
+	height: 400px
+	width: 600px
+	margin: auto
+
+	ul , textarea 
+		position: relative
+		left: 50%
+		top: -300px
+		width: 40% 
+		height: 300px
+		font-size: large
+
+
+	figure 
+		text-align: center
+		width: 350px
+		position: relative
+		display: inline-block
+		margin: auto
+
+	figcaption 
+		text-align: center
+		padding: 5px
+		font-size: small
+
+	img 
+		max-width: 100%
+		max-height: 100%
+
+
+
+#ing_n_steps
+	margin-top: 20px
+	margin-bottom: 20px
+	font-size: medium
+	text-align: center
+
+	ul ol 
+		margin: 0px
+
+	li 
+		margin: 5px
+		list-style-type: none
+
+
+
+#ing , #steps 
+	display: inline-block
+	width: 60%
+
+	li
+		margin-bottom: 40px
+
+
+#ing
+	position: relative
+	top: center
+	width: 30%
+	height: 100%
+	text-align: right
+	color: #1E824C
+
+
+#steps
+	color: #96281B
+	border-left: solid #6C7A89 1px
+	display: inline-block
+	margin: auto
+	text-align: left
+
+	ol
+		padding-left: 0px
+		counter-reset: repas
+
+	li
+		counter-increment: repas /* on incrémente le compteur à chaque nouveau li */
+		margin-bottom: 40px
+		text-align: justify
+
+		&:before
+			content: counter(repas) /* on affiche le compteur */
+			display: block
+			font-size: x-large
+			font-weight: lighter
+			// float: left
+			color: $text_color
+
+
+

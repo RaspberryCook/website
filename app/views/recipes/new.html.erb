@@ -1,0 +1,11 @@
+<h1>Recipes#new</h1>
+<%= form_for(@recipe) do |f| %>
+
+	<%= render 'shared/error_messages' , :object => f.object %>
+
+	<%= f.label :nom %>
+	<%= f.text_field :name %><br/>
+
+	<%= f.submit 'ajouter' %><br/>
+
+<% end %>

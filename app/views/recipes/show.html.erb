@@ -1,0 +1,125 @@
+<h1 class="recipe"><%= @recipe.name  %></h1>
+
+
+
+<div id="header_recipe">
+
+
+	<div id="times">
+
+		<div style="background-image:url(/assets/images/time/cooking.png)" >
+			<!-- préparation  -->
+			<time><%= @recipe.t_cooking  %></time>
+		</div>
+		<div style="background-image:url(/assets/images/time/baking.png)" >
+			<!-- cuisson -->
+			<time><%= @recipe.t_baking %></time>
+		</div>
+		<div style="background-image:url(/assets/images/time/cooling.png)" >
+			<!-- réfrigération -->
+			<time><%= @recipe.t_cooling  %> </time>
+		</div>
+		<div style="background-image:url(/assets/images/time/rest.png)" >
+			<!-- repos -->
+			<time><%= @recipe.t_rest %></time>
+		</div>
+	</div>
+
+	<figure>
+		<%= image_tag @recipe.image_url %>
+		<figcaption><%= @recipe.description %></figcaption>
+	</figure>
+
+
+</div>
+<small>ajoutée le <date><%= @recipe.created_at.strftime("%d/%m/%Y") %></date></small>
+
+
+
+
+
+<!--<%= @recipe.category  %>
+<%= @recipe.season  %>
+<br/>
+
+<!-- display times  & steps-->
+<div id="ing_n_steps">
+	<!-- display ingredients -->
+	<div id="ing">
+		<% if @recipe.ingredients %>
+			<ul>
+			<% @recipe.ingredients.each_line do |ingredient|%>
+				<li><%= ingredient %></li>
+			<% end %>
+			</ul>
+		<% end %>
+	</div>
+
+	<!-- display steps -->
+	<div id="steps">
+		<% if @recipe.steps %>
+			<ol>
+				<% @recipe.steps.each_line do |step|%>
+					<li><%= step %></li>
+				<% end %>
+			</ol>
+		<% end %>
+	</div>
+</div>
+
+
+<table>
+	
+	<thead>
+		<tr>
+			<th>ingrédient</th>
+			<th>calories</th>
+			<th>proteines</th>
+			<th>glucides</th>
+			<th>lipides</th>
+		</tr>
+	</thead>
+
+	<tbody>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+	</tbody>
+
+	<tfoot>
+		<th>total</th>
+	</tfoot>
+
+
+
+
+
+</table>
+
+
+
+
+<%= render 'shared/user' , :user => @user %>
+
+<hr/>
+
+
+
+
+
+<%= link_to "sauvegarder", 'save', :class => 'button_edit' %>
+
+<% if current_user = @recipe.user %>
+
+	<%= link_to "modifier" , edit_recipe_path , 
+				:class => 'button_edit'%>
+
+	<%= link_to "supprimer" , @recipe,
+				:class => 'button_delete',
+				:method => :delete, 
+				:confirm => 'Are you sure?' ,
+				:title => "Delete #{@recipe.name}" %>
+<% end %>

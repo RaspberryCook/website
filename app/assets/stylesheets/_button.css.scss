@@ -1,0 +1,48 @@
+
+/*BUTTON DELETE*/
+.button_delete , .button_edit{
+	-moz-border-radius:18px;
+	-webkit-border-radius:18px;
+	border-radius:18px;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:17px;
+	padding:7px 25px;
+	text-decoration:none;
+}
+
+.button_delete{
+	-moz-box-shadow: 3px 4px 0px 0px #8a2a21;
+	-webkit-box-shadow: 3px 4px 0px 0px #8a2a21;
+	box-shadow: 3px 4px 0px 0px #8a2a21;
+	background-color:#c62d1f;
+	border:1px solid #d02718;
+	text-shadow:0px 1px 0px #810e05;
+}
+
+.button_delete:hover {
+	background-color:#f24437;
+}
+.button_delete:active {
+
+	position:relative;
+	top:1px;
+}
+
+.button_edit {
+	-moz-box-shadow: 3px 4px 0px 0px #3e7327;
+	-webkit-box-shadow: 3px 4px 0px 0px #3e7327;
+	box-shadow: 3px 4px 0px 0px #3e7327;
+	background-color:#77b55a;
+	border:1px solid #4b8f29;
+	text-shadow:0px 1px 0px #5b8a3c;
+}
+.button_edit:hover {
+	background-color:#72b352;
+}
+.button_edit:active {
+	position:relative;
+	top:1px;
+}

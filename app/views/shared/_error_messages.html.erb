@@ -1,0 +1,12 @@
+<% if object.errors.any? %>
+  <div class="flash_error">
+    <h2>Oh non!</h2>
+    <p><strong><%= pluralize(object.errors.count, "erreur") %></strong> 
+        ont empêché d'enregistrer votre inscription. Merci de corriger ces champs :</p>
+    <ul>
+    <% object.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>

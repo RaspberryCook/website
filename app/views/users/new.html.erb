@@ -1,0 +1,23 @@
+<h1>s'inscrire</h1>
+<%= form_for(@user) do |f| %>
+
+	<%= render 'shared/error_messages' , :object => f.object %>
+
+	<%= f.label :nom %>
+	<%= f.text_field :nom %><br/>
+
+	<%= f.label :email %>
+	<%= f.email_field :email %><br/>
+
+	<%= f.label :password %>
+	<%= f.password_field :password %><br/>
+
+	<%= f.label :password_confirmation %>
+	<%= f.password_field :password_confirmation %><br/>
+
+	<%= f.submit 'sign-up' %><br/>
+
+<% end %>
+
+<p>Déjà inscrit ? <%= link_to "Connectez-vous !", signin_path %></p>
+

@@ -1,0 +1,12 @@
+<ul class="recipes">
+
+<% recipes.each do |recipe| %>
+	<li>
+		<figure>
+			<%= image_tag recipe.image_url(:thumb) %>
+			<figcaption><%= link_to recipe.name , recipe %></figcaption>
+		</figure>
+	</li>
+<% end %>
+
+</ul>

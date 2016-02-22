@@ -1,0 +1,52 @@
+<h1>recherche ingredients</h1>
+
+<%= render  'ingredients/form_search'  %>
+
+<ul>
+  <% 
+  @products.each do |product| %>
+
+    <li>
+      <%= image_tag product['image_small_url'] %>
+      <%= link_to product['product_name'] , product['url'] %>
+
+      <table>
+      <% nutriments = product['nutriments'] %>
+
+        <tr>
+          <th>calories</th>
+          <td><%= nutriments['energy_100g'] %></td>
+          <td><%= nutriments['energy_unit'] %></td>
+        </tr>
+
+        <tr>
+          <th>proteines</th>
+          <td><%= nutriments['proteins_100g'] %></td>
+          <td><%= nutriments['proteins_unit'] %></td>
+        </tr>
+
+        <tr>
+          <th>glucides</th>
+          <td><%= nutriments['carbohydrates_100g'] %></td>
+          <td><%= nutriments['carbohydrates_unit'] %></td>
+        </tr>
+
+        <tr>
+          <th>lipides</th>
+          <td><%= nutriments['fat_100g'] %></td>
+          <td><%= nutriments['fat_unit'] %></td>
+        </tr>
+
+
+        <tr>
+          <td>dont saturé</td>
+          <td><%= nutriments['saturated-fat_100g'] %></td>
+          <td><%= nutriments['saturated-fat_unit'] %></td>
+        </tr>
+
+      </table>  
+
+
+    </li>
+  <% end%>
+</ul>
