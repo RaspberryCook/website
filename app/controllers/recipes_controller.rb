@@ -6,7 +6,10 @@ class RecipesController < ApplicationController
 	autocomplete :ingredient, :name
 
 	def show
+
 		@recipe = Recipe.find(params[:id])
+		@comment = Comment.new
+
 		@title = @recipe.name
 		@user = @recipe.user
 	end

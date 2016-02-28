@@ -3,3 +3,10 @@
 	-webkit-border-radius: $radius
 	-moz-border-radius: $radius
 	border-radius: $radius
+
+@mixin effect-picture ($effect , $value)
+	-webkit-filter: $effect($value)
+	-moz-filter: $effect($value)
+	-ms-filter: $effect($value)
+	-o-filter: $effect($value)
+	filter: $effect($value)

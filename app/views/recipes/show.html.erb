@@ -2,9 +2,21 @@
 
 
 
-<div id="header_recipe">
+<div 
+	id="recipe_picture"
+	style="background-image: url(<%= @recipe.image_url %>);" 
+>
 
 
+
+
+<!-- 	<figure>
+		<%= image_tag @recipe.image_url %>
+		<figcaption><%= @recipe.description %></figcaption>
+	</figure> -->
+
+
+</div>
 	<div id="times">
 
 		<div style="background-image:url(/assets/images/time/cooking.png)" >
@@ -25,13 +37,10 @@
 		</div>
 	</div>
 
-	<figure>
-		<%= image_tag @recipe.image_url %>
-		<figcaption><%= @recipe.description %></figcaption>
-	</figure>
 
 
-</div>
+
+
 <small>ajoutée le <date><%= @recipe.created_at.strftime("%d/%m/%Y") %></date></small>
 
 
@@ -68,58 +77,51 @@
 </div>
 
 
-<table>
-	
-	<thead>
-		<tr>
-			<th>ingrédient</th>
-			<th>calories</th>
-			<th>proteines</th>
-			<th>glucides</th>
-			<th>lipides</th>
-		</tr>
-	</thead>
-
-	<tbody>
-		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-		</tr>
-	</tbody>
-
-	<tfoot>
-		<th>total</th>
-	</tfoot>
-
-
-
-
-
-</table>
-
-
+<%#= render 'comments/form', :comment => @comment %>
 
 
 <%= render 'shared/user' , :user => @user %>
 
-<hr/>
+
+
+<ul class="actions" >
+	<li><%= link_to "sauvegarder", 'save', :class => 'button_edit' %></li>
+
+	<% if current_user = @recipe.user %>
+
+		<li><%= link_to "modifier" , edit_recipe_path , 
+					:class => 'button_edit'%></li>
+
+		<li><%= link_to "supprimer" , @recipe,
+					:class => 'button_delete',
+					:method => :delete, 
+					:confirm => 'Are you sure?' ,
+					:title => "Delete #{@recipe.name}" %></li>
+	<% end %>
+
+</ul>
 
 
 
 
 
-<%= link_to "sauvegarder", 'save', :class => 'button_edit' %>
 
-<% if current_user = @recipe.user %>
 
-	<%= link_to "modifier" , edit_recipe_path , 
-				:class => 'button_edit'%>
+<script type="text/javascript">
 
-	<%= link_to "supprimer" , @recipe,
-				:class => 'button_delete',
-				:method => :delete, 
-				:confirm => 'Are you sure?' ,
-				:title => "Delete #{@recipe.name}" %>
-<% end %>
+	$('#recipe_picture').hover(
+		function(){
+			$(this).animate({
+				height: "600px"
+			}, 500);
+	} , function(){
+		//$(this).animate({height: "300px"}, 500)
+
+	} );
+	$(document).ready(function(){
+		$('#recipe_picture').parallax();
+
+	});
+
+
+</script>

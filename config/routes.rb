@@ -4,6 +4,8 @@ RaspberryCook::Application.routes.draw do
 
   
 
+  resources :comments
+
   get "pages/credits"
 
   get "pages/home"

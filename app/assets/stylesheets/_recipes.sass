@@ -6,9 +6,15 @@
 
 h1.recipe
 	font-family: 'Pacifico', cursive
-	font-size: 50px
+	font-size: 40px
 	font-weight: 100
 	text-align: center
+	vertical-align: middle
+	background-color: $light_brown
+	color: $background_color
+	padding: 10px
+	margin: 0px
+
 
 
 // display of recipes list
@@ -45,9 +51,9 @@ ul.recipes
 
 //recipe sheet
 #times
-	background-color: #D2D7D3 
+	background-color: $light_gray
 	display: inline-block
-	width: 200px
+	width: 100%
 	text-align: center
 	vertical-align: center
 
@@ -74,11 +80,17 @@ ul.recipes
 			content: '"'
 
 
-#header_recipe
-	background-color: #ECF0F1 
+
+#recipe_picture
+	// background-color: #ECF0F1 
+	// background-size: cover
+	// background-position: center
+	background: center 0 no-repeat fixed
+	background-size: auto 100%
+	@include effect-picture( 'grayscale' , '100%')
 	margin-top: 50px
-	height: 400px
-	width: 600px
+	height: 600px
+	width: 100%
 	margin: auto
 
 	ul , textarea 
@@ -108,7 +120,7 @@ ul.recipes
 
 
 
-#ing_n_steps
+#ing_n_steps , #ingredients
 	margin-top: 20px
 	margin-bottom: 20px
 	font-size: medium
@@ -120,6 +132,14 @@ ul.recipes
 	li 
 		margin: 5px
 		list-style-type: none
+
+#ingredients
+	font-size: 16px
+	// background-color: $blue
+
+#etapes
+	background-color: $light_gray
+	width: 100%
 
 
 
@@ -140,7 +160,7 @@ ul.recipes
 	color: #1E824C
 
 
-#steps
+#steps, #etapes
 	color: #96281B
 	border-left: solid #6C7A89 1px
 	display: inline-block
