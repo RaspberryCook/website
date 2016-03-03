@@ -22,15 +22,6 @@ ActiveRecord::Schema.define(version: 20160228171936) do
     t.integer  "recipe_id"
   end
 
-  create_table "ingredients", force: true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "name"
-    t.integer  "protein"
-    t.integer  "carbohydrates"
-    t.integer  "lipids"
-  end
-
   create_table "recipes", force: true do |t|
     t.string   "name"
     t.integer  "user_id"

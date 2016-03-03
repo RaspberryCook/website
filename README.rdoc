@@ -1,7 +1,34 @@
-== README
+The history
+-----------
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Raspberry Cook is a project started near september 2015. The first idea was simple: try to build a web-application without knowing. To make it more funny, I want to build it on a Raspberry Pi B+.
+
+So I asked my girlfriend:
+- Hey! Want do you want a cool website?
+- Yes, I want. To save all my recipes to cook.
+- Say no more!
+
+And I start to learn PHP / SQL / HTML / CCS on my Linux Mint laptop. I buy a Raspberry PI for some euros and I start to learn all SSH commands and to build a Apache Server. When it's okay, I test to pass on Nginx. When I finished it, I convert my website into Ruby On Rails Framework to have the greatest website on hearth B) !!
+
+My configuration
+----------------
+
+- My personnal computer: 
+	HP Pavillon G72-a55sf
+	Linux Mint 16
+	ruby 1.9.3p484 
+	Rails 4.2.5.1
+- One Raspberry Pi B+ for the server
+
+Things I want to do
+-------------------
+
+- Add a comment feature
+- Add a ingrdients feature to calculate some stats about the recipe
+- set up a way to make update auto via github with Capistrano
+
+
+
 
 Things you may want to cover:
 

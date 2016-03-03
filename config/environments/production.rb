@@ -1,4 +1,9 @@
 RaspberryCook::Application.configure do
+
+
+  # to have all good asset 
+  config.assets.precompile = ['*.js', '*.css', '*.css.erb' , '*.sass']
+
   # Settings specified here will take precedence over those in config/application.rb.
 
   # Code is not reloaded between requests.
@@ -20,7 +25,8 @@ RaspberryCook::Application.configure do
   # config.action_dispatch.rack_cache = true
 
   # Disable Rails's static asset server (Apache or nginx will already do this).
-  config.serve_static_assets = false
+  # MY APACHE RASPBERRY WILL DON'T DO IT HERSELF !!! 
+  config.serve_static_assets = true
 
   # Compress JavaScripts and CSS.
   config.assets.js_compressor = :uglifier
