@@ -19,6 +19,7 @@ gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .js.coffee assets and views
 gem 'coffee-rails', '~> 4.0.0'
 
+
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
@@ -34,6 +35,14 @@ gem 'rails-jquery-autocomplete'
 
 #for use old version of rails for attributes
 gem 'protected_attributes'
+
+
+group :development do
+	gem 'net-ssh' 
+  gem "capistrano"
+end
+
+
 
 #for upload picture
 gem 'carrierwave'
