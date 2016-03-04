@@ -1,5 +1,5 @@
 class RecipesController < ApplicationController
-	before_filter :authenticate
+	before_filter :authenticate, :only =>  [:destroy , :update , :edit ,:add]
 	before_filter :check_recipe_owner, :only =>  [:destroy , :update , :edit]
 
 	#for autocomplete ingredients

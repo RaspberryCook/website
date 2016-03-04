@@ -1,4 +1,5 @@
 class IngredientsController < ApplicationController
+  before_filter :authenticate, :only =>  [:destroy , :update , :edit ,:add]
   before_action :set_ingredient, only: [:show, :edit, :update, :destroy]
   autocomplete :ingredients , :name , :full => true
 
