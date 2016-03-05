@@ -39,8 +39,15 @@ gem 'protected_attributes'
 
 group :development do
 	gem 'net-ssh' 
-  gem "capistrano"
+  	gem "capistrano"
+    gem 'capistrano',         require: false
+    gem 'capistrano-rvm',     require: false
+    gem 'capistrano-rails',   require: false
+    gem 'capistrano-bundler', require: false
+    gem 'capistrano3-puma',   require: false
 end
+
+gem 'puma'
 
 
 
