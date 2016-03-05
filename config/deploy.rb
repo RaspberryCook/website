@@ -26,7 +26,7 @@ set :repo_url, 'https://github.com/madeindjs/raspberry_cook.git'
 # set :linked_files, fetch(:linked_files, []).push('config/database.yml', 'config/secrets.yml')
 
 # Default value for linked_dirs is []
-# set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system')
+set :linked_dirs, fetch(:linked_dirs, []).push('log', 'public/uploads')
 
 # Default value for default_env is {}
 # set :default_env, { path: "/opt/ruby/bin:$PATH" }
@@ -36,13 +36,9 @@ set :repo_url, 'https://github.com/madeindjs/raspberry_cook.git'
 
 namespace :deploy do
 
-  after :restart, :clear_cache do
-    on roles(:web), in: :groups, limit: 3, wait: 10 do
-      # Here we can do anything such as:
-      # within release_path do
-      #   execute :rake, 'cache:clear'
-      # end
-    end
+  after :updated, :bundle_install do
+  	invoke "ruby_on_rails:bundle_install"
+  	invoke "ruby_on_rails:db_migrate"
   end
 
 end
