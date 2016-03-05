@@ -1,50 +1,54 @@
-The history
+<h1>Raspberry Cook</h1>
 
-Raspberry Cook is a project started near september 2015. The first idea was simple: try to build a web-application without knowing. To make it more funny, I want to build it on a Raspberry Pi B+.
-
-So I asked my girlfriend:
-- Hey! Want do you want a cool website?
-- Yes, I want. To save all my recipes to cook.
-- Say no more!
-
-And I start to learn PHP / SQL / HTML / CCS on my Linux Mint laptop. I buy a Raspberry PI for some euros and I start to learn all SSH commands and to build a Apache Server. When it's okay, I test to pass on Nginx. When I finished it, I convert my website into Ruby On Rails Framework to have the greatest website on hearth B) !!
-
-My configuration
-
-- My personnal computer: 
-	HP Pavillon G72-a55sf
-	Linux Mint 16
-	ruby 1.9.3p484 
-	Rails 4.2.5.1
-- One Raspberry Pi B+ for the server
-
-Things I want to do
-
-- Add a comment feature
-- Add a ingrdients feature to calculate some stats about the recipe
-- set up a way to make update auto via github with Capistrano
+<h2>The history</h2>
 
 
-Things you may want to cover:
-sud
-* Ruby version 2.1.5
+<p>Raspberry Cook is a project started near september 2015. The first idea was simple: try to build a web-application without knowing. To make it more funny, I want to build it on a Raspberry Pi B+.</p>
 
-* System dependencies
+<p>So I asked my girlfriend:
+<ul>
+	<li>Hey! Want do you want a cool website?</li>
+	<li>Yes, I want! To save all my recipes to cook.</li>
+	<li>Say no more!</li>
+</ul></p>
 
-* Configuration
+<p>So for me purposes was very clear:
+<ol>
+	<li>make a beautifull design</li>
+	<li>built it on my great Raspberry Pi B+</li>
+	<li>make a cleaner code and learn more & more technology to improve it</li>
+</ol></p>
 
-* Database creation
+<p>And I start to learn <code>PHP / SQL / HTML / CCS</code> on my Linux Mint laptop. I buy a Raspberry PI for some euro. I start to learn all SSH commands and to build a Apache Server. And I did all my best</p>
 
-* Database initialization
+<p>When I was happy of my work. I broke all result to convert it into Ruby On Rails Framework to have the greatest website on hearth, of course !!</p>
 
-* How to run the test suite
+<h2>My configuration</h2>
 
-* Services (job queues, cache servers, search engines, etc.)
+<h3>My personnal computer</h3>
+<ul>
+	<li>HP Pavillon G72-a55sf</li>
+	<li>Linux Mint 17.3 Cinnamon 64-bit</li>
+	<li>Ruby 2.1.5p273</li>
+	<li>Rails 4.2.5.1</li>
+	<li>Sublime Text 3</li>
+</ul>
 
-* Deployment instructions
+<h3>My Raspberry</h3>
+<ul>
+	<li>Raspberry Pi B+</li>
+	<li>Raspian</li>
+	<li>Ruby 2.2.1p85</li>
+	<li>Rails 4.0.13</li>
+	<li>VIM</li>
+	<li>SD Card 32go</li>
+</ul>
 
-* ...
 
+<h2>Things I want to do</h2>
+<ul>
+	<li>Add a comment feature</li>
+	<li>Add a ingrdients feature to calculate some stats about the recipe</li>
+	<li>Aset up a way to make update auto via github with Capistrano</li>
+</ul>
 
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.

@@ -17,9 +17,9 @@ namespace :ruby_on_rails do
 	desc 'migrate all db'
 	task :db_migrate do 
 
-		on roles(:db) do
+		on roles(:web) do
 	    	within release_path do
-	    		execute 'rake db:migrate'
+	    		execute 'rake RAILS_ENV=production db:migrate'
 	    	end
 	    end
 		
