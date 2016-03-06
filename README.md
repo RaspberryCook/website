@@ -8,7 +8,9 @@ Raspberry Cook is a project started near september 2015. The first idea was simp
 So I asked my girlfriend:
 
 >"Hey! Want do you want a cool website?"
+
 >"Yes, I want! To save all my recipes to cook."
+
 >"Say no more!"
 
 

@@ -25,6 +25,20 @@ namespace :ruby_on_rails do
 		
 	end
 
+	desc 'precompile assets'
+	task :assets_precompile do 
+
+		on roles(:web) do
+	    	within release_path do
+	    		execute 'RAILS_ENV=production bundle exec rake assets:precompile'
+	    	end
+	    end
+		
+	end
+
+	
+
+
 
 
 
