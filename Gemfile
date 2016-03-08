@@ -44,6 +44,8 @@ group :development do
     gem 'capistrano-rvm',     require: false
     gem 'capistrano-rails',   require: false
     gem 'capistrano-bundler', require: false
+
+    # gem 'ruby-debug'
 end
 
 gem 'puma'
@@ -51,7 +53,7 @@ gem 'puma'
 
 
 #for upload picture
-gem 'carrierwave', :github => 'satoruk/carrierwave' , :ref => '43179f94d6a4e62f69e812f5082d6447c9138480'
+gem 'carrierwave'
 gem 'rmagick', require: false
 # gem 'rmagick' # sudo apt-get install libmagickwand-dev
 # gem 'mini_magick'

@@ -77,10 +77,18 @@
 </div>
 
 
-<%#= render 'comments/form', :comment => @comment %>
+<h2>Commentaires</h2>
+<%= render 'comments/form', :comment => @comment %>
 
 
-<%= render 'shared/user' , :user => @user %>
+<h2>auteur</h2>
+
+<% # just puts a form to add a comment if user is connected. If not I put a link to login
+	if signed_in?
+		puts render 'shared/user' , :user => @user
+	else
+		puts link_to 'connectez-vous pour créer un commentaire' , signin_path 
+	end %>
 
 
 
