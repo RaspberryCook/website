@@ -28,20 +28,20 @@ class CommentsController < ApplicationController
   def create
 
     @comment = Comment.new(comment_params)
-    @comment.user_id = @current_user
+    @comment.user_id = current_user.id
 
-    render :text => @current_user.inspect
+    # render :text => current_user.id
 
 
-    # respond_to do |format|
-    #   if @comment.save
-    #     format.html { redirect_to @comment, notice: 'Comment was successfully created.' }
-    #     format.json { render action: 'show', status: :created, location: @comment }
-    #   else
-    #     format.html { render action: 'new' }
-    #     format.json { render json: @comment.errors, status: :unprocessable_entity }
-    #   end
-    # end
+    respond_to do |format|
+      if @comment.save
+        format.html { redirect_to @comment, notice: 'Comment was successfully created.' }
+        format.json { render action: 'show', status: :created, location: @comment }
+      else
+        format.html { render action: 'new' }
+        format.json { render json: @comment.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   # PATCH/PUT /comments/1
