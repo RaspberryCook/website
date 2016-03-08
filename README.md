@@ -15,9 +15,10 @@ So I asked my girlfriend:
 
 
 So for me purposes was very clear:
-	* make a beautifull design
-	* built it on my great Raspberry Pi B+
-	* make a cleaner code and learn more & more technology to improve it
+- make a beautifull design
+- built it on my great Raspberry Pi B+
+- make a cleaner code and learn more & more technology to improve it
+- make happier my girlfriend
 
 And I start to learn PHP / SQL / HTML / CCS on my Linux Mint laptop. I buy a Raspberry PI for some euro. I start to learn all SSH commands and to build a Apache Server. And I did all my best
 
@@ -32,6 +33,7 @@ When I was happy of my work. I broke all result to convert it into Ruby On Rails
 	* Ruby 2.1.5p273
 	* Rails 4.2.5.1
 	* Sublime Text 3
+	* Firefox 44
 
 
 ###My Raspberry###
