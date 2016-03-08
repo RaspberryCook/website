@@ -1,0 +1,10 @@
+<ul>
+
+<% comments.each do |comment| %>
+	<li>
+		<quote><%= comment.content  %></quote>
+		<%= link_to comment.user.nom , comment.user %>
+	</li>
+<% end %>
+
+</ul>

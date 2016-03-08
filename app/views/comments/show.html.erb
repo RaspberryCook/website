@@ -1,5 +1,9 @@
 <p id="notice"><%= notice %></p>
 
+<h1>Commentaire n°<%= @comment.id %></h1>
+
+<h2>à propos de..</h2>
+
 <p>
   <strong>Title:</strong>
   <%= @comment.title %>
@@ -10,10 +14,11 @@
   <%= @comment.content %>
 </p>
 
-<p>
-  <strong>User:</strong>
-  <%= @comment.user_id %>
-</p>
+
+
+<quote><%= @comment.content %></quote>
+
+<%= render 'shared/user' , :user => @comment.user %>
 
 <%= link_to 'Edit', edit_comment_path(@comment) %> |
 <%= link_to 'Back', comments_path %>
