@@ -1,8 +1,8 @@
 <ul>
 
 <% comments.each do |comment| %>
-	<li>
-		<quote><%= comment.content  %></quote>
+	<li><strong><%= comment.title  %></strong><br/>
+		<quote><%= comment.content  %></quote><br/>
 		<%= link_to comment.user.nom , comment.user %>
 	</li>
 <% end %>
