@@ -1,7 +1,7 @@
 <ul>
 
 <% comments.each do |comment| %>
-	<li><strong><%= link_to comment.title , comment %></strong><br/>
+	<li><strong><%= comment.title %></strong><br/>
 		<quote><%= comment.content  %></quote><br/>
 		<%= link_to comment.user.nom , comment.user %>
 
