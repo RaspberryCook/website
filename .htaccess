@@ -1,7 +1,7 @@
 #IP bannies
-Deny From 36.231.254.67
 Deny From 94.137.157.145
-Deny From 162.244.35.25 #to try to hack my wesbites lots of times
+Deny From 162.244.35.25
+Deny From 178.238.80.43
 
 # 6G BLACKLIST/FIREWALL (beta)
 # @ https://perishablepress.com/6g-beta/
