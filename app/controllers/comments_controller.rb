@@ -1,12 +1,13 @@
 class CommentsController < ApplicationController
   before_action :set_comment, only: [:show, :edit, :update, :destroy]
   before_filter :authenticate, :only =>  [:destroy , :update , :edit ,:add]
+  before_filter :check_owner, :only =>  [:destroy , :update , :edit ]
 
 
   # GET /comments
   # GET /comments.json
   def index
-    @comments = Comment.all
+    @comments = Comment.all 
   end
 
   # GET /comments/1
@@ -77,5 +78,15 @@ class CommentsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def comment_params
       params.require(:comment).permit(:title, :content, :user_id , :recipe_id)
+    end
+
+
+    def authenticate
+      redirect_to signup_path , :notice => "Connectez-vous" unless current_user
+    end
+
+    def check_owner
+      @comment = Comment.find(params[:id])
+      redirect_to root_path , :notice => "Petit-coquin!" unless current_user == @comment.user
     end
 end

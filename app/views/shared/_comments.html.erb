@@ -1,9 +1,17 @@
 <ul>
 
 <% comments.each do |comment| %>
-	<li><strong><%= comment.title  %></strong><br/>
+	<li><strong><%= link_to comment.title , comment %></strong><br/>
 		<quote><%= comment.content  %></quote><br/>
 		<%= link_to comment.user.nom , comment.user %>
+
+
+		<% if comment.user_id == current_user.id %>
+			<%= link_to 'Edit', edit_comment_path(comment) %>
+	        <%= link_to 'Destroy', comment, method: :delete, data: { confirm: 'Are you sure?' } %>
+	    <% end %>
+
+
 	</li>
 <% end %>
 
