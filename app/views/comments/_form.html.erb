@@ -1,29 +1,43 @@
-<%= form_for(@comment) do |f| %>
-  <% if @comment.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
+<% #  if a comment exists, I show a message to edit it. Else I show a form to add one  %>
+<% if !Comment.did_I_comment_this? current_user.id , recipe_id %>
 
-      <ul>
-      <% @comment.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
+
+  <%= form_for(comment) do |f| %>
+    <% if @comment.errors.any? %>
+      <div id="error_explanation">
+        <h2>Il y a <%= pluralize(@comment.errors.count, "erreurs")%> à corriger :( </h2>
+
+        <ul>
+        <% @comment.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <fieldset>
+      <legend>ajoutez votre commentaire</legend>
+
+      <%= f.label :title %><br>
+      <%= f.text_field :title %>
+
+      <%= f.label :content %><br>
+      <%= f.text_area :content %>
+
+      <%= f.hidden_field :recipe_id, :value => @recipe.id %>
+
+      <div class="actions">
+        <%= f.submit  'ajouter' %>
+      </div>
+    </fieldset>
+
+
+
   <% end %>
 
-  <div class="field">
-    <%= f.label :title %><br>
-    <%= f.text_field :title %>
-  </div>
-  <div class="field">
-    <%= f.label :content %><br>
-    <%= f.text_field :content %>
-  </div>
-  <div class="field">
-    <%= f.label :user_id %><br>
-    <%= f.number_field :user_id %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+<% else %>
+
+  <p><strong>Vous ne pouvez pas commenter cette recette</strong> car vous l'avez déjà fait. Ne pas commenter une recette c'est <i>Has-been</i>!!</p>
+
 <% end %>
+  

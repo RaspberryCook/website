@@ -5,8 +5,10 @@ class Recipe < ActiveRecord::Base
  		:t_baking , :t_cooling , :t_cooking ,:t_rest ,
  		:image
 
- 	belongs_to :user  #association avec la table des utilisateurs
- 	
+ 	belongs_to :user
+	has_many :comments , :dependent => :destroy
+
+
  	mount_uploader :image , ImageUploader
 
 	validates :name , 

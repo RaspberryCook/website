@@ -77,10 +77,19 @@
 </div>
 
 
-<%#= render 'comments/form', :comment => @comment %>
+<h2>auteur</h2>
+<%= render 'shared/user' , :user => @recipe.user %>
 
 
-<%= render 'shared/user' , :user => @user %>
+<h2>Commentaires</h2>
+<h3>liste des commentaires</h3>
+<%= render 'shared/comments', :comments => @recipe .comments %>
+
+<%= render 'comments/form', :comment => @comment , :recipe_id => @recipe.id %>
+
+
+
+
 
 
 
@@ -100,10 +109,6 @@
 	<% end %>
 
 </ul>
-
-
-
-
 
 
 

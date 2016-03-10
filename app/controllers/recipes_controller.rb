@@ -11,7 +11,6 @@ class RecipesController < ApplicationController
 		@comment = Comment.new
 
 		@title = @recipe.name
-		@user = @recipe.user
 	end
 
 	def new
