@@ -4,14 +4,12 @@ class Comment < ActiveRecord::Base
 
  	public 
 
- 	def self.user_exist? user_id
- 		result = self.where 'user_id' => user_id
+ 	def self.did_I_comment_this? user_id , recipe_id
+ 		#problem cauz we search on all database but we want searchonly on comments.recipe.user_id
+ 		#dont return a nill but a strange object
 
- 		if result = nil
- 			false
- 		else
- 			true
- 		end
+ 		self.exists? :user_id => user_id , :recipe_id => recipe_id 
+
  	end
 
 end

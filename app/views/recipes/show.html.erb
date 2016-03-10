@@ -83,24 +83,13 @@
 
 <h2>Commentaires</h2>
 <h3>liste des commentaires</h3>
-<%= render 'shared/comments', :comments => @recipe.comments %>
+<%= render 'shared/comments', :comments => @recipe .comments %>
 
-<%= render 'comments/form', :comment => @comment %>
-
-
-<% @recipe.comments.each do |comment| %>
-
-<% end %>
+<%= render 'comments/form', :comment => @comment , :recipe_id => @recipe.id %>
 
 
 
 
-<% # just puts a form to add a comment if user is connected. If not I put a link to login
-	if signed_in?
-		puts render 'comments/form', :comment => @comment
-	else
-		puts link_to 'connectez-vous pour créer un commentaire' , signin_path 
-	end %>
 
 
 

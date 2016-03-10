@@ -1,6 +1,5 @@
 <% #  if a comment exists, I show a message to edit it. Else I show a form to add one  %>
-<%=  Comment.user_exist? current_user.id %>
-<% if Comment.user_exist? current_user.id %>
+<% if !Comment.did_I_comment_this? current_user.id , recipe_id %>
 
 
   <%= form_for(comment) do |f| %>
