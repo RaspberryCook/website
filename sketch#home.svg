@@ -27,10 +27,10 @@
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.62932504"
-     inkscape:cx="703.8731"
-     inkscape:cy="2483.4967"
+     inkscape:cx="448.83796"
+     inkscape:cy="2542.9268"
      inkscape:document-units="px"
-     inkscape:current-layer="layer3"
+     inkscape:current-layer="layer5"
      showgrid="false"
      showguides="true"
      units="px"
@@ -129,7 +129,7 @@
        height="674.00006"
        width="1200.0001" />
     <rect
-       style="display:inline;opacity:0.95999995;fill:#ffffff;fill-opacity:1"
+       style="display:inline;opacity:1;fill:#ffffff;fill-opacity:1"
        id="rect3424"
        width="1200.0001"
        height="300.00003"
@@ -158,8 +158,8 @@
        id="rect3424-0"
        width="1200.0002"
        height="300.00006"
-       x="2.2471411"
-       y="724.85382" />
+       x="0"
+       y="749.99988" />
     <rect
        style="display:inline;opacity:0.95999995;fill:#c8c8c8;fill-opacity:0.58823529"
        id="rect3424-0-9"
@@ -186,13 +186,6 @@
          x="448.66101"
          y="273.38101"
          style="font-size:25.00000191px;fill:#dfdfdf;fill-opacity:1">rechercher</tspan></text>
-    <rect
-       style="display:inline;opacity:0.95999995;fill:#ffffff;fill-opacity:1"
-       id="rect3424-7"
-       width="1200.0002"
-       height="300.00006"
-       x="-2.5345354"
-       y="1021.0563" />
   </g>
   <g
      inkscape:groupmode="layer"
