@@ -1,9 +1,16 @@
 
 <section id="section_home_first" class="home" style="background-image: url('/assets/images/raspberry_cook.svg');background-position: -100px ;  ">
-	<q><font color="#2980b9">Yes</font> <font color="#95a5a6">you <font color="#e74c3c">Cook!</font></q>
-	<legend>Barack Obama - 2008</legend>
-	<br/>
-	<p>Commencez par rechercher une rectte ("jambon / purée" n'en est pas vraiment une)</p>
+	
+	<div id="quote" >
+		<q><font color="#2980b9">Yes</font> <font color="#F2F1EF">you <font color="#e74c3c">Cook!</font></q>
+		<legend>Barack Obama - 2008</legend>
+	</div>
+
+	<%= form_tag  ingredients_search_path , method: "POST" do %>
+		<%= text_field_tag 'recipe' , nil, :placeholder => "recherchez une recette" %>
+		<%= submit_tag "go!" %>
+	<% end %>
+
 </section>
 
 <section class="home" style="background-image: url('/assets/images/recipe.png'); background-position: right">
