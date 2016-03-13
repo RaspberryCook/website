@@ -2,6 +2,8 @@
 @import mixin
 
 
+
+
 @font-face 
 	font-family: "Janitor" 
 	src: url('/assets/font/Janitor.ttf')
@@ -9,12 +11,13 @@
 
 header
 	background-color: $primary_color
-	height: 56px
+	height: $header_height
 	text-align:center
 	font-size: 30px
 	position: fixed
 	width: 100%
 	top: 0px
+	box-shadow: 0px 8px 0px rgba(0,0,0,.5)
 
 
 	h1 
@@ -23,6 +26,7 @@ header
 		font-family: 'sans-serif'
 		font-weight: 200
 		display: inline-block
+		line-height: $header_height
 		margin: 0px
 
 
@@ -32,3 +36,5 @@ header
 		font-size: 50px
 		top: 5px 
 		left: 5px
+		line-height: $header_height
+

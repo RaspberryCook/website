@@ -6,7 +6,7 @@
 	
 
 	<header><%= render 'layouts/header' %></header>
-	
+
 	<!-- <a id="nav-toggle" href="#">&#9776;</a> -->
 	<nav id="nav" ><%= render 'layouts/navigation' %></nav>
 
@@ -15,10 +15,9 @@
 		<div class="flash_<%= key %>"><%= value %></div>
 	<% end %> 
 
-	<section>
 
-		<%= yield %>
-	</section>
+	<%= yield %>
+
 
 	<footer><%= render 'layouts/footer' %></footer>
 
