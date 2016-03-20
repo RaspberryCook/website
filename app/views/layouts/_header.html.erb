@@ -1,15 +1,19 @@
-<a id="nav-button" href="#">&#9776;</a>
+<div id="header-title">
+	<a id="nav-button" href="#">&#9776;</a>
+	<h1>raspberry cook</h1>
+</div>
 
-<h1>raspberry cook</h1>
+<div id="header-search">
+	<%= render 'shared/recipes_form_search'  %>
+</div>
 
-<%#= render 'shared/recipes_form_search'  %>
 
-<div id="sigin">
+
+<div id="header-sigin">
 	<% if signed_in? %>
 		<%= link_to image_tag("/assets/images/icons/account_circle.svg", size: "54") , user_path(current_user) %>
 		<%#= link_to 'deconnexion' , signout_path %>
 	<% else %>
-		<%= link_to "inscription" , signup_path %>
 		<%= link_to 'connexion' , signin_path %>
 	<% end %>
 </div>

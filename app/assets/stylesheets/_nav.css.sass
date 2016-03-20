@@ -7,7 +7,7 @@ nav
 	display: none
 	width: 100%
 	height: $nav_height
-	background-color: $midnight_blue
+	background-color: $transparent
 	margin: 0px
 
 	@include box-shadow-inset ( 0px , 10px , rgba(0,0,0,.5) )
@@ -16,6 +16,9 @@ nav
 		box-sizing: border-box
 		padding: 0px
 		margin: auto
+
+		text-align: center
+		
 
 
 	li
@@ -29,7 +32,6 @@ nav
 		max-height: $nav_height
 		line-height: $nav_height
 
-		text-align: center
 
 		font-size: 24px
 		color: $light_gray
