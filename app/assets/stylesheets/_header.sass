@@ -22,9 +22,10 @@ header
 		color: $light_gray
 		font-family: 'pacifico'
 		font-weight: 200
-		display: inline-block
+		display: none //inline-block
 		line-height: $header_height
 		margin: 0px
+
 
 
 	a#nav-button
@@ -44,3 +45,27 @@ header
 		right: 0px
 		height: 54px
 
+	form
+		display: inline-block
+		position fixed
+		top: 0px
+		left: 0px
+		width: 100%
+		margin: auto
+		padding: 0px
+
+		text-align: center
+
+
+		input
+			border: none
+			display: inline-block
+			font-size: 30px
+			width: 400px
+			height: calc( #{$header_height} - 20px)
+			margin: auto
+			padding: 0px
+
+
+			&[type=submit]
+				display: none

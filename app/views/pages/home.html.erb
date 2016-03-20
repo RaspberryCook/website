@@ -6,10 +6,7 @@
 		<legend>Barack Obama - 2008</legend>
 	</div>
 
-	<%= form_tag  ingredients_search_path , method: "POST" do %>
-		<%= text_field_tag 'recipe' , nil, :placeholder => "recherchez une recette" %>
-		<%= submit_tag "go!" %>
-	<% end %>
+	<%= render 'shared/recipes_form_search'  %>
 
 </section>
 

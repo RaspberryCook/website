@@ -1,33 +1,25 @@
 <ul>
 
 	
-<li><%= link_to 'home' , home_path %></li>
+<li><%= link_to image_tag("/assets/images/icons/home.svg", size: "50") , home_path %>home</li>
+
+<li><%= link_to image_tag("/assets/images/icons/bars-1.svg", size: "50") , recipes_path %>bibliothèque</li>
 
 
-<li><%= link_to 'recettes' , recipes_path %>
-	<ul>
-		<li><%= link_to 'bibliothèque' , recipes_path %></li>
-		<li><%= link_to 'ingredients' , ingredients_path %></li>
+	<!-- <ul>
+		<li><%#= link_to 'bibliothèque' , recipes_path %></li>
+		<li><%#= link_to 'ingredients' , ingredients_path %></li>
 
-		<% if signed_in? %>
-			<li><%= link_to 'mes recettes' , user_path(current_user) %></li>
-			<li><%= link_to 'ajouter' , new_recipe_path %></li>
-		<% end %>
-	</ul>
-</li>
+		<%# if signed_in? %>
+			<li><%#= link_to 'mes recettes' , user_path(current_user) %></li>
+			<li><%#= link_to 'ajouter' , new_recipe_path %></li>
+		<%# end %>
+	</ul> -->
+
 
 	
+<li><%= link_to image_tag("/assets/images/icons/info.svg", size: "50") , pages_credits_path %>à propos</li>
 
-
-<!-- <li><a>rechercher</a>
-	<ul>
-		<li><a>recette</a></li>
-		<li><a>utilisateur</a></li>
-	</ul>
-</li> -->
-
-
-<li><%= link_to 'credits' , pages_credits_path %></li>
 
 
 
