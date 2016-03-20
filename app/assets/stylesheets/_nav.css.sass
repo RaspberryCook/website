@@ -1,0 +1,45 @@
+@import colors
+@import mixin
+
+$nav_height: 60px
+
+nav
+	display: none
+	width: 100%
+	height: $nav_height
+	background-color: $midnight_blue
+	margin: 0px
+
+	@include box-shadow-inset ( 0px , 10px , rgba(0,0,0,.5) )
+
+	ul
+		box-sizing: border-box
+		padding: 0px
+		margin: auto
+
+
+	li
+		display: inline-block
+
+		width: 25%
+		max-width: 25%
+		height: $nav_height
+		max-height: $nav_height
+		line-height: $nav_height
+
+		text-align: center
+
+		font-size: 24px
+		color: $light_gray
+
+
+		&:hover
+			font-weight: bold
+
+
+		ul
+			display: none
+
+	a
+		color: inherit
+		text-decoration: none
