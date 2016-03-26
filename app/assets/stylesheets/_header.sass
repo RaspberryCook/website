@@ -4,6 +4,9 @@
 	font-family: "Janitor" 
 	src: url('/assets/font/Janitor.ttf')
 
+$width_header-title: 320px
+$width_header-signin: 150px
+
 
 header
 	background-color: $dark_red //$primary_color
@@ -25,8 +28,8 @@ header
 		height: $header_height
 
 	div#header-title
-		width: 320px
-		max-width: 320px
+		width: $width_header-title 
+		max-width: $width_header-title 
 
 
 		h1 
@@ -50,7 +53,8 @@ header
 
 
 	div#header-search
-		width: calc(100% - 640px - 20px)
+		width: calc(100% - 500px)
+		max-width: calc(100% - 500px)
 		text-align: center
 
 
@@ -82,8 +86,8 @@ header
 
 	div#header-sigin
 		text-align: right
-		width: 300px
-		max-width: 300px
+		width: $width_header-signin
+		max-width: $width_header-signin
 
 		a
 			color: inherit
