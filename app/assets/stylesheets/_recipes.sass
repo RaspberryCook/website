@@ -2,6 +2,27 @@
 @import mixin
 
 
+section#recipe
+	
+	fieldset
+		width: 100%
+		padding: 20px
+		background-color: $green
+		@include box-sizing("border-box")
+		margin: 0
+		border: none
+
+		legend
+			float: left
+			width: 100%
+			display: block
+
+		form
+			width: 100%
+			@include box-sizing("border-box")
+
+		input, textarea
+			border: none
 
 
 h1.recipe

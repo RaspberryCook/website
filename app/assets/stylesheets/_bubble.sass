@@ -1,0 +1,20 @@
+@import colors
+@import mixin
+
+$bubble_color: $blue
+
+div.bubble
+	background-color: $bubble_color
+
+
+	&:before
+		width: 0
+		height: 0
+		content: ' '
+		position: relative
+		left: 0px
+		top: 100%
+
+		border-left: 20px solid transparent
+		border-right: 20px solid transparent
+		border-top: 40px solid red

@@ -1,8 +1,9 @@
-<ul>
+<ul id="comments">
 
 <% comments.each do |comment| %>
-	<li><strong><%= comment.title %></strong><br/>
-		<quote><%= comment.content  %></quote><br/>
+	<li><div class="bubble">
+		<blockquote><strong><%= comment.title %></strong><%= comment.content  %></blockquote>
+
 		<%= link_to comment.user.nom , comment.user %>
 
 
@@ -12,7 +13,7 @@
 	    <% end %>
 
 
-	</li>
+	</div></li>
 <% end %>
 
 </ul>

@@ -17,8 +17,20 @@ h2,
 h3
 	color: $primary_color
 
-p
+p,
+a,
+li,
+legend,
+input,
+textarea
 	color: $text_color
+
+input,
+textarea
+	font-size: 18px
+
+
+p
 	font-size: 18px
 
 	a
@@ -26,7 +38,7 @@ p
 
 
 
-section#content
+section.content
 	max-width: 1200px
 	margin: auto
 
@@ -57,10 +69,6 @@ body
 	font-family: sans-serif 
 	background-color: $background_color
 
-fieldset
-	display: inline-block
-	width: 200px
-	padding: 20px
 
 
 form  input , form  textarea
@@ -79,7 +87,6 @@ ul.actions
 	margin: 0px
 	padding-left: 0px
 	padding-right: 0px
-	padding-top: 20px
 	padding-top: 20px
 	padding-bottom: 10px
 	text-align: center

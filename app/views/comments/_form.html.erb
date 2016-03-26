@@ -18,10 +18,8 @@
       <fieldset>
         <legend>ajoutez votre commentaire</legend>
 
-        <%= f.label :title %><br>
-        <%= f.text_field :title %>
 
-        <%= f.label :content %><br>
+        <%= f.text_field :title %>
         <%= f.text_area :content %>
 
         <%= f.hidden_field :recipe_id, :value => @recipe.id %>
