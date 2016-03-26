@@ -1,7 +1,6 @@
 <% if current_user #we check if the user is logged %>
 
-  <% if !Comment.did_I_comment_this? current_user.id , recipe_id #we check if he already comment this recipe%>
-
+  <% comment = Comment.did_I_comment_this? current_user.id , recipe_id #we check if he already comment this recipe %>
 
     <%= form_for(comment) do |f| %>
       <% if @comment.errors.any? %>
@@ -33,13 +32,8 @@
       </fieldset>
 
 
-
-    <% end %>
-
-  <% else # if he already comment this%>
-
-    <p><strong>Vous ne pouvez pas commenter cette recette</strong> car vous l'avez déjà fait. Ne pas commenter une recette c'est <i>Has-been</i>!!</p>
   <% end %>
+
 
 
 <% else #if he's not connected, I print somes link to login%>
