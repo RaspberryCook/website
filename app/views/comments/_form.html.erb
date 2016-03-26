@@ -15,19 +15,11 @@
         </div>
       <% end %>
 
-      <fieldset>
-        <legend>ajoutez votre commentaire</legend>
-
-
+      <div class="bubble">
         <%= f.text_field :title %>
         <%= f.text_area :content %>
+      </div><%= f.submit  'ajouter' %>
 
-        <%= f.hidden_field :recipe_id, :value => @recipe.id %>
-
-        <div class="actions">
-          <%= f.submit  'ajouter' %>
-        </div>
-      </fieldset>
 
 
   <% end %>

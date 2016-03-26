@@ -1,19 +1,9 @@
 <ul id="comments">
 
-<% comments.each do |comment| %>
-	<li><div class="bubble">
-		<blockquote><strong><%= comment.title %></strong><%= comment.content  %></blockquote>
+	<li><%= render 'comments/form', :comment => @comment , :recipe_id => @recipe.id %></li>
 
-		<%= link_to comment.user.nom , comment.user %>
-
-
-		<% if comment.user_id == current_user.id %>
-			<%= link_to 'Edit', edit_comment_path(comment) %>
-	        <%= link_to 'Destroy', comment, method: :delete, data: { confirm: 'Are you sure?' } %>
-	    <% end %>
-
-
-	</div></li>
-<% end %>
+	<% comments.each do |comment| %>
+		<li class="comment"><%= render 'shared/comment', :comment => comment %></li>
+	<% end %>
 
 </ul>
