@@ -4,11 +4,7 @@
 <body>
 
 	
-	
-	<header><%= render 'layouts/header' %></header>
 	<nav><%= render 'layouts/navigation' %></nav>
-
-
 
 	<% flash.each do |key, value| %>
 		<div class="flash_<%= key %>"><%= value %></div>
@@ -16,6 +12,9 @@
 
 
 	<%= yield %>
+
+	<header><%= render 'layouts/header' %></header>
+	
 
 
 	<footer><%= render 'layouts/footer' %></footer>
