@@ -3,20 +3,19 @@
 <head><%= render 'layouts/head' %></head>
 <body>
 
-	<a id="nav-toggle" href="#">&#9776;</a>
-
-	<header><%= render 'layouts/header' %></header>
-	<nav id="nav" ><%= render 'layouts/navigation' %></nav>
-
+	
+	<nav><%= render 'layouts/navigation' %></nav>
 
 	<% flash.each do |key, value| %>
 		<div class="flash_<%= key %>"><%= value %></div>
 	<% end %> 
 
-	<section>
 
-		<%= yield %>
-	</section>
+	<%= yield %>
+
+	<header><%= render 'layouts/header' %></header>
+	
+
 
 	<footer><%= render 'layouts/footer' %></footer>
 

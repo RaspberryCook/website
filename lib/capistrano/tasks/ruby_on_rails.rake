@@ -1,4 +1,3 @@
-
 namespace :ruby_on_rails do
 
 
@@ -19,11 +18,31 @@ namespace :ruby_on_rails do
 
 		on roles(:web) do
 	    	within release_path do
-	    		execute 'rake RAILS_ENV=production db:migrate'
+	    		execute 'cd #{release_path} && rake RAILS_ENV=production db:migrate'
 	    	end
 	    end
 		
 	end
+
+	desc 'precompile assets'
+	task :assets_precompile do 
+
+		on roles(:web) do
+	    	within release_path do
+	    		execute 'cd #{release_path} && RAILS_ENV=production bundle exec rake assets:precompile'
+	    	end
+	    end
+		
+	end
+
+	# need to add these tasks
+	# RAILS_ENV=production rake db:create db:schema:load
+	# cp db/development.sqlite3 db/production.sqlite3
+	# RAILS_ENV=production bundle exec rake assets:precompile
+	# from http://stackoverflow.com/questions/8453400/how-to-copy-data-in-development-db-to-product-db-using-sqlite
+
+	
+
 
 
 

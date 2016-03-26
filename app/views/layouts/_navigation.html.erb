@@ -1,46 +1,25 @@
-<ul id="menu-v">
+<ul>
 
 	
-<!-- <li><%= link_to image_tag("Raspberry Cook.png" , :class => "logo") , home_path %></li> -->
-<li><%= link_to 'home' , home_path %></li>
+<li><%= link_to image_tag("/assets/images/icons/home.svg", size: "50") + "home" , home_path %></li>
+
+<li><%= link_to image_tag("/assets/images/icons/bars-1.svg", size: "50") + "bibliothèque" , recipes_path %></li>
 
 
-<li><a>recettes</a>
-	<ul>
-		<li><%= link_to 'bibliothèque' , recipes_path %></li>
-		<li><%= link_to 'ingredients' , ingredients_path %></li>
+	<!-- <ul>
+		<li><%#= link_to 'bibliothèque' , recipes_path %></li>
+		<li><%#= link_to 'ingredients' , ingredients_path %></li>
 
-		<% if signed_in? %>
-			<li><%= link_to 'mes recettes' , user_path(current_user) %></li>
-			<li><%= link_to 'ajouter' , new_recipe_path %></li>
-		<% end %>
-	</ul>
-</li>
+		<%# if signed_in? %>
+			<li><%#= link_to 'mes recettes' , user_path(current_user) %></li>
+			<li><%#= link_to 'ajouter' , new_recipe_path %></li>
+		<%# end %>
+	</ul> -->
+
 
 	
-<li><a>login</a>
-	<ul>
-	<li><%= link_to 'index' , users_path %></li>
-	<% if signed_in? %>
-		<li><%= link_to 'Editer mon profil' , edit_user_path(current_user) %></li>
-		<li><%= link_to 'deconnexion' , signout_path %></li>
-	<% else %>
-		<li><%= link_to "inscription" , signup_path %></li>
-		<li><%= link_to 'connexion' , signin_path %></li>
-	
-	<% end %>
-	</ul>
-</li>
+<li><%= link_to image_tag("/assets/images/icons/info.svg", size: "50") + "à propos" , pages_credits_path %></li>
 
-<li><a>rechercher</a>
-	<ul>
-		<li><a>recette</a></li>
-		<li><a>utilisateur</a></li>
-	</ul>
-</li>
-
-
-<li><%= link_to 'credits' , pages_credits_path %></li>
 
 
 

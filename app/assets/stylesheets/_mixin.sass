@@ -10,3 +10,8 @@
 	-ms-filter: $effect($value)
 	-o-filter: $effect($value)
 	filter: $effect($value)
+
+@mixin box-shadow-inset ($horizontal , $vertical , $color)
+	webkit-box-shadow: inset 0px $vertical $horizontal 0px $color
+	-moz-box-shadow: inset 0px $vertical $horizontal 0px $color
+	box-shadow: inset 0px $vertical $horizontal 0px $color

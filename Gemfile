@@ -48,15 +48,10 @@ group :development do
     # gem 'ruby-debug'
 end
 
-gem 'puma'
-
-
 
 #for upload picture
 gem 'carrierwave'
-gem 'rmagick', require: false
-# gem 'rmagick' # sudo apt-get install libmagickwand-dev
-# gem 'mini_magick'
+gem 'rmagick' # sudo apt-get install libmagickwand-dev
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'

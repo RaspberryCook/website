@@ -1,6 +1,8 @@
 # config valid only for current version of Capistrano
 lock '3.4.0'
 
+set :default_env, { rvm_bin_path: '~/.rvm/bin' }
+
 set :application, 'raspberry_cook'
 set :repo_url, 'https://github.com/madeindjs/raspberry_cook.git'
 
@@ -39,6 +41,7 @@ namespace :deploy do
   after :updated, :bundle_install do
   	invoke "ruby_on_rails:bundle_install"
   	invoke "ruby_on_rails:db_migrate"
+  	invoke "ruby_on_rails:assets_precompile"
   end
 
 end

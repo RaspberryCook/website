@@ -2,7 +2,7 @@
 @import mixin
 
 
-@import url(https://fonts.googleapis.com/css?family=Pacifico)
+
 
 h1.recipe
 	font-family: 'Pacifico', cursive
@@ -10,8 +10,8 @@ h1.recipe
 	font-weight: 100
 	text-align: center
 	vertical-align: middle
-	background-color: $light_brown
-	color: $background_color
+	//background-color: $light_brown
+	color: $dark_red
 	padding: 10px
 	margin: 0px
 
@@ -31,21 +31,25 @@ ul.recipes
 		font-family: 'Pacifico', cursive
 		font-size: 20px
 		text-align: center
+		vertical-align: top
 
 
 		figure
 			width: 100%
+			height: 250px
+			max-height: 250px
 
 			img
 				width: 200px
 				height: 200px
 				@include border-radius(20px)
 
-
-
 			a
 				text-decoration: none
 				color: #2c3e50
+				display: block
+				max-height: 50px
+				height: 50px
 
 
 
@@ -86,7 +90,7 @@ ul.recipes
 	// background-size: cover
 	// background-position: center
 	background: center 0 no-repeat fixed
-	background-size: auto 100%
+	background-size: cover
 	@include effect-picture( 'grayscale' , '100%')
 	margin-top: 50px
 	height: 600px

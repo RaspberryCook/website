@@ -1,13 +1,16 @@
-<h1>se connecter</h1>
-<%= form_for(:session, :url => sessions_path) do |f| %>
+<section id="login">
 
-    <%= f.label :email, "email" %>
-    <%= f.text_field :email %><br />
+	<h1>se connecter</h1>
+	<%= form_for(:session, :url => sessions_path) do |f| %>
 
-    <%= f.label :password, "password" %>
-    <%= f.password_field :password %><br />
+	    <%= f.label :email, "email" %>
+	    <%= f.text_field :email %><br />
 
-    <%= f.submit "S'identifier" %>
-<% end %>
+	    <%= f.label :password, "password" %>
+	    <%= f.password_field :password %><br />
 
-<p>Pas encore inscrit ? <%= link_to "S'inscrire !", signup_path %></p>
+	    <%= f.submit "S'identifier" %>
+	<% end %>
+
+	<p>Pas encore inscrit ? <%= link_to "S'inscrire !", signup_path %></p>
+</section>

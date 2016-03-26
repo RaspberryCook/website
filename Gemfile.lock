@@ -82,7 +82,6 @@ GEM
     net-ssh (3.0.2)
     protected_attributes (1.1.3)
       activemodel (>= 4.0.1, < 5.0)
-    puma (3.0.2)
     rack (1.5.5)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -157,7 +156,6 @@ DEPENDENCIES
   json
   net-ssh
   protected_attributes
-  puma
   rails (= 4.0.13)
   rails-jquery-autocomplete
   rails4-autocomplete
