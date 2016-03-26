@@ -16,29 +16,32 @@ nav
 		box-sizing: border-box
 		padding: 0px
 		margin: auto
-
 		text-align: center
+		max-height: $nav_height
 		
 
-
-	li
-		box-sizing: border-box
-		display: inline-block
-
-
-		width: 24%
-		max-width: 25%
-		height: $nav_height
-		max-height: $nav_height
-		line-height: $nav_height
+		li
+			box-sizing: border-box
+			display: inline-block
+			position: relative
+			top: 0
+			overflow: hidden
 
 
-		font-size: 24px
-		color: $light_gray
+
+			width: 24%
+			max-width: 25%
+			height: $nav_height
+			max-height: $nav_height
+			line-height: $nav_height
 
 
-		&:hover
-			font-weight: bold
+			font-size: 24px
+			color: $light_gray
+
+
+			&:hover
+				font-weight: bold
 
 
 
