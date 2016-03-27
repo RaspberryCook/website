@@ -8,7 +8,13 @@ class Comment < ActiveRecord::Base
  		#problem cauz we search on all database but we want searchonly on comments.recipe.user_id
  		#dont return a nill but a strange object
 
- 		self.exists? :user_id => user_id , :recipe_id => recipe_id 
+ 		#self.exists? :user_id => user_id , :recipe_id => recipe_id 
+ 		comment = self.where( :user_id => user_id , :recipe_id => recipe_id ).first
+
+ 		comment = Comment.new if comment.blank?
+ 			
+
+ 		return comment
 
  	end
 

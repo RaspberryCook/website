@@ -2,7 +2,28 @@
 @import mixin
 
 
-@import url(https://fonts.googleapis.com/css?family=Pacifico)
+section#recipe
+	
+	fieldset
+		width: 100%
+		padding: 20px
+		background-color: $green
+		@include box-sizing("border-box")
+		margin: 0
+		border: none
+
+		legend
+			float: left
+			width: 100%
+			display: block
+
+		form
+			width: 100%
+			@include box-sizing("border-box")
+
+		input, textarea
+			border: none
+
 
 h1.recipe
 	font-family: 'Pacifico', cursive
@@ -10,10 +31,38 @@ h1.recipe
 	font-weight: 100
 	text-align: center
 	vertical-align: middle
-	background-color: $light_brown
-	color: $background_color
+	//background-color: $light_brown
+	color: $dark_red
 	padding: 10px
 	margin: 0px
+
+ul#steps
+	@include ungit_ol ( 20px , 10px , 30px , $second_color)
+
+	li
+		font-size: 20px
+
+
+ul#ingredients
+	border-bottom: 10px solid $second_color
+	margin-bottom: 0
+	list-style: none
+
+	text-align: center
+
+	li
+		color: $second_color
+		font-size: 24px
+
+		margin: 5px
+
+
+
+
+
+
+
+
 
 
 
@@ -21,7 +70,8 @@ h1.recipe
 ul.recipes
 	margin: auto
 	display: block
-	padding-left: 0px
+	padding: 5px
+	text-align: center
 
 
 	li
@@ -31,27 +81,31 @@ ul.recipes
 		font-family: 'Pacifico', cursive
 		font-size: 20px
 		text-align: center
+		vertical-align: top
 
 
 		figure
 			width: 100%
+			height: 250px
+			max-height: 250px
 
 			img
 				width: 200px
 				height: 200px
 				@include border-radius(20px)
 
-
-
 			a
 				text-decoration: none
 				color: #2c3e50
+				display: block
+				max-height: 50px
+				height: 50px
 
 
 
 //recipe sheet
 #times
-	background-color: $light_gray
+	background-color: $primary_color
 	display: inline-block
 	width: 100%
 	text-align: center
@@ -86,7 +140,7 @@ ul.recipes
 	// background-size: cover
 	// background-position: center
 	background: center 0 no-repeat fixed
-	background-size: auto 100%
+	background-size: cover
 	@include effect-picture( 'grayscale' , '100%')
 	margin-top: 50px
 	height: 600px
@@ -117,72 +171,3 @@ ul.recipes
 	img 
 		max-width: 100%
 		max-height: 100%
-
-
-
-#ing_n_steps , #ingredients
-	margin-top: 20px
-	margin-bottom: 20px
-	font-size: medium
-	text-align: center
-
-	ul ol 
-		margin: 0px
-
-	li 
-		margin: 5px
-		list-style-type: none
-
-#ingredients
-	font-size: 16px
-	// background-color: $blue
-
-#etapes
-	background-color: $light_gray
-	width: 100%
-
-
-
-#ing , #steps 
-	display: inline-block
-	width: 60%
-
-	li
-		margin-bottom: 40px
-
-
-#ing
-	position: relative
-	top: center
-	width: 30%
-	height: 100%
-	text-align: right
-	color: #1E824C
-
-
-#steps, #etapes
-	color: #96281B
-	border-left: solid #6C7A89 1px
-	display: inline-block
-	margin: auto
-	text-align: left
-
-	ol
-		padding-left: 0px
-		counter-reset: repas
-
-	li
-		counter-increment: repas /* on incrémente le compteur à chaque nouveau li */
-		margin-bottom: 40px
-		text-align: justify
-
-		&:before
-			content: counter(repas) /* on affiche le compteur */
-			display: block
-			font-size: x-large
-			font-weight: lighter
-			// float: left
-			color: $text_color
-
-
-

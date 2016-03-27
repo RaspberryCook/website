@@ -1,0 +1,45 @@
+@import colors
+@import mixin
+
+$bubble_color: $blue
+
+$size_triangle: 30px
+$half_size_triangle: $size_triangle / 2
+$offset_triangle: -($size_triangle*2 - 5)
+
+div.bubble
+	width: 400px
+	background-color: $bubble_color
+	@include border-radius( $half_size_triangle )
+	padding: 10px
+	display: block
+	margin-bottom: $size_triangle
+	font-size: 18px
+
+	strong
+		display: block
+
+
+	&:after
+		width: 0
+		height: 0
+		content: ' '
+		position: relative
+		right: 0
+		bottom: $offset_triangle
+
+		border-left: $half_size_triangle solid transparent
+		border-right: $half_size_triangle solid transparent
+		border-top: $size_triangle solid $bubble_color
+
+	input, textarea
+		margin: 0
+		padding: 0
+		border: none
+		margin-bottom: 5px
+
+	input
+		font-weight: bold
+
+
+

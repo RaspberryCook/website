@@ -1,12 +1,11 @@
 @import colors
 
-
+$footer_height: 50px
 
 html,
 body,
 header
 	margin: 0px
-
 
 h1
 	font-size: 40px
@@ -18,36 +17,58 @@ h2,
 h3
 	color: $primary_color
 
-p
+p,
+a,
+li,
+legend,
+input,
+textarea
 	color: $text_color
 
+input,
+textarea
+	font-size: 18px
 
 
-section
-	width: 80%
-	min-width: 600px
+p
+	font-size: 18px
+
+	a
+		color: inherit
+
+
+
+section.content
 	max-width: 1200px
-	min-height: 300px
 	margin: auto
-	background-color: $background_color
 
 
+//trick to have a great footer
+html
+	height: 100%
+body
+	min-height: 100%
+	position: relative
+	padding-bottom: $footer_height
 footer
-	font-size: small
-	border-top: 1px solid $primary_color
-	bottom: 0px
+	position: absolute
+	bottom: 0
+	left: 0
+	right: 0
 	padding-bottom: 20px
+	height: $footer_height
+	font-size: 20px
+	background-color: $footer_color
+	font-size: 16px
+	color: $light_gray
+
 
 body
-	margin: 0px 
+	margin: 0px
+	padding-top: $header_height
 	font-family: sans-serif 
-	background-color: #e1ad9a
+	background-color: $background_color
 
-
-fieldset
-	display: inline-block
-	width: 200px
-	padding: 20px
 
 
 form  input , form  textarea
@@ -56,34 +77,15 @@ form  input , form  textarea
 	width: 100%
 
 
+section#content
+	background-color: $background_color
 
-nav
-	width: 100%
-	position: fixed
-	top: 0px
-	height: 100%
-	background-color: rgba(0,0,0,.5)
-
-
-#nav-toggle
-	text-decoration: none 
-	background-color: $transparent
-	color: $text_color
-	font-size: 50px
-	position: fixed
-	padding-left: 5px
-	padding-right: 5px
-	top: 5px 
-	left: 5px
-	z-index: 10
 
 ul.actions
-	background-color: $light_gray
 	width: 100%
 	margin: 0px
 	padding-left: 0px
 	padding-right: 0px
-	padding-top: 20px
 	padding-top: 20px
 	padding-bottom: 10px
 	text-align: center

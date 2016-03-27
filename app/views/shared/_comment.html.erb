@@ -1,0 +1,15 @@
+<div class="bubble">
+	<strong><%= comment.title %></strong><%= comment.content  %>
+
+			
+
+
+			<%# if comment.user_id == current_user.id %>
+				<%#= link_to 'Edit', edit_comment_path(comment) %>
+		        <%#= link_to 'Destroy', comment, method: :delete, data: { confirm: 'Are you sure?' } %>
+		    <%# end %>
+
+
+</div>
+<%= link_to comment.user.nom , comment.user , :class => 'author' %> - 
+<time><%= comment.created_at.strftime("%d.%m.%y") %></time>
