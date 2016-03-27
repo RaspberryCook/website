@@ -17,6 +17,7 @@
 
       <div class="bubble">
         <%= f.text_field :title %>
+        <%= f.hidden_field :recipe_id , :value => recipe_id %>
         <%= f.text_area :content %>
       </div><%= f.submit  'ajouter' %>
 
