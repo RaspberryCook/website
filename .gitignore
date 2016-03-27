@@ -15,4 +15,5 @@
 /log/*.log
 /tmp
 
-#
+# Ignore database.yml with mysql password
+/config/database.yml

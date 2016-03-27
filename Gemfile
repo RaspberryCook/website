@@ -36,10 +36,13 @@ gem 'rails-jquery-autocomplete'
 #for use old version of rails for attributes
 gem 'protected_attributes'
 
+group :production do
+	gem 'mysql2' #need to install libmysqlclient-dev
+end
+
 
 group :development do
 	gem 'net-ssh' 
-  	gem "capistrano"
     gem 'capistrano',         require: false
     gem 'capistrano-rvm',     require: false
     gem 'capistrano-rails',   require: false
