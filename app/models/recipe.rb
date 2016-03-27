@@ -16,7 +16,7 @@ class Recipe < ActiveRecord::Base
 		:uniqueness => { :case_sensitive => false }
 
 	def self.search name
-		Self.where( 'name LIKE ?' , "%#{name}%").all
+		self.where( 'name LIKE ?' , "%#{name}%").all
 	end
 
 end
