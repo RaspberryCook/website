@@ -3,7 +3,6 @@
 <h1 class="recipe"><%= @recipe.name  %></h1>
 
 
-
 <div 
 	id="recipe_picture"
 	style="background-image: url(<%= @recipe.image_url %>);" 
@@ -20,80 +19,25 @@
 
 </div>
 
-	<div id="times">
+<div id="times">
 
-		<div style="background-image:url(/assets/images/time/cooking.png)" >
-			<!-- préparation  -->
-			<time><%= @recipe.t_cooking  %></time>
-		</div>
-		<div style="background-image:url(/assets/images/time/baking.png)" >
-			<!-- cuisson -->
-			<time><%= @recipe.t_baking %></time>
-		</div>
-		<div style="background-image:url(/assets/images/time/cooling.png)" >
-			<!-- réfrigération -->
-			<time><%= @recipe.t_cooling  %> </time>
-		</div>
-		<div style="background-image:url(/assets/images/time/rest.png)" >
-			<!-- repos -->
-			<time><%= @recipe.t_rest %></time>
-		</div>
+	<div style="background-image:url(/assets/images/time/cooking.png)" >
+		<!-- préparation  -->
+		<time><%= @recipe.t_cooking  %></time>
 	</div>
-
-<% if @recipe.steps %>
-	<ul id="steps">
-		<% @recipe.steps.each_line do |step|%>
-			<li><%= step %></li>
-		<% end %>
-	</ul>
-<% end %>
-
-
-
-
-
-<small>ajoutée le <date><%= @recipe.created_at.strftime("%d/%m/%Y") %></date></small>
-
-
-
-
-
-<!--<%= @recipe.category  %>
-<%= @recipe.season  %>
-<br/>
-
-<!-- display times  & steps-->
-<div id="ing_n_steps">
-	<!-- display ingredients -->
-	<div id="ing">
-		<% if @recipe.ingredients %>
-			<ul>
-			<% @recipe.ingredients.each_line do |ingredient|%>
-				<li><%= ingredient %></li>
-			<% end %>
-			</ul>
-		<% end %>
+	<div style="background-image:url(/assets/images/time/baking.png)" >
+		<!-- cuisson -->
+		<time><%= @recipe.t_baking %></time>
 	</div>
-
-	<!-- display steps -->
-	<div id="steps">
-		<% if @recipe.steps %>
-			<ol>
-				<% @recipe.steps.each_line do |step|%>
-					<li><%= step %></li>
-				<% end %>
-			</ol>
-		<% end %>
+	<div style="background-image:url(/assets/images/time/cooling.png)" >
+		<!-- réfrigération -->
+		<time><%= @recipe.t_cooling  %> </time>
+	</div>
+	<div style="background-image:url(/assets/images/time/rest.png)" >
+		<!-- repos -->
+		<time><%= @recipe.t_rest %></time>
 	</div>
 </div>
-
-
-
-
-
-
-
-
 
 <ul class="actions" >
 	<li><%= link_to "sauvegarder", 'save', :class => 'button_edit' %></li>
@@ -111,6 +55,37 @@
 	<% end %>
 
 </ul>
+
+<% if @recipe.ingredients %>
+	<ul id="ingredients">
+		<% @recipe.ingredients.each_line do |ingredient|%>
+			<li><%= ingredient %></li>
+		<% end %>
+	</ul>
+<% end %>
+
+<% if @recipe.steps %>
+	<ul id="steps">
+		<% @recipe.steps.each_line do |step|%>
+			<li><span></span><%= step %></li>
+		<% end %>
+	</ul>
+<% end %>
+
+
+
+
+
+<!-- <small>ajoutée le <date><%#= @recipe.created_at.strftime("%d/%m/%Y") %></date></small> -->
+
+
+
+
+
+
+
+
+
 <%= render 'shared/user' , :user => @recipe.user %>
 
 <%= render 'shared/comments', :comments => @recipe .comments %>

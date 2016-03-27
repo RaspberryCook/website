@@ -35,19 +35,70 @@
 	border-left: 10px solid $color
 	margin-top: 0
 	margin-bottom: 0
+
 	li
 		margin-bottom: 30px
 		vertical-align: center
+		color: $color
+
 		&:before
 			content: '.'
 			display: block
 			position: relative
 			left: $offset_before
-			top: 60px
-			height: 30px
-			width: 30px
-			@include border-radius( 15px )
+			top: $margin_li
+			height: $margin_li
+			width: $margin_li
+			@include border-radius( $margin_li / 2 )
 			background-color: $color
+
 		input[type=submit]
 			background-color: $green
 			width: 200px
+
+//a simple mixin for a style to use again on many pages
+@mixin ungit_ol ($offset_padding , $width_line , $margin_li , $color)
+
+	$offset_before: - $offset_padding - $margin_li - $width_line
+
+	padding: $offset_padding
+	
+	margin-left: 100px
+	border-left: 10px solid $color
+	margin-top: 0
+	margin-bottom: 0
+
+	counter-reset: step
+	list-style: none
+
+	li
+		margin-bottom: 30px
+		vertical-align: center
+		color: $color
+		counter-increment: step
+
+		&:hover
+			border-color: $primary_color
+			color: $primary_color
+
+
+
+		&:before
+			content: counter(step)
+			line-height: $margin_li*1.5
+			font-size: 20px
+			text-align: center
+			display: block
+			position: relative
+			left: $offset_before
+			top: $margin_li*1.5
+			height: $margin_li*1.5
+			width: $margin_li*1.5
+			@include border-radius( $margin_li*1.5 )
+			background-color: $background_color
+			border: $width_line solid
+
+
+		span
+			display: inline-block
+			width: 20px

@@ -8,8 +8,14 @@ class RecipesController < ApplicationController
 	def show
 
 		@recipe = Recipe.find(params[:id])
-		@comment = Comment.new
 
+		# ingredients_array = @recipe.ingredients.split(' ')
+
+		# ingredients_array.each do |ingredient|
+		# 	@recipe.steps.gsub! ingredient , String.html_safe('<strong>' + ingredient + '</strong>')
+		# end
+
+		@comment = Comment.new
 		@title = @recipe.name
 	end
 

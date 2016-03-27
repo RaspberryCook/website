@@ -37,7 +37,34 @@ h1.recipe
 	margin: 0px
 
 ul#steps
-	@include ungit_ul ( 20px , 10px , 30px , $primary_color)
+	@include ungit_ol ( 20px , 10px , 30px , $second_color)
+
+	li
+		font-size: 20px
+
+
+ul#ingredients
+	border-bottom: 10px solid $second_color
+	margin-bottom: 0
+	list-style: none
+
+	text-align: center
+
+	li
+		color: $second_color
+		font-size: 24px
+
+		margin: 5px
+
+
+
+
+
+
+
+
+
+
 
 // display of recipes list
 ul.recipes
@@ -143,72 +170,3 @@ ul.recipes
 	img 
 		max-width: 100%
 		max-height: 100%
-
-
-
-#ing_n_steps , #ingredients
-	margin-top: 20px
-	margin-bottom: 20px
-	font-size: medium
-	text-align: center
-
-	ul ol 
-		margin: 0px
-
-	li 
-		margin: 5px
-		list-style-type: none
-
-#ingredients
-	font-size: 16px
-	// background-color: $blue
-
-#etapes
-	background-color: $light_gray
-	width: 100%
-
-
-
-#ing , #steps 
-	display: inline-block
-	width: 60%
-
-	li
-		margin-bottom: 40px
-
-
-#ing
-	position: relative
-	top: center
-	width: 30%
-	height: 100%
-	text-align: right
-	color: #1E824C
-
-
-#steps, #etapes
-	color: #96281B
-	border-left: solid #6C7A89 1px
-	display: inline-block
-	margin: auto
-	text-align: left
-
-	ol
-		padding-left: 0px
-		counter-reset: repas
-
-	li
-		counter-increment: repas /* on incrémente le compteur à chaque nouveau li */
-		margin-bottom: 40px
-		text-align: justify
-
-		&:before
-			content: counter(repas) /* on affiche le compteur */
-			display: block
-			font-size: x-large
-			font-weight: lighter
-			// float: left
-			color: $text_color
-
-
-
