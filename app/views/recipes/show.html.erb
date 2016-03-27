@@ -19,6 +19,7 @@
 
 
 </div>
+
 	<div id="times">
 
 		<div style="background-image:url(/assets/images/time/cooking.png)" >
@@ -38,6 +39,14 @@
 			<time><%= @recipe.t_rest %></time>
 		</div>
 	</div>
+
+<% if @recipe.steps %>
+	<ul id="steps">
+		<% @recipe.steps.each_line do |step|%>
+			<li><%= step %></li>
+		<% end %>
+	</ul>
+<% end %>
 
 
 

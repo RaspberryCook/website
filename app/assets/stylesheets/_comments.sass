@@ -1,40 +1,10 @@
 @import colors
 @import mixin
 
-$offset_padding: 20px
-$width_line: 10px
-$margin_li: 30px
-$offset_before: - $offset_padding - ($margin_li / 2 ) - ($width_line / 2)
-
-
 
 ul#comments
-	padding: $offset_padding
-	list-style: none
-	margin-left: 100px
-	border-left: 10px solid $midnight_blue
 
-	margin-top: 0
-	margin-bottom: 0
-
-	li
-		margin-bottom: 30px
-		vertical-align: center
-
-		&:before
-			content: '.'
-			display: block
-			position: relative
-			left: $offset_before
-			top: 60px
-			height: 30px
-			width: 30px
-			@include border-radius( 15px )
-			background-color: $midnight_blue
-
-		input[type=submit]
-			background-color: $green
-			width: 200px
+	@include ungit_ul ( 20px , 10px , 30px , $midnight_blue)
 
 	a.author, p.author
 		text-decoration: none

@@ -36,7 +36,8 @@ h1.recipe
 	padding: 10px
 	margin: 0px
 
-
+ul#steps
+	@include ungit_ul ( 20px , 10px , 30px , $primary_color)
 
 // display of recipes list
 ul.recipes
@@ -76,7 +77,7 @@ ul.recipes
 
 //recipe sheet
 #times
-	background-color: $light_gray
+	background-color: $primary_color
 	display: inline-block
 	width: 100%
 	text-align: center
