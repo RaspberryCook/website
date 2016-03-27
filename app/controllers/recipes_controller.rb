@@ -86,7 +86,8 @@ class RecipesController < ApplicationController
 
 
 	def search
-		@recipes = Recipe.where( 'name LIKE ?' , "%#{params[:recipe]}%").all
+		@title = "rechercher une recette"
+		@recipes = Recipe.search params[:recipe]
 	end
 
 
