@@ -73,16 +73,21 @@ class RecipesController < ApplicationController
 	    end
 	end
 
-  def save
-  	  respond_to do |format|
-    format.html
-    format.pdf do
-      render pdf: @order.payer_name,                  # file name
-             layout: 'layouts/application.pdf.haml',  # layout used
-             show_as_html: params[:debug].present?    # allow debuging
-    end
-  end
-  end
+	def save
+	  	respond_to do |format|
+			format.html
+		    format.pdf do
+		      	render pdf: @order.payer_name,                  # file name
+		             layout: 'layouts/application.pdf.haml',  # layout used
+		             show_as_html: params[:debug].present?    # allow debuging
+		    end
+		end
+	end
+
+
+	def search
+		@recipes = Recipe.where( 'name LIKE ?' , "%#{params[:recipe]}%").all
+	end
 
 
   	private
@@ -93,5 +98,9 @@ class RecipesController < ApplicationController
 	    def check_recipe_owner
 	    	@recipe = Recipe.find(params[:id])
 	      	redirect_to root_path , :notice => "Petit-coquin!" unless current_user == @recipe.user
+	    end
+
+	    def recipe_search_params
+	      params.require(:recipe).permit(:name)
 	    end
 end

@@ -15,6 +15,7 @@ RaspberryCook::Application.routes.draw do
 
   get "recipes/index"
   get "recipes/save"
+  get "recipes/search"
 
   get "sessions/new"
 
