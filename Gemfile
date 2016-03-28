@@ -5,6 +5,7 @@ gem 'rails', '4.0.13'
 
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
+gem 'mysql2' , '~> 0.3.18' #need to install libmysqlclient-dev
 
 #for avatar
 gem 'gravatar'
@@ -36,9 +37,7 @@ gem 'rails-jquery-autocomplete'
 #for use old version of rails for attributes
 gem 'protected_attributes'
 
-group :production do
-	gem 'mysql2' #need to install libmysqlclient-dev
-end
+
 
 
 group :development do

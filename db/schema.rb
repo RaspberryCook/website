@@ -23,11 +23,18 @@ ActiveRecord::Schema.define(version: 20160309205552) do
     t.integer  "note"
   end
 
+  create_table "microposts", force: true do |t|
+    t.string   "content"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "recipes", force: true do |t|
     t.string   "name"
     t.integer  "user_id"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.text     "description"
     t.text     "ingredients"
     t.text     "steps"
@@ -37,10 +44,6 @@ ActiveRecord::Schema.define(version: 20160309205552) do
     t.integer  "t_cooling"
     t.integer  "t_cooking"
     t.integer  "t_rest"
-    t.string   "photo_file_name"
-    t.string   "photo_content_type"
-    t.integer  "photo_file_size"
-    t.datetime "photo_updated_at"
     t.string   "photo"
     t.string   "image"
   end
@@ -48,8 +51,8 @@ ActiveRecord::Schema.define(version: 20160309205552) do
   create_table "users", force: true do |t|
     t.string   "nom"
     t.string   "email"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.string   "encrypted_password"
     t.string   "salt"
     t.boolean  "admin"

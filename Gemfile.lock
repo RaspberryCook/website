@@ -77,7 +77,7 @@ GEM
     mime-types (2.99)
     minitest (4.7.5)
     multi_json (1.11.2)
-    mysql2 (0.4.3)
+    mysql2 (0.3.20)
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
     net-ssh (3.0.2)
@@ -155,7 +155,7 @@ DEPENDENCIES
   jquery-rails
   jquery-ui-rails
   json
-  mysql2
+  mysql2 (~> 0.3.18)
   net-ssh
   protected_attributes
   rails (= 4.0.13)

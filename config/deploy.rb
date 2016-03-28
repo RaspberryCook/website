@@ -39,9 +39,9 @@ set :repo_url, 'https://github.com/madeindjs/raspberry_cook.git'
 namespace :deploy do
 
   after :updated, :bundle_install do
-  	invoke "ruby_on_rails:bundle_install"
-  	invoke "ruby_on_rails:db_migrate"
-  	invoke "ruby_on_rails:assets_precompile"
+  	# invoke "ruby_on_rails:bundle_install"
+  	# invoke "ruby_on_rails:db_migrate"
+  	# invoke "ruby_on_rails:assets_precompile"
   end
 
 end
