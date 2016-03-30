@@ -1,11 +1,12 @@
-<h1>Recipes#new</h1>
-<%= form_for(@recipe) do |f| %>
+<section id="recipe_new">
+	<h1>Créez votre recette</h1>
+	<%= form_for(@recipe) do |f| %>
 
-	<%= render 'shared/error_messages' , :object => f.object %>
+		<%= render 'shared/error_messages' , :object => f.object %>
 
-	<%= f.label :nom %>
-	<%= f.text_field :name %><br/>
+		<%= f.text_field :name , :placeholder => "Harry Covers et les surgelés"%><br/>
 
-	<%= f.submit 'ajouter' %><br/>
+		<%= f.submit 'ajouter' %><br/>
 
-<% end %>
+	<% end %>
+</section>

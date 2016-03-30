@@ -3,7 +3,7 @@ class RecipesController < ApplicationController
 	before_filter :check_recipe_owner, :only =>  [:destroy , :update , :edit]
 
 	#for autocomplete ingredients
-	autocomplete :ingredient, :name
+	#autocomplete :ingredient, :name
 
 	def show
 
@@ -28,13 +28,13 @@ class RecipesController < ApplicationController
 		@title = 'editer recette'
 		@recipe = Recipe.find(params[:id])
 
-		ingredients = Ingredient.all
-		@ingredients = []
-		ingredients.each  do |ingredient|
-			@ingredients << ingredient.name
-		end
+		# ingredients = Ingredient.all
+		# @ingredients = []
+		# ingredients.each  do |ingredient|
+			# @ingredients << ingredient.name
+		# end
 
-		@ingredients_str = @ingredients.inspect
+		# @ingredients_str = @ingredients.inspect
 
 
 	end
