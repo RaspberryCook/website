@@ -2,6 +2,38 @@
 @import mixin
 @import button
 
+// display of recipes list
+ul.recipes
+	margin: auto
+	display: block
+	padding: 5px
+	text-align: center
+
+	li
+		margin: 30px
+		width: 200px
+		display: inline-block
+		font-family: 'Pacifico', cursive
+		font-size: 20px
+		text-align: center
+		vertical-align: top
+
+		figure
+			width: 100%
+			height: 250px
+			max-height: 250px
+
+			img
+				width: 200px
+				height: 200px
+				@include border-radius(20px)
+
+			a
+				text-decoration: none
+				color: #2c3e50
+				display: block
+				max-height: 50px
+				height: 50px
 
 section#recipe_new
 	width: 800px
@@ -60,38 +92,7 @@ section#recipe_edit
 			margin: 5px
 
 
-	// display of recipes list
-	ul.recipes
-		margin: auto
-		display: block
-		padding: 5px
-		text-align: center
 
-		li
-			margin: 30px
-			width: 200px
-			display: inline-block
-			font-family: 'Pacifico', cursive
-			font-size: 20px
-			text-align: center
-			vertical-align: top
-
-			figure
-				width: 100%
-				height: 250px
-				max-height: 250px
-
-				img
-					width: 200px
-					height: 200px
-					@include border-radius(20px)
-
-				a
-					text-decoration: none
-					color: #2c3e50
-					display: block
-					max-height: 50px
-					height: 50px
 
 	//recipe sheet
 	#times
