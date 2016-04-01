@@ -1,4 +1,6 @@
 @import colors
+@import mixin
+@import button
 
 $footer_height: 50px
 
@@ -97,3 +99,12 @@ ul.actions
 	li
 
 		display: inline-block
+
+.button_save
+	@include button_class( $green )
+
+.button_delete
+	@include button_class( $dark_red )
+	
+.button_edit
+	@include button_class( $orange )

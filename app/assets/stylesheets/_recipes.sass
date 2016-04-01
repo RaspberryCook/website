@@ -1,5 +1,6 @@
 @import colors
 @import mixin
+@import button
 
 
 section#recipe_new
@@ -12,7 +13,12 @@ section#recipe_new
 		border: 1px solid lightgray
 
 
-section#recipe
+section#recipe ,
+section#recipe_edit
+
+	input[type=submit]
+		@include button_class( $green )
+		width
 	
 	fieldset
 		width: 100%
@@ -35,139 +41,137 @@ section#recipe
 			border: none
 
 
+	ul#steps
+		@include ungit_ol ( 20px , 10px , 30px , $second_color)
 
-ul#steps
-	@include ungit_ol ( 20px , 10px , 30px , $second_color)
+		li
+			font-size: 20px
 
-	li
-		font-size: 20px
+	ul#ingredients
+		border-bottom: 10px solid $second_color
+		margin-bottom: 0
+		list-style: none
 
-
-ul#ingredients
-	border-bottom: 10px solid $second_color
-	margin-bottom: 0
-	list-style: none
-
-	text-align: center
-
-	li
-		color: $second_color
-		font-size: 24px
-
-		margin: 5px
-
-
-
-
-
-
-
-
-
-
-
-// display of recipes list
-ul.recipes
-	margin: auto
-	display: block
-	padding: 5px
-	text-align: center
-
-
-	li
-		margin: 30px
-		width: 200px
-		display: inline-block
-		font-family: 'Pacifico', cursive
-		font-size: 20px
 		text-align: center
-		vertical-align: top
+
+		li
+			color: $second_color
+			font-size: 24px
+			margin: 5px
 
 
-		figure
-			width: 100%
-			height: 250px
-			max-height: 250px
+	// display of recipes list
+	ul.recipes
+		margin: auto
+		display: block
+		padding: 5px
+		text-align: center
 
-			img
-				width: 200px
-				height: 200px
-				@include border-radius(20px)
+		li
+			margin: 30px
+			width: 200px
+			display: inline-block
+			font-family: 'Pacifico', cursive
+			font-size: 20px
+			text-align: center
+			vertical-align: top
 
-			a
-				text-decoration: none
-				color: #2c3e50
-				display: block
-				max-height: 50px
-				height: 50px
+			figure
+				width: 100%
+				height: 250px
+				max-height: 250px
 
+				img
+					width: 200px
+					height: 200px
+					@include border-radius(20px)
 
+				a
+					text-decoration: none
+					color: #2c3e50
+					display: block
+					max-height: 50px
+					height: 50px
 
-//recipe sheet
-#times
-	background-color: $primary_color
-	display: inline-block
-	width: 100%
-	text-align: center
-	vertical-align: center
-
-
-	div 
-		background-size: 60% 60% 
-		background-repeat: no-repeat
-		background-position : center center
+	//recipe sheet
+	#times
+		background-color: $second_color
 		display: inline-block
-		width: 100px
-		height: 100px
-		display: inline-block 
-		font-weight: lighter
-		font-size: 20px
+		width: 100%
 		text-align: center
 		vertical-align: center
-		line-height: 100px 
-
-		time 
-			display: block
-			font-size: 30px
-
-		time:after
-			content: '"'
 
 
+		div 
+			background-size: 60% 60% 
+			background-repeat: no-repeat
+			background-position : center center
+			display: inline-block
+			width: 100px
+			height: 100px
+			display: inline-block 
+			font-weight: lighter
+			font-size: 20px
+			text-align: center
+			vertical-align: center
+			line-height: 100px 
 
-#recipe_picture
-	// background-color: #ECF0F1 
-	// background-size: cover
-	// background-position: center
-	background: center 0 no-repeat fixed
-	background-size: cover
-	@include effect-picture( 'grayscale' , '100%')
-	margin-top: 50px
-	height: 600px
-	width: 100%
-	margin: auto
+			time 
+				display: block
+				font-size: 30px
 
-	ul , textarea 
-		position: relative
-		left: 50%
-		top: -300px
-		width: 40% 
-		height: 300px
-		font-size: large
+			time:after
+				content: '"'
 
-
-	figure 
-		text-align: center
-		width: 350px
-		position: relative
-		display: inline-block
+	#recipe_picture
+		// background-color: #ECF0F1 
+		// background-size: cover
+		// background-position: center
+		background: center 0 no-repeat fixed
+		background-size: cover
+		@include effect-picture( 'grayscale' , '100%')
+		margin-top: 50px
+		height: 600px
+		width: 100%
 		margin: auto
 
-	figcaption 
-		text-align: center
-		padding: 5px
-		font-size: small
+		ul , textarea 
+			position: relative
+			left: 50%
+			top: -300px
+			width: 40% 
+			height: 300px
+			font-size: large
 
-	img 
-		max-width: 100%
-		max-height: 100%
+
+		figure 
+			text-align: center
+			width: 350px
+			position: relative
+			display: inline-block
+			margin: auto
+
+		figcaption 
+			text-align: center
+			padding: 5px
+			font-size: small
+
+		img 
+			max-width: 100%
+			max-height: 100%
+
+#recipe_edit
+
+	#picture_edit,
+	#recipe_edit-confirm
+		border-top: solid 10px $second_color
+
+	#picture_edit
+		border-bottom: solid 10px $second_color
+		padding: 10px
+
+	#recipe_edit-confirm
+		padding: 30px
+		width: 100%
+		text-align: center
+

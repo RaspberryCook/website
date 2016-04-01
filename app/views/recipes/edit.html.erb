@@ -1,4 +1,4 @@
-<section id="recipe" >
+<section id="recipe_edit" >
 
 <h1 class="recipe"><%= @recipe.name  %></h1>
 
@@ -6,51 +6,27 @@
   <%= render 'shared/error_messages', :object => f.object %>
 
   
-
-<div 
-	id="recipe_picture"
-	style="background-image: url(<%= @recipe.image_url %>);" 
->
-
-
-
+<div id="picture_edit" >
+	<%= f.file_field :image  %>
 </div>
-
-<%= f.file_field :image  %>
-
-
-
-
-	
-
-<!-- NOUVELLE MANIEREE -->
-<div id="header_recipe">
-
-
-	<div id="times">
-
-		<div style="background-image:url(/assets/images/time/cooking.png)" >
-			<!-- préparation  -->
-			<%= f.number_field :t_cooking  %>
-		</div>
-		<div style="background-image:url(/assets/images/time/baking.png)" >
-			<!-- cuisson -->
-			<%= f.number_field :t_baking  %>
-		</div>
-		<div style="background-image:url(/assets/images/time/cooling.png)" >
-			<!-- réfrigération -->
-			<%= f.number_field :t_cooling  %>
-		</div>
-		<div style="background-image:url(/assets/images/time/rest.png)" >
-			<!-- repos -->
-			<%= f.number_field :t_rest  %>
-		</div>
-	</div>
-
-</div>
-
 
 <ul id="steps">
+
+
+	<li>
+		<span></span>temp nécessaire
+		<table>
+			<tr><th>préparation</th>
+				<td><%= f.number_field :t_cooking  %></td></tr>
+			<tr><th>cuisson</th>
+				<td><%= f.number_field :t_baking  %></td></tr>
+			<tr><th>réfrigération</th>
+				<td><%= f.number_field :t_cooling  %></td></tr>
+			<tr><th>repos</th>
+				<td><%= f.number_field :t_rest  %></td></tr>
+		</table>
+	</li>
+
 	<li>
 		<span></span>description<%= f.text_field :description , :placeholder => "entrez une description"%></li>
 	<li><span></span>ingrédients<%= f.text_area :ingredients , :placeholder => "listez les ingrédients en revant à la ligne, simplement"%></li>
@@ -67,15 +43,10 @@
 		) %></li>
 </ul>
 
-
-
-
-
-
-
-
-
+<div id="recipe_edit-confirm">
 	<%= f.submit "Mettre à jour" %>
+</div>
+
   
 <% end %>
 
