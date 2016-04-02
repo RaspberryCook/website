@@ -35,17 +35,22 @@ namespace :ruby_on_rails do
 		
 	end
 
+	desc 'copy database.yml files'
+	task :copy_database_configuration do 
+
+		on roles(:web) do
+	    	within release_path do
+	    		execute "cp /var/www/raspberry_cook/private/config/database.yml #{release_path}/config/"
+	    	end
+	    end
+		
+	end
+
 	# need to add these tasks
 	# RAILS_ENV=production rake db:create db:schema:load
 	# cp db/development.sqlite3 db/production.sqlite3
 	# RAILS_ENV=production bundle exec rake assets:precompile
 	# from http://stackoverflow.com/questions/8453400/how-to-copy-data-in-development-db-to-product-db-using-sqlite
-
-	
-
-
-
-
 
 
 end
