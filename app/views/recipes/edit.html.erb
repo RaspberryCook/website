@@ -28,10 +28,19 @@
 	</li>
 
 	<li>
-		<span></span>description<%= f.text_field :description , :placeholder => "entrez une description"%></li>
+		<span></span>description<%= f.text_field :description , :placeholder => "entrez une description"%>
+	</li>
+
+
 	<li><span></span>ingrédients<%= f.text_area :ingredients , :placeholder => "listez les ingrédients en revant à la ligne, simplement"%></li>
-	<li><span></span>étapes<%= f.text_area :steps , :placeholder => "listez les étapes en revant à la ligne, simplement"%></li>
-	<li><span></span>catégorie<%= f.label :category , "catégorie" %></li>
+
+
+	<li><span></span>étapes<%= f.text_area :steps , :placeholder => "listez les étapes en revant à la ligne, simplement"%>
+	</li>
+
+	<li><span></span>catégorie<%= f.text_field :category , :placeholder => "cusine du monde, cocktail, etc.."%>
+	</li>
+
 	<li><span></span>saisons<%= select_tag :season, options_for_select( 
 			[
 				['toutes',0], 
