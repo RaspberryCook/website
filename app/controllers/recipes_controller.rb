@@ -2,6 +2,7 @@ class RecipesController < ApplicationController
 	before_filter :authenticate, :only =>  [:destroy , :update , :edit ,:add]
 	before_filter :check_recipe_owner, :only =>  [:destroy , :update , :edit]
 
+
 	#for autocomplete ingredients
 	#autocomplete :ingredient, :name
 
@@ -52,7 +53,7 @@ class RecipesController < ApplicationController
 
   	def index
   		@title = "recettes"
-  		@recipes = Recipe.all
+  		@recipes = Recipe.paginate(:page => params[:page])
   	end
 
   	def destroy

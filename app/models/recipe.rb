@@ -11,6 +11,8 @@ class Recipe < ActiveRecord::Base
 
  	mount_uploader :image , ImageUploader
 
+ 	self.per_page = 20
+
 	validates :name , 
 		:presence 	=> true ,
 		:uniqueness => { :case_sensitive => false }
