@@ -8,7 +8,7 @@ class PagesController < ApplicationController
 		@title = 'infos'
   end
 
-   def credits
+  def credits
 		@title = 'credits'
   end
   

@@ -11,12 +11,14 @@ class Recipe < ActiveRecord::Base
 
  	mount_uploader :image , ImageUploader
 
+ 	self.per_page = 20
+
 	validates :name , 
 		:presence 	=> true ,
 		:uniqueness => { :case_sensitive => false }
 
-	def self.search name
-		self.where( 'name LIKE ?' , "%#{name}%").all
+	def self.search name , page
+		self.where( 'name LIKE ?' , "%#{name}%").paginate( :page => page )
 	end
 
 end

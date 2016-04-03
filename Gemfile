@@ -1,10 +1,12 @@
 source 'https://rubygems.org'
 
-# Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.0.13'
+gem 'rails', '4.0.13'# Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 
-# Use sqlite3 as the database for Active Record
-gem 'sqlite3'
+
+
+
+#Database
+gem 'sqlite3'# Use sqlite3 as the database for Active Record
 gem 'mysql2' , '~> 0.3.18' #need to install libmysqlclient-dev
 
 #for avatar
@@ -27,27 +29,25 @@ gem 'coffee-rails', '~> 4.0.0'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
-
 gem 'json'
+
+#for use old version of rails for attributes
+gem 'protected_attributes'
 
 # for Autocomplete system
 gem 'rails4-autocomplete'
 gem 'rails-jquery-autocomplete'
 
-#for use old version of rails for attributes
-gem 'protected_attributes'
-
-
+gem 'will_paginate', '~> 3.0.6'#https://github.com/mislav/will_paginate
 
 
 group :development do
+	# Use Capistrano for deployment
 	gem 'net-ssh' 
     gem 'capistrano',         require: false
     gem 'capistrano-rvm',     require: false
     gem 'capistrano-rails',   require: false
     gem 'capistrano-bundler', require: false
-
-    # gem 'ruby-debug'
 end
 
 
@@ -65,15 +65,3 @@ group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
 end
-
-# Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
-
-# Use unicorn as the app server
-# gem 'unicorn'
-
-# Use Capistrano for deployment
-# gem 'capistrano', group: :development
-
-# Use debugger
-# gem 'debugger', group: [:development, :test]

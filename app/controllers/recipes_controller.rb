@@ -2,19 +2,12 @@ class RecipesController < ApplicationController
 	before_filter :authenticate, :only =>  [:destroy , :update , :edit ,:add]
 	before_filter :check_recipe_owner, :only =>  [:destroy , :update , :edit]
 
+
 	#for autocomplete ingredients
 	#autocomplete :ingredient, :name
 
 	def show
-
 		@recipe = Recipe.find(params[:id])
-
-		# ingredients_array = @recipe.ingredients.split(' ')
-
-		# ingredients_array.each do |ingredient|
-		# 	@recipe.steps.gsub! ingredient , String.html_safe('<strong>' + ingredient + '</strong>')
-		# end
-
 		@comment = Comment.new
 		@title = @recipe.name
 	end
@@ -27,16 +20,6 @@ class RecipesController < ApplicationController
 	def edit
 		@title = 'editer recette'
 		@recipe = Recipe.find(params[:id])
-
-		# ingredients = Ingredient.all
-		# @ingredients = []
-		# ingredients.each  do |ingredient|
-			# @ingredients << ingredient.name
-		# end
-
-		# @ingredients_str = @ingredients.inspect
-
-
 	end
 
 	def create
@@ -52,7 +35,7 @@ class RecipesController < ApplicationController
 
   	def index
   		@title = "recettes"
-  		@recipes = Recipe.all
+  		@recipes = Recipe.paginate(:page => params[:page])
   	end
 
   	def destroy
@@ -87,7 +70,8 @@ class RecipesController < ApplicationController
 
 	def search
 		@title = "rechercher une recette"
-		@recipes = Recipe.search params[:recipe]
+		@searched_terms = params[:recipe]
+		@recipes = Recipe.search @searched_terms , params[:page]
 	end
 
 

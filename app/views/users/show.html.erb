@@ -3,3 +3,5 @@
 <h2>Recettes</h2>
 
 <%= render 'shared/recipes' , :recipes => @recipes %>
+
+<%= will_paginate @recipes , :class => "apple_pagination" %>
