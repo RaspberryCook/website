@@ -1,8 +1,10 @@
 // inspired from http://mislav.github.io/will_paginate/
 
+@import colors
+@import mixin
+
 .apple_pagination
-  background: #f1f1f1
-  border: 1px solid #e5e5e5
+  background: $white
   text-align: center
   padding: 1em
   cursor: default
@@ -12,18 +14,14 @@
     color: #aaaaaa
   .current
     font-style: normal
-    font-weight: bold
-    background-color: darken(#f1f1f1, 20)
+    background-color: $dark_red
+    color: $white
     display: inline-block
     width: 1.4em
     height: 1.4em
     line-height: 1.5
-    -moz-border-radius: 1em
-    -webkit-border-radius: 1em
-    border-radius: 1em
-    text-shadow: rgba(white, .8) 1px 1px 1px
+    @include border-radius(1em)
   a
     text-decoration: none
-    color: black
     &:hover, &:focus
       text-decoration: underline
