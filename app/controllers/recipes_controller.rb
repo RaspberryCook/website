@@ -7,15 +7,7 @@ class RecipesController < ApplicationController
 	#autocomplete :ingredient, :name
 
 	def show
-
 		@recipe = Recipe.find(params[:id])
-
-		# ingredients_array = @recipe.ingredients.split(' ')
-
-		# ingredients_array.each do |ingredient|
-		# 	@recipe.steps.gsub! ingredient , String.html_safe('<strong>' + ingredient + '</strong>')
-		# end
-
 		@comment = Comment.new
 		@title = @recipe.name
 	end
@@ -28,16 +20,6 @@ class RecipesController < ApplicationController
 	def edit
 		@title = 'editer recette'
 		@recipe = Recipe.find(params[:id])
-
-		# ingredients = Ingredient.all
-		# @ingredients = []
-		# ingredients.each  do |ingredient|
-			# @ingredients << ingredient.name
-		# end
-
-		# @ingredients_str = @ingredients.inspect
-
-
 	end
 
 	def create
@@ -89,7 +71,7 @@ class RecipesController < ApplicationController
 	def search
 		@title = "rechercher une recette"
 		@searched_terms = params[:recipe]
-		@recipes = Recipe.search @searched_terms
+		@recipes = Recipe.search @searched_terms , params[:page]
 	end
 
 

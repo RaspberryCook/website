@@ -1,10 +1,8 @@
 <section id="content">
 	<h1>Recherche pour  "<%= @searched_terms %>"</h1>
 
-	<h2>Recettes</h2>
 	<%= render 'shared/recipes' , :recipes => @recipes %>
-
-	<h2>Utilisateurs</h2>
+	<%= will_paginate @recipes , :class => "apple_pagination" %>
 
 </section>
 
