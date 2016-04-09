@@ -111,15 +111,19 @@ section#recipe_edit
 			width: 100px
 			height: 100px
 			display: inline-block 
-			font-weight: lighter
-			font-size: 20px
-			text-align: center
+			
 			vertical-align: center
-			line-height: 100px 
 
-			time 
+			time
+				color: $white
 				display: block
-				font-size: 30px
+				width: 30px
+				height: 30px
+				line-height: 30px
+				font-size: 18px
+				@include border-radius(15px)
+
+				background-color: $primary_color
 
 			time:after
 				content: '"'
