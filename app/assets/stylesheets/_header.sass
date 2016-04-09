@@ -4,7 +4,7 @@
 	font-family: "Janitor" 
 	src: url('/assets/font/Janitor.ttf')
 
-$width_header-title: 320px
+$width_header-title: 120px
 $width_header-signin: $width_header-title
 
 
@@ -38,19 +38,13 @@ header
 		max-width: $width_header-title 
 
 
-		h1 
-			color: $light_gray
-			font-family: 'pacifico'
-			font-weight: 200
-			display: inline-block
-			line-height: $header_height
-			vertical-align: center
+		a
 			position: relative
-			top: 0
+			vertical-align: top
+			top: 3px
 			bottom: 0
 			margin: 0
 			padding: 0
-			font-size: 30px
 
 		a#nav-button
 			text-decoration: none
@@ -59,13 +53,16 @@ header
 			line-height: $header_height
 
 			font-size: 45px
-			top: 0px 
+			top: 0px
+
+		img
+			height: 50px
 
 
 
 	div#header-search
-		width: calc(100% - 640px)
-		max-width: calc(100% - 640px)
+		width: calc(100% - 280px)
+		max-width: calc(100% - 240px)
 		text-align: center
 
 		left: $width_header-title
@@ -75,7 +72,7 @@ header
 		form#recipes_form_search
 			display: inline-block
 			position: relative
-			top: 10px
+			top: 5px
 			left: 0px
 			margin: auto
 			padding: 0px
@@ -87,15 +84,27 @@ header
 			input
 				border: none
 				display: inline-block
-				text-align: center
-				font-size: 30px
-				height: $header_height - 20px
+				text-align: left
+				font-size: 17px
+				height: 15px
 				margin: auto
-				padding: 0px
+				padding: 15px
 				width: 100%
+				@include border-radius(7px)
 
-				&[type=submit]
-					display: none
+
+				&[type=image]
+					display: block
+					position: absolute
+					background-color: transparent
+					background-image: url('/assets/images/icons/search.svg')
+					top: 5px
+					right: 0px
+					width: 40px
+					height: 40px
+					padding: 0
+					margin: 0
+
 
 
 
