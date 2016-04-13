@@ -6,21 +6,24 @@
 	
 	<nav><%= render 'layouts/navigation' %></nav>
 
-	<% flash.each do |key, value| %>
-		<div class="flash_<%= key %>"><%= value %></div>
-	<% end %> 
+
+
+
 
 
 	<%= yield %>
 
 	<header><%= render 'layouts/header' %></header>
-	
 	<footer><%= render 'layouts/footer' %></footer>
 
+	<% flash.each do |key, value| %>
+		<div class="flash_<%= key %>">
+			<%= value %>
+		</div>
+		<%= javascript_include_tag 'flash.js' %>
 
-	<script src="//code.jquery.com/jquery-1.10.2.js"></script>
-  	<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-	<%= javascript_include_tag "application" %>
+	<% end %> 
+
 
 	</body>
 </html>

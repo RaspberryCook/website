@@ -1,26 +1,28 @@
 @import colors
+@import mixin
 
-div.flash_notice ,
-div.flash_success,
+@mixin message_flash($color)
+	display: none
+	position: fixed
+	top: $header_height
+	right: 0
+	background-color: lighten($color, 10%)
+	color: $white
+	width: 200px
+	padding: 10px
+	border: 2px solid
+	@include border-radius(5px)
+	@include box-shadow ( 0px , 10px , rgba(0,0,0,.5) )
+
+	&:hover
+		background-color: lighten($color, 20%)
+	
+
 div.flash_error
-	color: white
-	width: 100%
-	border: 5px dashed
-	font-size: 20px
-	text-align: center
-	margin: auto
-
-
-div.flash_error
-	border-color: red
-	background-color: lightcoral
-
+	@include message_flash($dark_red)
 
 div.flash_notice
-	border-color: midnightblue
-	background-color: lightblue
-
-
+	@include message_flash($orange)
+	
 div.flash_success
-	border-color: $green
-	background-color: lightgreen
+	@include message_flash($green)
