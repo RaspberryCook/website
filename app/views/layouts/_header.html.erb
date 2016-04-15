@@ -1,8 +1,6 @@
 <div id="header-title">
 	<a id="nav-button" href="#">&#9776;</a>
 	<%= link_to image_tag("/assets/images/favicon_var1.svg", size: "56") , home_path %>
-
-	
 </div>
 
 <div id="header-search">
@@ -14,7 +12,6 @@
 <div id="header-sigin">
 	<%= link_to image_tag("/assets/images/icons/add_cupcake.svg", size: "54") , new_recipe_path %>
 	<% if signed_in? %>
-
 		<%= link_to image_tag("/assets/images/icons/people.svg", size: "54") , user_path(current_user) %>
 		<%#= link_to 'deconnexion' , signout_path %>
 	<% else %>
