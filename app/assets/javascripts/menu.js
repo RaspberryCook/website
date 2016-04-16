@@ -1,9 +1,3 @@
-$('a#nav-button').click(function(){
-	$('nav').slideToggle();
+$('#nav-button').click(function(){
+	$('#header-search , #header-sigin , nav').fadeToggle();
 })
-
-// $('nav li').hover(function(){
-// 	$('nav').height('120px');
-// 	//$(this).children().toggle();
-
-// });

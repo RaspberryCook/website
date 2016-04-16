@@ -23,7 +23,6 @@ header
 	div
 
 		position: absolute
-
 		top: 0
 		bottom: 0
 		padding: 0
@@ -123,3 +122,44 @@ header
 
 			font-style: 18px
 
+	nav
+		display: none
+		height: $header_height
+		margin: 0px
+		width: calc(100% - 100px)
+		overflow: hidden
+		position: absolute
+		right: 0
+		border-bottom: solid 2px
+
+
+		a
+			color: inherit
+			text-decoration: none
+
+		ul
+			box-sizing: border-box
+			
+			margin: auto
+			text-align: center
+			max-height: $header_height
+
+
+			li
+				display: inline
+				overflow: hidden
+				color: $white
+				padding-right: 10px
+
+				width: 30%
+				height: $header_height
+				max-height: $header_height
+				line-height: $header_height
+
+
+				font-size: 24px
+				color: $header_height
+
+
+				&:hover
+					text-decoration: underline

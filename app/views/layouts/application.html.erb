@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head><%= render 'layouts/head' %></head>
 <body>
 
@@ -7,7 +8,7 @@
 	
 
 
-
+<!-- <nav><#%= render 'layouts/navigation' %></nav> -->
 
 
 
@@ -15,7 +16,7 @@
 
 	<header><%= render 'layouts/header' %></header>
 	<footer><%= render 'layouts/footer' %></footer>
-	<nav><%= render 'layouts/navigation' %></nav>
+	
 
 	<% flash.each do |key, value| %>
 		<div class="flash_<%= key %>">
@@ -24,7 +25,8 @@
 		<%= javascript_include_tag 'flash.js' %>
 
 	<% end %> 
-
+	
+	<%= javascript_include_tag 'menu.js' %>
 
 	</body>
 </html>
