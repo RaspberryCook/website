@@ -57,14 +57,12 @@ class RecipesController < ApplicationController
 	end
 
 	def save
-	  	respond_to do |format|
-			format.html
-		    format.pdf do
-		      	render pdf: @order.payer_name,                  # file name
-		             layout: 'layouts/application.pdf.haml',  # layout used
-		             show_as_html: params[:debug].present?    # allow debuging
-		    end
-		end
+		@recipe = Recipe.find(params[:id])
+		html = render_to_string(:action => 'save', :encoding => "UTF-8" , :layout => false)
+		doc = PDFKit.new( html )
+		send_data( doc.to_pdf , 
+		    :filename => "#{@recipe.name}.pdf", 
+		    :disposition => 'attachment') 
 	end
 
 

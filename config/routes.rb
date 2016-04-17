@@ -29,7 +29,7 @@ RaspberryCook::Application.routes.draw do
   match '/infos' ,  :to => 'pages#infos', :via => [:get, :post]
   match '/credits' ,  :to => 'pages#credits', :via => :get
 
-  match 'recipes/save' ,   :to => 'recipes#save', :via => [:get, :post]
+  match 'recipes/save/:id' ,   :to => 'recipes#save', :via => [:get, :post]
 
 	
 	match '/signin' , :to => 'sessions#new', :via => [:get, :post]

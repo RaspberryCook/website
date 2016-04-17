@@ -1,0 +1,192 @@
+
+<h1><a href="http://raspberry-cook.fr/recipes/<%=@recipe.id%>"><%= @recipe.name %></a></h1>
+
+<p><%= @recipe.description  %></p>
+
+<img src="http://raspberry-cook.fr/<%= @recipe.image_url%>" />
+
+
+<h2>Temps</h2>
+<ul>
+	<li><time><%= @recipe.t_cooking  %></time> de préparation</li>
+	<li><time><%= @recipe.t_baking  %></time> de cuisson</li>
+	<li><time><%= @recipe.t_cooling  %></time> réfrigération</li>
+	<li><time><%= @recipe.t_rest  %></time> derepos</li>
+</ul>
+
+
+<% if @recipe.ingredients %>
+	<h2>Ingrédients</h2>
+	<ul >
+		<% @recipe.ingredients.each_line do |ingredient|%>
+			<li><%= ingredient %></li>
+		<% end %>
+	</ul>
+<% end %>
+
+<% if @recipe.steps %>
+	<h2>Réalisation</h2>
+	<ol>
+		<% @recipe.steps.each_line do |step|%>
+			<li><span></span><%= step %></li>
+		<% end %>
+	</ol>
+<% end %>
+
+<hr/>
+
+<p><small>Une recette originalle proposée par <a href="http://raspberry-cook.fr/users/<%=@recipe.user.id%>"><%= @recipe.user.nom %></a> sur <a href="http://raspberry-cook.fr">Raspberry Cook</a>, un site qu'il est bien!</small></p>
+
+
+
+
+
+
+
+<style type="text/css">
+h1{
+	text-align: center;
+}
+body {
+  font-family: Helvetica, arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: white;
+  padding: 30px; }
+
+body > *:first-child {
+  margin-top: 0 !important; }
+body > *:last-child {
+  margin-bottom: 0 !important; }
+
+a { color: #4183C4; }
+
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 20px 0 10px;
+  padding: 0;
+  font-weight: bold;
+  -webkit-font-smoothing: antialiased;
+  cursor: text;
+  position: relative; }
+
+h1 {
+  font-size: 28px;
+  color: black; }
+
+h2 {
+  font-size: 24px;
+  border-bottom: 1px solid #cccccc;
+  color: black; }
+
+h3 {
+  font-size: 18px; }
+
+h4 {
+  font-size: 16px; }
+
+h5 {
+  font-size: 14px; }
+
+h6 {
+  color: #777777;
+  font-size: 14px; }
+
+p, blockquote, ul, ol, dl, li, table, pre {
+  margin: 15px 0; }
+
+hr {
+  background: transparent url("../../images/modules/pulls/dirty-shade.png") repeat-x 0 0;
+  border: 0 none;
+  color: #cccccc;
+  height: 4px;
+  padding: 0; }
+
+h1 p, h2 p, h3 p, h4 p, h5 p, h6 p {
+  margin-top: 0; }
+
+
+ul, ol {
+  padding-left: 30px; }
+
+ul :first-child, ol :first-child {
+  margin-top: 0; }
+
+ul :last-child, ol :last-child {
+  margin-bottom: 0; }
+
+blockquote {
+  border-left: 4px solid #dddddd;
+  padding: 0 15px;
+  color: #777777; }
+  blockquote > :first-child {
+    margin-top: 0; }
+  blockquote > :last-child {
+    margin-bottom: 0; }
+
+table {
+  padding: 0; }
+  table tr {
+    border-top: 1px solid #cccccc;
+    background-color: white;
+    margin: 0;
+    padding: 0; }
+    table tr:nth-child(2n) {
+      background-color: #f8f8f8; }
+    table tr th {
+      font-weight: bold;
+      border: 1px solid #cccccc;
+      text-align: left;
+      margin: 0;
+      padding: 6px 13px; }
+    table tr td {
+      border: 1px solid #cccccc;
+      text-align: left;
+      margin: 0;
+      padding: 6px 13px; }
+    table tr th :first-child, table tr td :first-child {
+      margin-top: 0; }
+    table tr th :last-child, table tr td :last-child {
+      margin-bottom: 0; }
+
+img { width: 400px; margin: auto;}
+
+
+code, tt {
+  margin: 0 2px;
+  padding: 0 5px;
+  white-space: nowrap;
+  border: 1px solid #eaeaea;
+  background-color: #f8f8f8;
+  border-radius: 3px; }
+
+pre code {
+  margin: 0;
+  padding: 0;
+  white-space: pre;
+  border: none;
+  background: transparent; }
+
+.highlight pre {
+  background-color: #f8f8f8;
+  border: 1px solid #cccccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px; }
+
+pre {
+  background-color: #f8f8f8;
+  border: 1px solid #cccccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px; }
+  pre code, pre tt {
+    background-color: transparent;
+    border: none; }
+</style>
