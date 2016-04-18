@@ -25,7 +25,7 @@ set :repo_url, 'https://github.com/madeindjs/raspberry_cook.git'
 # set :pty, true
 
 # Default value for :linked_files is []
-set :linked_files, fetch(:linked_files, []).push('config/database.yml')
+set :linked_files, fetch(:linked_files, []).push('config/database.yml' , 'config/initializers/secret_token.rb')
 
 # Default value for linked_dirs is []
 set :linked_dirs, fetch(:linked_dirs, []).push('log', 'public/uploads')
