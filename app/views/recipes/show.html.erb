@@ -59,7 +59,7 @@
 <% if @recipe.ingredients %>
 	<ul id="ingredients">
 		<% @recipe.ingredients.each_line do |ingredient|%>
-			<li><%= ingredient %></li>
+			<li><%= link_to ingredient , recipes_search_path( :ingredients => ingredient )  %></li>
 		<% end %>
 	</ul>
 <% end %>

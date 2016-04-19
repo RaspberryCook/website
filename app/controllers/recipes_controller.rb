@@ -67,9 +67,9 @@ class RecipesController < ApplicationController
 
 
 	def search
+
 		@title = "rechercher une recette"
-		@searched_terms = params[:recipe]
-		@recipes = Recipe.search @searched_terms , params[:page]
+		@recipes = Recipe.search params[:recipe] , params[:ingredients] , params[:page]
 	end
 
 
@@ -83,7 +83,4 @@ class RecipesController < ApplicationController
 	      	redirect_to root_path , :notice => "Petit-coquin!" unless current_user == @recipe.user
 	    end
 
-	    def recipe_search_params
-	      params.require(:recipe).permit(:name)
-	    end
 end

@@ -17,8 +17,8 @@ class Recipe < ActiveRecord::Base
 		:presence 	=> true ,
 		:uniqueness => { :case_sensitive => false }
 
-	def self.search name , page
-		self.where( 'name LIKE ?' , "%#{name}%").paginate( :page => page )
+	def self.search name , ingredients , page
+		self.where( 'name LIKE ? AND ingredients LIKE ?' , "%#{name}%", "%#{ingredients}%").paginate( :page => page )
 	end
 
 end

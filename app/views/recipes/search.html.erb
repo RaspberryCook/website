@@ -1,5 +1,28 @@
 <section id="content">
-	<h1>Recherche pour  "<%= @searched_terms %>"</h1>
+
+	<h1>Rechercher une recette pour manger <small>(ou l'inverse)</small></h1>
+
+<%= form_tag  recipes_search_path , method: "GET" do  %>
+	<%= text_field_tag 'recipe' , params[:recipe], :placeholder => "recherchez une recette"  %>
+	<%= text_field_tag 'ingredients' , params[:ingredients] , :placeholder => "ingrédients"  %>
+	<%= submit_tag "rechercher" %>
+<% end %>
+
+	<p>Vous recherchez une recette:</p>
+	<ul>
+
+		<% if params[:recipe].present? %>
+			<li>répondant au nom de "<strong><%= params[:recipe] %></strong>" <small>(ou du moins, à peu près)</small></li>
+		<% end %>
+
+		<% if params[:ingredients].present? %>
+			<li>contenant "<strong><%= params[:ingredients] %></strong>"</li>
+		<% end %>
+
+	</ul>
+
+	<h2>Les résultats</h2>
+
 
 	<%= render 'shared/recipes' , :recipes => @recipes %>
 	<%= will_paginate @recipes , :class => "apple_pagination" %>
