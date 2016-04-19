@@ -23,12 +23,6 @@ ActiveRecord::Schema.define(version: 20160309205552) do
     t.integer  "note"
   end
 
-  create_table "microposts", force: true do |t|
-    t.string   "content"
-    t.integer  "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
 
   create_table "recipes", force: true do |t|
     t.string   "name"
