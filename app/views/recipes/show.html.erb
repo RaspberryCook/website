@@ -11,12 +11,6 @@
 
 
 
-<!-- 	<figure>
-		<%= image_tag @recipe.image_url %>
-		<figcaption><%= @recipe.description %></figcaption>
-	</figure> -->
-
-
 </div>
 
 <div id="times">
@@ -47,7 +41,7 @@
 		<li><%= link_to "modifier" , edit_recipe_path , 
 					:class => 'button_edit'%></li>
 
-		<li><%= link_to "supprimer" , @recipe,
+		<li><%= link_to "supprimer" , @recipe ,
 					:class => 'button_delete',
 					:method => :delete, 
 					:confirm => 'Are you sure?' ,
@@ -71,17 +65,6 @@
 		<% end %>
 	</ul>
 <% end %>
-
-
-
-
-
-<!-- <small>ajoutée le <date><%#= @recipe.created_at.strftime("%d/%m/%Y") %></date></small> -->
-
-
-
-
-
 
 
 
