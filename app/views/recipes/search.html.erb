@@ -1,25 +1,21 @@
-<section id="content">
+<section id="recipe_search">
 
 	<h1>Rechercher une recette pour manger <small>(ou l'inverse)</small></h1>
 
-<%= form_tag  recipes_search_path , method: "GET" do  %>
-	<%= text_field_tag 'recipe' , params[:recipe], :placeholder => "recherchez une recette"  %>
-	<%= text_field_tag 'ingredients' , params[:ingredients] , :placeholder => "ingrédients"  %>
-	<%= submit_tag "rechercher" %>
-<% end %>
+	<%= form_tag  recipes_search_path , method: "GET" do  %>
+		<fieldset>
+			<legend>paramètres</legend>
 
-	<p>Vous recherchez une recette:</p>
-	<ul>
+			<%= label_tag  'Nom de recette' %>
+			<%= text_field_tag 'recipe' , params[:recipe], :placeholder => "recherchez une recette"  %>
 
-		<% if params[:recipe].present? %>
-			<li>répondant au nom de "<strong><%= params[:recipe] %></strong>" <small>(ou du moins, à peu près)</small></li>
-		<% end %>
+			<%= label_tag  'Ingrédients' %>
+			<%= text_field_tag 'ingredients' , params[:ingredients] , :placeholder => "ingrédients"  %>
 
-		<% if params[:ingredients].present? %>
-			<li>contenant "<strong><%= params[:ingredients] %></strong>"</li>
-		<% end %>
+			<%= submit_tag "go!" %>
+		</fieldset>
+	<% end %>
 
-	</ul>
 
 	<h2>Les résultats</h2>
 
