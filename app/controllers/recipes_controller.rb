@@ -27,18 +27,18 @@ class RecipesController < ApplicationController
 		if @recipe.save
 			flash[:success] = "huuummm! Dites nous en plus!"
 			redirect_to edit_recipe_path(@recipe)
-	    else
-		@titre = "nouvelle recette"
-		render 'new'
-	    end
+		else
+			@titre = "nouvelle recette"
+			render 'new'
+		end
 	end
 
-  	def index
-  		@title = "recettes"
-  		@recipes = Recipe.paginate(:page => params[:page])
-  	end
+	def index
+		@title = "recettes"
+		@recipes = Recipe.paginate(:page => params[:page]).order('id DESC')
+	end
 
-  	def destroy
+	def destroy
   		# todo:add an identification
 		Recipe.find(params[:id]).destroy
 		flash[:success] = 'recette supprimee'
@@ -47,13 +47,13 @@ class RecipesController < ApplicationController
 
 	def update
 		@recipe = Recipe.find(params[:id])
-	    if @recipe.update_attributes(params[:recipe])
-	      flash[:success] = "Recette mise a jour"
-	      redirect_to @recipe
-	    else
-	      @title = "Editer"
-	      render 'edit'
-	    end
+		if @recipe.update_attributes(params[:recipe])
+			flash[:success] = "Recette mise a jour"
+			redirect_to @recipe
+		else
+			@title = "Editer"
+			render 'edit'
+		end
 	end
 
 	def save
@@ -61,13 +61,12 @@ class RecipesController < ApplicationController
 		html = render_to_string(:action => 'save', :encoding => "UTF-8" , :layout => false)
 		doc = PDFKit.new( html )
 		send_data( doc.to_pdf , 
-		    :filename => "#{@recipe.name}.pdf", 
-		    :disposition => 'attachment') 
+			:filename => "#{@recipe.name}.pdf", 
+			:disposition => 'attachment') 
 	end
 
 
 	def search
-
 		@title = "rechercher une recette"
 		@recipes = Recipe.search params[:recipe] , params[:ingredients] , params[:page]
 	end
