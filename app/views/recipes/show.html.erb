@@ -36,7 +36,7 @@
 <ul class="actions" >
 	<li><%= link_to "sauvegarder", recipes_save_path( :id => @recipe.id) , :class => 'button_save' %></li>
 
-	<% if current_user = @recipe.user %>
+	<% if current_user == @recipe.user %>
 
 		<li><%= link_to "modifier" , edit_recipe_path , 
 					:class => 'button_edit'%></li>
