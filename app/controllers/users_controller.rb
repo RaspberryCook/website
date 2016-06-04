@@ -1,13 +1,13 @@
 class UsersController < ApplicationController
 	before_filter :authenticate, :only => [:index , :edit, :update]
 	before_filter :correct_user, :only => [:edit, :update]
-	before_filter :admin_user, 	 :only =>  :destroy
+	before_filter :admin_user,   :only =>  :destroy
 
 	def show
 		@user = User.find(params[:id])
 		@title = @user.nom
 
-		@recipes = @user.recipes.paginate(:page => params[:page])
+		@recipes = @user.recipes.paginate(:page => params[:page]).order('id DESC')
 	end
 
 	def new
@@ -17,15 +17,15 @@ class UsersController < ApplicationController
 
 	def create
 		@user = User.new(params[:user])
-    	if @user.save
+		if @user.save
 			sign_in @user
 			flash[:success] = "Welcome!"
-      		redirect_to @user
-    	else
-    	 	@title = "Inscription"
-      		render 'new'
-    	end
-  	end
+			redirect_to @user
+		else
+			@title = "Inscription"
+			render 'new'
+		end
+	end
 
 	def index
 		@title = 'Index'
@@ -39,13 +39,13 @@ class UsersController < ApplicationController
 
 	def update
 		@user = User.find(params[:id])
-	    if @user.update_attributes(params[:user])
-	      flash[:success] = "Profil mis a jour"
-	      redirect_to @user
-	    else
-	      @title = "Editer profil"
-	      render 'edit'
-	    end
+		if @user.update_attributes(params[:user])
+			flash[:success] = "Profil mis a jour"
+			redirect_to @user
+		else
+			@title = "Editer profil"
+			render 'edit'
+		end
 	end
 
 	def destroy
@@ -58,14 +58,14 @@ class UsersController < ApplicationController
 
 	private
 
-	    def authenticate
-	      deny_access unless signed_in?
-	    end
+		def authenticate
+			deny_access unless signed_in?
+		end
 
 		def correct_user
-	      @user = User.find(params[:id])
-	      redirect_to root_path , :notice => "petit coquin!" unless current_user?(@user)
-	    end
+			@user = User.find(params[:id])
+			redirect_to root_path , :notice => "petit coquin!" unless current_user?(@user)
+		end
 
 		def admin_user
 			redirect_to(root_path) unless current_user.admin?
