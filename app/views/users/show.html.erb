@@ -1,7 +1,10 @@
-<%= render 'shared/user' , :user => @user %>
+<h1><%= @user.nom %></h1>
 
-<h2>Recettes</h2>
 
-<%= render 'shared/recipes' , :recipes => @recipes %>
 
-<%= will_paginate @recipes , :class => "apple_pagination" %>
+<ul>
+	<li><%= pluralize(@user.recipes.count, "recette") %> à son actif<pre>TODO: add link</pre></li>
+	<li><%= pluralize(@user.comments.count, "commentaire") %> à son actif<pre>TODO: add link</pre></li>
+</ul>
+
+<div id="rang"><%= pluralize(@user.rank, "point") %></div>
