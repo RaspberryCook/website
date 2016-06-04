@@ -41,6 +41,11 @@ class User < ActiveRecord::Base
 			(user && user.salt == cookie_salt ) ? user : nil
 		end
 
+		# return rank of this user nRecipes*10+nComments
+		def rank
+			self.comments.count + self.recipes.count*10
+		end
+
 	private
 
 		def encrypt_password

@@ -4,8 +4,7 @@
 
 	<p>
 		<strong><%= link_to user.nom , user %></strong>
-		<%= link_to user.email , 'mailto:'+user.email %>
-		<%= pluralize(user.recipes.count, "recette") %>
+		<%= pluralize user.rank, "point" %>
 	</p>
 
 </div>
