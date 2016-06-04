@@ -3,25 +3,34 @@
 @import colors
 @import mixin
 
-.apple_pagination
-  background: $white
-  text-align: center
-  padding: 1em
-  cursor: default
-  a, span
-    padding: 0.2em 0.3em
-  .disabled
-    color: #aaaaaa
-  .current
-    font-style: normal
-    background-color: $dark_red
-    color: $white
-    display: inline-block
-    width: 1.4em
-    height: 1.4em
-    line-height: 1.5
-    @include border-radius(1em)
-  a
-    text-decoration: none
-    &:hover, &:focus
-      text-decoration: underline
+
+@mixin apple_pagination( $size )
+	.apple_pagination
+		background: $white
+		text-align: center
+		padding: 16px
+		cursor: default
+		a, span
+			padding: $size/4
+		.disabled
+			color: #aaaaaa
+		.current
+			font-style: normal
+			background-color: $dark_red
+			color: $white
+			display: inline-block
+			width: $size
+			height: $size
+			line-height: $size
+			@include border-radius($size/2)
+		a
+			text-decoration: none
+			&:hover, &:focus
+				text-decoration: underline
+
+@media all and (min-width: 600px)
+	@include apple_pagination(22px)
+
+	
+@media all and (max-width: 600px)
+	@include apple_pagination(35px)
