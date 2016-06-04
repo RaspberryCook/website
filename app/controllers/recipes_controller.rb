@@ -1,5 +1,5 @@
 class RecipesController < ApplicationController
-	before_filter :authenticate, :only =>  [:destroy , :update , :edit ,:add]
+	before_filter :authenticate, :only =>  [:destroy , :update , :edit ,:add, :create]
 	before_filter :check_recipe_owner, :only =>  [:destroy , :update , :edit]
 
 
@@ -26,10 +26,10 @@ class RecipesController < ApplicationController
 		@recipe = current_user.recipes.create(params[:recipe])
 		if @recipe.save
 			flash[:success] = "huuummm! Dites nous en plus!"
-	    	redirect_to edit_recipe_path(@recipe)
+			redirect_to edit_recipe_path(@recipe)
 	    else
-			@titre = "nouvelle recette"
-	    	render 'new'
+		@titre = "nouvelle recette"
+		render 'new'
 	    end
 	end
 
