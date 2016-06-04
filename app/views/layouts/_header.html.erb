@@ -10,7 +10,7 @@
 
 
 <div id="header-sigin">
-	<%= link_to image_tag("/assets/images/icons/add_cupcake.svg", size: "54") , new_recipe_path %>
+	<%= link_to image_tag("/assets/images/icons/add_cupcake.svg", size: "54") , new_recipe_path ,  id: "add_recipe"%>
 	<% if signed_in? %>
 		<%= link_to image_tag("/assets/images/icons/people.svg", size: "54") , user_path(current_user) %>
 		<%#= link_to 'deconnexion' , signout_path %>

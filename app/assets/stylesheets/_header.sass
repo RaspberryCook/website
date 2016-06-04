@@ -8,6 +8,7 @@ $width_header-title: 120px
 $width_header-signin: $width_header-title
 
 
+
 header
 	background-color: $dark_red //$primary_color
 	color: $white
@@ -51,7 +52,7 @@ header
 			color: $light_gray
 			line-height: $header_height
 
-			font-size: 45px
+			font-size: 40px
 			top: 0px
 
 		img
@@ -60,12 +61,8 @@ header
 
 
 	div#header-search
-		width: calc(100% - 280px)
-		max-width: calc(100% - 240px)
 		text-align: center
-
 		left: $width_header-title
-
 
 
 		form#recipes_form_search
@@ -76,8 +73,6 @@ header
 			margin: auto
 			padding: 0px
 			width: 100%
-
-			
 
 
 			input
@@ -109,7 +104,6 @@ header
 
 	div#header-sigin
 		text-align: right
-		width: $width_header-signin
 		max-width: $width_header-signin
 		right: 0
 
@@ -124,42 +118,82 @@ header
 
 	nav
 		display: none
-		height: $header_height
-		margin: 0px
-		width: calc(100% - 100px)
-		overflow: hidden
-		position: absolute
-		right: 0
 		border-bottom: solid 2px
-
+		background-color: $light_gray
+		margin: 0px
+		margin-top: $header_height
 
 		a
 			color: inherit
 			text-decoration: none
 
 		ul
-			box-sizing: border-box
-			
 			margin: auto
 			text-align: center
-			max-height: $header_height
+			width: 100%
+			box-sizing: border-box
+			margin: auto
+			text-align: center
+			padding: 0
 
 
 			li
-				display: inline
-				overflow: hidden
-				color: $white
-				padding-right: 10px
-
-				width: 30%
-				height: $header_height
-				max-height: $header_height
-				line-height: $header_height
-
-
+				list-style: none
 				font-size: 24px
-				color: $header_height
-
+				color: $second_color
+				height: 72px
+				line-height: 72px
+				border: 1px solid white
 
 				&:hover
-					text-decoration: underline
+					background-color: white
+
+
+
+
+
+@media all and (min-width: 600px)
+
+	div#header-search
+		width: calc(100% - 280px)
+		max-width: calc(100% - 240px)
+
+	div#header-sigin
+		width: $width_header-signin
+
+	nav
+		width: 300px
+		height: 100vh
+
+		ul
+			height: 100vh
+			border-right: 2px solid white
+			
+
+
+
+@media all and (max-width: 600px)
+
+	div#header-search
+		width: calc(100% - 220px)
+		max-width: calc(100% - 220px)
+
+	nav
+		width: 100%
+
+	#add_recipe
+		background-color: $text_color
+		position: fixed
+		width: $header_height
+		height: $header_height
+		line-height: $header_height
+		font-size: $header_height
+		bottom: 16px
+		right: 16px
+
+		padding: 10px
+		@include border-radius($header_height +10 / 2)
+
+
+		img
+			//visibility: hidden
