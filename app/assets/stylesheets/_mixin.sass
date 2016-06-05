@@ -27,6 +27,12 @@
 	-moz-box-sizing: border-box
 	box-sizing: border-box
 
+@mixin transform_rotate($degree)
+	-webkit-transform: rotate($degree)
+	-moz-transform: rotate($degree)
+	-ms-transform: rotate($degree)
+	-o-transform: rotate($degree)
+
 
 
 
@@ -109,3 +115,66 @@
 		span
 			display: inline-block
 			width: 20px
+
+
+@mixin triangle($color)
+	color: $color
+	position: relative
+	width: 1px
+	height: 0px
+	border-style: solid
+	display: block
+	content: "."
+
+
+	&:hover
+		color: lighten( $color , 10% )
+
+@mixin triangle_up($size, $color)
+	border-top: 0
+	border-bottom: $size 
+	border-left: $size transparent
+	border-right: $size  transparent
+	@include triangle($color)
+
+@mixin triangle_down($size, $color)
+	border-bottom: 0
+	border-top: $size 
+	border-left: $size transparent
+	border-right: $size  transparent
+	@include triangle($color)
+
+@mixin star($size)
+	position: relative
+	display: block
+	width: 0px
+	height: 0px
+	border-right: $size solid transparent
+	border-bottom: $size*.7 solid
+	border-left: $size solid transparent
+	@include transform_rotate(35deg)
+	&:before
+		border-bottom: $size*.8 solid
+		border-left: $size*.3 solid transparent
+		border-right: $size*.3 solid transparent
+		position: absolute
+		height: 0
+		width: 0
+		top: -$size*.45
+		left: -$size*.65
+		display: block
+		content: ''
+		@include transform_rotate(-35deg)
+
+	&:after
+		position: absolute
+		display: block
+		top: 3px
+		left: -$size*1.05
+		width: 0px
+		height: 0px
+		border-right: $size solid transparent
+		border-bottom: $size*.7 solid
+		border-left: $size solid transparent
+		@include transform_rotate(-70deg)
+		content: ''

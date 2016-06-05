@@ -2,7 +2,7 @@
 
 <h1 class="recipe"><%= @recipe.name  %></h1>
 
-
+<!-- image -->
 <div 
 	id="recipe_picture"
 	style="background-image: url(<%= @recipe.image_url %>);" 
@@ -13,6 +13,8 @@
 
 </div>
 
+
+<!-- times -->
 <div id="times">
 
 	<div style="background-image:url(/assets/images/time/cooking.svg)" >
@@ -33,7 +35,19 @@
 	</div>
 </div>
 
+
+
 <ul class="actions" >
+	<li id="vote">
+		<!--  -->
+		<a id="vote_up" title="Cette recette vaut vraiment le coup" href="#"></a>
+		<span>1</span>
+		<a id="vote_down" title="Ce n'était pas si bon que ca :(" href="#"></a>	
+		<hr/>
+		<hr/>
+		<hr/>
+		<a id="fav" title="marquer cette recette comme favoris" href="#"></a>	
+	</li>
 	<li><%= link_to "sauvegarder", recipes_save_path( :id => @recipe.id) , :class => 'button_save' %></li>
 
 	<% if current_user == @recipe.user %>

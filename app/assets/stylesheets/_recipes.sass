@@ -89,6 +89,35 @@ section#recipe_edit
 		input, textarea
 			border: none
 
+	// div with votes for this recette (like comments on stackoverflow)
+	li#vote
+		color: $text_color
+		background-color: $background_color
+		width: 100px
+		height: 150px
+		text-align: center
+
+		span
+			font-size: 18px
+			padding: 10px
+
+		a
+			margin: auto
+			display: block
+
+		hr
+			color: transparent
+
+		a#vote_up
+			@include triangle_up(20px, $text_color)
+
+
+		a#vote_down
+			@include triangle_down(20px, $text_color)
+
+		a#fav
+			@include star(25px)
+
 
 	ul#steps
 		@include ungit_ol ( 20px , 10px , 30px , $second_color)
