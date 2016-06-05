@@ -71,15 +71,26 @@ class RecipesController < ApplicationController
 		@recipes = Recipe.search params[:recipe] , params[:ingredients] , params[:page]
 	end
 
+	def vote
+		current_recipe = Recipe.find( params[:id] )
+		new_vote = Vote.new user_id: 1, recipe_id: current_recipe.id, value: params[:value]
+		new_vote.save
+
+		respond_to do |format|
+			format.js{ render nothing: true }
+		end
+
+	end
+
 
   	private
-	  	def authenticate
-	      redirect_to signup_path , :notice => "Connectez-vous" unless current_user
-	    end
+		def authenticate
+			redirect_to signup_path , :notice => "Connectez-vous" unless current_user
+		end
 
-	    def check_recipe_owner
-	    	@recipe = Recipe.find(params[:id])
-	      	redirect_to root_path , :notice => "Petit-coquin!" unless current_user == @recipe.user
-	    end
+		def check_recipe_owner
+			@recipe = Recipe.find(params[:id])
+			redirect_to root_path , :notice => "Petit-coquin!" unless current_user == @recipe.user
+		end
 
 end

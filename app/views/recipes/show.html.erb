@@ -38,12 +38,14 @@
 
 
 <ul class="actions" >
+
+	<!-- here you can vote for this recipe and add like -->
 	<li id="vote">
-		<!--  -->
-		<a id="vote_up" title="Cette recette vaut vraiment le coup" href="#"></a>
+		<!--  AJAX links to vote up / down on this recipe -->
+		<%= link_to '', recipes_vote_path(id: @recipe.id, value: 1) , id: 'vote_up', title: 'Cette recette vaut vraiment le coup',  remote: true %>
 		<span>1</span>
-		<a id="vote_down" title="Ce n'était pas si bon que ca :(" href="#"></a>	
-		<hr/>
+		<%= link_to '', recipes_vote_path(id: @recipe.id, value: -1) , id: 'vote_down', title: 'Ce n\'était pas si bon que ca :(',  remote: true %>
+
 		<hr/>
 		<hr/>
 		<a id="fav" title="marquer cette recette comme favoris" href="#"></a>	
