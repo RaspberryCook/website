@@ -71,14 +71,21 @@ class RecipesController < ApplicationController
 		@recipes = Recipe.search params[:recipe] , params[:ingredients] , params[:page]
 	end
 
-	def vote
-		current_recipe = Recipe.find( params[:id] )
-		new_vote = Vote.new user_id: 1, recipe_id: current_recipe.id, value: params[:value]
-		new_vote.save
 
-		respond_to do |format|
-			format.js{ render nothing: true }
+	# function to vote on a recipe with : http://localhost:3000/recipes/vote?id=93&value=1
+	def vote
+		#check before if the user can't try to send bad value
+		if [-1 , 1 ].include? params[:value].to_i
+			new_vote = Vote.new user_id: 1, recipe_id: params[:id], value: params[:value]
+			new_vote.save
+			respond_to do |format|
+				format.js #{ render nothing: true }
+			end
+
+		else
+			redirect_to root_path , :notice => "Petit-coquin!"
 		end
+
 
 	end
 

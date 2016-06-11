@@ -43,7 +43,7 @@
 	<li id="vote">
 		<!--  AJAX links to vote up / down on this recipe -->
 		<%= link_to '', recipes_vote_path(id: @recipe.id, value: 1) , id: 'vote_up', title: 'Cette recette vaut vraiment le coup',  remote: true %>
-		<span>1</span>
+		<span><%= @recipe.votes.count %></span>
 		<%= link_to '', recipes_vote_path(id: @recipe.id, value: -1) , id: 'vote_down', title: 'Ce n\'était pas si bon que ca :(',  remote: true %>
 
 		<hr/>
