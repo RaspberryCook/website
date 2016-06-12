@@ -22,4 +22,13 @@ class Recipe < ActiveRecord::Base
 		self.where( 'name LIKE ? AND ingredients LIKE ?' , "%#{name}%", "%#{ingredients}%").paginate( :page => page ).order('id DESC')
 	end
 
+	# count the total vote for this recipe
+	def note
+		note = 0
+		self.votes.each do |vote|
+			note += vote.value
+		end
+		return note
+	end
+
 end
