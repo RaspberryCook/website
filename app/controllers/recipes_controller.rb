@@ -1,5 +1,5 @@
 class RecipesController < ApplicationController
-	before_filter :authenticate, :only =>  [:destroy , :update , :edit ,:add, :create]
+	before_filter :authenticate, :only =>  [:destroy , :update , :edit ,:add, :create, :vote]
 	before_filter :check_recipe_owner, :only =>  [:destroy , :update , :edit]
 
 
@@ -76,21 +76,44 @@ class RecipesController < ApplicationController
 	def vote
 		#check before if the user can't try to send bad value
 		if [-1 , 1 ].include? params[:value].to_i
-			new_vote = Vote.new user_id: 1, recipe_id: params[:id], value: params[:value]
-			new_vote.save
-			respond_to do |format|
-				format.js #{ render nothing: true }
+
+			# search if another vote exists
+			vote = Vote.where( user_id: current_user.id , recipe_id: params[:id]).first
+			filename = nil
+
+			# if vote exist, we update it or send a warkning if is strickly the same
+			if vote
+				if vote.value == params[:value].to_i
+					filename = 'vote_exists.js.erb' 
+				else
+					vote.value = params[:value].to_i
+					filename = 'vote_updated.js.erb' 
+				end
+
+			# if vote don't exist, I create it
+			else
+				vote = current_user.votes.create user_id: 1, recipe_id: params[:id], value: params[:value]
 			end
+
+			# check if the save method work and send js.erb file as response
+			if vote.save
+				respond_to do |format|
+					format.js { render filename}
+				end
+			else
+				respond_to do |format|
+					format.js { 'vote_save.js.erb'}
+				end
+			end
+
 
 		else
 			redirect_to root_path , :notice => "Petit-coquin!"
 		end
-
-
 	end
 
 
-  	private
+	private
 		def authenticate
 			redirect_to signup_path , :notice => "Connectez-vous" unless current_user
 		end
