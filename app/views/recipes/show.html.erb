@@ -43,7 +43,7 @@
 	<li id="vote">
 		<!--  AJAX links to vote up / down on this recipe -->
 		<%= link_to '', recipes_vote_path(id: @recipe.id, value: 1) , id: 'vote_up', title: 'Cette recette vaut vraiment le coup',  remote: true %>
-		<span><%= @recipe.note %></span>
+		<span id="recipe_note"><%= @recipe.note %></span>
 		<%= link_to '', recipes_vote_path(id: @recipe.id, value: -1) , id: 'vote_down', title: 'Ce n\'était pas si bon que ca :(',  remote: true %>
 
 		<hr/>
@@ -93,12 +93,17 @@
 
 
 <script type="text/javascript">
-
-
 	$(document).ready(function(){
 		$('#recipe_picture').parallax();
 
+		// set green color on vote button if the current user already voted 
+		<% if Vote.where( user_id: current_user.id , recipe_id: params[:id] , value: 1).first %>
+			$('#vote_up').css('color' , 'green');
+		<% elsif Vote.where( user_id: current_user.id , recipe_id: params[:id] , value: -1).first %>
+			$('#vote_down').css('color' , 'green');
+		<% end %>
+
 	});
-
-
 </script>
+
+

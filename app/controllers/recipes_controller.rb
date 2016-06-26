@@ -102,7 +102,7 @@ class RecipesController < ApplicationController
 				end
 			else
 				respond_to do |format|
-					format.js { 'vote_save.js.erb'}
+					format.js { render 'vote_failed.js.erb'}
 				end
 			end
 
