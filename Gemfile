@@ -45,10 +45,11 @@ gem 'will_paginate', '~> 3.0.6'#https://github.com/mislav/will_paginate
 group :development do
 	# Use Capistrano for deployment
 	gem 'net-ssh' 
-    gem 'capistrano',         require: false
-    gem 'capistrano-rvm',     require: false
-    gem 'capistrano-rails',   require: false
-    gem 'capistrano-bundler', require: false
+	gem 'capistrano',		require: false
+	gem 'capistrano-rvm',		require: false
+	gem 'capistrano-rails',	 	require: false
+	gem 'capistrano-bundler', 	require: false
+	gem 'sitemap_generator'
 end
 
 
@@ -67,6 +68,6 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
 
 group :doc do
-  # bundle exec rake doc:rails generates the API under doc/api.
-  gem 'sdoc', require: false
+	# bundle exec rake doc:rails generates the API under doc/api.
+	gem 'sdoc', require: false
 end
