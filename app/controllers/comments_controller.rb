@@ -4,17 +4,6 @@ class CommentsController < ApplicationController
   before_filter :check_owner, :only =>  [:destroy , :update , :edit ]
 
 
-  # GET /comments
-  # GET /comments.json
-  def index
-    @comments = Comment.all 
-  end
-
-  # GET /comments/1
-  # GET /comments/1.json
-  def show
-  end
-
   # GET /comments/new
   def new
     @comment = Comment.new

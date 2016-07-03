@@ -33,7 +33,7 @@ class UsersController < ApplicationController
 	end
 
 	def edit
-		@title = 'Edit'
+		@title = 'editer vos infos'
 		@user = User.find(params[:id])
 	end
 

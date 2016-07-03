@@ -7,13 +7,13 @@ class RecipesController < ApplicationController
 	#autocomplete :ingredient, :name
 
 	def show
+		@title = @recipe.name
 		@recipe = Recipe.find(params[:id])
 		@comment = Comment.new
-		@title = @recipe.name
 	end
 
 	def new
-		@titre = "nouvelle recette"
+		@title = "nouvelle recette"
 		@recipe = Recipe.new
 	end
 
@@ -57,6 +57,7 @@ class RecipesController < ApplicationController
 	end
 
 	def save
+		@title = "save recipe"
 		@recipe = Recipe.find(params[:id])
 		html = render_to_string(:action => 'save', :encoding => "UTF-8" , :layout => false)
 		doc = PDFKit.new( html )

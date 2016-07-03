@@ -4,9 +4,7 @@ class IngredientsController < ApplicationController
   autocomplete :ingredients , :name , :full => true
 
   def index
-
     @title = 'Ingredients'
-
   end
 
 
