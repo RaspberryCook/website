@@ -46,9 +46,9 @@
 		<span id="recipe_note"><%= @recipe.note %></span>
 		<%= link_to '', recipes_vote_path(id: @recipe.id, value: -1) , id: 'vote_down', title: 'Ce n\'était pas si bon que ca :(',  remote: true %>
 
+		<!--<hr/>
 		<hr/>
-		<hr/>
-		<a id="fav" title="marquer cette recette comme favoris" href="#"></a>	
+		<a id="fav" title="marquer cette recette comme favoris" href="#"></a>-->
 	</li>
 	<li><%= link_to "sauvegarder", recipes_save_path( :id => @recipe.id) , :class => 'button_save' %></li>
 
