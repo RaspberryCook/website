@@ -7,6 +7,7 @@ class Recipe < ActiveRecord::Base
 
 	belongs_to :user
 	has_many :comments , :dependent => :destroy
+	has_many :votes , :dependent => :destroy
 
 
 	mount_uploader :image , ImageUploader
@@ -19,6 +20,15 @@ class Recipe < ActiveRecord::Base
 
 	def self.search name , ingredients , page
 		self.where( 'name LIKE ? AND ingredients LIKE ?' , "%#{name}%", "%#{ingredients}%").paginate( :page => page ).order('id DESC')
+	end
+
+	# count the total vote for this recipe
+	def note
+		note = 0
+		self.votes.each do |vote|
+			note += vote.value
+		end
+		return note
 	end
 
 end

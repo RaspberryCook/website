@@ -2,7 +2,7 @@
 
 <h1 class="recipe"><%= @recipe.name  %></h1>
 
-
+<!-- image -->
 <div 
 	id="recipe_picture"
 	style="background-image: url(<%= @recipe.image_url %>);" 
@@ -13,6 +13,8 @@
 
 </div>
 
+
+<!-- times -->
 <div id="times">
 
 	<div style="background-image:url(/assets/images/time/cooking.svg)" >
@@ -33,7 +35,21 @@
 	</div>
 </div>
 
+
+
 <ul class="actions" >
+
+	<!-- here you can vote for this recipe and add like -->
+	<li id="vote">
+		<!--  AJAX links to vote up / down on this recipe -->
+		<%= link_to '', recipes_vote_path(id: @recipe.id, value: 1) , id: 'vote_up', title: 'Cette recette vaut vraiment le coup',  remote: true %>
+		<span id="recipe_note"><%= @recipe.note %></span>
+		<%= link_to '', recipes_vote_path(id: @recipe.id, value: -1) , id: 'vote_down', title: 'Ce n\'était pas si bon que ca :(',  remote: true %>
+
+		<!--<hr/>
+		<hr/>
+		<a id="fav" title="marquer cette recette comme favoris" href="#"></a>-->
+	</li>
 	<li><%= link_to "sauvegarder", recipes_save_path( :id => @recipe.id) , :class => 'button_save' %></li>
 
 	<% if current_user == @recipe.user %>
@@ -77,20 +93,17 @@
 
 
 <script type="text/javascript">
-
-	$('#recipe_picture').hover(
-		function(){
-			$(this).animate({
-				height: "600px"
-			}, 500);
-	} , function(){
-		//$(this).animate({height: "300px"}, 500)
-
-	} );
 	$(document).ready(function(){
 		$('#recipe_picture').parallax();
 
+		// set green color on vote button if the current user already voted 
+		<% if Vote.where( user_id: current_user.id , recipe_id: params[:id] , value: 1).first %>
+			$('#vote_up').css('color' , 'green');
+		<% elsif Vote.where( user_id: current_user.id , recipe_id: params[:id] , value: -1).first %>
+			$('#vote_down').css('color' , 'green');
+		<% end %>
+
 	});
-
-
 </script>
+
+

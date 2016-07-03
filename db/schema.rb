@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160309205552) do
+ActiveRecord::Schema.define(version: 20160605100646) do
 
   create_table "comments", force: true do |t|
     t.string   "title"
@@ -23,12 +23,11 @@ ActiveRecord::Schema.define(version: 20160309205552) do
     t.integer  "note"
   end
 
-
   create_table "recipes", force: true do |t|
     t.string   "name"
     t.integer  "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
     t.text     "description"
     t.text     "ingredients"
     t.text     "steps"
@@ -38,19 +37,32 @@ ActiveRecord::Schema.define(version: 20160309205552) do
     t.integer  "t_cooling"
     t.integer  "t_cooking"
     t.integer  "t_rest"
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
     t.string   "photo"
     t.string   "image"
+    t.integer  "rank"
   end
 
   create_table "users", force: true do |t|
     t.string   "nom"
     t.string   "email"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
     t.string   "encrypted_password"
     t.string   "salt"
     t.boolean  "admin"
     t.string   "photo"
+  end
+
+  create_table "votes", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "recipe_id"
+    t.integer  "value"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end
