@@ -97,11 +97,16 @@
 		$('#recipe_picture').parallax();
 
 		// set green color on vote button if the current user already voted 
-		<% if Vote.where( user_id: current_user.id , recipe_id: params[:id] , value: 1).first %>
-			$('#vote_up').css('color' , 'green');
-		<% elsif Vote.where( user_id: current_user.id , recipe_id: params[:id] , value: -1).first %>
-			$('#vote_down').css('color' , 'green');
+		<% begin %>
+			<% if Vote.where( user_id: current_user.id , recipe_id: params[:id] , value: 1).first %>
+				$('#vote_up').css('color' , 'green');
+			<% elsif Vote.where( user_id: current_user.id , recipe_id: params[:id] , value: -1).first %>
+				$('#vote_down').css('color' , 'green');
+			<% end %>
+		<% rescue NoMethodError %>
+			
 		<% end %>
+
 
 	});
 </script>
