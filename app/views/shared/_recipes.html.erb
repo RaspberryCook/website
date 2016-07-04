@@ -3,7 +3,7 @@
 <% recipes.each do |recipe| %>
 	<li>
 		<figure>
-			<%= image_tag recipe.image_url(:thumb) %>
+			<%= image_tag recipe.image_url(:thumb) , alt: 'Thumb - %s'%recipe.name %>
 			<figcaption><%= link_to recipe.name , recipe %></figcaption>
 		</figure>
 	</li>
