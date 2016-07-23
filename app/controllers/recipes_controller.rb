@@ -35,7 +35,7 @@ class RecipesController < ApplicationController
 
 	def index
 		@title = "recettes"
-		@recipes = Recipe.paginate(:page => params[:page]).order('id DESC')
+		@recipes = Recipe.where(root_recipe_id: 0 ).paginate(:page => params[:page]).order('id DESC')
 	end
 
 	def destroy
