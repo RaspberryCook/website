@@ -2,28 +2,13 @@
 
 <h1 class="recipe"><%= @recipe.name  %></h1>
 
-<!-- forked recipes -->
-<% forked_recipes = @recipe.forked_recipes 
-if forked_recipes %>
 
-	<h2>Variantes disponnibles</h2>
-	<ul><% forked_recipes.each do |forked_recipe| %>
-		<li><%= link_to forked_recipe.variant_name , forked_recipe %></li>
-	<% end %></ul>
-<% end %>
 
 
 
 <!-- image -->
-<div 
-	id="recipe_picture"
-	style="background-image: url(<%= @recipe.image_url %>);" 
->
-
-
-
-
-</div>
+<div  id="recipe_picture"
+	style="background-image: url(<%= @recipe.image_url %>);"  > </div>
 
 
 <!-- times -->
@@ -47,6 +32,16 @@ if forked_recipes %>
 	</div>
 </div>
 
+
+<!-- forked recipes -->
+<% forked_recipes = @recipe.forked_recipes 
+if forked_recipes %>
+
+	<h2>Variantes disponnibles</h2>
+	<ul id="variants"><% forked_recipes.each do |forked_recipe| %>
+		<li><%= link_to forked_recipe.variant_name , forked_recipe %></li>
+	<% end %></ul>
+<% end %>
 
 
 <ul class="actions" >
