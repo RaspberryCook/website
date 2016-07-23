@@ -35,7 +35,7 @@
 
 <!-- forked recipes -->
 <% forked_recipes = @recipe.forked_recipes 
-if forked_recipes %>
+if forked_recipes.length > 0 %>
 
 	<h2>Variantes disponnibles</h2>
 	<ul id="variants"><% forked_recipes.each do |forked_recipe| %>
