@@ -114,6 +114,17 @@ class RecipesController < ApplicationController
 	end
 
 
+
+
+	def fork
+		if request.get?
+			# display a message to confirm
+		elsif request.post?
+			# create the copy
+		end
+	end
+
+
 	private
 		def authenticate
 			redirect_to signup_path , :notice => "Connectez-vous" unless current_user
