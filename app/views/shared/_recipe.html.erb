@@ -1,7 +1,11 @@
 <% begin %>
 	<figure class="recipe" >
 		<%= image_tag recipe.image_url(:thumb) , alt: 'Thumb - %s' % recipe.name %>
-		<figcaption><%= link_to recipe.name , recipe %></figcaption>
+		<figcaption><%= link_to recipe.name , recipe %>
+			<% if recipe.count_forked_recipes != 0 %>
+				<small><%= '%s variantes' % recipe.count_forked_recipes%></small>
+			<% end %>
+		</figcaption>
 	</figure>
 <% rescue NoMethodError => e 
 	# can't find this recipe

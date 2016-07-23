@@ -42,6 +42,11 @@ class Recipe < ActiveRecord::Base
 		return Recipe.where(root_recipe_id: self.id ).order( :variant_name )
 	end
 
+	# copyt the current recipe to a new user
+	def count_forked_recipes
+		return Recipe.count(:conditions => "root_recipe_id = %s" % self.id )
+	end
+
 
 	# count the total vote for this recipe
 	def note
