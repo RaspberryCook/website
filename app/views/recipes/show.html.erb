@@ -1,14 +1,15 @@
 <section id="recipe" class="content">
 
-<h1 class="recipe"><%= @recipe.name  %></h1>
-
-
-
+<h1 class="recipe"><%= @recipe.name  %>
+<!-- also display the variant name if exists -->
+<%= " - %s" % @recipe.variant_name if  @recipe.variant_name %></h1>
 
 
 <!-- image -->
-<div  id="recipe_picture"
-	style="background-image: url(<%= @recipe.image_url %>);"  > </div>
+<% if @recipe.image_url != 'recipes/default.png' %>
+	<div  id="recipe_picture"
+		style="background-image: url(<%= @recipe.image_url %>);"  > </div>
+<%end %>
 
 
 <!-- times -->
@@ -35,7 +36,7 @@
 
 <!-- forked recipes -->
 <% forked_recipes = @recipe.forked_recipes 
-if forked_recipes %>
+if forked_recipes and @recipe.root_recipe_id == 0%>
 
 	<h2>Variantes disponnibles</h2>
 	<ul id="variants"><% forked_recipes.each do |forked_recipe| %>
@@ -57,7 +58,7 @@ if forked_recipes %>
 	<li><%= link_to "sauvegarder", recipes_save_path( :id => @recipe.id) , :class => 'button_save' %></li>
 
 	<!-- Add a fork button if the user is connected -->
-	<% if current_user %>
+	<% if current_user and @recipe.root_recipe_id == 0%>
 		<li><%= link_to "créer une variante" , recipes_fork_path( :id => @recipe.id) , :class => 'button_edit' %></li>
 	<% end %>
 
