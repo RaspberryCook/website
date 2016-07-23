@@ -45,13 +45,16 @@
 		<%= link_to '', recipes_vote_path(id: @recipe.id, value: 1) , id: 'vote_up', title: 'Cette recette vaut vraiment le coup',  remote: true %>
 		<span id="recipe_note"><%= @recipe.note %></span>
 		<%= link_to '', recipes_vote_path(id: @recipe.id, value: -1) , id: 'vote_down', title: 'Ce n\'était pas si bon que ca :(',  remote: true %>
-
-		<!--<hr/>
-		<hr/>
-		<a id="fav" title="marquer cette recette comme favoris" href="#"></a>-->
 	</li>
+
 	<li><%= link_to "sauvegarder", recipes_save_path( :id => @recipe.id) , :class => 'button_save' %></li>
 
+	<!-- Add a fork button if the user is connected -->
+	<% if current_user %>
+		<li><%= link_to "créer une variante" , edit_recipe_path , :class => 'button_edit' %></li>
+	<% end %>
+
+	<!-- if it's the owner of the recipe  -->
 	<% if current_user == @recipe.user %>
 
 		<li><%= link_to "modifier" , edit_recipe_path , 
