@@ -1,3 +1,6 @@
+require 'rubygems'
+require 'sitemap_generator'
+
 # Set the host name for URL creation
 SitemapGenerator::Sitemap.default_host = 'http://raspberry-cook.fr'
 
@@ -21,6 +24,7 @@ SitemapGenerator::Sitemap.create do
 	add '/recipes/save'
 	add '/recipes/search'
 	add '/recipes/vote'
+	add '/recipes/fork'
 
 	add 'users/new'
 	add 'users/index'
