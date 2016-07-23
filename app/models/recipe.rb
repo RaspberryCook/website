@@ -31,7 +31,6 @@ class Recipe < ActiveRecord::Base
 		forked_recipe = self.dup
 		forked_recipe.root_recipe_id = self.id
 		forked_recipe.user_id = new_user_id
-		forked_recipe.remove_image!
 		return forked_recipe
 	end
 
@@ -40,11 +39,6 @@ class Recipe < ActiveRecord::Base
 	# copyt the current recipe to a new user
 	def forked_recipes
 		return Recipe.where(root_recipe_id: self.id ).order( :variant_name )
-	end
-
-	# copyt the current recipe to a new user
-	def count_forked_recipes
-		return Recipe.count(:conditions => "root_recipe_id = %s" % self.id )
 	end
 
 
