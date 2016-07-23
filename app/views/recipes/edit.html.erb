@@ -5,6 +5,12 @@
 <%= form_for @recipe , :html => {:multipart => true } do |f| %>
   <%= render 'shared/error_messages', :object => f.object %>
 
+  <!-- if the recipe is forked, insert a text field for variant_name of another-->
+  <% if @recipe.root_recipe_id %>
+  	<label>Nom de la variante</label><%= f.text_field :variant_name , :placeholder => "ex: Sans fruits rouges" %>
+  <% end %>
+  
+
   
 <div id="picture_edit" >
 	<%= f.file_field :image  %>
