@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160605100646) do
+ActiveRecord::Schema.define(version: 20160723122747) do
 
   create_table "comments", force: true do |t|
     t.string   "title"
@@ -26,8 +26,8 @@ ActiveRecord::Schema.define(version: 20160605100646) do
   create_table "recipes", force: true do |t|
     t.string   "name"
     t.integer  "user_id"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
     t.text     "description"
     t.text     "ingredients"
     t.text     "steps"
@@ -44,6 +44,7 @@ ActiveRecord::Schema.define(version: 20160605100646) do
     t.string   "photo"
     t.string   "image"
     t.integer  "rank"
+    t.integer  "root_recipe_id",     default: 0
   end
 
   create_table "users", force: true do |t|

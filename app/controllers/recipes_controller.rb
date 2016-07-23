@@ -120,9 +120,16 @@ class RecipesController < ApplicationController
 		if request.get?
 			@recipe = Recipe.find(params[:id])
 		elsif request.post?
-			@recipe = Recipe.find(params[:id])
-			flash[:success] = "Forked!"
-			redirect_to recipe_path(@recipe)
+			recipe = Recipe.find params[:id]
+			forked_recipe = recipe.fork current_user.id
+
+			if forked_recipe.save
+				flash[:success] = "Forked successfull!"
+				redirect_to edit_recipe_path(forked_recipe)
+			else
+				flash[:success] = "Forked successfull!"
+				redirect_to recipe_path(recipe)
+			end
 		end
 	end
 
