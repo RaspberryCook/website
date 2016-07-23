@@ -32,6 +32,8 @@
 	</div>
 </div>
 
+<%= render 'shared/user' , :user => @recipe.user %>
+
 
 <!-- forked recipes -->
 <% forked_recipes = @recipe.forked_recipes 
@@ -43,7 +45,7 @@ if forked_recipes.length > 0 %>
 	<% end %></ul>
 <% end %>
 
-
+<h2>Actions</h2>
 <ul class="actions" >
 
 	<!-- here you can vote for this recipe and add like -->
@@ -79,6 +81,7 @@ if forked_recipes.length > 0 %>
 
 
 <% if @recipe.ingredients %>
+	<h2>Ingredients</h2>
 	<ul id="ingredients">
 		<% @recipe.ingredients.each_line do |ingredient|%>
 			<li><%= link_to ingredient , recipes_search_path( :ingredients => ingredient )  %></li>
@@ -87,6 +90,7 @@ if forked_recipes.length > 0 %>
 <% end %>
 
 <% if @recipe.steps %>
+	<h2>Préparation</h2>
 	<ul id="steps">
 		<% @recipe.steps.each_line do |step|%>
 			<li><span></span><%= step %></li>
@@ -97,7 +101,6 @@ if forked_recipes.length > 0 %>
 
 
 
-<%= render 'shared/user' , :user => @recipe.user %>
 
 <%= render 'shared/comments', :comments => @recipe .comments %>
 
