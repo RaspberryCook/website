@@ -1,10 +1,22 @@
-<h1><%= @user.nom %></h1>
+<section>
+	
+	<h1><%= @user.nom %></h1>
+
+	<div id="rang"><%= pluralize(@user.rank, "point") %></div>
+
+	<h2>Recettes</h2>
+
+	<p><%= pluralize(@user.recipes.count, "recette") %> à son actif<pre>TODO: add link</pre></p>
+
+	<h3>Recettes</h3>
+
+	<p><%= pluralize(@user.recipes.count, "recette") %> à son actif<pre>TODO: add link</pre></p>
+
+
+	<h2>Commentaires</h2>
+
+	<p><%= pluralize(@user.comments.count, "commentaire") %> à son actif<pre>TODO: add link</pre></p>
+</section>
 
 
 
-<ul>
-	<li><%= pluralize(@user.recipes.count, "recette") %> à son actif<pre>TODO: add link</pre></li>
-	<li><%= pluralize(@user.comments.count, "commentaire") %> à son actif<pre>TODO: add link</pre></li>
-</ul>
-
-<div id="rang"><%= pluralize(@user.rank, "point") %></div>
