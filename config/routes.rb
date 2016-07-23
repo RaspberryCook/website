@@ -21,7 +21,8 @@ RaspberryCook::Application.routes.draw do
   get "recipes/save"
   get "recipes/search"
   get 'recipes/fork' 
-  match 'recipes/fork/:id' ,   :to => 'recipes#fork', :via => [:get, :post]
+  match 'recipes/fork/:id' ,   :to => 'recipes#fork', :via => :get
+  match 'recipes/fork' ,   :to => 'recipes#fork', :via => :post
   match 'recipes/vote' , :to => 'recipes#vote', :via => [:get]
 
 

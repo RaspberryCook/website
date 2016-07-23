@@ -1,5 +1,5 @@
 class RecipesController < ApplicationController
-	before_filter :authenticate, :only =>  [:destroy , :update , :edit ,:add, :create, :vote]
+	before_filter :authenticate, :only =>  [:destroy , :update , :edit ,:add, :create, :vote, :fork]
 	before_filter :check_recipe_owner, :only =>  [:destroy , :update , :edit]
 
 
@@ -120,7 +120,9 @@ class RecipesController < ApplicationController
 		if request.get?
 			@recipe = Recipe.find(params[:id])
 		elsif request.post?
-			# create the fork 
+			@recipe = Recipe.find(params[:id])
+			flash[:success] = "Forked!"
+			redirect_to recipe_path(@recipe)
 		end
 	end
 
