@@ -115,12 +115,12 @@ class RecipesController < ApplicationController
 
 
 
-
+	# a fork is a copy of the current recipe
 	def fork
 		if request.get?
-			# display a message to confirm
+			@recipe = Recipe.find(params[:id])
 		elsif request.post?
-			# create the copy
+			# create the fork 
 		end
 	end
 

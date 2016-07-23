@@ -1,0 +1,9 @@
+<% begin %>
+	<figure class="recipe" >
+		<%= image_tag recipe.image_url(:thumb) , alt: 'Thumb - %s' % recipe.name %>
+		<figcaption><%= link_to recipe.name , recipe %></figcaption>
+	</figure>
+<% rescue NoMethodError => e 
+	# can't find this recipe
+ end %>
+
