@@ -10,24 +10,36 @@
 		<%= render 'shared/recipes' , :recipes => @recipes %>
 		<%= will_paginate @recipes , :class => "apple_pagination" %>
 
+	
+
+
 
 	<h2>Commentaires</h2>
 		<p><%= pluralize(@user.comments.count, "commentaire") %> à son actif</p>
 
-		<ul><% @comments.each do |comment| %>
-			<% begin %>
-				<li>
-					à propos de <%= link_to comment.recipe.name, comment.recipe %> 
-					le <time><%= comment.created_at.strftime("%d.%m.%y") %></time>
-					<blockquote><strong><%= comment.title %></strong>
-					<%= comment.content  %></blockquote>
+		<% begin %>
 
-				</li>
-			<% rescue Exception => e %>
-				
+			<ul>
+			<% @comments.each do |comment| %>
+				<% begin %>
+					<li>
+						à propos de <%= link_to comment.recipe.name, comment.recipe %> 
+						le <time><%= comment.created_at.strftime("%d.%m.%y") %></time>
+						<blockquote><strong><%= comment.title %></strong>
+						<%= comment.content  %></blockquote>
+
+					</li>
+				<% rescue Exception => e %>
+				<% end %>
+
 			<% end %>
+			</ul>
+		
+		<% rescue NoMethodError => e # In case of %>
+			
+		<% end %>
 
-		<% end %></ul>
+
 
 
 

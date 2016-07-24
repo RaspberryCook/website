@@ -1,7 +1,12 @@
-<ul class="recipes">
+<% begin %>
 
-<% recipes.each do |recipe| %>
-	<li><%= render 'shared/recipe' , :recipe => recipe %></li>
+	<ul class="recipes">
+	<% recipes.each do |recipe| %>
+		<li><%= render 'shared/recipe' , :recipe => recipe %></li>
+	<% end %>
+	</ul>
+		
+<% rescue NoMethodError => e # In case of nil%>
+		<p>Aucune rectte n'a été trouvée</p>
 <% end %>
 
-</ul>
