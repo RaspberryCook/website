@@ -1,6 +1,7 @@
 <section id="recipe" class="content">
 
-<h1 class="recipe"><%= @recipe.name  %></h1>
+<h1 class="recipe"><%= @recipe.name  %>
+	<%= " - %s" % @recipe.variant_name if @recipe.variant_name%></h1>
 
 
 
@@ -59,7 +60,7 @@ if forked_recipes.length > 0 %>
 	<li><%= link_to "sauvegarder", recipes_save_path( :id => @recipe.id) , :class => 'button_save' %></li>
 
 	<!-- Add a fork button if the user is connected -->
-	<% if current_user %>
+	<% if current_user and  @recipe.root_recipe_id == 0%>
 		<li><%= link_to "créer une variante" , recipes_fork_path( :id => @recipe.id) , :class => 'button_edit' %></li>
 	<% end %>
 
