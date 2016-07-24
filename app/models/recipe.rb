@@ -34,6 +34,15 @@ class Recipe < ActiveRecord::Base
 		return forked_recipe
 	end
 
+	# return the origin recipe
+	def root_recipe
+		if self.root_recipe_id
+			return Recipe.find self.root_recipe_id
+		else
+			return self
+		end
+	end
+
 
 
 	# copyt the current recipe to a new user

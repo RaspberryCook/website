@@ -41,9 +41,14 @@
 if forked_recipes.length > 0 %>
 
 	<h2>Variantes disponnibles</h2>
-	<ul id="variants"><% forked_recipes.each do |forked_recipe| %>
-		<li><%= link_to forked_recipe.variant_name , forked_recipe %></li>
-	<% end %></ul>
+	<%= render 'shared/recipes' , :recipes => forked_recipes %>
+
+<% else %>
+
+	<h2>Recette originelle</h2>
+
+	<%= render 'shared/recipe' , :recipe => @recipe.root_recipe %>
+
 <% end %>
 
 <h2>Actions</h2>
