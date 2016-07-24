@@ -1,9 +1,11 @@
 <% begin %>
 	<figure class="recipe" >
 		<%= image_tag recipe.image_url(:thumb) , alt: 'Thumb - %s' % recipe.name %>
-		<figcaption><%= link_to recipe.name , recipe %>
-			<% if recipe.count_forked_recipes != 0 %>
-				<small><%= '%s variantes' % recipe.count_forked_recipes%></small>
+		<figcaption>
+			<% if recipe.variant_name %>
+				<%= link_to "%s - %s " % [  recipe.name , recipe.variant_name] , recipe %>
+			<% else %>
+				<%= link_to recipe.name , recipe %>
 			<% end %>
 		</figcaption>
 	</figure>
