@@ -70,25 +70,6 @@ section#recipe_edit
 	input[type=submit]
 		@include button_class( $green )
 	
-	fieldset
-		width: 100%
-		padding: 20px
-		background-color: $green
-		@include box-sizing("border-box")
-		margin: 0
-		border: none
-
-		legend
-			float: left
-			width: 100%
-			display: block
-
-		form
-			width: 100%
-			@include box-sizing("border-box")
-
-		input, textarea
-			border: none
 
 	#variants 
 		text-align: center
@@ -189,21 +170,16 @@ section#recipe_edit
 			height: 100px
 			display: inline-block 
 			
-			vertical-align: center
 
 			time
 				color: $white
 				display: block
-				width: 30px
 				height: 30px
 				line-height: 30px
 				font-size: 18px
 				@include border-radius(15px)
 
 				background-color: $primary_color
-
-			time:after
-				content: '"'
 
 	#recipe_picture
 		// background-color: #ECF0F1 
@@ -242,20 +218,7 @@ section#recipe_edit
 			max-width: 100%
 			max-height: 100%
 
-#recipe_edit
 
-	#picture_edit,
-	#recipe_edit-confirm
-		border-top: solid 10px $second_color
-
-	#picture_edit
-		border-bottom: solid 10px $second_color
-		padding: 10px
-
-	#recipe_edit-confirm
-		padding: 30px
-		width: 100%
-		text-align: center
 
 
 

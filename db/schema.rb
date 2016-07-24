@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160723125655) do
+ActiveRecord::Schema.define(version: 20160724153217) do
 
   create_table "comments", force: true do |t|
     t.string   "title"
@@ -33,10 +33,10 @@ ActiveRecord::Schema.define(version: 20160723125655) do
     t.text     "steps"
     t.string   "category"
     t.string   "season"
-    t.integer  "t_baking"
-    t.integer  "t_cooling"
-    t.integer  "t_cooking"
-    t.integer  "t_rest"
+    t.time     "t_baking"
+    t.time     "t_cooling"
+    t.time     "t_cooking"
+    t.time     "t_rest"
     t.string   "photo_file_name"
     t.string   "photo_content_type"
     t.integer  "photo_file_size"
