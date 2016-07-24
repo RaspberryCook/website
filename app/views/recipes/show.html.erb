@@ -15,22 +15,48 @@
 <!-- times -->
 <div id="times">
 
-	<div style="background-image:url(/assets/images/time/cooking.svg)" >
-		<!-- préparation  -->
-		<time><%= @recipe.t_cooking.strftime "%H:%M"  %></time>
-	</div>
-	<div style="background-image:url(/assets/images/time/baking.svg)" >
-		<!-- cuisson -->
-		<time><%= @recipe.t_baking.strftime "%H:%M" %></time>
-	</div>
-	<div style="background-image:url(/assets/images/time/cooling.svg)" >
-		<!-- réfrigération -->
-		<time><%= @recipe.t_cooling.strftime "%H:%M"  %> </time>
-	</div>
-	<div style="background-image:url(/assets/images/time/rest.svg)" >
-		<!-- repos -->
-		<time><%= @recipe.t_rest.strftime "%H:%M" %></time>
-	</div>
+	<!-- préparation  -->
+	<div style="background-image:url(/assets/images/time/cooking.svg)" ><time>
+		<% if @recipe.t_cooking.is_a? Time %>
+			<%= @recipe.t_cooking.strftime "%H:%M"  %>
+		<% else %>
+			<%= @recipe.t_cooking %>
+		<% end %>
+			
+		</time></div>
+
+	<!-- cuisson  -->
+	<div style="background-image:url(/assets/images/time/baking.svg)" ><time>
+		<% if @recipe.t_baking.is_a? Time %>
+			<%= @recipe.t_baking.strftime "%H:%M"  %>
+		<% else %>
+			<%= @recipe.t_baking %>
+		<% end %>
+			
+		</time></div>
+
+	<!-- réfrigération  -->
+	<div style="background-image:url(/assets/images/time/cooling.svg)" ><time>
+		<% if @recipe.t_cooling.is_a? Time %>
+			<%= @recipe.t_cooling.strftime "%H:%M"  %>
+		<% else %>
+			<%= @recipe.t_cooling %>
+		<% end %>
+			
+		</time></div>
+
+	<!-- repos  -->
+	<div style="background-image:url(/assets/images/time/rest.svg)" ><time>
+		<% if @recipe.t_rest.is_a? Time %>
+			<%= @recipe.t_rest.strftime "%H:%M"  %>
+		<% else %>
+			<%= @recipe.t_rest %>
+		<% end %>
+			
+		</time></div>
+
+
+
 </div>
 
 <%= render 'shared/user' , :user => @recipe.user %>
