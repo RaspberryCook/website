@@ -36,7 +36,7 @@ class Recipe < ActiveRecord::Base
 
 	# return the origin recipe
 	def root_recipe
-		if self.root_recipe_id
+		if self.root_recipe_id != 0
 			return Recipe.find self.root_recipe_id
 		else
 			return self
