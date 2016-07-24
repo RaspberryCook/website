@@ -119,6 +119,7 @@ class RecipesController < ApplicationController
 	def fork
 		if request.get?
 			@recipe = Recipe.find(params[:id])
+			@title = "Créer une variante de %s" % @recipe.name
 		elsif request.post?
 			recipe = Recipe.find params[:id]
 			forked_recipe = recipe.fork current_user.id
