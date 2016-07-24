@@ -2,67 +2,60 @@
 
 <h1 class="recipe"><%= @recipe.name  %></h1>
 
+
 <%= form_for @recipe , :html => {:multipart => true } do |f| %>
-  <%= render 'shared/error_messages', :object => f.object %>
+	<%= render 'shared/error_messages', :object => f.object %>
 
-  <!-- if the recipe is forked, insert a text field for variant_name of another-->
-  <% if @recipe.root_recipe_id %>
-  	<label>Nom de la variante</label><%= f.text_field :variant_name , :placeholder => "ex: Sans fruits rouges" %>
-  <% end %>
-  
+	<!-- if the recipe is forked, insert a text field for variant_name of another-->
+	<% if @recipe.root_recipe_id %>
+		<label>Nom de la variante</label><%= f.text_field :variant_name , :placeholder => "ex: Sans fruits rouges" %>
+	<% end %>
 
-  
-<div id="picture_edit" >
-	<%= f.file_field :image  %>
-</div>
+	<label>Photo</label><%= f.file_field :image  %>
 
-<ul id="steps">
+	
+<h2>Infos</h2>
 
 
-	<li>
-		<span></span>temp nécessaire
-		<table>
-			<tr><th>préparation</th>
-				<td><%= f.number_field :t_cooking  %></td></tr>
-			<tr><th>cuisson</th>
-				<td><%= f.number_field :t_baking  %></td></tr>
-			<tr><th>réfrigération</th>
-				<td><%= f.number_field :t_cooling  %></td></tr>
-			<tr><th>repos</th>
-				<td><%= f.number_field :t_rest  %></td></tr>
-		</table>
-	</li>
 
-	<li>
-		<span></span>description<%= f.text_field :description , :placeholder => "entrez une description"%>
-	</li>
+	
 
-
-	<li><span></span>ingrédients<%= f.text_area :ingredients , :placeholder => "listez les ingrédients en revant à la ligne, simplement"%></li>
-
-
-	<li><span></span>étapes<%= f.text_area :steps , :placeholder => "listez les étapes en revant à la ligne, simplement"%>
-	</li>
-
-	<li><span></span>catégorie<%= f.text_field :category , :placeholder => "cusine du monde, cocktail, etc.."%>
-	</li>
-
-	<li><span></span>saisons<%= select_tag :season, options_for_select( 
+	<label>Description</label><%= f.text_field :description , :placeholder => "entrez une description"%>
+	<label>Catégorie</label><%= f.text_field :category , :placeholder => "cusine du monde, cocktail, etc.."%>
+	<label>Saison</label><%= select_tag :season, options_for_select( 
 			[
 				['toutes',0], 
 				['prinptemps',1], 
 				['été',2], 
 				['automne',3], 
 				['hiver',4] 
-			] 
-		) %></li>
+			]  ) %>
+	
+
+
+<h2>Temps</h2>
+	<ul class="times">
+		<li><label>Prépration</label><%= f.number_field :t_cooking  %></li>
+		<li><label>Cuisson</label><%= f.number_field :t_baking  %></li>
+		<li><label>Réfrigération</label><%= f.number_field :t_cooling  %></li>
+		<li><label>repos</label><%= f.number_field :t_rest  %></li>
+	</ul>
+
+
+
+<h2>Ingrédients</h2>
+	<p>listez les ingrédients en revant simplement à la ligne. On s'occupe du reste</p>
+	<%= f.text_area :ingredients , :placeholder => "courgettes"%>
+
+<h2>Etapes</h2>
+	<p>listez les étapes en revant simplement à la ligne. On s'occupe du reste</p>
+	<%= f.text_area :steps , :placeholder => "p'lez les carottes"%>
+
 </ul>
 
-<div id="recipe_edit-confirm">
-	<%= f.submit "Mettre à jour" %>
-</div>
+<%= f.submit "Mettre à jour" %>
 
-  
+	
 <% end %>
 
 </section>
