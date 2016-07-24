@@ -35,10 +35,10 @@
 
 <h2>Temps</h2>
 	<ul class="times">
-		<li><label>Prépration</label><%= f.number_field :t_cooking  %></li>
-		<li><label>Cuisson</label><%= f.number_field :t_baking  %></li>
-		<li><label>Réfrigération</label><%= f.number_field :t_cooling  %></li>
-		<li><label>repos</label><%= f.number_field :t_rest  %></li>
+		<li><label>Prépration</label><%= f.time_field :t_cooking  , class: "time_picker"%></li>
+		<li><label>Cuisson</label><%= f.time_field :t_baking  , class: "time_picker"%></li>
+		<li><label>Réfrigération</label><%= f.time_field :t_cooling  , class: "time_picker"%></li>
+		<li><label>repos</label><%= f.time_field :t_rest  , class: "time_picker"%></li>
 	</ul>
 
 
@@ -59,3 +59,7 @@
 <% end %>
 
 </section>
+
+<script type="text/javascript">
+	$('.time_picker').timepicker({ 'timeFormat': 'H:i:s' });
+</script>
