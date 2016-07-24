@@ -5,17 +5,32 @@
 	<div id="rang"><%= pluralize(@user.rank, "point") %></div>
 
 	<h2>Recettes</h2>
+		<p><%= pluralize(@user.recipes.count, "recette") %> à son actif</p>
 
-	<p><%= pluralize(@user.recipes.count, "recette") %> à son actif<pre>TODO: add link</pre></p>
-
-	<h3>Recettes</h3>
-
-	<p><%= pluralize(@user.recipes.count, "recette") %> à son actif<pre>TODO: add link</pre></p>
+		<%= render 'shared/recipes' , :recipes => @recipes %>
+		<%= will_paginate @recipes , :class => "apple_pagination" %>
 
 
 	<h2>Commentaires</h2>
+		<p><%= pluralize(@user.comments.count, "commentaire") %> à son actif</p>
 
-	<p><%= pluralize(@user.comments.count, "commentaire") %> à son actif<pre>TODO: add link</pre></p>
+		<ul><% @comments.each do |comment| %>
+			<% begin %>
+				<li>
+					à propos de <%= link_to comment.recipe.name, comment.recipe %> 
+					le <time><%= comment.created_at.strftime("%d.%m.%y") %></time>
+					<blockquote><strong><%= comment.title %></strong>
+					<%= comment.content  %></blockquote>
+
+				</li>
+			<% rescue Exception => e %>
+				
+			<% end %>
+
+		<% end %></ul>
+
+
+
 </section>
 
 
