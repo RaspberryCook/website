@@ -17,19 +17,19 @@
 
 	<div style="background-image:url(/assets/images/time/cooking.svg)" >
 		<!-- préparation  -->
-		<time><%= @recipe.t_cooking  %></time>
+		<time><%= @recipe.t_cooking.strftime "%H:%M"  %></time>
 	</div>
 	<div style="background-image:url(/assets/images/time/baking.svg)" >
 		<!-- cuisson -->
-		<time><%= @recipe.t_baking %></time>
+		<time><%= @recipe.t_baking.strftime "%H:%M" %></time>
 	</div>
 	<div style="background-image:url(/assets/images/time/cooling.svg)" >
 		<!-- réfrigération -->
-		<time><%= @recipe.t_cooling  %> </time>
+		<time><%= @recipe.t_cooling.strftime "%H:%M"  %> </time>
 	</div>
 	<div style="background-image:url(/assets/images/time/rest.svg)" >
 		<!-- repos -->
-		<time><%= @recipe.t_rest %></time>
+		<time><%= @recipe.t_rest.strftime "%H:%M" %></time>
 	</div>
 </div>
 
