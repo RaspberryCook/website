@@ -21,11 +21,11 @@
 	
 
 	<label>Description</label><%= f.text_field :description , :placeholder => "entrez une description"%>
-	<label>Catégorie</label><%= f.text_field :category , :placeholder => "cusine du monde, cocktail, etc.."%>
+	<label>Catégorie</label><%= f.text_field :category , :placeholder => "cuisine du monde, cocktail, etc.."%>
 	<label>Saison</label><%= select_tag :season, options_for_select( 
 			[
 				['toutes',0], 
-				['prinptemps',1], 
+				['printemps',1], 
 				['été',2], 
 				['automne',3], 
 				['hiver',4] 
@@ -35,7 +35,7 @@
 
 <h2>Temps</h2>
 	<ul class="times">
-		<li><label>Prépration</label><%= f.time_field :t_cooking  , class: "time_picker"%></li>
+		<li><label>Préparation</label><%= f.time_field :t_cooking  , class: "time_picker"%></li>
 		<li><label>Cuisson</label><%= f.time_field :t_baking  , class: "time_picker"%></li>
 		<li><label>Réfrigération</label><%= f.time_field :t_cooling  , class: "time_picker"%></li>
 		<li><label>repos</label><%= f.time_field :t_rest  , class: "time_picker"%></li>
@@ -44,11 +44,11 @@
 
 
 <h2>Ingrédients</h2>
-	<p>listez les ingrédients en revant simplement à la ligne. On s'occupe du reste</p>
+	<p>Listez les ingrédients en revenant simplement à la ligne. On s'occupe du reste</p>
 	<%= f.text_area :ingredients , :placeholder => "courgettes"%>
 
 <h2>Etapes</h2>
-	<p>listez les étapes en revant simplement à la ligne. On s'occupe du reste</p>
+	<p>Listez les étapes en revenant simplement à la ligne.</p>
 	<%= f.text_area :steps , :placeholder => "p'lez les carottes"%>
 
 </ul>
