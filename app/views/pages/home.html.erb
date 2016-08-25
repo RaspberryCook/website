@@ -15,13 +15,12 @@
 		<legend>Barack Obama - 2008</legend>
 	</div>
 
-	<%#= render 'shared/recipes_form_search'  %>
-
 </section>
 
 <section class="home" style="background-image: url('/assets/images/recipe.png'); background-position: right">
 	<h2>Des recettes. Partout. Tout plein</h2>
 	<p>Consultez, partagez, télechargez vos recettes préferées. C'est tout simplement génial!</p>
+	<%= render 'shared/recipes' , :recipes => @recipes %>
 </section>
 
 <section class="home" style="background-image: url('/assets/images/flatvsrealism.png')">

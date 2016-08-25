@@ -12,7 +12,6 @@ RaspberryCook::Application.routes.draw do
 
   get "pages/credits"
 
-  get "pages/news"
   get "pages/home"
   get "pages/infos"
 
