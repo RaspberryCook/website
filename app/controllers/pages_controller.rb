@@ -4,6 +4,10 @@ class PagesController < ApplicationController
 		@recipes = Recipe.find(:all, :order => "id desc", :limit => 5).reverse
   end
 
+  def news
+    
+  end
+
   def infos
 		@title = 'infos'
   end
