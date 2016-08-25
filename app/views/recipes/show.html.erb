@@ -4,12 +4,14 @@
 	<%= " - %s" % @recipe.variant_name if @recipe.variant_name%></h1>
 
 
-
-
-
 <!-- image -->
 <div  id="recipe_picture"
-	style="background-image: url(<%= @recipe.image_url %>);"  > </div>
+	style="background-image: url(<%= @recipe.image_url %>);"  >
+
+	<a id="zoom-in" href="#" style="display:none">
+		<%= image_tag("/assets/images/icons/zoom-in.svg", size: "100") %></a>
+		
+</div>
 
 
 <!-- times -->
@@ -154,6 +156,10 @@ if forked_recipes.length > 0 %>
 			
 		<% end %>
 
+		$('#recipe_picture').hover(function(){
+			$('#zoom-in').toggle();
+		})
+		
 
 	});
 </script>
