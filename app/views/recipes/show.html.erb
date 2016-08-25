@@ -1,15 +1,21 @@
 <section id="recipe" class="content">
 
+<div id="recipe_fullscreen_picture" 
+	style="background-image: url(<%= @recipe.image_url %>);"  ></div>
+
 <h1 class="recipe"><%= @recipe.name  %>
 	<%= " - %s" % @recipe.variant_name if @recipe.variant_name%></h1>
 
 
-
-
-
 <!-- image -->
 <div  id="recipe_picture"
-	style="background-image: url(<%= @recipe.image_url %>);"  > </div>
+	style="background-image: url(<%= @recipe.image_url %>);"  >
+
+	<a id="zoom-in" href="#" style="display:none">
+		<%= image_tag("/assets/images/icons/zoom-in.svg", size: "100") %></a>
+		
+</div>
+
 
 
 <!-- times -->
@@ -154,6 +160,23 @@ if forked_recipes.length > 0 %>
 			
 		<% end %>
 
+		// display or hide the magnifier icon to show up the recipe picture
+		$('#recipe_picture').hover(function(){
+			$('#zoom-in').fadeIn();
+		},function() {
+			$('#zoom-in').fadeOut();
+		})
+		
+		// show the picture
+		$('#zoom-in').click(function(event){
+			event.preventDefault();
+			$('#recipe_fullscreen_picture').fadeToggle();
+		})
+
+		// hide the picture when user click on it
+		$('#recipe_fullscreen_picture').click( function(){
+			$(this).fadeOut();
+		})
 
 	});
 </script>
