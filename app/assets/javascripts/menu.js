@@ -1,4 +1,4 @@
-$('#nav-button').click(function(){
-	//$('#header-search , #header-sigin , nav').fadeToggle();
+$('#nav-button').click(function(event){
+	event.preventDefault();
 	$('nav').fadeToggle();
 })
