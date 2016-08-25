@@ -7,7 +7,7 @@
 	<%= render 'shared/error_messages', :object => f.object %>
 
 	<!-- if the recipe is forked, insert a text field for variant_name of another-->
-	<% if @recipe.root_recipe_id %>
+	<% if @recipe.root_recipe_id != 0%>
 		<label>Nom de la variante</label><%= f.text_field :variant_name , :placeholder => "ex: Sans fruits rouges" %>
 	<% end %>
 
