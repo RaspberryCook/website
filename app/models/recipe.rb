@@ -5,7 +5,8 @@ class Recipe < ActiveRecord::Base
 		:t_baking , :t_cooling , :t_cooking ,:t_rest ,
 		:image,
 		:root_recipe_id,
-		:variant_name
+		:variant_name,
+		:rtype
 
 	# attr_reader :id
 

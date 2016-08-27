@@ -46,7 +46,7 @@ ActiveRecord::Schema.define(version: 20160827141830) do
     t.integer  "rank"
     t.integer  "root_recipe_id",     default: 0
     t.string   "variant_name"
-    t.string   "type"
+    t.string   "rtype"
   end
 
   create_table "users", force: true do |t|

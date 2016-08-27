@@ -23,8 +23,8 @@
 		<% ['Entrée', 'Plat', 'Dessert', 'Cocktail', 'Apéritif'].each do |type| %>
 
 			<li>
-				<%= f.radio_button :type, type %>
-				<%= f.label :type, image_tag("/assets/images/type_of_food/%s.svg"%type ) + type , value: type %>
+				<%= f.radio_button :rtype, type %>
+				<%= f.label :rtype, image_tag("/assets/images/type_of_food/%s.svg"%type ) + type , value: type %>
 			</li>
 
 		<% end %>
