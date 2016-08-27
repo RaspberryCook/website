@@ -239,26 +239,33 @@ section#recipe_edit
 		display: none
 
 	
-	ul.type li
+	ul.type 
 
-		width: 200px
-		text-align: center
-		display: inline-block
-		
+		background-color: $light_gray
 
-		input[type=radio]
-			width: 18px
-			display: inline-block
+		li
 
-		label
-			display: inline-block
-			width: 100px
+			width: 200px
 			text-align: center
-			cursor: pointer
+			display: inline-block
+			
 
-			img
-				width: 50px
-				display: block
+			input[type=radio]
+				width: 18px
+				display: inline-block
+
+			label
+				display: inline-block
+				width: 100px
+				text-align: center
+				cursor: pointer
+
+				img
+					width: 50px
+					display: block
+
+			&:hover
+				background-color: $white
 
 
 
