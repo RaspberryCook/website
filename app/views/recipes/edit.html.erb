@@ -18,6 +18,27 @@
 
 
 
+	<ul class="type">
+
+		<li> <%= f.radio_button :season, "Entrée" %>
+			<%= f.label :season, image_tag("/assets/images/type_of_food/salad.svg" ) + 'Entrée', value: "Entrée" %></li>
+
+		<li> <%= f.radio_button :season, "Plat" %>
+			<%= f.label :season, image_tag("/assets/images/type_of_food/meat.svg" ) + 'Plat', value: "Plat" %></li>
+
+		<li> <%= f.radio_button :season, "Dessert" %>
+			<%= f.label :season, image_tag("/assets/images/type_of_food/cupcake.svg" ) + 'Dessert', value: "Dessert" %></li>
+
+		<li> <%= f.radio_button :season, "Cocktail" %>
+			<%= f.label :season, image_tag("/assets/images/type_of_food/glass.svg" ) + 'Cocktail', value: "Cocktail" %></li>
+
+		<li> <%= f.radio_button :season, "Apéritif" %>
+			<%= f.label :season, image_tag("/assets/images/type_of_food/pretzel.svg" ) + 'Apéritif', value: "Apéritif" %></li>
+
+	</ul>
+
+
+	
 	
 
 	<label>Description</label><%= f.text_field :description , :placeholder => "entrez une description"%>
@@ -60,6 +81,8 @@
 
 </section>
 
+
 <script type="text/javascript">
+	// set to set timepicker
 	$('.time_picker').timepicker({ 'timeFormat': 'H:i:s' , 'step': 5});
 </script>
