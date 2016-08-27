@@ -11,7 +11,7 @@
 		<a href="#">
 			<%= image_tag("/assets/images/type_of_food/%s.svg" % @recipe.rtype )  %>
 			<%= @recipe.rtype %>
-		</a>
+		</a> / <a href="#"><%= @recipe.season %></a>
 	</span>
 <% end %>
 

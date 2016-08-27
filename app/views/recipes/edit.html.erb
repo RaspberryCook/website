@@ -17,35 +17,32 @@
 <h2>Infos</h2>
 
 
-
-	<ul class="type">
-
+	<h3>Type de recette</h3>
+	<ul class="radio_buttons_with_icon">
 		<% ['Entrée', 'Plat', 'Dessert', 'Cocktail', 'Apéritif'].each do |type| %>
-
 			<li>
 				<%= f.radio_button :rtype, type %>
 				<%= f.label :rtype, image_tag("/assets/images/type_of_food/%s.svg"%type ) + type , value: type %>
 			</li>
-
 		<% end %>
-
 	</ul>
 
-
+	<h3>Saison adaptés à la dégustation de celle-ci</h3>
+	<ul class="radio_buttons_with_icon">
+		<% ['Toutes', 'Printemps', 'Eté', 'Automne', 'Hiver'].each do |type| %>
+			<li>
+				<%= f.radio_button :season, type %>
+				<%= f.label :season, image_tag("/assets/images/seasons/%s.svg"%type ) + type , value: type %>
+			</li>
+		<% end %>
+	</ul>
 	
 	
 
 	<label>Description</label><%= f.text_field :description , :placeholder => "entrez une description"%>
 	<label>Catégorie</label><%= f.text_field :category , :placeholder => "cuisine du monde, cocktail, etc.."%>
-	<label>Saison</label><%= select_tag :season, options_for_select( 
-			[
-				['toutes',0], 
-				['printemps',1], 
-				['été',2], 
-				['automne',3], 
-				['hiver',4] 
-			]  ) %>
-	
+
+
 
 
 <h2>Temps</h2>
