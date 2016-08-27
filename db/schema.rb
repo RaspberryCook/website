@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160724153217) do
+ActiveRecord::Schema.define(version: 20160827141830) do
 
   create_table "comments", force: true do |t|
     t.string   "title"
@@ -46,6 +46,7 @@ ActiveRecord::Schema.define(version: 20160724153217) do
     t.integer  "rank"
     t.integer  "root_recipe_id",     default: 0
     t.string   "variant_name"
+    t.string   "type"
   end
 
   create_table "users", force: true do |t|
