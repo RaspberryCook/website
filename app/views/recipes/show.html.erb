@@ -6,6 +6,16 @@
 <h1 class="recipe"><%= @recipe.name  %>
 	<%= " - %s" % @recipe.variant_name if @recipe.variant_name%></h1>
 
+<% if @recipe.rtype %>
+	<span class="picture_ribon">
+		<a href="#">
+			<%= image_tag("/assets/images/type_of_food/%s.svg" % @recipe.rtype )  %>
+			<%= @recipe.rtype %>
+		</a>
+	</span>
+<% end %>
+
+
 
 <!-- image -->
 <div  id="recipe_picture"
@@ -19,7 +29,7 @@
 
 
 <!-- times -->
-<div id="times">
+<div id="times" class="picture_ribon">
 
 	<!-- préparation  -->
 	<div style="background-image:url(/assets/images/time/cooking.svg)" ><time>
