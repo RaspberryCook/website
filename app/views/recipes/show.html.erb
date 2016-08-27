@@ -6,14 +6,31 @@
 <h1 class="recipe"><%= @recipe.name  %>
 	<%= " - %s" % @recipe.variant_name if @recipe.variant_name%></h1>
 
-<% if @recipe.rtype %>
-	<span class="picture_ribon">
-		<a href="#">
-			<%= image_tag("/assets/images/type_of_food/%s.svg" % @recipe.rtype )  %>
-			<%= @recipe.rtype %>
-		</a> / <a href="#"><%= @recipe.season %></a>
-	</span>
-<% end %>
+
+<span class="picture_ribon">
+	<ul>
+		
+		<% if @recipe.rtype %>
+			<li>
+				<a href="#">
+					<%= image_tag("/assets/images/type_of_food/%s.svg" % @recipe.rtype )  %>
+					<%= @recipe.rtype %>
+				</a>
+			</li>
+		<% end %>
+
+		<% if @recipe.rtype %>
+			<li>
+				<a href="#">
+					<%= image_tag("/assets/images/seasons/%s.svg" % @recipe.season )  %>
+					<%= @recipe.season %>
+				</a>
+			</li>
+		<% end %>
+
+	</ul>
+</span>
+
 
 
 
