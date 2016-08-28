@@ -1,7 +1,6 @@
 class Recipe < ActiveRecord::Base
 	attr_accessible :name , :description , 
-		:ingredients , :steps , 
-		:category , :season , 
+		:ingredients , :steps  , :season , 
 		:t_baking , :t_cooling , :t_cooking ,:t_rest ,
 		:image,
 		:root_recipe_id,

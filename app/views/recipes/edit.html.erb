@@ -2,21 +2,21 @@
 
 <h1 class="recipe"><%= @recipe.name  %></h1>
 
+<h2>Infos</h2>
+
 
 <%= form_for @recipe , :html => {:multipart => true } do |f| %>
 	<%= render 'shared/error_messages', :object => f.object %>
 
+	<span><label>Description</label><%= f.text_field :description , :placeholder => "entrez une description"%></span>
+
 	<!-- if the recipe is forked, insert a text field for variant_name of another-->
 	<% if @recipe.root_recipe_id != 0%>
-		<label>Nom de la variante</label><%= f.text_field :variant_name , :placeholder => "ex: Sans fruits rouges" %>
+		<span><label>Nom de la variante</label><%= f.text_field :variant_name , :placeholder => "ex: Sans fruits rouges" %></span>
 	<% end %>
 
-	<label>Description</label><%= f.text_field :description , :placeholder => "entrez une description"%>
 
-	<label>Photo</label><%= f.file_field :image  %>
-
-
-<h2>Infos</h2>
+	<span><label>Photo</label><%= f.file_field :image  %></span>
 
 
 	<label class="radio_buttons_with_icon">Type de recette</label>
