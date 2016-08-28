@@ -1,3 +1,6 @@
+@import colors
+
+
 form
 	text-align: center
 
@@ -32,3 +35,34 @@ form
 				width: 100%
 
 
+label.radio_buttons_with_icon
+	margin-top: 40px
+
+	
+ul.radio_buttons_with_icon 
+
+	background-color: $light_gray
+
+	li
+
+		width: 150px
+		text-align: center
+		display: inline-block
+		
+
+		input[type=radio]
+			width: 18px
+			display: inline-block
+
+		label
+			display: inline-block
+			width: 100px
+			text-align: center
+			cursor: pointer
+
+			img
+				width: 50px
+				display: block
+
+		&:hover
+			background-color: $white

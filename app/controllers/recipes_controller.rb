@@ -69,7 +69,7 @@ class RecipesController < ApplicationController
 
 	def search
 		@title = "rechercher une recette"
-		@recipes = Recipe.search params[:recipe] , params[:ingredients] , params[:page]
+		@recipes = Recipe.search params[:recipe], params[:ingredients], params[:season], params[:type], params[:page]
 	end
 
 

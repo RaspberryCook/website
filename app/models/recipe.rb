@@ -21,8 +21,14 @@ class Recipe < ActiveRecord::Base
 	validates :name , 
 		:presence 	=> true 
 
-	def self.search name , ingredients , page
-		self.where( 'name LIKE ? AND ingredients LIKE ?' , "%#{name}%", "%#{ingredients}%").paginate( :page => page ).order('id DESC')
+	def self.search name , ingredients , season, type, page
+		# set ALL match for `type` & `season` if user don't care
+		season = '%' if season == 'Toutes'
+		type = '%' if type == 'Toutes'
+		# make search
+		self.where( 'name LIKE ? AND ingredients LIKE ? AND season LIKE ? AND rtype LIKE ?' , 
+			"%#{name}%", "%#{ingredients}%" , season, type)
+			.paginate( :page => page ).order('id DESC')
 	end
 
 

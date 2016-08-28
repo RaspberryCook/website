@@ -12,6 +12,15 @@
 			<%= label_tag  'Ingrédients' %>
 			<%= text_field_tag 'ingredients' , params[:ingredients] , :placeholder => "ingrédients"  %>
 
+			<%= label_tag  'Type de recette' %>
+			<%= select_tag "type",
+				options_for_select(['Toutes','Entrée','Plat','Dessert','Cocktail','Apéritif'],'Toutes') %>
+
+			<%= label_tag  'Saison' %>
+			<%= select_tag "season",
+				options_for_select(['Toutes','Printemps','Eté','Automne','Hiver'], 'Toutes') %>
+
+
 			<%= submit_tag "go!" %>
 		</fieldset>
 	<% end %>
