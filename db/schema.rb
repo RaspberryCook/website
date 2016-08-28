@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160827141830) do
+ActiveRecord::Schema.define(version: 20160828161157) do
 
   create_table "comments", force: true do |t|
     t.string   "title"
@@ -31,7 +31,6 @@ ActiveRecord::Schema.define(version: 20160827141830) do
     t.text     "description"
     t.text     "ingredients"
     t.text     "steps"
-    t.string   "category"
     t.string   "season"
     t.time     "t_baking"
     t.time     "t_cooling"
