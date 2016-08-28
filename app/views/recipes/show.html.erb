@@ -11,21 +11,11 @@
 	<ul>
 		
 		<% if @recipe.rtype %>
-			<li>
-				<a href="#">
-					<%= image_tag("/assets/images/type_of_food/%s.svg" % @recipe.rtype )  %>
-					<%= @recipe.rtype %>
-				</a>
-			</li>
+			<li><%= link_to image_tag("/assets/images/type_of_food/%s.svg" % @recipe.rtype ) + @recipe.rtype , recipes_search_path( :type => @recipe.rtype )  %></li>
 		<% end %>
 
 		<% if @recipe.rtype %>
-			<li>
-				<a href="#">
-					<%= image_tag("/assets/images/seasons/%s.svg" % @recipe.season )  %>
-					<%= @recipe.season %>
-				</a>
-			</li>
+			<li><%= link_to image_tag("/assets/images/seasons/%s.svg" % @recipe.season ) + @recipe.season , recipes_search_path( :season => @recipe.season )  %></li>
 		<% end %>
 
 	</ul>

@@ -23,8 +23,8 @@ class Recipe < ActiveRecord::Base
 
 	def self.search name , ingredients , season, type, page
 		# set ALL match for `type` & `season` if user don't care
-		season = '%' if season == 'Toutes'
-		type = '%' if type == 'Toutes'
+		season = '%' if season == 'Toutes' or not season
+		type = '%' if type == 'Toutes' or not type
 		# make search
 		self.where( 'name LIKE ? AND ingredients LIKE ? AND season LIKE ? AND rtype LIKE ?' , 
 			"%#{name}%", "%#{ingredients}%" , season, type)
