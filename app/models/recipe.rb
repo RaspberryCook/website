@@ -1,11 +1,11 @@
 class Recipe < ActiveRecord::Base
 	attr_accessible :name , :description , 
-		:ingredients , :steps , 
-		:category , :season , 
+		:ingredients , :steps  , :season , 
 		:t_baking , :t_cooling , :t_cooking ,:t_rest ,
 		:image,
 		:root_recipe_id,
-		:variant_name
+		:variant_name,
+		:rtype
 
 	# attr_reader :id
 
@@ -21,8 +21,14 @@ class Recipe < ActiveRecord::Base
 	validates :name , 
 		:presence 	=> true 
 
-	def self.search name , ingredients , page
-		self.where( 'name LIKE ? AND ingredients LIKE ?' , "%#{name}%", "%#{ingredients}%").paginate( :page => page ).order('id DESC')
+	def self.search name , ingredients , season, type, page
+		# set ALL match for `type` & `season` if user don't care
+		season = '%' if season == 'Toutes' or not season
+		type = '%' if type == 'Toutes' or not type
+		# make search
+		self.where( 'name LIKE ? AND ingredients LIKE ? AND season LIKE ? AND rtype LIKE ?' , 
+			"%#{name}%", "%#{ingredients}%" , season, type)
+			.paginate( :page => page ).order('id DESC')
 	end
 
 

@@ -1,7 +1,8 @@
 class PagesController < ApplicationController
+  
   def home
-		@title = 'home'
-		@recipes = Recipe.find(:all, :order => "id desc", :limit => 5).reverse
+    @title = 'home'
+    @recipes = Recipe.find(:all, :order => "id desc", :limit => 3).reverse
   end
 
   def infos

@@ -69,6 +69,10 @@ section#recipe_edit
 
 	input[type=submit]
 		@include button_class( $green )
+
+
+	span
+		display: inline-block
 	
 
 	#variants 
@@ -148,17 +152,41 @@ section#recipe_edit
 				color: inherit
 				text-decoration: none
 
+	.picture_ribon
+		width: 100%
+		display: inline-block
+		text-align: center
+		vertical-align: center
+		margin: 0px
 
+	span.picture_ribon
+		height: 50px
+		padding: 10px
+		text-align: center
+		text-align: center
+		font-size: 30px
 
+		a
+			text-decoration: none
+			font-family: 'Pacifico', cursive
+			font-weight: 100
+			img
+				height: 40px
+				display: inline-block
+
+		ul
+			list-style-type: none
+
+			li
+				display: inline-block
+				margin-right: 10px
+				margin-left: 10px
 
 
 	//recipe sheet
-	#times
+	div.picture_ribon
 		background-color: $second_color
-		display: inline-block
-		width: 100%
-		text-align: center
-		vertical-align: center
+		height: 100px
 
 
 		div 
@@ -192,6 +220,7 @@ section#recipe_edit
 		height: 600px
 		width: 100%
 		margin: auto
+		border-top: 2px solid $second_color
 
 		ul , textarea 
 			position: relative
@@ -241,14 +270,12 @@ section#recipe_edit
 
 
 
-
 section#recipe_search
 
 	fieldset
 		color: $primary_color
 		width: 510px
 		margin: auto
-		border: solid 1px
 		padding: 20px
 
 		legend

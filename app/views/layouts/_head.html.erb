@@ -1,4 +1,7 @@
-<title>Raspberry Cook - <%= @title %></title>
+<% title = "Raspberry Cook - %s" % @title %>
+<% description = "Des recettes. Partout. Tout plein!" %>
+
+<title><%= title %></title>
 <link rel="icon" type="image/png" href="/assets/images/favicon.png" />
 <%= csrf_meta_tags %>
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
@@ -8,7 +11,7 @@
 <%= javascript_include_tag 'application' %>
 <%= javascript_include_tag 'jquery.parallax-1.1.3.js' %>
 
-<meta name="description" content="Des recettes. Partout. Tout plein!" />
+<meta name="description" content="<%= description %>" />
 <meta name="keywords" content="webapp, cuisine, recette, recettes, raspberry, cook, partage, cool, open, source, design">
 <meta name="language" content="fr-FR" />
 <meta name="rating" content="General">
@@ -18,3 +21,24 @@
 <meta name="email" content="rousseaualexandre.lyon@gmail.com">
 <meta name="author" content="ROUSSEAU Alexandre">
 <meta name="publisher" content="ROUSSEAU Alexandre">
+
+<% if @recipe %>
+	<meta property="og:image" content="http://raspberry-cook.fr<%= @recipe.image_url %>" >
+
+	<% if @recipe.description %>
+		<meta property="og:description" content="<%= @recipe.description %>" >
+	<% else %>
+		<meta name="og:description" content="<%= description %>" >
+	<% end %>
+<% else %>
+	<meta property="og:image	" content="http://raspberry-cook.fr/assets/images/og_image.png">
+	<meta property="og:image:type" content="image/png">
+	<meta property="og:image:width" content="500">
+	<meta property="og:image:height" content="500">
+
+	<meta name="og:description" content="<%= description %>" >
+
+<% end %>
+
+<meta property="og:title" content="<%= title %>">
+<meta property="fb:app_id" content="1672575099670561">

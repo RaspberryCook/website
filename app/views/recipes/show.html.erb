@@ -7,6 +7,23 @@
 	<%= " - %s" % @recipe.variant_name if @recipe.variant_name%></h1>
 
 
+<span class="picture_ribon">
+	<ul>
+		
+		<% if @recipe.rtype %>
+			<li><%= link_to image_tag("/assets/images/type_of_food/%s.svg" % @recipe.rtype ) + @recipe.rtype , recipes_search_path( :type => @recipe.rtype )  %></li>
+		<% end %>
+
+		<% if @recipe.season %>
+			<li><%= link_to image_tag("/assets/images/seasons/%s.svg" % @recipe.season ) + @recipe.season , recipes_search_path( :season => @recipe.season )  %></li>
+		<% end %>
+
+	</ul>
+</span>
+
+
+
+
 <!-- image -->
 <div  id="recipe_picture"
 	style="background-image: url(<%= @recipe.image_url %>);"  >
@@ -19,7 +36,7 @@
 
 
 <!-- times -->
-<div id="times">
+<div id="times" class="picture_ribon">
 
 	<!-- préparation  -->
 	<div style="background-image:url(/assets/images/time/cooking.svg)" ><time>
