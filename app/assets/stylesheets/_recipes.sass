@@ -14,22 +14,34 @@
 
 @media all and (max-width: 740px)
 
+
+	// avoid fall outside
 	ul.recipes
 		width: 100%
+		max-width: 100v%
+
+		*
+			max-width: 100%
+
+
+
+	ul.recipes
 		padding: 0px
 
 		li
 			margin: 0px
-			width: 100%
 
 		figure
 			height: 250px
-			max-height: 250px
 
 			img
+				max-width: 100%
 				width: 250px
 				height: 250px
 				@include border-radius(20px)
+
+			a
+				max-width: 100%
 
 
 
@@ -38,6 +50,8 @@ figure.recipe
 	height: 250px
 	max-height: 250px
 	text-align: center
+	margin-left: 0px
+	margin-right: 0px
 
 
 
