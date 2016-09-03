@@ -103,12 +103,12 @@ if forked_recipes.length > 0 %>
 <ul class="actions" >
 
 	<!-- here you can vote for this recipe and add like -->
-	<li id="vote">
+	<!--<li id="vote">-->
 		<!--  AJAX links to vote up / down on this recipe -->
-		<%= link_to '', recipes_vote_path(id: @recipe.id, value: 1) , id: 'vote_up', title: 'Cette recette vaut vraiment le coup',  remote: true %>
-		<span id="recipe_note"><%= @recipe.note %></span>
-		<%= link_to '', recipes_vote_path(id: @recipe.id, value: -1) , id: 'vote_down', title: 'Ce n\'était pas si bon que ca :(',  remote: true %>
-	</li>
+		<%#= link_to '', recipes_vote_path(id: @recipe.id, value: 1) , id: 'vote_up', title: 'Cette recette vaut vraiment le coup',  remote: true %>
+		<!-- <span id="recipe_note"><%= @recipe.note %></span> -->
+		<%#= link_to '', recipes_vote_path(id: @recipe.id, value: -1) , id: 'vote_down', title: 'Ce n\'était pas si bon que ca :(',  remote: true %>
+	<!--</li>-->
 
 	<li><%= link_to "sauvegarder", recipes_save_path( :id => @recipe.id) , :class => 'button_save' %></li>
 
