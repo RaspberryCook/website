@@ -1,4 +1,6 @@
 class Recipe < ActiveRecord::Base
+	before_save :set_default_time
+
 	attr_accessible :name , :description , 
 		:ingredients , :steps  , :season , 
 		:t_baking , :t_cooling , :t_cooking ,:t_rest ,
@@ -64,6 +66,19 @@ class Recipe < ActiveRecord::Base
 			note += vote.value
 		end
 		return note
+	end
+
+	private
+
+	# set default time on t_baking, t_cooling, t_cooking, t_rest if not already set
+	def set_default_time
+
+		zero_time = Time.new 2000, 1 ,1,0,0,0
+
+		self.t_baking 	= zero_time unless self.t_baking.present?
+		self.t_cooling 	= zero_time unless self.t_cooling.present?
+		self.t_cooking 	= zero_time unless self.t_cooking.present?
+		self.t_rest 	= zero_time unless self.t_rest.present?
 	end
 
 end
