@@ -1,4 +1,6 @@
 class Recipe < ActiveRecord::Base
+	before_save :set_default_time
+
 	attr_accessible :name , :description , 
 		:ingredients , :steps  , :season , 
 		:t_baking , :t_cooling , :t_cooking ,:t_rest ,
@@ -40,12 +42,46 @@ class Recipe < ActiveRecord::Base
 		return forked_recipe
 	end
 
+
+
+	def forked?
+		return true  if self.root_recipe_id != 0 else return false
+	end
+
+
+
 	# return the origin recipe
 	def root_recipe
 		if self.root_recipe_id != 0
 			return Recipe.find self.root_recipe_id
 		else
 			return self
+		end
+	end
+
+
+
+	# get image_url :thumb
+	# if the recipe havn't picture and she's forked , we get the parent image 
+	def true_thumb_image_url
+		bd_image = self.image_url(:thumb)
+
+		if self.forked? and not picture_exist? bd_image
+			return self.root_recipe.image_url(:thumb)
+		else
+			return bd_image
+		end
+	end
+
+	# get image_url
+	# if the recipe havn't picture and she's forked , we get the parent image 
+	def true_image_url
+		bd_image = self.image_url
+
+		if self.forked? and not picture_exist? bd_image
+			return self.root_recipe.image_url
+		else
+			return bd_image
 		end
 	end
 
@@ -64,6 +100,23 @@ class Recipe < ActiveRecord::Base
 			note += vote.value
 		end
 		return note
+	end
+
+	private
+
+	# set default time on t_baking, t_cooling, t_cooking, t_rest if not already set
+	def set_default_time
+
+		zero_time = Time.new 2000, 1, 1, 1, 0, 0
+
+		[:t_baking, :t_cooling, :t_cooking, :t_rest].each { |t_time|
+			self.send("#{t_time}=".to_sym, zero_time) unless self.send(t_time).present?
+		}
+	end
+
+	def picture_exist? picture_url
+		absolute_path =  File.join Rails.root , 'public', picture_url
+		return File.file? absolute_path
 	end
 
 end
