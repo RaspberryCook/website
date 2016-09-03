@@ -61,6 +61,32 @@ class Recipe < ActiveRecord::Base
 
 
 
+	# get image_url :thumb
+	# if the recipe havn't picture and she's forked , we get the parent image 
+	def true_thumb_image_url
+		bd_image = self.image_url(:thumb)
+
+		if self.forked? and not picture_exist? bd_image
+			return self.root_recipe.image_url(:thumb)
+		else
+			return bd_image
+		end
+	end
+
+	# get image_url
+	# if the recipe havn't picture and she's forked , we get the parent image 
+	def true_image_url
+		bd_image = self.image_url
+
+		if self.forked? and not picture_exist? bd_image
+			return self.root_recipe.image_url
+		else
+			return bd_image
+		end
+	end
+
+
+
 	# copyt the current recipe to a new user
 	def forked_recipes
 		return Recipe.where(root_recipe_id: self.id ).order( :variant_name )
@@ -86,6 +112,11 @@ class Recipe < ActiveRecord::Base
 		[:t_baking, :t_cooling, :t_cooking, :t_rest].each { |t_time|
 			self.send("#{t_time}=".to_sym, zero_time) unless self.send(t_time).present?
 		}
+	end
+
+	def picture_exist? picture_url
+		absolute_path =  File.join Rails.root , 'public', picture_url
+		return File.file? absolute_path
 	end
 
 end

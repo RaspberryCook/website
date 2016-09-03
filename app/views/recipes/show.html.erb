@@ -1,7 +1,7 @@
 <section id="recipe" class="content">
 
 <div id="recipe_fullscreen_picture" 
-	style="background-image: url(<%= @recipe.image_url %>);"  ></div>
+	style="background-image: url(<%= @recipe.true_image_url %>);"  ></div>
 
 <h1 class="recipe"><%= @recipe.name  %>
 	<%= " - %s" % @recipe.variant_name if @recipe.variant_name%></h1>
@@ -26,7 +26,7 @@
 
 <!-- image -->
 <div  id="recipe_picture"
-	style="background-image: url(<%= @recipe.image_url %>);"  >
+	style="background-image: url(<%= @recipe.true_image_url %>);"  >
 
 	<a id="zoom-in" href="#" style="display:none">
 		<%= image_tag("/assets/images/icons/zoom-in.svg", size: "100") %></a>
