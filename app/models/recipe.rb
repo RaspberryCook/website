@@ -42,6 +42,14 @@ class Recipe < ActiveRecord::Base
 		return forked_recipe
 	end
 
+
+
+	def forked?
+		return true  if self.root_recipe_id != 0 else return false
+	end
+
+
+
 	# return the origin recipe
 	def root_recipe
 		if self.root_recipe_id != 0
@@ -50,7 +58,6 @@ class Recipe < ActiveRecord::Base
 			return self
 		end
 	end
-
 
 
 

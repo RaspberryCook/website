@@ -92,7 +92,7 @@ if forked_recipes.length > 0 %>
 	<h2>Variantes disponnibles</h2>
 	<%= render 'shared/recipes' , :recipes => forked_recipes %>
 
-<% elsif @recipe.root_recipe_id != 0 %>
+<% elsif @recipe.forked?  %>
 
 	<h2>Recette originelle</h2>
 	<%= render 'shared/recipe' , :recipe => @recipe.root_recipe %>
