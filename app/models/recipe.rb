@@ -53,6 +53,7 @@ class Recipe < ActiveRecord::Base
 
 
 
+
 	# copyt the current recipe to a new user
 	def forked_recipes
 		return Recipe.where(root_recipe_id: self.id ).order( :variant_name )
@@ -73,12 +74,11 @@ class Recipe < ActiveRecord::Base
 	# set default time on t_baking, t_cooling, t_cooking, t_rest if not already set
 	def set_default_time
 
-		zero_time = Time.new 2000, 1 ,1,0,0,0
+		zero_time = Time.new 2000, 1, 1, 1, 0, 0
 
-		self.t_baking 	= zero_time unless self.t_baking.present?
-		self.t_cooling 	= zero_time unless self.t_cooling.present?
-		self.t_cooking 	= zero_time unless self.t_cooking.present?
-		self.t_rest 	= zero_time unless self.t_rest.present?
+		[:t_baking, :t_cooling, :t_cooking, :t_rest].each { |t_time|
+			self.send("#{t_time}=".to_sym, zero_time) unless self.send(t_time).present?
+		}
 	end
 
 end
