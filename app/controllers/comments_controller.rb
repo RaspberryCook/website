@@ -4,23 +4,12 @@ class CommentsController < ApplicationController
   before_filter :check_owner, :only =>  [:destroy , :update , :edit ]
 
 
-  # GET /comments/new
-  def new
-    @comment = Comment.new
-  end
-
-  # GET /comments/1/edit
-  def edit
-  end
-
   # POST /comments
   # POST /comments.json
   def create
 
     @comment = Comment.new(comment_params)
     @comment.user_id = current_user.id
-
-    # render :text => current_user.id
 
 
     respond_to do |format|

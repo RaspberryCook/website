@@ -5,14 +5,15 @@ class UsersController < ApplicationController
 
 	def show
 		@user = User.find(params[:id])
-		@title = @user.nom
-
 		@recipes = @user.recipes.paginate(:page => params[:page]).order('id DESC')
+		@title = @user.nom
+		@description = "Tout les informations à propos de %s." @user.nom
 	end
 
 	def new
 		@user = User.new
 		@title = "S'inscrire"
+		@description = "S'inscrire sur Raspberry Cook."
 	end
 
 	def create
@@ -23,17 +24,20 @@ class UsersController < ApplicationController
 			redirect_to @user
 		else
 			@title = "Inscription"
+			@description = "S'inscrire sur Raspberry Cook."
 			render 'new'
 		end
 	end
 
 	def index
 		@title = 'Index'
+		@description = "Toute la communauté du seigneur des recettes."
 		@users = User.paginate(:page => params[:page])
 	end
 
 	def edit
 		@title = 'editer vos infos'
+		@description = "Dites nous en un peu plus sur vous. Votre p'tit nom, toussa, toussa."
 		@user = User.find(params[:id])
 	end
 
@@ -44,6 +48,7 @@ class UsersController < ApplicationController
 			redirect_to @user
 		else
 			@title = "Editer profil"
+			@description = "Dites nous en un peu plus sur vous. Votre p'tit nom, toussa, toussa."
 			render 'edit'
 		end
 	end

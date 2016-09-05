@@ -10,16 +10,23 @@ class RecipesController < ApplicationController
 		@recipe = Recipe.find(params[:id])
 		@comment = Comment.new
 		@title = @recipe.name
+		if @recipe.description
+			@description = 'Une delicieuse recette de %s.' % @recipe.user.nom
+		else
+			@description = @recipe.description
+		end
 	end
 
 	def new
-		@title = "nouvelle recette"
 		@recipe = Recipe.new
+		@title = "nouvelle recette"
+		@description = 'Composez votre nouvelle recettes.'
 	end
 
 	def edit
-		@title = 'editer recette'
 		@recipe = Recipe.find(params[:id])
+		@title = 'editer "%s" recette' % @recipe.name
+		@description = 'Editer la recette %s (pour la rendre encore meilleure).' % @recipe.name
 	end
 
 	def create
@@ -28,13 +35,14 @@ class RecipesController < ApplicationController
 			flash[:success] = "huuummm! Dites nous en plus!"
 			redirect_to edit_recipe_path(@recipe)
 		else
-			@titre = "nouvelle recette"
+			@title = "nouvelle recette"
 			render 'new'
 		end
 	end
 
 	def index
-		@title = "recettes"
+		@title = "liste des recettes"
+		@description = 'Beaucoup d\'excllentes recettes (oui, oui).'
 		@recipes = Recipe.paginate(:page => params[:page]).order('id DESC')
 	end
 
@@ -119,7 +127,8 @@ class RecipesController < ApplicationController
 	def fork
 		if request.get?
 			@recipe = Recipe.find(params[:id])
-			@title = "Créer une variante de %s" % @recipe.name
+			@title = "Variante de %s" % @recipe.name
+			@description = "Créer une variante de %s (sans gluten, version light, etc..)" % @recipe.name
 		elsif request.post?
 			recipe = Recipe.find params[:id]
 			forked_recipe = recipe.fork current_user.id
