@@ -10,7 +10,6 @@
 <%= stylesheet_link_tag 'application' , :media => "all" %>
 
 <!-- information meta tag -->
-<meta name="description" content="<%= description %>" />
 <meta name="keywords" content="webapp, cuisine, recette, recettes, raspberry, cook, partage, cool, open, source, design">
 <meta name="language" content="fr-FR" />
 <meta name="rating" content="General">
@@ -23,19 +22,24 @@
 
 <% if @recipe %>
 	<meta property="og:image" content="http://raspberry-cook.fr<%= @recipe.image_url %>" >
+	<meta name="thumbnail" content="http://raspberry-cook.fr<%= @recipe.image_url %>" />
 
 	<% if @recipe.description %>
 		<meta property="og:description" content="<%= @recipe.description %>" >
+		<meta name="description" content="<%= @recipe.description %>" />
 	<% else %>
-		<meta name="og:description" content="<%= description %>" >
+		<meta property="og:description" content="<%= description %>" >
+		<meta name="description" content="<%= description %>" />
 	<% end %>
 <% else %>
-	<meta property="og:image	" content="http://raspberry-cook.fr/assets/images/og_image.png">
+	<meta property="og:image" content="http://raspberry-cook.fr/assets/images/og_image.png">
+	<meta name="thumbnail" content="http://raspberry-cook.fr/assets/images/og_image.png" />
 	<meta property="og:image:type" content="image/png">
 	<meta property="og:image:width" content="500">
 	<meta property="og:image:height" content="500">
 
 	<meta name="og:description" content="<%= description %>" >
+	<meta name="description" content="<%= description %>" />
 
 <% end %>
 
