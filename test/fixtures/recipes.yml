@@ -1,0 +1,8 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  user_id: 1
+  description: a pretty description
+  ingredients: tomato \r\ncucumber
+  steps: step 1 \r\nstep 2 \r\nstep 3
