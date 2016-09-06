@@ -8,21 +8,18 @@ class RecipesControllerTest < ActionController::TestCase
   test "should get index" do
     get :index
     assert_response :success
-    assert_not_nil assigns(:recipes)
   end
 
-  # test "should get new" do
-  #   get :new
-  #   assert_response :success
-  # end
+  test "should get new" do
+    get :new
+    assert_response :success
+  end
 
-  # test "should create recipe" do
-  #   assert_difference('recipe.count') do
-  #     post :create, recipe: {  }
-  #   end
-
-  #   assert_redirected_to recipe_path(assigns(:recipe))
-  # end
+  test "should not create recipe because no one is connected" do
+    assert_no_difference('Recipe.count') do
+      post :create, recipe: { name: "hello" }
+    end
+  end
 
   # test "should show recipe" do
   #   get :show, id: @recipe

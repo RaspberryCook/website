@@ -19,7 +19,7 @@ class SessionsController < ApplicationController
       flash[:success] = "bienvenue #{current_user.nom}!"
 			redirect_back_or user
     end
-	end
+  end
 
   def destroy
     sign_out
