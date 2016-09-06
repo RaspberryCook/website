@@ -7,7 +7,7 @@ class UsersController < ApplicationController
 		@user = User.find(params[:id])
 		@recipes = @user.recipes.paginate(:page => params[:page]).order('id DESC')
 		@title = @user.nom
-		@description = "Tout les informations à propos de %s." @user.nom
+		@description = "Tout les informations à propos de %s." % @user.nom
 	end
 
 	def new

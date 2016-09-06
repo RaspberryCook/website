@@ -12,7 +12,7 @@ class SessionsController < ApplicationController
     if user.nil?
       flash.now[:error] = "Combinaison Email/Mot de passe invalide."
       @title = "S'identifier"
-      @description = ""
+      @description = "se connecter sur un site qu'il est bien!"
       render 'new'
     else
       sign_in user
