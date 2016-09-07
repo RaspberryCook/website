@@ -1,4 +1,4 @@
 one:
-  nom: alex
+  firstname: alex
   email: alex@alex.fr
   encrypted_password: alex
