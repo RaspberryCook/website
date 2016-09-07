@@ -1,4 +1,5 @@
 require 'test_helper'
+require 'sessions_helper'
 
 class RecipesControllerTest < ActionController::TestCase
   setup do
@@ -19,6 +20,13 @@ class RecipesControllerTest < ActionController::TestCase
     assert_no_difference('Recipe.count') do
       post :create, recipe: { name: "hello" }
     end
+  end
+
+
+
+  test "should be redirected to signup path when non-logged user want create a recipe" do
+    get :create
+    assert_redirected_to signup_path
   end
 
   # test "should show recipe" do
