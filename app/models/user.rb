@@ -1,7 +1,7 @@
 require 'digest'
 
 class User < ActiveRecord::Base
-	attr_accessible :nom, :email, :password, :password_confirmation
+	attr_accessible :firstname, :lastname, :email, :password, :password_confirmation
 	attr_accessor :password
 	has_many :recipes , :dependent => :destroy
 	has_many :comments , :dependent => :destroy
@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
 		:format 		=> { :with => email_regex },
 		:uniqueness => { :case_sensitive => false }
 
-	validates :nom , 
+	validates :firstname , 
 		:presence 	=> true ,
 		:length 		=> { :maximum => 50 }
 
