@@ -25,4 +25,12 @@ class RecipeTest < ActiveSupport::TestCase
     assert_equal recipe_searched , forked_recipe
   end
 
+  test "forked recipe should be respond as forked" do
+    recipe = recipes(:two)
+    forked_recipe = recipe.fork 2
+    assert forked_recipe.forked?
+    assert_equal recipe, forked_recipe.root_recipe
+  end
+
+
 end
