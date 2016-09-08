@@ -13,3 +13,10 @@ two:
   description: a pretty description
   ingredients: tomato \r\ncucumber
   steps: step 1 \r\nstep 2 \r\nstep 3
+
+searched_recipe:
+  name: to_search
+  user_id: 2
+  description: to_search
+  ingredients: to_search
+  steps: to_search

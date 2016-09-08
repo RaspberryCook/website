@@ -34,7 +34,7 @@ class Recipe < ActiveRecord::Base
 	end
 
 
-	# copyt the current recipe to a new user
+	# copy the current recipe to a new user
 	def fork(new_user_id)
 		forked_recipe = self.dup
 		forked_recipe.root_recipe_id = self.id
