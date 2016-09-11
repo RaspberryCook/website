@@ -27,6 +27,13 @@ class User < ActiveRecord::Base
 
 	public
 
+		# return user's comment on the specified recipe id
+	 	def comment_on_recipe recipe_id
+	 		comment = Comment.where( :user_id => self.id , :recipe_id => recipe_id ).first
+	 		comment = Comment.new if comment.blank?
+	 		return comment
+	 	end
+
 		def has_password?(password_sent)
 			return self.encrypted_password == encrypt(password_sent)
 		end
