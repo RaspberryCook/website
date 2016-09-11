@@ -32,5 +32,26 @@ class RecipeTest < ActiveSupport::TestCase
     assert_equal recipe, forked_recipe.root_recipe
   end
 
+  # PICTURE AREA
+
+  test "recipe should return default picture as picture" do
+    recipe = recipes(:two)
+    assert_equal '/assets/images/default.png', recipe.true_image_url
+  end
+
+  test "recipe should return default picture as thumb" do
+    recipe = recipes(:two)
+    assert_equal '/assets/images/default.png', recipe.true_thumb_image_url
+  end
+
+  test "if forked recipe have not picture, it should return parent's picture" do
+    recipe = recipes(:two)
+    # set a picture & fork the recipe
+    picture_url = File.open(Rails.root.join("public/assets/images/raspberry_cook.svg"))
+    recipe.image = picture_url
+    forked_recipe = recipe.fork 2
+    # compare only the filename
+    assert_equal forked_recipe.true_image_url.split('/').last, recipe.image.url.split('/').last
+  end
 
 end
