@@ -10,4 +10,10 @@ class UserTest < ActiveSupport::TestCase
     assert_not_equal user_comment, Comment.new
   end
 
+
+  test "should return the correct rank" do
+    user = users(:one)
+    assert_equal 11, user.rank
+  end
+
 end
