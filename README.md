@@ -75,3 +75,15 @@ Things I want to do
 * [ ] add connection with **Instagram** & **Facebook**
 
 
+License
+-----------
+
+[MIT](https://opensource.org/licenses/MIT)
+
+
+Author
+----------
+
+[Rousseau Alexandre](https://github.com/madeindjs)
+
+
