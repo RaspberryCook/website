@@ -20,7 +20,3 @@
 /config/initializers/secret_token.rb
 
 /public/uploads/*
-
-
-# ignore the sitemap
-/public/sitemap.xml.gz
