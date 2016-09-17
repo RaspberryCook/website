@@ -11,7 +11,7 @@ class RecipesController < ApplicationController
 		@comment = Comment.new
 		@title = @recipe.name
 		if @recipe.description
-			@description = 'Une delicieuse recette de %s.' % @recipe.user.nom
+			@description = 'Une delicieuse recette de %s.' % @recipe.user.firstname
 		else
 			@description = @recipe.description
 		end

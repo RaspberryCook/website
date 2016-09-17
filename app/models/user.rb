@@ -1,7 +1,7 @@
 require 'digest'
 
 class User < ActiveRecord::Base
-	attr_accessible :nom, :email, :password, :password_confirmation
+	attr_accessible :firstname, :lastname, :email, :password, :password_confirmation
 	attr_accessor :password
 	has_many :recipes , :dependent => :destroy
 	has_many :comments , :dependent => :destroy
@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
 		:format 		=> { :with => email_regex },
 		:uniqueness => { :case_sensitive => false }
 
-	validates :nom , 
+	validates :firstname , 
 		:presence 	=> true ,
 		:length 		=> { :maximum => 50 }
 
@@ -26,6 +26,13 @@ class User < ActiveRecord::Base
 	before_save :encrypt_password
 
 	public
+
+		# return user's comment on the specified recipe id
+	 	def comment_on_recipe recipe_id
+	 		comment = Comment.where( :user_id => self.id , :recipe_id => recipe_id ).first
+	 		comment = Comment.new if comment.blank?
+	 		return comment
+	 	end
 
 		def has_password?(password_sent)
 			return self.encrypted_password == encrypt(password_sent)

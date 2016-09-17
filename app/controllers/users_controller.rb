@@ -1,13 +1,13 @@
 class UsersController < ApplicationController
-	before_filter :authenticate, :only => [:index , :edit, :update]
+	before_filter :authenticate, :only => [ :edit, :update]
 	before_filter :correct_user, :only => [:edit, :update]
 	before_filter :admin_user,   :only =>  :destroy
 
 	def show
 		@user = User.find(params[:id])
 		@recipes = @user.recipes.paginate(:page => params[:page]).order('id DESC')
-		@title = @user.nom
-		@description = "Tout les informations à propos de %s." % @user.nom
+		@title = @user.firstname
+		@description = "Tout les informations à propos de %s." % @user.firstname
 	end
 
 	def new
@@ -37,7 +37,7 @@ class UsersController < ApplicationController
 
 	def edit
 		@title = 'editer vos infos'
-		@description = "Dites nous en un peu plus sur vous. Votre p'tit nom, toussa, toussa."
+		@description = "Dites nous en un peu plus sur vous. Votre p'tit firstname, toussa, toussa."
 		@user = User.find(params[:id])
 	end
 
@@ -48,7 +48,7 @@ class UsersController < ApplicationController
 			redirect_to @user
 		else
 			@title = "Editer profil"
-			@description = "Dites nous en un peu plus sur vous. Votre p'tit nom, toussa, toussa."
+			@description = "Dites nous en un peu plus sur vous. Votre p'tit firstname, toussa, toussa."
 			render 'edit'
 		end
 	end
