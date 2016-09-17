@@ -2,7 +2,7 @@ Raspberry Cook
 =========
 
 
-![Raspberry Logo](http://raspberry-cook.fr/assets/images/raspberry_cook.svg )
+![Raspberry Logo](https://raw.githubusercontent.com/madeindjs/raspberry_cook/master/public/assets/images/og_image.png)
 
 
 The history
