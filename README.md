@@ -1,10 +1,12 @@
-#Raspberry Cook
+Raspberry Cook
+=========
 
 
 ![Raspberry Logo](http://raspberry-cook.fr/assets/images/raspberry_cook.svg )
 
 
-##The history
+The history
+-----------------
 
 
 Raspberry Cook is a project started near september 2015. The first idea was simple: try to build a web-application without knowing. To make it more funny, I want to build it on a Raspberry Pi B+.
@@ -28,9 +30,10 @@ And I start to learn PHP / SQL / HTML / CCS on my Linux Mint laptop. I buy a Ras
 
 When I was happy of my work. I broke all result to convert it into Ruby On Rails Framework to have the greatest website on hearth, of course !!
 
-##My configuration
+My configuration
+------------------------
 
-###My personnal computer
+### My personnal computer
 
 * HP Pavillon G72-a55sf
 * Linux Mint 17.3 Cinnamon 64-bit
@@ -40,7 +43,7 @@ When I was happy of my work. I broke all result to convert it into Ruby On Rails
 * Firefox 44
 
 
-###My Raspberry
+### My Raspberry
 * Raspberry Pi B+
 * Raspian
 * Ruby 2.2.1p85
@@ -49,11 +52,26 @@ When I was happy of my work. I broke all result to convert it into Ruby On Rails
 * SD Card 32go
 
 
+Developpement
+-----------------------
 
-##Things I want to do
+### Global things
 
-* Add a comment feature
-* Add a ingrdients feature to calculate some stats about the recipe
-* Aset up a way to make update auto via github with Capistrano
+* **SASS** for Stylesheet
+* **Units Tests** to ensure all work fine `rake test`
+* **Capistrano** to deploy on my Raspberry Pi
+
+### Gems
+
+* [will_paginate](https://github.com/mislav/will_paginate) for pagination
+* **carrierwave** & **rmagick** for upload picture and resizing *( may need to install libmagickwand-dev `sudo apt-get install libmagickwand-dev`)*
+* **pdfkit** to build pdf of recipes *( need to install **wkhtmltopdf** `sudo apt-get install wkhtmltopdf`)*
+* **sitemap_generator** to build automatiquelly a beautifull Site Map `ruby config/sitemap.rb`
+
+Things I want to do
+----------------------------
+
+* [ ] Add a ingrdients feature to calculate some stats about the recipe
+* [ ] add connection with **Instagram** & **Facebook**
 
 
