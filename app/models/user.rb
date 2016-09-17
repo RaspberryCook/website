@@ -28,25 +28,22 @@ class User < ActiveRecord::Base
 	public
 
 		# return user's comment on the specified recipe id
-	 	def comment_on_recipe recipe_id
-	 		comment = Comment.where( :user_id => self.id , :recipe_id => recipe_id ).first
-	 		comment = Comment.new if comment.blank?
-	 		return comment
-	 	end
-
-		def has_password?(password_sent)
-			return self.encrypted_password == encrypt(password_sent)
+		def comment_on_recipe recipe_id
+			comment = Comment.where( :user_id => self.id , :recipe_id => recipe_id ).first
+			comment = Comment.new if comment.blank?
+			return comment
 		end
 
+		# compare secure password from password sent
+		def has_password?(password_sent)
+			return self.password == encrypt(password_sent)
+		end
+
+		# connect user
 		def self.authenticate(email, submitted_password)
 			user = find_by_email(email)
 			return nil if user.nil?
 			return user if user.has_password?(submitted_password)
-		end
-
-		def self.authenticate_with_salt (id , cookie_salt )
-			user = find_by_id(id)
-			(user && user.salt == cookie_salt ) ? user : nil
 		end
 
 		# return rank of this user nRecipes*10+nComments
@@ -56,21 +53,14 @@ class User < ActiveRecord::Base
 
 	private
 
+
 		def encrypt_password
-			self.salt = make_salt if new_record?
-			self.encrypted_password = encrypt (self.password)
+			self.password = encrypt self.password
 		end
+
 
 		def encrypt(string)
-			return string
-		end
-
-		def make_salt
-			secure_hash("#{Time.now.utc}--#{password}")
-		end
-
-		def secure_hash(string)
-			Digest::SHA2.hexdigest(string)
+			return Digest::SHA2.hexdigest string
 		end
 
 end

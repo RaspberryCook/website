@@ -2,7 +2,7 @@ module SessionsHelper
 
 	# PART OF THE CONNECTION SETUP
 	def sign_in user
-		cookies.permanent.signed[:remember_token] = [user.id, user.salt]
+		cookies.permanent.signed[:remember_token] = [user.id, user.password]
 		self.current_user = user
 	end
 
@@ -43,7 +43,7 @@ module SessionsHelper
 	private
 
 	def user_from_remember_token
-		User.authenticate_with_salt(*remember_token)
+		User.authenticate(*remember_token)
 	end
 
 	def remember_token
