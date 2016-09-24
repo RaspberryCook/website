@@ -26,8 +26,8 @@ ActiveRecord::Schema.define(version: 20160907170559) do
   create_table "recipes", force: true do |t|
     t.string   "name"
     t.integer  "user_id"
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.text     "description"
     t.text     "ingredients"
     t.text     "steps"
@@ -36,14 +36,9 @@ ActiveRecord::Schema.define(version: 20160907170559) do
     t.time     "t_cooling"
     t.time     "t_cooking"
     t.time     "t_rest"
-    t.string   "photo_file_name"
-    t.string   "photo_content_type"
-    t.integer  "photo_file_size"
-    t.datetime "photo_updated_at"
     t.string   "photo"
     t.string   "image"
-    t.integer  "rank"
-    t.integer  "root_recipe_id",     default: 0
+    t.integer  "root_recipe_id", default: 0
     t.string   "variant_name"
     t.string   "rtype"
   end
@@ -51,8 +46,8 @@ ActiveRecord::Schema.define(version: 20160907170559) do
   create_table "users", force: true do |t|
     t.string   "firstname"
     t.string   "email"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.string   "encrypted_password"
     t.string   "salt"
     t.boolean  "admin"
