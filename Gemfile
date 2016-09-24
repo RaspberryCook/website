@@ -52,6 +52,8 @@ group :development do
 	gem 'sitemap_generator'
 end
 
+gem 'authlogic'
+
 
 #for upload picture
 gem 'carrierwave'
