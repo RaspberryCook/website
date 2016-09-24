@@ -3,11 +3,9 @@ RaspberryCook::Application.routes.draw do
   resources :users
   match '/signup' , :to => 'users#new', :via => [:get, :post]
 
-  resources :recipes
-  get "recipes/save"
-  get "recipes/search"
-  get 'recipes/fork'
+  resources :recipes, :only => [:index, :new , :create , :destroy , :edit]
   match 'recipes/save/:id' ,   :to => 'recipes#save', :via => [:get, :post]
+  match 'recipes/search' ,   :to => 'recipes#search', :via => :get
   match 'recipes/fork/:id' ,   :to => 'recipes#fork', :via => :get
   match 'recipes/fork' ,   :to => 'recipes#fork', :via => :post
   match 'recipes/vote' , :to => 'recipes#vote', :via => :get
