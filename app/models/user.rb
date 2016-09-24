@@ -1,7 +1,7 @@
 require 'digest'
 
 class User < ActiveRecord::Base
-	attr_accessible :firstname, :lastname, :email, :password, :password_confirmation
+	attr_accessible :username, :firstname, :lastname, :email, :password, :password_confirmation
 	attr_accessor :password
 	has_many :recipes , :dependent => :destroy
 	has_many :comments , :dependent => :destroy
