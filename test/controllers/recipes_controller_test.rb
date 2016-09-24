@@ -16,6 +16,11 @@ class RecipesControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+  test "should get search" do
+    get :search
+    assert_response :success
+  end
+
   test "should not create recipe because no one is connected" do
     assert_no_difference('Recipe.count') do
       post :create, recipe: { name: "hello" }
