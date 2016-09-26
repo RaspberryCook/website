@@ -1,6 +1,6 @@
 <nav>
 	<ul>
-		<li><%= link_to "home" , pages_home_path %></li>
+		<li><%= link_to "home" , home_path %></li>
 		<li><%= link_to "bibliothèque" , recipes_path %></li>
 		<li><%= link_to "créer une recette" , new_recipe_path %></li>
 
@@ -8,6 +8,6 @@
 			<li><%= link_to "mon compte" , user_path(current_user) %></li>
 		<% end %>
 
-		<li><%= link_to "à propos" , pages_credits_path %></li>
+		<li><%= link_to "à propos" , credits_path %></li>
 	</ul>
 </nav>
