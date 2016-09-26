@@ -59,6 +59,11 @@ class Recipe < ActiveRecord::Base
 		end
 	end
 
+	# copyt the current recipe to a new user
+	def forked_recipes
+		return Recipe.where(root_recipe_id: self.id ).order( :variant_name )
+	end
+
 
 
 	# get image_url :thumb
