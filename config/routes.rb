@@ -1,31 +1,29 @@
 RaspberryCook::Application.routes.draw do
 
   resources :users
-  match '/signup' , :to => 'users#new', :via => [:get, :post]
+  match '/signup' , to: 'users#new', :via => [:get, :post]
 
   resources :recipes, :only => [:index, :new , :create , :destroy , :edit]
-  match 'recipes/save/:id' ,   :to => 'recipes#save', :via => [:get, :post]
-  match 'recipes/search' ,   :to => 'recipes#search', :via => :get
-  match 'recipes/fork/:id' ,   :to => 'recipes#fork', :via => :get
-  match 'recipes/fork' ,   :to => 'recipes#fork', :via => :post
-  match 'recipes/vote' , :to => 'recipes#vote', :via => :get
+  get     'recipes/:id' ,         to: 'recipes#show', id: /[0-9]+/
+  get     'recipes/fork/:id' ,  to: 'recipes#fork'
+  match 'recipes/fork' ,      to: 'recipes#fork', :via => :post
+  get     'recipes/save/:id' , to: 'recipes#save', as: 'recipe_save'
+  get     'recipes/search' ,   to: 'recipes#search', controller: 'photos', action: 'show'
+  match 'recipes/vote' ,      to: 'recipes#vote', :via => [:get, :post]
 
   resources :sessions, :only => [:new , :create , :destroy ]
-  match '/signin' , :to => 'sessions#new', :via => [:get, :post]
-  match '/signout' ,:to => 'sessions#destroy', :via => [:get, :post]
+  match '/signin' , to: 'sessions#new', :via => [:get, :post]
+  match '/signout' ,to: 'sessions#destroy', :via => [:get, :post]
   
   get "errors/not_found"
   get "errors/internal_server_error"
-  match "/404", :to => "errors#not_found", :via => :all
-  match "/500", :to => "errors#internal_server_error", :via => :all
+  match "/404", to: "errors#not_found", :via => :all
+  match "/500", to: "errors#internal_server_error", :via => :all
 
-  get "pages/credits"
-  get "pages/home"
-  get "pages/infos"
-  match '/home' ,   :to => 'pages#home', :via => [:get, :post]
-  match '/infos' ,  :to => 'pages#infos', :via => [:get, :post]
-  match '/credits' ,  :to => 'pages#credits', :via => :get
+  get '/home' ,   to: 'pages#home', as: 'home'
+  get '/infos' ,  to: 'pages#infos', as: 'infos'
+  get '/credits' ,  to: 'pages#credits', as: 'credits'
 
-  root :to => 'pages#home'
+  root to: 'pages#home'
 
 end

@@ -27,17 +27,15 @@ class RecipesControllerTest < ActionController::TestCase
     end
   end
 
-
-
   test "should be redirected to signup path when non-logged user want create a recipe" do
     get :create
     assert_redirected_to signup_path
   end
 
-  # test "should show recipe" do
-  #   get :show, id: @recipe
-  #   assert_response :success
-  # end
+  test "should show recipe" do
+    get :show, id: @recipe
+    assert_response :success
+  end
 
   # test "should get edit" do
   #   get :edit, id: @recipe
