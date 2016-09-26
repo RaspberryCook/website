@@ -4,11 +4,12 @@ RaspberryCook::Application.routes.draw do
   match '/signup' , to: 'users#new', :via => [:get, :post]
 
   resources :recipes, :only => [:index, :new , :create , :destroy , :edit]
-  match 'recipes/:id' ,  to: 'recipes#show', :via => :get
-  match 'recipes/fork/:id' ,   to: 'recipes#fork', :via => :get
-  match 'recipes/fork' ,   to: 'recipes#fork', :via => :post
-  match 'recipes/search' ,   to: 'recipes#search', :via => :get
-  match 'recipes/vote' , to: 'recipes#vote', :via => :get
+  get     'recipes/:id' ,         to: 'recipes#show', id: /[0-9]+/
+  get     'recipes/fork/:id' ,  to: 'recipes#fork'
+  match 'recipes/fork' ,      to: 'recipes#fork', :via => :post
+  get     'recipes/save/:id' , to: 'recipes#save', as: 'recipe_save'
+  get     'recipes/search' ,   to: 'recipes#search', controller: 'photos', action: 'show'
+  match 'recipes/vote' ,      to: 'recipes#vote', :via => [:get, :post]
 
   resources :sessions, :only => [:new , :create , :destroy ]
   match '/signin' , to: 'sessions#new', :via => [:get, :post]
