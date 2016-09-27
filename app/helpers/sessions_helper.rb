@@ -1,13 +1,8 @@
 module SessionsHelper
 
-	# PART OF THE CONNECTION SETUP
-	def sign_in user
-		cookies.permanent.signed[:remember_token] = [user.id, user.password]
-		self.current_user = user
-	end
 
-	def current_user=(user)
-		@current_user = user
+	def signed_in?
+		return true if  current_user else false
 	end
 
 	#check if the curentuser correspond to one user
@@ -15,18 +10,6 @@ module SessionsHelper
 		user == current_user
 	end
 
-	def signed_in?
-		!current_user.nil?
-	end
-
-	def sign_out
-		cookies.delete(:remember_token)
-		self.current_user = nil
-	end
-
-	def current_user
-		@current_user ||= user_from_remember_token
-	end
 
 	#ONLY FOR THE REDIRECTION IN CASE OF TRY TO ACCESS ON BAD SHEETS
 	def deny_access
@@ -42,13 +25,6 @@ module SessionsHelper
 
 	private
 
-	def user_from_remember_token
-		User.authenticate(*remember_token)
-	end
-
-	def remember_token
-		cookies.signed[:remember_token] || [nil, nil]
-	end
 
 	#FRIENDLY-FORWADING
 	def store_location

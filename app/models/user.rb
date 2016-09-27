@@ -10,20 +10,18 @@ class User < ActiveRecord::Base
 	email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
 	validates :email , 
-		:presence 	=> true ,
-		:format 		=> { :with => email_regex },
+		:presence => true ,
+		:format => { :with => email_regex },
 		:uniqueness => { :case_sensitive => false }
 
-	validates :firstname , 
-		:presence 	=> true ,
-		:length 		=> { :maximum => 50 }
-
-	validates :password, 
-		:presence     => true,
-		:confirmation => true,
-		:length       => { :within => 6..40 }
+	validates :username , :presence  => true , :uniqueness => true
+	validates :firstname , :presence => true , :length  => { :maximum => 50 }
+	validates :password, :presence => true, :confirmation => true, :length => { :within => 6..40 }
 
 	before_save :encrypt_password
+
+	acts_as_authentic do 
+	end
 
 	public
 
@@ -53,6 +51,10 @@ class User < ActiveRecord::Base
 
 	private
 
+
+		def users_params
+			params.require(:user).permit(:email, :password, :password_confirmation)
+		end
 
 		def encrypt_password
 			self.password = encrypt self.password
