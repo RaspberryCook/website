@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160924105218) do
+ActiveRecord::Schema.define(version: 20160927161936) do
 
   create_table "comments", force: true do |t|
     t.string   "title"
@@ -52,6 +52,7 @@ ActiveRecord::Schema.define(version: 20160924105218) do
     t.string   "photo"
     t.string   "lastname"
     t.string   "firstname"
+    t.string   "persistence_token"
   end
 
   create_table "votes", force: true do |t|
