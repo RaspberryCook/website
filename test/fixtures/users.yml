@@ -3,4 +3,4 @@ one:
   firstname: alex
   username: alex
   email: alex@alex.fr
-  encrypted_password: alex
+  crypted_password: alex

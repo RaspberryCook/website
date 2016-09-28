@@ -18,11 +18,10 @@ class UserTest < ActiveSupport::TestCase
   end
 
   test "should have an encrypted password" do
-    password = 'oneTest'
+    password = 'oneTest28'
     user = User.create email: 'test@test.fr', username: 'test', firstname: 'test', password: password, password_confirmation: password
     assert user.save
-    assert_not_nil user.encrypted_password
-    assert_equal user.encrypted_password , Digest::SHA2.hexdigest(password)
+    assert_not_nil user.crypted_password
   end
 
 end
