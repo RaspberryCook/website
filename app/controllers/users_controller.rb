@@ -17,7 +17,7 @@ class UsersController < ApplicationController
 	end
 
 	def create
-		@user = User.new(params[:user])
+		@user = User.new users_params
 		if @user.save
 			@user_session = UserSession.new(user_session_params)
 			flash[:success] = "Welcome!"

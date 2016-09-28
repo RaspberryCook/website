@@ -1,4 +1,5 @@
 require 'test_helper'
+require 'digest'
 
 class UserTest < ActiveSupport::TestCase
 
@@ -13,7 +14,15 @@ class UserTest < ActiveSupport::TestCase
 
   test "should return the correct rank" do
     user = users(:one)
-    assert_equal 11, user.rank
+    assert_equal 21, user.rank
+  end
+
+  test "should have an encrypted password" do
+    password = 'oneTest'
+    user = User.create email: 'test@test.fr', username: 'test', firstname: 'test', password: password, password_confirmation: password
+    assert user.save
+    assert_not_nil user.encrypted_password
+    assert_equal user.encrypted_password , Digest::SHA2.hexdigest(password)
   end
 
 end

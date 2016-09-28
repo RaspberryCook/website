@@ -1,8 +1,7 @@
 require 'digest'
 
 class User < ActiveRecord::Base
-	attr_accessible :username, :firstname, :lastname, :email, :password, :password_confirmation
-	attr_accessor :password
+	attr_accessible :username, :firstname, :lastname, :email, :password, :password_confirmation, :encrypted_password
 	has_many :recipes , :dependent => :destroy
 	has_many :comments , :dependent => :destroy
 	has_many :votes , :dependent => :destroy
@@ -18,7 +17,7 @@ class User < ActiveRecord::Base
 	validates :firstname , :presence => true , :length  => { :maximum => 50 }
 	validates :password, :presence => true, :confirmation => true, :length => { :within => 6..40 }
 
-	before_save :encrypt_password
+	before_save :encrypted_password
 
 	acts_as_authentic do 
 	end
@@ -57,7 +56,7 @@ class User < ActiveRecord::Base
 		end
 
 		def encrypt_password
-			self.password = encrypt self.password
+			self.encrypted_password = encrypt self.password
 		end
 
 
