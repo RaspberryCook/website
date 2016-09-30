@@ -1,4 +1,4 @@
-class SessionsController < ApplicationController
+class UserSessionsController < ApplicationController
 
 	def new
 		@title = 'signin'
@@ -8,14 +8,14 @@ class SessionsController < ApplicationController
 
 
 	def create
-		@user_session = UserSession.new(user_session_params)
+		@user_session = UserSession.new user_session_params
 
 		if @user_session.save
-			sign_in user
 			flash[:success] = "bienvenue #{current_user.firstname}!"
-			redirect_back_or user
+			redirect_to user_path( @user_session.user )
 		else
 			flash.now[:error] = "Combinaison Email/Mot de passe invalide."
+			puts @user_session.errors.full_messages.inspect
 			@title = "S'identifier"
 			@description = "se connecter sur un site qu'il est bien!"
 			render 'new'
@@ -31,7 +31,7 @@ class SessionsController < ApplicationController
 	private
 
 	def user_session_params
-		params.require(:session).permit(:email, :password, :remember_me)
+		params.require(:user_sessions).permit(:email, :username, :password, :remember_me)
 	end
 
 end

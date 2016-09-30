@@ -19,7 +19,7 @@ class UsersController < ApplicationController
 	def create
 		@user = User.new users_params
 		if @user.save
-			@user_session = UserSession.new(user_session_params)
+			@user_session = UserSession.new(users_params)
 			flash[:success] = "Welcome!"
 			redirect_to @user
 		else
@@ -80,8 +80,5 @@ class UsersController < ApplicationController
 			params.require(:user).permit(:email, :username, :firstname, :lastname, :password, :password_confirmation)
 		end
 
-		def user_session_params
-			params.require(:user).permit(:email, :password, :remember_me)
-		end
 
 end

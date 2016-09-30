@@ -56,16 +56,13 @@ ActiveRecord::Schema.define(version: 20160928185026) do
     t.string   "password_salt"
     t.string   "single_access_token"
     t.string   "perishable_token"
-    t.integer  "login_count",         default: 0,     null: false
-    t.integer  "failed_login_count",  default: 0,     null: false
+    t.integer  "login_count",         default: 0, null: false
+    t.integer  "failed_login_count",  default: 0, null: false
     t.datetime "last_request_at"
     t.datetime "current_login_at"
     t.datetime "last_login_at"
     t.string   "current_login_ip"
     t.string   "last_login_ip"
-    t.boolean  "active",              default: false
-    t.boolean  "approved",            default: false
-    t.boolean  "confirmed",           default: false
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

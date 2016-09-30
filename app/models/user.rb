@@ -1,5 +1,3 @@
-require 'digest'
-
 class User < ActiveRecord::Base
 	attr_accessible :username, :firstname, :lastname, :email, :password, :password_confirmation, :crypted_password
 	has_many :recipes , :dependent => :destroy
@@ -17,9 +15,9 @@ class User < ActiveRecord::Base
 	validates :firstname , :presence => true , :length  => { :maximum => 50 }
 	validates :password, :presence => true, :confirmation => true, :length => { :within => 6..40 }
 
-	before_save :crypted_password
-
-	acts_as_authentic do 
+	acts_as_authentic do |c|
+		c.crypto_provider = Authlogic::CryptoProviders::Sha512
+		c.validate_email_field = true
 	end
 
 	public
@@ -53,16 +51,6 @@ class User < ActiveRecord::Base
 
 		def users_params
 			params.require(:user).permit(:email, :password, :password_confirmation)
-		end
-
-		def encrypt_password
-			self.crypted_password = encrypt self.password
-		end
-
-
-		def encrypt(string)
-			return string
-			# return Digest::SHA2.hexdigest string
 		end
 
 end

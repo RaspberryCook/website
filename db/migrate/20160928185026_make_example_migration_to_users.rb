@@ -28,9 +28,9 @@ class MakeExampleMigrationToUsers < ActiveRecord::Migration
 		add_column :users, :last_login_ip, :string
 
 		# Authlogic::Session::MagicStates
-		add_column :users, :active, :boolean, default: false
-		add_column :users, :approved, :boolean, default: false
-		add_column :users, :confirmed, :boolean, default: false
+		# add_column :users, :active, :boolean, default: false
+		# add_column :users, :approved, :boolean, default: false
+		# add_column :users, :confirmed, :boolean, default: false
 
 	end
 

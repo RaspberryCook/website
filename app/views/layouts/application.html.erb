@@ -4,6 +4,11 @@
 <head><%= render 'layouts/head' %></head>
 <body>
 
+	<% if Rails.env.development? %>
+		<strong>current_user_session</strong>
+		<pre><%= current_user_session %></pre>
+	<% end %>
+
 
 	<%= yield %>
 
