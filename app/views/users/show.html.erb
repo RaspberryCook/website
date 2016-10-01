@@ -1,6 +1,13 @@
 <section>
+
+	<h1 style="display: none"><%= @user.username %></h1>
+
+	<figure class="user_avatar">
+		<%= image_tag gravatar_url( @user.email, 300) , :class => 'big_gravatar_profile' %>
+		<figcaption class="ribbon"><span class="ribbon-content"><%= @user.username %></span></figcaption>
+	</figure>
 	
-	<h1><%= @user.firstname %></h1>
+	
 
 	<div id="rang"><%= pluralize(@user.rank, "point") %></div>
 
