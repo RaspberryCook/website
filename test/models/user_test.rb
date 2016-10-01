@@ -13,7 +13,14 @@ class UserTest < ActiveSupport::TestCase
 
   test "should return the correct rank" do
     user = users(:one)
-    assert_equal 11, user.rank
+    assert_equal 21, user.rank
+  end
+
+  test "should have an encrypted password" do
+    password = 'oneTest28'
+    user = User.create email: 'test@test.fr', username: 'test', firstname: 'test', password: password, password_confirmation: password
+    assert user.save
+    assert_not_nil user.crypted_password
   end
 
 end

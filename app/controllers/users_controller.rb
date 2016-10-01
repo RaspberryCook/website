@@ -17,9 +17,9 @@ class UsersController < ApplicationController
 	end
 
 	def create
-		@user = User.new(params[:user])
+		@user = User.new users_params
 		if @user.save
-			sign_in @user
+			@user_session = UserSession.new(users_params)
 			flash[:success] = "Welcome!"
 			redirect_to @user
 		else
@@ -75,5 +75,10 @@ class UsersController < ApplicationController
 		def admin_user
 			redirect_to(root_path) unless current_user.admin?
 		end
+
+		def users_params
+			params.require(:user).permit(:email, :username, :firstname, :lastname, :password, :password_confirmation)
+		end
+
 
 end

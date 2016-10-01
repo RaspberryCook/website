@@ -70,6 +70,7 @@ Developpement
 * **carrierwave** & **rmagick** for upload picture and resizing *( may need to install libmagickwand-dev `sudo apt-get install libmagickwand-dev`)*
 * **pdfkit** to build pdf of recipes *( need to install **wkhtmltopdf** `sudo apt-get install wkhtmltopdf`)*
 * **sitemap_generator** to build automatiquelly a beautifull Site Map `ruby config/sitemap.rb`
+* [authlogic](https://github.com/binarylogic/authlogic) for authentication
 
 Things I want to do
 ----------------------------

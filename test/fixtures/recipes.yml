@@ -20,3 +20,54 @@ searched_recipe:
   description: to_search
   ingredients: to_search
   steps: to_search
+
+
+bouchee_pommes_de_terre:
+  id: 5
+  name: Bouchées de pommes de terre au camembert
+  user_id: 2
+  created_at: 2015-09-24 19:10:59
+  updated_at: 2016-02-13 19:12:09
+  description: Une recette idéale en hiver
+  ingredients: > 
+    3 pommes de terre
+    2 tranches de bacon / personne
+    Un camembert
+    Crème
+    Poivre
+  steps: >
+    CibouletteRincer, peler et découper les pommes de terre en petits morceaux. 
+    Les faire cuire dans de l'eau à ébullition pendant 20 minutes.
+    Une fois cuites, les écraser avec la crème, le poivre et la ciboulette.
+    Sur une tranche de bacon mettre une boule de purée, un bout de camembert et refermer le tout avec une autre tranche de bacon de manière à former une petite boule.
+    Faire ensuite revenir le tout pendant 15 minutes à feu doux. Il faut que le bacon grille.
+    A accompagner avec de la salade verte.
+  season: hiver
+  t_baking: 00:00:05
+  t_cooling: 00:00:05
+  t_cooking: 00:00:05
+  t_rest: 00:00:10
+
+pates:
+  id: 6
+  name: Pâtes à l'eau  
+  user_id: 1
+  created_at: 2015-09-25 16:31:12
+  updated_at: 2016-04-04 18:30:11
+  description: Simplement des pâtes cuites avec ... de l'eau!
+  ingredients: > 
+    un sachet de pâte
+    de l'eau
+  steps: >
+    Mettre les pâtes dans l'eau bouillante et attendre une dizaine de minutes.
+    Laisser égoutter quelques minutes et c'est prêt.
+    miam!
+  season: toutes
+  t_baking: 00:00:05
+  t_cooling: 00:00:05
+  t_cooking: 00:00:05
+  t_rest: 00:00:10
+
+
+
+   

@@ -1,5 +1,15 @@
 one:
   id: 1
   firstname: alex
+  username: alex
   email: alex@alex.fr
-  encrypted_password: alex
+  crypted_password: azaz
+
+ben:
+  username: whatever
+  email: whatever@whatever.com
+  password_salt: <%= salt = Authlogic::Random.hex_token %>
+  crypted_password: <%= Authlogic::CryptoProviders::Sha512.encrypt("whatever" + salt) %>
+  persistence_token: <%= Authlogic::Random.hex_token %>
+  single_access_token: <%= Authlogic::Random.friendly_token %>
+  perishable_token: <%= Authlogic::Random.friendly_token %>

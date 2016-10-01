@@ -11,7 +11,7 @@ class UsersControllerTest < ActionController::TestCase
   end
 
   test "should get signup" do
-    get :create
+    get :new
     assert_response :success
   end
 

@@ -1,13 +1,15 @@
 <section id="login">
 
 	<h1>se connecter</h1>
-	<%= form_for(:session, :url => sessions_path) do |f| %>
+	<%= form_for(:sessions, :url => sessions_path) do |f| %>
 
-	    <%= f.label :email, "email" %>
-	    <%= f.text_field :email %><br />
+	    <%= f.label :username, "username" %>
+	    <%= f.text_field :username %><br />
 
 	    <%= f.label :password, "password" %>
 	    <%= f.password_field :password %><br />
+	    
+	    <%= f.check_box :remember_me %><%= f.label :remember_me, "se souvenir de moi" , class: 'checkbox' %><br />
 
 	    <%= f.submit "S'identifier" %>
 	<% end %>
