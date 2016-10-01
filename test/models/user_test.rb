@@ -1,10 +1,6 @@
 require 'test_helper'
-require "authlogic/test_case"
-include Authlogic::TestCase
 
 class UserTest < ActiveSupport::TestCase
-
-  setup :activate_authlogic
 
   test "should return the comment posted" do
     user = users(:one)
@@ -25,7 +21,6 @@ class UserTest < ActiveSupport::TestCase
     user = User.create email: 'test@test.fr', username: 'test', firstname: 'test', password: password, password_confirmation: password
     assert user.save
     assert_not_nil user.crypted_password
-    assert_equal Authlogic::CryptoProviders::Sha512.encrypt(password) , user.crypted_password
   end
 
 end

@@ -1,7 +1,7 @@
 <section id="login">
 
 	<h1>se connecter</h1>
-	<%= form_for(:user_sessions, :url => user_sessions_path) do |f| %>
+	<%= form_for(:sessions, :url => sessions_path) do |f| %>
 
 	    <%= f.label :username, "username" %>
 	    <%= f.text_field :username %><br />
