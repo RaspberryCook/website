@@ -20,6 +20,7 @@ me:
   perishable_token: <%= Authlogic::Random.friendly_token %>
 
 my_girlfriend:
+  id: 2
   username: lolotop
   firstname: Lorène
   lastname: Odet

@@ -20,6 +20,8 @@ class User < ActiveRecord::Base
 		c.validate_email_field = true
 	end
 
+	acts_as_reader
+
 	public
 
 		# return user's comment on the specified recipe id

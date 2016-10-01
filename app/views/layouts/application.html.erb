@@ -7,6 +7,10 @@
 	<% if Rails.env.development? %>
 		<strong>current_user_session</strong>
 		<pre><%= current_user_session %></pre>
+		<strong>Unread comments</strong>
+		<pre><% Comment.unread_by(current_user).each do |noti|%>
+			<%= noti.inspect %>
+		<%end%></pre>
 	<% end %>
 
 
