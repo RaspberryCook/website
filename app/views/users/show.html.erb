@@ -9,10 +9,15 @@
 	
 	
 
-	<div id="rang"><%= pluralize(@user.rank, "point") %></div>
+	<div id="rang"  >
+		<% (@user.rank/10).times do %>
+			<%= image_tag '/assets/images/icons/light-cupcake.svg'  %>
+		<% end %>
+		<p><%= pluralize(@user.rank, "point") %></p>
+	</div>
 
-	<h2>Recettes</h2>
-		<p><%= pluralize(@user.recipes.count, "recette") %> à son actif</p>
+	<h2>Recettes <small>(<%= pluralize(@user.recipes.count, "recette") %>)</small></h2>
+		
 
 		<%= render 'shared/recipes' , :recipes => @recipes %>
 		<%= will_paginate @recipes , :class => "apple_pagination" %>
@@ -21,8 +26,8 @@
 
 
 
-	<h2>Commentaires</h2>
-		<p><%= pluralize(@user.comments.count, "commentaire") %> à son actif</p>
+	<h2>Commentaires <small>(<%= pluralize(@user.comments.count, "commentaire") %>)</small></h2>
+		
 
 		<% begin %>
 
