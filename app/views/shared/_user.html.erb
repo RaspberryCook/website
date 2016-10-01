@@ -1,9 +1,9 @@
 
 <div class="user_infos">
-	<%= image_tag gravatar_url("you@youremail.com", 100) , :class => 'gravatar_image' %>
+	<%= image_tag gravatar_url( user.email, 100) , :class => 'gravatar_image' %>
 
 	<p>
-		<strong><%= link_to user.firstname , user %></strong>
+		<strong><%= link_to user.username , user %></strong>
 		<%= pluralize user.rank, "point" %>
 	</p>
 

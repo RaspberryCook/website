@@ -1,12 +1,20 @@
-<h1>Edit</h1>
+<h1>Editer mes informations</h1>
+
+<figure class="user_avatar">
+    <%= image_tag gravatar_url( @user.email, 300) , :class => 'big_gravatar_profile' %>
+    <figcaption class="ribbon"><span class="ribbon-content"><%= @user.username %></span></figcaption>
+</figure>
 
 <%= form_for(@user) do |f| %>
   <%= render 'shared/error_messages', :object => f.object %>
 
-    <%= f.label :firstname, "Nom" %>
+    <%= f.label :firstname, "Prénom" %>
     <%= f.text_field :firstname %><br />
+
+    <%= f.label :lastname, "Nom" %>
+    <%= f.text_field :lastname %><br />
  
-    <%= f.label :email, "eMail" %>
+    <%= f.label :email, "email" %>
     <%= f.text_field :email %><br />
   
     <%= f.label :password, "Mot de passe" %>
@@ -15,11 +23,10 @@
     <%= f.label :password_confirmation, "Confirmation" %>
     <%= f.password_field :password_confirmation %><br />
   
-    <%= f.submit "Update" %>
+    <%= f.submit "mettre à jour" %><br />
+
+    <small>La photo de profil est chargée à partir de <%= link_to "http://gravatar.com/" %>. Vous pouvez la modifier  <%= link_to "ici", "http://gravatar.com/email/%s" % @user.username %></small>
   
 <% end %>
 
-<div>
-  <%= gravatar_image_tag @user.email %>
-  <a href="http://gravatar.com/emails">changer</a>
-</div>
+
