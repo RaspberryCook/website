@@ -16,6 +16,13 @@
 		<p><%= pluralize(@user.rank, "point") %></p>
 	</div>
 
+
+	<ul class="actions">
+		<% if current_user == @user %>
+			<li><%= link_to "editer mon profil" , edit_user_path( :id => @user.id ) , :class => 'button_edit' %></li>
+		<% end %>
+	</ul>
+
 	<h2>Recettes <small>(<%= pluralize(@user.recipes.count, "recette") %>)</small></h2>
 		
 
