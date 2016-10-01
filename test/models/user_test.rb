@@ -3,7 +3,7 @@ require 'test_helper'
 class UserTest < ActiveSupport::TestCase
 
   test "should return the comment posted" do
-    user = users(:one)
+    user = users(:me)
     comment = comments(:one)
     user_comment = user.comment_on_recipe comment.recipe_id
     assert_equal user_comment, comment
@@ -12,7 +12,7 @@ class UserTest < ActiveSupport::TestCase
 
 
   test "should return the correct rank" do
-    user = users(:one)
+    user = users(:me)
     assert_equal 21, user.rank
   end
 
