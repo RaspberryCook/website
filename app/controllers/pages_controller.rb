@@ -9,5 +9,11 @@ class PagesController < ApplicationController
     @title = 'credits'
     @description = 'Un grand merci à toi, lecteur.'
   end
+
+
+  def feeds
+    @title = 'actualités'
+    @description = 'Tout ce que vous n\'avez pas ecore vu'
+  end
   
 end
