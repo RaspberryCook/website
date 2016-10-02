@@ -23,4 +23,13 @@ class UserTest < ActiveSupport::TestCase
     assert_not_nil user.crypted_password
   end
 
+  # add a new comment on mine recipe and check if unread comment count grow
+  test "should get unread comments" do
+    me = users(:me)
+    comments_count =  me.unread_comments{|com| com}.count
+    # my girlfriend create a comment on my recipe 
+    Comment.create title: 'good', content: 'not so bad', user_id: 2, recipe_id: 1
+    assert_equal comments_count+1, me.unread_comments{|com| com}.count
+  end
+
 end

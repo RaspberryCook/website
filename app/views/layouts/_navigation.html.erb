@@ -1,6 +1,10 @@
 <nav>
 	<ul>
-		<li><%= link_to "home" , home_path %></li>
+		<% if signed_in? %>
+			<li><%= link_to "actualités" , feeds_path %></li>
+		<% else %>
+			<li><%= link_to "home" , home_path %></li>
+		<% end %>
 		<li><%= link_to "bibliothèque" , recipes_path %></li>
 		<li><%= link_to "créer une recette" , new_recipe_path %></li>
 

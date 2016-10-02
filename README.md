@@ -71,6 +71,7 @@ Developpement
 * **pdfkit** to build pdf of recipes *( need to install **wkhtmltopdf** `sudo apt-get install wkhtmltopdf`)*
 * **sitemap_generator** to build automatiquelly a beautifull Site Map `ruby config/sitemap.rb`
 * [authlogic](https://github.com/binarylogic/authlogic) for authentication
+* [unread](https://github.com/ledermann/unread) for notifications system
 
 Things I want to do
 ----------------------------

@@ -3,3 +3,7 @@
 </div>
 <%= link_to comment.user.firstname , comment.user , :class => 'author' %> - 
 <time><%= comment.created_at.strftime("%d.%m.%y") %></time>
+
+<% if not current_page?(controller: 'recipes', action: 'show' ,  id: comment.recipe.id ) %>
+	à propos de <%= link_to comment.recipe.name , recipe_path( id: comment.recipe.id) %>
+<% end %>

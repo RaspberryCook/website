@@ -15,6 +15,11 @@ class RecipesController < ApplicationController
 		else
 			@description = @recipe.description
 		end
+
+		if current_user
+			@recipe.mark_as_read! :for => current_user
+			@recipe.comments.each { |com| com.mark_as_read! :for => current_user }
+		end
 	end
 
 	def new
@@ -146,9 +151,6 @@ class RecipesController < ApplicationController
 
 
 	private
-		def authenticate
-			redirect_to signup_path , :notice => "Connectez-vous" unless current_user
-		end
 
 		def check_recipe_owner
 			@recipe = Recipe.find(params[:id])

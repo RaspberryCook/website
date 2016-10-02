@@ -14,4 +14,10 @@ class ApplicationController < ActionController::Base
 	end
 
 	helper_method :current_user_session, :current_user
+
+	private
+	
+	def authenticate
+		redirect_to signup_path , :notice => "Connectez-vous" unless current_user
+	end
 end
