@@ -1,8 +1,12 @@
-<h2>Commentaires</h2>
-
 <ul id="comments">
 
-	<li><%= render 'comments/form', :comment => @comment , :recipe_id => @recipe.id %></li>
+
+	<% if not current_page?(:controller => 'pages', :action => 'feeds') %>
+		<li><%= render 'comments/form', :comment => @comment , :recipe_id => @recipe.id %></li>
+	<% end %>
+
+	
+	
 
 	<% comments.each do |comment| %>
 		<li class="comment"><%= render 'shared/comment', :comment => comment %></li>

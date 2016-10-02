@@ -16,7 +16,10 @@ class RecipesController < ApplicationController
 			@description = @recipe.description
 		end
 
-		@recipe.mark_as_read! :for => current_user if current_user
+		if current_user
+			@recipe.mark_as_read! :for => current_user
+			@recipe.comments.each { |com| com.mark_as_read! :for => current_user }
+		end
 	end
 
 	def new
