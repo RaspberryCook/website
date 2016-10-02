@@ -17,6 +17,7 @@ class PagesController < ApplicationController
 		@title = 'actualités'
 		@description = 'Tout ce que vous n\'avez pas ecore vu'
 		@recipes_feeds = Recipe.unread_by(current_user).paginate(:page => params[:page]).order('id DESC')
+		@unread_comments = current_user.unread_comments{|c|c}
 	end
 	
 end

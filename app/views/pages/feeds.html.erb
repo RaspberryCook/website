@@ -2,9 +2,10 @@
 	<h1><%= @title %> </h1>
 	<p>Tout ce que vous n'avez pas encore consulté!</p>
 
-	<h2>Commentaires sur vos recettes</h2>
-
-	<%= render 'shared/comments', :comments => current_user.unread_comments{|c|c}%>
+	<% if @unread_comments.size > 0 %>
+		<h2>Commentaires sur vos recettes</h2>
+		<%= render 'shared/comments', :comments => @unread_comments %>
+	<% end %>
 
 	<h2>Recettes</h2>
 	<%= render 'shared/recipes' , :recipes => @recipes_feeds %>
