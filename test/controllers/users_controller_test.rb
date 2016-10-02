@@ -2,7 +2,7 @@ require 'test_helper'
 
 class UsersControllerTest < ActionController::TestCase
   setup do
-    @users = users(:one)
+    @users = users(:me)
   end
 
   test "should get index" do
@@ -11,7 +11,7 @@ class UsersControllerTest < ActionController::TestCase
   end
 
   test "should get signup" do
-    get :create
+    get :new
     assert_response :success
   end
 

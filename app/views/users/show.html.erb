@@ -1,11 +1,30 @@
 <section>
+
+	<h1 style="display: none"><%= @user.username %></h1>
+
+	<figure class="user_avatar">
+		<%= image_tag gravatar_url( @user.email, 300) , :class => 'big_gravatar_profile' %>
+		<figcaption class="ribbon"><span class="ribbon-content"><%= @user.username %></span></figcaption>
+	</figure>
 	
-	<h1><%= @user.firstname %></h1>
+	
 
-	<div id="rang"><%= pluralize(@user.rank, "point") %></div>
+	<div id="rang"  >
+		<% (@user.rank/10).times do %>
+			<%= image_tag '/assets/images/icons/light-cupcake.svg'  %>
+		<% end %>
+		<p><%= pluralize(@user.rank, "point") %></p>
+	</div>
 
-	<h2>Recettes</h2>
-		<p><%= pluralize(@user.recipes.count, "recette") %> à son actif</p>
+
+	<ul class="actions">
+		<% if current_user == @user %>
+			<li><%= link_to "editer mon profil" , edit_user_path( :id => @user.id ) , :class => 'button_edit' %></li>
+		<% end %>
+	</ul>
+
+	<h2>Recettes <small>(<%= pluralize(@user.recipes.count, "recette") %>)</small></h2>
+		
 
 		<%= render 'shared/recipes' , :recipes => @recipes %>
 		<%= will_paginate @recipes , :class => "apple_pagination" %>
@@ -14,8 +33,8 @@
 
 
 
-	<h2>Commentaires</h2>
-		<p><%= pluralize(@user.comments.count, "commentaire") %> à son actif</p>
+	<h2>Commentaires <small>(<%= pluralize(@user.comments.count, "commentaire") %>)</small></h2>
+		
 
 		<% begin %>
 

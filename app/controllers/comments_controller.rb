@@ -59,10 +59,6 @@ class CommentsController < ApplicationController
     end
 
 
-    def authenticate
-      redirect_to signup_path , :notice => "Connectez-vous" unless current_user
-    end
-
     def check_owner
       @comment = Comment.find(params[:id])
       redirect_to root_path , :notice => "Petit-coquin!" unless current_user == @comment.user

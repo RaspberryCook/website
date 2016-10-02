@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160907170559) do
+ActiveRecord::Schema.define(version: 20161001171152) do
 
   create_table "comments", force: true do |t|
     t.string   "title"
@@ -22,6 +22,16 @@ ActiveRecord::Schema.define(version: 20160907170559) do
     t.integer  "recipe_id"
     t.integer  "note"
   end
+
+  create_table "read_marks", force: true do |t|
+    t.integer  "readable_id"
+    t.string   "readable_type", null: false
+    t.integer  "reader_id"
+    t.string   "reader_type",   null: false
+    t.datetime "timestamp"
+  end
+
+  add_index "read_marks", ["reader_id", "reader_type", "readable_type", "readable_id"], name: "read_marks_reader_readable_index", unique: true
 
   create_table "recipes", force: true do |t|
     t.string   "name"
@@ -44,16 +54,28 @@ ActiveRecord::Schema.define(version: 20160907170559) do
   end
 
   create_table "users", force: true do |t|
-    t.string   "firstname"
+    t.string   "username"
     t.string   "email"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "encrypted_password"
-    t.string   "salt"
-    t.boolean  "admin"
     t.string   "photo"
     t.string   "lastname"
+    t.string   "firstname"
+    t.string   "persistence_token"
+    t.string   "crypted_password"
+    t.string   "password_salt"
+    t.string   "single_access_token"
+    t.string   "perishable_token"
+    t.integer  "login_count",         default: 0, null: false
+    t.integer  "failed_login_count",  default: 0, null: false
+    t.datetime "last_request_at"
+    t.datetime "current_login_at"
+    t.datetime "last_login_at"
+    t.string   "current_login_ip"
+    t.string   "last_login_ip"
   end
+
+  add_index "users", ["email"], name: "index_users_on_email", unique: true
 
   create_table "votes", force: true do |t|
     t.integer  "user_id"

@@ -23,6 +23,10 @@ class Recipe < ActiveRecord::Base
 	validates :name , 
 		:presence 	=> true 
 
+
+
+ 	acts_as_readable :on => :created_at # for use of unread gem
+
 	def self.search name , ingredients , season, type, page
 		# set ALL match for `type` & `season` if user don't care
 		season = '%' if season == 'Toutes' or not season

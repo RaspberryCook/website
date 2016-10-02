@@ -4,5 +4,7 @@ class Vote < ActiveRecord::Base
 
 	attr_accessible :value, :user_id, :recipe_id
 
+	acts_as_readable :on => :created_at # for use of unread gem
+
 
 end

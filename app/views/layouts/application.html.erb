@@ -4,6 +4,18 @@
 <head><%= render 'layouts/head' %></head>
 <body>
 
+	<% if Rails.env.development? %>
+		<strong>current_user_session</strong>
+		<pre><%= current_user_session %></pre>
+		<% if current_user %>
+			<strong>Unread comments</strong>
+			<p><%= current_user.unread_comments{|com| com}.count%></p>
+			<pre><% current_user.unread_comments do |noti|%>
+				<%= noti.inspect %>
+			<%end%></pre>
+		<% end %>
+	<% end %>
+
 
 	<%= yield %>
 
