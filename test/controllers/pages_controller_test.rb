@@ -16,7 +16,7 @@ class PagesControllerTest < ActionController::TestCase
 
   test "should get feeds" do
     get :feeds
-    assert_response :success
+    assert_response 302 # redirect because not connected
   end
 
 

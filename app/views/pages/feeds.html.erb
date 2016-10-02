@@ -1,0 +1,10 @@
+<section id="feeds">
+	<h1><%= @title %> </h1>
+	<p>Tout ce que vous n'avez pas encore consulté!</p>
+
+	<h2>Recettes</h2>
+	<%= render 'shared/recipes' , :recipes => @recipes_feeds %>
+	<%= will_paginate @recipes_feeds , :class => "apple_pagination" %>
+
+
+</section>
