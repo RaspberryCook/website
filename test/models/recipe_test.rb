@@ -60,4 +60,9 @@ class RecipeTest < ActiveSupport::TestCase
     assert_equal 3, pasta.rate
   end
 
+  test "sould return 0 if recipe have not comment" do
+    new_recipe = Recipe.create user_id: 8 , name:"a recipe without comment :("
+    assert_equal 0, new_recipe.rate
+  end
+
 end

@@ -50,7 +50,7 @@ class Recipe < ActiveRecord::Base
 	def rate
 		rates = []
 		self.comments.each{|com| rates.append com.rate}
-		return rates.reduce(:+) / rates.size.to_f
+		return rates.reduce(:+) / rates.size.to_f if rates.size > 0 else 0
 	end
 
 
