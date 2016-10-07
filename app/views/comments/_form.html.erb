@@ -1,6 +1,7 @@
 <% if current_user #we check if the user is logged %>
   <% comment = current_user.comment_on_recipe recipe_id #we check if he already comment this recipe %>
 
+
     <%= form_for(comment) do |f| %>
       <% if @comment.errors.any? %>
         <div id="error_explanation">

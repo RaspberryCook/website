@@ -15,6 +15,20 @@ two:
   ingredients: tomato \r\ncucumber
   steps: step 1 \r\nstep 2 \r\nstep 3
 
+my_recipe:
+  name: MyString
+  user_id: 1
+  description: a pretty description
+  ingredients: tomato \r\ncucumber
+  steps: step 1 \r\nstep 2 \r\nstep 3
+
+girlfirend_recipe:
+  name: MyString
+  user_id: 2
+  description: a pretty description
+  ingredients: tomato \r\ncucumber
+  steps: step 1 \r\nstep 2 \r\nstep 3
+
 searched_recipe:
   name: to_search
   user_id: 2

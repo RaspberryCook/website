@@ -24,11 +24,10 @@ class User < ActiveRecord::Base
 
 	public
 
-		def unread_comments
-			Comment.unread_by(self).each{ |com|
-				yield com if com.recipe and com.recipe.user == self
-			}
+		def complete_name
+			return '%s %s' % [ self.lastname, self.firstname ]
 		end
+
 
 		# return user's comment on the specified recipe id
 		def comment_on_recipe recipe_id
