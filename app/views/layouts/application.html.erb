@@ -9,8 +9,7 @@
 		<pre><%= current_user_session %></pre>
 		<% if current_user %>
 			<strong>Unread comments</strong>
-			<p><%= current_user.unread_comments{|com| com}.count%></p>
-			<pre><% current_user.unread_comments do |noti|%>
+			<pre><% Comment.unread_by(current_user).each do |noti|%>
 				<%= noti.inspect %>
 			<%end%></pre>
 		<% end %>
