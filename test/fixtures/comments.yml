@@ -1,3 +1,19 @@
 one:
   user_id: 1
   recipe_id: 1
+  title: good pasta
+  content: I like them very much!!!
+
+first_comment_about_pasta:
+  user_id: 2
+  recipe_id: 6
+  title: good pasta
+  content: I like them very much!!!
+  rate: 4
+
+second_comment_about_pasta:
+  user_id: 1
+  recipe_id: 6
+  title: not so bad pasta
+  content: It missed some tastes
+  rate: 2

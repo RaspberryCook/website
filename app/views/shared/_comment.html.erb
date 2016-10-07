@@ -1,5 +1,9 @@
 <div class="bubble">
-	<strong><%= comment.title %></strong><%= comment.content  %>
+	<strong><%= comment.title %></strong>
+	<span class="star-rating"><% comment.rate.times do %>
+		<i style="opacity: 1"></i>
+	<% end %></span>
+	<%= comment.content  %><small><%= comment.rate %></small>
 </div>
 <%= link_to comment.user.firstname , comment.user , :class => 'author' %> - 
 <time><%= comment.created_at.strftime("%d.%m.%y") %></time>

@@ -7,21 +7,18 @@
         <div id="error_explanation">
           <h2>Il y a <%= pluralize(@comment.errors.count, "erreurs")%> à corriger :( </h2>
 
-          <ul>
-          <% @comment.errors.full_messages.each do |msg| %>
+          <ul><% @comment.errors.full_messages.each do |msg| %>
             <li><%= msg %></li>
-          <% end %>
-          </ul>
+          <% end %></ul>
         </div>
       <% end %>
 
       <div class="bubble">
+        <%= render 'comments/rating' , :form => f %>
         <%= f.text_field :title %>
         <%= f.hidden_field :recipe_id , :value => recipe_id %>
         <%= f.text_area :content %>
       </div><%= f.submit  'ajouter' %>
-
-
 
   <% end %>
 

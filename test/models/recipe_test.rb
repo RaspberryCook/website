@@ -54,4 +54,15 @@ class RecipeTest < ActiveSupport::TestCase
     assert_equal forked_recipe.true_image_url.split('/').last, recipe.image.url.split('/').last
   end
 
+
+  test "sould return the good average for the rate" do
+    pasta = recipes(:pasta)
+    assert_equal 3, pasta.rate
+  end
+
+  test "sould return 0 if recipe have not comment" do
+    new_recipe = Recipe.create user_id: 8 , name:"a recipe without comment :("
+    assert_equal 0, new_recipe.rate
+  end
+
 end
