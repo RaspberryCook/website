@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(version: 20161007054058) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "recipe_id"
-    t.integer  "rate"
+    t.integer  "rate",       default: 5
   end
 
   create_table "read_marks", force: true do |t|

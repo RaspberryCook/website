@@ -54,4 +54,10 @@ class RecipeTest < ActiveSupport::TestCase
     assert_equal forked_recipe.true_image_url.split('/').last, recipe.image.url.split('/').last
   end
 
+
+  test "sould return the good average for the rate" do
+    pasta = recipes(:pasta)
+    assert_equal 3, pasta.rate
+  end
+
 end

@@ -6,6 +6,9 @@
 <h1 class="recipe"><%= @recipe.name  %>
 	<%= " - %s" % @recipe.variant_name if @recipe.variant_name%></h1>
 
+<span class="star-rating"><% @recipe.rate.to_i.times do %>
+	<i style="opacity: 1"></i>
+<% end %></span>
 
 <span class="picture_ribon">
 	<ul>
