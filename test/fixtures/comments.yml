@@ -1,3 +1,6 @@
 one:
-  user_id: 1
-  recipe_id: 1
+  user_id: 2
+  recipe_id: 6
+  title: good pasta
+  content: I like them very much!!!
+  rate: 4
