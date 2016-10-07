@@ -11,7 +11,7 @@
 <div id="header-sigin">
 	<%= link_to image_tag("/assets/images/icons/add_cupcake.svg", size: "54") , new_recipe_path ,  id: "add_recipe"%>
 	<% if signed_in? %>
-		<% count_unread_comment = current_user.unread_comments{|com| com}.count %>
+		<% count_unread_comment = Comment.unread_by(current_user) %>
 		<%= link_to( count_unread_comment, feeds_path, class: "feeds" ) if count_unread_comment > 0 %>
 		<%= link_to image_tag("/assets/images/icons/people.svg", size: "54") , user_path(current_user) %>
 		<%#= link_to 'deconnexion' , signout_path %>
