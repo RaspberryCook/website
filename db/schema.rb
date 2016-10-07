@@ -20,7 +20,6 @@ ActiveRecord::Schema.define(version: 20161007054058) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "recipe_id"
-    t.integer  "note"
     t.integer  "rate"
   end
 

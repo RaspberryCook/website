@@ -1,6 +1,6 @@
 RaspberryCook::Application.routes.draw do
 
-  resources :comments, :only => [:new , :create , :destroy , :edit]
+  resources :comments, :only => [:new , :create , :update, :destroy , :edit]
 
   resources :users
   match '/signup' , to: 'users#new', :via => [:get, :post]

@@ -6,6 +6,9 @@ class CommentsController < ApplicationController
 
   # POST /comments
   def create
+    puts '-'*80
+    puts comment_params
+    puts '-'*80
     @comment = Comment.new(comment_params)
     @comment.user_id = current_user.id
 
@@ -15,6 +18,9 @@ class CommentsController < ApplicationController
 
   # PATCH/PUT /comments/1
   def update
+    puts '-'*80
+    puts comment_params
+    puts '-'*80
     msg = 'Votre commentaire à été correctement mis à jour!' if @comment.update(comment_params) else 'Une erreure est survenue dans la mise à jour de votre commentaire'
     redirect_to  recipe_path( @comment.recipe_id ), notice: msg
   end
@@ -33,7 +39,7 @@ class CommentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def comment_params
-      params.require(:comment).permit(:title, :content, :user_id , :recipe_id)
+      params.require(:comment).permit(:title, :content, :user_id , :recipe_id, :rate)
     end
 
 
