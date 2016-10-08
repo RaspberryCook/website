@@ -1,6 +1,8 @@
 class Recipe < ActiveRecord::Base
 	before_save :set_default_time
 
+	attr_reader :t_cooking
+
 	attr_accessible :name , :description , 
 		:ingredients , :steps  , :season , 
 		:t_baking , :t_cooling , :t_cooking ,:t_rest ,
@@ -13,7 +15,6 @@ class Recipe < ActiveRecord::Base
 
 	belongs_to :user
 	has_many :comments , :dependent => :destroy
-	has_many :votes , :dependent => :destroy
 
 
 	mount_uploader :image , ImageUploader
@@ -44,6 +45,13 @@ class Recipe < ActiveRecord::Base
 		forked_recipe.root_recipe_id = self.id
 		forked_recipe.user_id = new_user_id
 		return forked_recipe
+	end
+
+
+	def rate
+		rates = []
+		self.comments.each{|com| rates.append com.rate}
+		return rates.reduce(:+) / rates.size.to_f if rates.size > 0 else 0
 	end
 
 

@@ -2,7 +2,6 @@ class User < ActiveRecord::Base
 	attr_accessible :username, :firstname, :lastname, :email, :password, :password_confirmation, :crypted_password
 	has_many :recipes , :dependent => :destroy
 	has_many :comments , :dependent => :destroy
-	has_many :votes , :dependent => :destroy
 
 	email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
@@ -50,7 +49,7 @@ class User < ActiveRecord::Base
 
 		# return rank of this user nRecipes*10+nComments
 		def rank
-			self.comments.count + self.recipes.count*10
+			self.comments.count + self.recipes.count*5
 		end
 
 	private

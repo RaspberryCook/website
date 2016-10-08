@@ -63,7 +63,7 @@ bouchee_pommes_de_terre:
   t_cooking: 00:00:05
   t_rest: 00:00:10
 
-pates:
+pasta:
   id: 6
   name: Pâtes à l'eau  
   user_id: 1

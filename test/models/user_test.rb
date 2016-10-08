@@ -21,7 +21,12 @@ class UserTest < ActiveSupport::TestCase
 
 
   test "should return the correct rank" do
-    assert_equal 21, @me.rank
+    password = 'oneTest28'
+    user = User.create email: 'test@test.fr', username: 'test', firstname: 'test', password: password, password_confirmation: password
+    user.recipes.create name: "Recipe One"
+    user.recipes.create name: "Recipe two"
+    user.comments.create recipe_id: 1
+    assert_equal 11 , user.rank
   end
 
 

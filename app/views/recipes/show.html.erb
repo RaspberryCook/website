@@ -6,6 +6,9 @@
 <h1 class="recipe"><%= @recipe.name  %>
 	<%= " - %s" % @recipe.variant_name if @recipe.variant_name%></h1>
 
+<% recipe_rate = @recipe.rate.to_i %>
+
+
 
 <span class="picture_ribon">
 	<ul>
@@ -22,7 +25,7 @@
 </span>
 
 
-
+<%= image_tag @recipe.true_image_url , alt: 'picture of the recipe for web scrappers' , style: 'display: none'%>
 
 <!-- image -->
 <div  id="recipe_picture"
@@ -38,49 +41,25 @@
 <!-- times -->
 <div id="times" class="picture_ribon">
 
-	<!-- préparation  -->
-	<div style="background-image:url(/assets/images/time/cooking.svg)" ><time>
-		<% if @recipe.t_cooking.is_a? Time %>
-			<%= @recipe.t_cooking.strftime "%H:%M"  %>
-		<% else %>
-			<%= @recipe.t_cooking %>
+	<% %w(cooking baking cooling rest).each do |time| %>
+		<% time_of_recipe = @recipe.public_send("t_#{time}") %>
+		
+		<%  if time_of_recipe.is_a? Time %>
+			<div style="background-image:url(/assets/images/time/<%= time %>.svg)" >
+				<time><%=time_of_recipe.strftime "%H:%M"%></time>
+			</div>
 		<% end %>
 			
-		</time></div>
-
-	<!-- cuisson  -->
-	<div style="background-image:url(/assets/images/time/baking.svg)" ><time>
-		<% if @recipe.t_baking.is_a? Time %>
-			<%= @recipe.t_baking.strftime "%H:%M"  %>
-		<% else %>
-			<%= @recipe.t_baking %>
-		<% end %>
-			
-		</time></div>
-
-	<!-- réfrigération  -->
-	<div style="background-image:url(/assets/images/time/cooling.svg)" ><time>
-		<% if @recipe.t_cooling.is_a? Time %>
-			<%= @recipe.t_cooling.strftime "%H:%M"  %>
-		<% else %>
-			<%= @recipe.t_cooling %>
-		<% end %>
-			
-		</time></div>
-
-	<!-- repos  -->
-	<div style="background-image:url(/assets/images/time/rest.svg)" ><time>
-		<% if @recipe.t_rest.is_a? Time %>
-			<%= @recipe.t_rest.strftime "%H:%M"  %>
-		<% else %>
-			<%= @recipe.t_rest %>
-		<% end %>
-			
-		</time></div>
-
-
+	<% end %>
 
 </div>
+
+
+<%if recipe_rate > 0 %>
+	<span class="star-rating"><% recipe_rate.to_i.times do %>
+		<i style="opacity: 1"></i>
+	<% end %></span>
+<% end %>
 
 <%= render 'shared/user' , :user => @recipe.user %>
 
@@ -102,13 +81,6 @@ if forked_recipes.length > 0 %>
 <h2>Actions</h2>
 <ul class="actions" >
 
-	<!-- here you can vote for this recipe and add like -->
-	<!--<li id="vote">-->
-		<!--  AJAX links to vote up / down on this recipe -->
-		<%#= link_to '', recipes_vote_path(id: @recipe.id, value: 1) , id: 'vote_up', title: 'Cette recette vaut vraiment le coup',  remote: true %>
-		<!-- <span id="recipe_note"><%= @recipe.note %></span> -->
-		<%#= link_to '', recipes_vote_path(id: @recipe.id, value: -1) , id: 'vote_down', title: 'Ce n\'était pas si bon que ca :(',  remote: true %>
-	<!--</li>-->
 
 	<li><%= link_to "sauvegarder", recipe_save_path( :id => @recipe.id) , :class => 'button_save' %></li>
 

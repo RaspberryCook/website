@@ -1,5 +1,5 @@
 class RecipesController < ApplicationController
-	before_filter :authenticate, :only =>  [:destroy , :update , :edit ,:add, :create, :vote, :fork]
+	before_filter :authenticate, :only =>  [:destroy , :update , :edit ,:new, :add, :create, :fork]
 	before_filter :check_recipe_owner, :only =>  [:destroy , :update , :edit]
 
 
@@ -41,6 +41,7 @@ class RecipesController < ApplicationController
 			redirect_to edit_recipe_path(@recipe)
 		else
 			@title = "nouvelle recette"
+			flash[:error] = "Une erreure est survenue, veuillez éssayer à nouveau"
 			render 'new'
 		end
 	end
@@ -55,7 +56,7 @@ class RecipesController < ApplicationController
   		# todo:add an identification
 		Recipe.find(params[:id]).destroy
 		flash[:success] = 'recette supprimee'
-		redirect_to recipes_index_path
+		redirect_to  recipes_path 
 	end
 
 	def update
@@ -84,47 +85,6 @@ class RecipesController < ApplicationController
 		@title = "rechercher une recette"
 		@description = 'Cherchez votre chemin parmis nos plus belles recettes.'
 		@recipes = Recipe.search params[:recipe], params[:ingredients], params[:season], params[:type], params[:page]
-	end
-
-
-	# function to vote on a recipe with : http://localhost:3000/recipes/vote?id=93&value=1
-	def vote
-		#check before if the user can't try to send bad value
-		if [-1 , 1 ].include? params[:value].to_i
-
-			# search if another vote exists
-			vote = Vote.where( user_id: current_user.id , recipe_id: params[:id]).first
-			filename = nil
-
-			# if vote exist, we update it or send a warkning if is strickly the same
-			if vote
-				if vote.value == params[:value].to_i
-					filename = 'vote_exists.js.erb' 
-				else
-					vote.value = params[:value].to_i
-					filename = 'vote_updated.js.erb' 
-				end
-
-			# if vote don't exist, I create it
-			else
-				vote = current_user.votes.create user_id: 1, recipe_id: params[:id], value: params[:value]
-			end
-
-			# check if the save method work and send js.erb file as response
-			if vote.save
-				respond_to do |format|
-					format.js { render filename}
-				end
-			else
-				respond_to do |format|
-					format.js { render 'vote_failed.js.erb'}
-				end
-			end
-
-
-		else
-			redirect_to root_path , :notice => "Petit-coquin!"
-		end
 	end
 
 

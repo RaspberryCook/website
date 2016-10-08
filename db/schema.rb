@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161001171152) do
+ActiveRecord::Schema.define(version: 20161007054058) do
 
   create_table "comments", force: true do |t|
     t.string   "title"
@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(version: 20161001171152) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "recipe_id"
-    t.integer  "note"
+    t.integer  "rate",       default: 5
   end
 
   create_table "read_marks", force: true do |t|
