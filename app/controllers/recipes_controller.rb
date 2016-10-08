@@ -1,5 +1,5 @@
 class RecipesController < ApplicationController
-	before_filter :authenticate, :only =>  [:destroy , :update , :edit ,:add, :create, :fork]
+	before_filter :authenticate, :only =>  [:destroy , :update , :edit ,:new, :add, :create, :fork]
 	before_filter :check_recipe_owner, :only =>  [:destroy , :update , :edit]
 
 
@@ -55,7 +55,7 @@ class RecipesController < ApplicationController
   		# todo:add an identification
 		Recipe.find(params[:id]).destroy
 		flash[:success] = 'recette supprimee'
-		redirect_to recipes_index_path
+		redirect_to  recipes_path 
 	end
 
 	def update
