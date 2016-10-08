@@ -49,7 +49,7 @@ class User < ActiveRecord::Base
 
 		# return rank of this user nRecipes*10+nComments
 		def rank
-			self.comments.count + self.recipes.count*10
+			self.comments.count + self.recipes.count*5
 		end
 
 	private
