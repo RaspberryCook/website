@@ -4,7 +4,7 @@ class PagesController < ApplicationController
 	
 	def home
 		@description = 'Des recettes. Partout. Tout plein!'
-		@recipes = Recipe.find(:all, :order => "id desc", :limit => 3).reverse
+		@recipes = Recipe.last(3).reverse
 	end
 
 	def credits
