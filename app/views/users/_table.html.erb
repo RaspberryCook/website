@@ -4,6 +4,7 @@
 			<th>Username</th>
 			<th>name</th>
 			<th>email</th>
+			<th>last_login_at</th>
 			<th>login_count</th>
 			<th>failed_login_count</th>
 			<th>IP</th>
@@ -17,6 +18,7 @@
 			<td><%= user.complete_name %></td>
 			<td><%= mail_to user.email %></td>
 			<td><%= user.login_count %></td>
+			<td><%= user.last_login_at %></td>
 			<td><%= user.failed_login_count %></td>
 			<td><%= user.current_login_ip %></td>
 		</tr>
