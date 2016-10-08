@@ -1,16 +1,12 @@
 class CommentsController < ApplicationController
   before_action :set_comment, only: [:show, :edit, :update, :destroy]
-  before_filter :authenticate, :only =>  [:destroy , :update , :edit ,:add]
+  before_filter :authenticate, :only =>  [:destroy , :update ,:create]
   before_filter :check_owner, :only =>  [:destroy , :update , :edit ]
 
 
   # POST /comments
   def create
-    puts '-'*80
-    puts comment_params
-    puts '-'*80
-    @comment = Comment.new(comment_params)
-    @comment.user_id = current_user.id
+    @comment = current_user.comments.create(comment_params)
 
     msg = 'Votre commentaire à été correctement ajouté!' if @comment.save else 'Une erreure est survenue dans l\'ajout de votre commentaire'
     redirect_to  recipe_path( @comment.recipe_id ), notice: msg
@@ -18,9 +14,6 @@ class CommentsController < ApplicationController
 
   # PATCH/PUT /comments/1
   def update
-    puts '-'*80
-    puts comment_params
-    puts '-'*80
     msg = 'Votre commentaire à été correctement mis à jour!' if @comment.update(comment_params) else 'Une erreure est survenue dans la mise à jour de votre commentaire'
     redirect_to  recipe_path( @comment.recipe_id ), notice: msg
   end
@@ -39,7 +32,7 @@ class CommentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def comment_params
-      params.require(:comment).permit(:title, :content, :user_id , :recipe_id, :rate)
+      params.require(:comment).permit(:title, :content , :recipe_id, :rate)
     end
 
 

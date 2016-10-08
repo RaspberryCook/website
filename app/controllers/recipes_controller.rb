@@ -41,6 +41,7 @@ class RecipesController < ApplicationController
 			redirect_to edit_recipe_path(@recipe)
 		else
 			@title = "nouvelle recette"
+			flash[:error] = "Une erreure est survenue, veuillez éssayer à nouveau"
 			render 'new'
 		end
 	end
