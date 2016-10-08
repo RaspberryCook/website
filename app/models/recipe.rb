@@ -1,6 +1,8 @@
 class Recipe < ActiveRecord::Base
 	before_save :set_default_time
 
+	attr_reader :t_cooking
+
 	attr_accessible :name , :description , 
 		:ingredients , :steps  , :season , 
 		:t_baking , :t_cooling , :t_cooking ,:t_rest ,
