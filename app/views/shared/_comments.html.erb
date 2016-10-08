@@ -1,7 +1,7 @@
 <ul id="comments">
 
 
-	<% if current_page?(:controller => 'recipes', :action => 'show') %>
+	<% if current_page?(:controller => 'recipes') %>
 		<li><%= render 'comments/form', :comment => @comment , :recipe_id => @recipe.id %></li>
 	<% end %>
 
