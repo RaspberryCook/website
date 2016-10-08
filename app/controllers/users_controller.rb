@@ -43,26 +43,21 @@ class UsersController < ApplicationController
 	def update
 		@user = User.find(params[:id])
 
-		puts users_params_update
-
 		if @user.update_attributes users_params_update
 			flash[:success] = "Profil mis a jour"
 			redirect_to @user
 		else
-
-			puts Rails.logger.info(@user.errors.messages.inspect)
-			@title = "Editer profil"
-			@description = "Dites nous en un peu plus sur vous. Votre p'tit firstname, toussa, toussa."
-			render 'edit'
-
+			# puts Rails.logger.info(@user.errors.messages.inspect)
+			flash[:error] = "Une erreur est survenue"
+			redirect_to edit_user_path(@user)
 		end
 	end
 
-	def destroy
-		User.find(params[:id]).destroy
-		flash[:success] = 'User deleted'
-		redirect_to users_path
-	end
+	# def destroy
+	# 	User.find(params[:id]).destroy
+	#	flash[:success] = 'User deleted'
+	#	redirect_to users_path
+	# end
 
 
 
