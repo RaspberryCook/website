@@ -58,6 +58,9 @@ end
 
 gem 'authlogic'
 
+# to get recipe data from marmiton.org
+gem 'marmiton_crawler' # my first gem :')
+
 
 #for upload picture
 gem 'carrierwave'
