@@ -54,5 +54,9 @@
 			e.preventDefault();
 			$("#search_recipe_form").slideToggle();
 		})
+
+		if(window.location.search.substr('recipe=')){
+			$('#filter').trigger('click');
+		}
 	});
 </script>
