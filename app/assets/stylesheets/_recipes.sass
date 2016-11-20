@@ -3,6 +3,9 @@
 @import button
 @import url(https://fonts.googleapis.com/css?family=Pacifico)
 
+$filter_height: 45px
+$filter_color: #bdc3c7 
+
 @media all and (min-width: 740px)
 
 	ul.recipes
@@ -55,7 +58,6 @@ figure.recipe
 	text-align: center
 	margin-left: 0px
 	margin-right: 0px
-
 
 
 // display of recipes list
@@ -303,3 +305,57 @@ section#recipe_edit
 		right: 0px
 		background-size: cover
 		display: none
+
+#filter
+	display: block
+	background-color: $filter_color
+	height: $filter_height
+	width: 150px
+	font-size: large
+	padding: 5px
+	margin: auto
+	@include border-radius(5px)
+
+	a
+		text-decoration: none
+
+	img
+		height: 100%
+		float: left
+
+form#search_recipe_form
+	display: none
+	width: 770px
+	text-align: center
+	background-color: $filter_color
+	margin: auto
+
+@media all and (min-width: 740px)
+
+	div.field
+		width: 170px
+		padding: 5px
+		float: left
+
+
+		input,
+		select
+			width: 160px
+
+@media all and (max-width: 780px)
+
+	div.field
+		width: 100%
+
+		label
+			display: inline-block 
+			width: 200px
+			text-align: right
+
+		input,
+		select
+			display: inline-block
+			width: 200px
+			padding: 1px
+			margin: 5px
+

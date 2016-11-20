@@ -1,30 +1,49 @@
 <section id="content">
 	<h1>Bibliothèque</h1>
 
+	<div id="filter">
+		<%= link_to image_tag("/assets/images/icons/filter.svg", size: "56")+"filtrer les résultats" , '#' %>
+	</div>
 
-	<%= form_tag  recipes_path , method: "GET" do  %>
+
+	<%= form_tag  recipes_path , method: "GET", id: "search_recipe_form" do  %>
 		<fieldset>
-			<legend>Recherche</legend>
 
-			<%= label_tag  'Nom de recette' %>
-			<%= text_field_tag 'recipe' , params[:recipe], :placeholder => "recherchez une recette"  %>
+			<div class="field">
+				<%= label_tag  'Nom de recette' %>
+				<%= text_field_tag 'recipe' , params[:recipe], :placeholder => "recherchez une recette"  %>
+			</div>
 
-			<%= label_tag  'Ingrédients' %>
-			<%= text_field_tag 'ingredients' , params[:ingredients] , :placeholder => "ingrédients"  %>
+			<div class="field">
+				<%= label_tag  'Ingrédients' %>
+				<%= text_field_tag 'ingredients' , params[:ingredients] , :placeholder => "ingrédients"  %>
+			</div>
 
-			<%= label_tag  'Type de recette' %>
-			<%= select_tag "type",
-				options_for_select(['Toutes','Entrée','Plat','Dessert','Cocktail','Apéritif'], params[:type]) %>
+			<div class="field">
+				<%= label_tag  'Type de recette' %>
+				<%= select_tag "type",
+					options_for_select(['Toutes','Entrée','Plat','Dessert','Cocktail','Apéritif'], params[:type]) %>
+			</div>
 
-			<%= label_tag  'Saison' %>
-			<%= select_tag "season",
-				options_for_select(['Toutes','Printemps','Eté','Automne','Hiver'], params[:season]) %>
+			<div class="field">
+				<%= label_tag  'Saison' %>
+				<%= select_tag "season",
+					options_for_select(['Toutes','Printemps','Eté','Automne','Hiver'], params[:season]) %>
+			</div>
 
-
-			<%= submit_tag "go!" %>
+				<%= submit_tag "go!" %>
 		</fieldset>
 	<% end %>
 
 	<%= render 'shared/recipes' , :recipes => @recipes %>
 	<%= will_paginate @recipes , :class => "apple_pagination" %>
 </section>
+
+<script type="text/javascript">
+	document.addEventListener("DOMContentLoaded", function(event) { 
+		$('#filter').on('click', function(e){
+			e.preventDefault();
+			$("#search_recipe_form").slideToggle();
+		})
+	});
+</script>
