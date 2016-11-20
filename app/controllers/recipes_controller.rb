@@ -7,18 +7,29 @@ class RecipesController < ApplicationController
 	#autocomplete :ingredient, :name
 
 	def show
-		@recipe = Recipe.find(params[:id])
-		@comment = Comment.new
-		@title = @recipe.name
-		if @recipe.description
-			@description = 'Une delicieuse recette de %s.' % @recipe.user.firstname
-		else
-			@description = @recipe.description
-		end
 
-		if current_user
-			@recipe.mark_as_read! :for => current_user
-			@recipe.comments.each { |com| com.mark_as_read! :for => current_user }
+		# if user is connected or user have consulted less than 5 recipes
+		if current_user or session['recipes_viewed'] < 6 
+
+			@recipe = Recipe.find(params[:id])
+			@comment = Comment.new
+			@title = @recipe.name
+
+			if @recipe.description
+				@description = 'Une delicieuse recette de %s.' % @recipe.user.firstname
+			else
+				@description = @recipe.description
+			end
+
+			if current_user
+				@recipe.mark_as_read! :for => current_user
+				@recipe.comments.each { |com| com.mark_as_read! :for => current_user }
+			end
+
+			session['recipes_viewed'] += 1
+
+		else
+			redirect_to signin_path
 		end
 	end
 
