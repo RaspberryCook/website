@@ -28,6 +28,9 @@ class Recipe < ActiveRecord::Base
 
  	acts_as_readable :on => :created_at # for use of unread gem
 
+ 	@@types = ['Entrée', 'Plat', 'Dessert', 'Cocktail', 'Apéritif']
+ 	@@seasons = ['Toutes', 'Printemps', 'Eté', 'Automne', 'Hiver']
+
 	def self.search name , ingredients , season, type, page
 		# set ALL match for `type` & `season` if user don't care
 		season = '%' if season == 'Toutes' or not season
@@ -37,6 +40,16 @@ class Recipe < ActiveRecord::Base
 			"%#{name}%", "%#{ingredients}%" , season, type)
 			.paginate( :page => page ).order('id DESC')
 	end
+
+
+	def self.types
+		return @@types
+	end
+
+	def self.seasons
+		return @@seasons
+	end
+
 
 
 	# copy the current recipe to a new user

@@ -65,4 +65,12 @@ class RecipeTest < ActiveSupport::TestCase
     assert_equal 0, new_recipe.rate
   end
 
+  test "should return all types" do 
+    assert_equal  ['Entrée', 'Plat', 'Dessert', 'Cocktail', 'Apéritif'], Recipe.types
+  end
+
+  test "should return all seasons" do 
+    assert_equal  ['Toutes', 'Printemps', 'Eté', 'Automne', 'Hiver'], Recipe.seasons
+  end
+
 end
