@@ -49,7 +49,7 @@ class RecipesController < ApplicationController
 	def index
 		@title = "liste des recettes"
 		@description = 'Beaucoup d\'excllentes recettes (oui, oui).'
-			@recipes = Recipe.paginate(:page => params[:page]).order('id DESC')
+		@recipes = Recipe.search params
 	end
 
 	def destroy

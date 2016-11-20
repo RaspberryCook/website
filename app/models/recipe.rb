@@ -33,8 +33,13 @@ class Recipe < ActiveRecord::Base
 
  	# search all recipes given by a search query params
 	def self.search params
-		sql_query =  'name LIKE ? AND ingredients LIKE ? '
-		params_query = [ "%#{params[:name]}%",  "%#{params[:ingredients]}%" ]
+		sql_query =  'name LIKE ?'
+		params_query = [ "%#{params[:name]}%"]
+
+		if params[:ingredients]
+			sql_query +=  ' AND ingredients LIKE ?'
+			params_query.push "%#{params[:ingredients]}%"
+		end
 
 		if params.has_key?(:season) and not params[:season] == 'Toutes' 
 			sql_query +=  'AND season LIKE ?'
