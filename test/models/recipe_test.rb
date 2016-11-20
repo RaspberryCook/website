@@ -3,12 +3,14 @@ require 'test_helper'
 class RecipeTest < ActiveSupport::TestCase
 
   test "should found one recipe" do
-    recipes = Recipe.search 'to_search' , 'to_search' , nil, nil, 1
-    assert_equal 0, recipes.count
+    params = { :name => 'to_search' , :ingredients => 'to_search' , :page => 1 }
+    recipes = Recipe.search params
+    assert_equal 1, recipes.count
   end
 
   test "should not found one recipe" do
-    recipes = Recipe.search 'not_to_search' , 'to_search' , nil, nil, 1
+    params = { :name => 'not_to_search' , :ingredients => 'to_search' , :page => 1 }
+    recipes = Recipe.search params
     assert_equal 0, recipes.count
   end
 
@@ -63,6 +65,14 @@ class RecipeTest < ActiveSupport::TestCase
   test "sould return 0 if recipe have not comment" do
     new_recipe = Recipe.create user_id: 8 , name:"a recipe without comment :("
     assert_equal 0, new_recipe.rate
+  end
+
+  test "should return all types" do 
+    assert_equal  ['Entrée', 'Plat', 'Dessert', 'Cocktail', 'Apéritif'], Recipe.types
+  end
+
+  test "should return all seasons" do 
+    assert_equal  ['Toutes', 'Printemps', 'Eté', 'Automne', 'Hiver'], Recipe.seasons
   end
 
 end
