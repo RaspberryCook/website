@@ -18,11 +18,10 @@ SitemapGenerator::Sitemap.create do
 	add '/pages/infos'
 
 	add '/recipes/index', :changefreq => 'daily'
-	add '/recipes/show'
+	add '/recipes/show', :changefreq => 'daily'
 	add '/recipes/edit', :changefreq => 'daily'
 	add '/recipes/update', :changefreq => 'daily'
 	add '/recipes/save'
-	add '/recipes/search'
 	add '/recipes/vote'
 	add '/recipes/fork'
 

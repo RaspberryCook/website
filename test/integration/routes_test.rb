@@ -4,7 +4,6 @@ class RoutesTest < ActionController::TestCase
 
   test "recipes CRUD route test" do
     assert_recognizes({controller: "recipes", action: "show", id: "1"}, {path: '/recipes/1', method: :get})
-    assert_recognizes({controller: "recipes", action: "search" }, {path: '/recipes/search?recipe=hello', method: :get})
     assert_recognizes({controller: "recipes", action: "update", id: "1"}, {path: '/recipes/1', method: :patch})
   end
 

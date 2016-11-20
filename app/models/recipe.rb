@@ -28,15 +28,41 @@ class Recipe < ActiveRecord::Base
 
  	acts_as_readable :on => :created_at # for use of unread gem
 
-	def self.search name , ingredients , season, type, page
-		# set ALL match for `type` & `season` if user don't care
-		season = '%' if season == 'Toutes' or not season
-		type = '%' if type == 'Toutes' or not type
-		# make search
-		self.where( 'name LIKE ? AND ingredients LIKE ? AND season LIKE ? AND rtype LIKE ?' , 
-			"%#{name}%", "%#{ingredients}%" , season, type)
-			.paginate( :page => page ).order('id DESC')
+ 	@@types = ['Entrée', 'Plat', 'Dessert', 'Cocktail', 'Apéritif']
+ 	@@seasons = ['Toutes', 'Printemps', 'Eté', 'Automne', 'Hiver']
+
+ 	# search all recipes given by a search query params
+	def self.search params
+		sql_query =  'name LIKE ?'
+		params_query = [ "%#{params[:name]}%"]
+
+		if params[:ingredients] and not params[:ingredients].empty?
+			sql_query +=  ' AND ingredients LIKE ?'
+			params_query.push "%#{params[:ingredients]}%"
+		end
+
+		if params.has_key?(:season) and not params[:season] == 'Toutes' 
+			sql_query +=  'AND season LIKE ?'
+			params_query.push params[:season] 
+		end
+
+		if params.has_key?(:type) and not params[:type] == 'Toutes' 
+			sql_query +=  'AND rtype LIKE ?'
+			params_query.push params[:type] 
+		end
+
+		self.where(sql_query , *params_query).paginate( :page => params[:page] ).order('id DESC')
 	end
+
+
+	def self.types
+		return @@types
+	end
+
+	def self.seasons
+		return @@seasons
+	end
+
 
 
 	# copy the current recipe to a new user

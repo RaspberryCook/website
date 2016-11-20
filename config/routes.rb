@@ -11,7 +11,6 @@ RaspberryCook::Application.routes.draw do
   get     'recipes/fork/:id' ,  to: 'recipes#fork'
   post    'recipes/fork' ,      to: 'recipes#fork'
   get     'recipes/save/:id' , to: 'recipes#save', as: 'recipe_save'
-  get     'recipes/search' ,   to: 'recipes#search'
   get     'recipes/vote/:id' ,  to: 'recipes#vote'
 
   resources :sessions, :only => [:new , :create , :destroy ]
