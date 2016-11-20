@@ -3,12 +3,14 @@ require 'test_helper'
 class RecipeTest < ActiveSupport::TestCase
 
   test "should found one recipe" do
-    recipes = Recipe.search 'to_search' , 'to_search' , nil, nil, 1
-    assert_equal 0, recipes.count
+    params = { :name => 'to_search' , :ingredients => 'to_search' , :page => 1 }
+    recipes = Recipe.search params
+    assert_equal 1, recipes.count
   end
 
   test "should not found one recipe" do
-    recipes = Recipe.search 'not_to_search' , 'to_search' , nil, nil, 1
+    params = { :name => 'not_to_search' , :ingredients => 'to_search' , :page => 1 }
+    recipes = Recipe.search params
     assert_equal 0, recipes.count
   end
 

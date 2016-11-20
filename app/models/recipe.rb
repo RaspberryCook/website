@@ -31,14 +31,22 @@ class Recipe < ActiveRecord::Base
  	@@types = ['Entrée', 'Plat', 'Dessert', 'Cocktail', 'Apéritif']
  	@@seasons = ['Toutes', 'Printemps', 'Eté', 'Automne', 'Hiver']
 
-	def self.search name , ingredients , season, type, page
-		# set ALL match for `type` & `season` if user don't care
-		season = '%' if season == 'Toutes' or not season
-		type = '%' if type == 'Toutes' or not type
-		# make search
-		self.where( 'name LIKE ? AND ingredients LIKE ? AND season LIKE ? AND rtype LIKE ?' , 
-			"%#{name}%", "%#{ingredients}%" , season, type)
-			.paginate( :page => page ).order('id DESC')
+ 	# search all recipes given by a search query params
+	def self.search params
+		sql_query =  'name LIKE ? AND ingredients LIKE ? '
+		params_query = [ "%#{params[:name]}%",  "%#{params[:ingredients]}%" ]
+
+		if params.has_key?(:season) and not params[:season] == 'Toutes' 
+			sql_query +=  'AND season LIKE ?'
+			params_query.push params[:season] 
+		end
+
+		if params.has_key?(:type) and not params[:type] == 'Toutes' 
+			sql_query +=  'AND rtype LIKE ?'
+			params_query.push params[:type] 
+		end
+
+		self.where(sql_query , *params_query).paginate( :page => params[:page] ).order('id DESC')
 	end
 
 
