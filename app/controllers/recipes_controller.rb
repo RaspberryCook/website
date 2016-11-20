@@ -8,8 +8,10 @@ class RecipesController < ApplicationController
 
 	def show
 
+		session['recipes_viewed'] = 0 unless session.has_key? 'recipes_viewed'
+
 		# if user is connected or user have consulted less than 5 recipes
-		if current_user or session['recipes_viewed'] < 5 
+		if current_user or session['recipes_viewed'] < 3 
 
 			@recipe = Recipe.find(params[:id])
 			@comment = Comment.new
@@ -35,7 +37,11 @@ class RecipesController < ApplicationController
 			
 
 		else
-			flash[:error] = "Vous avez déjà consulté %s recettes. Vous devez vous connecter ou créer un compte." % session['recipes_viewed'] 
+			flash[:error] = "Vous avez déjà consulté %s recettes. Vous devez vous %s, %s ou bien revenir plus tard." % [ 
+				session['recipes_viewed'] ,
+				view_context.link_to("connecter", signin_path), 
+				view_context.link_to("créer un compte", signup_path)
+			]
 			redirect_to signin_path
 		end
 	end
