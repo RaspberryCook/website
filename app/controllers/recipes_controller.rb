@@ -81,13 +81,6 @@ class RecipesController < ApplicationController
 	end
 
 
-	def search
-		@title = "rechercher une recette"
-		@description = 'Cherchez votre chemin parmis nos plus belles recettes.'
-		@recipes = Recipe.search params
-	end
-
-
 
 	# a fork is a copy of the current recipe
 	def fork

@@ -14,11 +14,11 @@
 	<ul>
 		
 		<% if @recipe.rtype %>
-			<li><%= link_to image_tag("/assets/images/type_of_food/%s.svg" % @recipe.rtype ) + @recipe.rtype , recipes_search_path( :type => @recipe.rtype )  %></li>
+			<li><%= link_to image_tag("/assets/images/type_of_food/%s.svg" % @recipe.rtype ) + @recipe.rtype , recipes_path( :type => @recipe.rtype )  %></li>
 		<% end %>
 
 		<% if @recipe.season %>
-			<li><%= link_to image_tag("/assets/images/seasons/%s.svg" % @recipe.season ) + @recipe.season , recipes_search_path( :season => @recipe.season )  %></li>
+			<li><%= link_to image_tag("/assets/images/seasons/%s.svg" % @recipe.season ) + @recipe.season , recipes_path( :season => @recipe.season )  %></li>
 		<% end %>
 
 	</ul>
@@ -110,7 +110,7 @@ if forked_recipes.length > 0 %>
 	<h2>Ingredients</h2>
 	<ul id="ingredients">
 		<% @recipe.ingredients.each_line do |ingredient|%>
-			<li><%= link_to ingredient , recipes_search_path( :ingredients => ingredient )  %></li>
+			<li><%= link_to ingredient , recipes_path( :ingredients => ingredient )  %></li>
 		<% end %>
 	</ul>
 <% end %>
