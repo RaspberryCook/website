@@ -49,7 +49,7 @@ class RecipesController < ApplicationController
 	def index
 		@title = "liste des recettes"
 		@description = 'Beaucoup d\'excllentes recettes (oui, oui).'
-		@recipes = Recipe.paginate(:page => params[:page]).order('id DESC')
+		@recipes = Recipe.search params
 	end
 
 	def destroy
@@ -78,13 +78,6 @@ class RecipesController < ApplicationController
 		send_data( doc.to_pdf , 
 			:filename => "#{@recipe.name}.pdf", 
 			:disposition => 'attachment') 
-	end
-
-
-	def search
-		@title = "rechercher une recette"
-		@description = 'Cherchez votre chemin parmis nos plus belles recettes.'
-		@recipes = Recipe.search params[:recipe], params[:ingredients], params[:season], params[:type], params[:page]
 	end
 
 

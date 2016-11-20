@@ -1,10 +1,22 @@
 
 <div class="user_infos">
-	<%= image_tag gravatar_url( user.email, 100) , :class => 'gravatar_image' %>
 
-	<p>
-		<strong><%= link_to user.username , user %></strong>
-		<%= pluralize user.rank, "point" %>
-	</p>
+	<% if user %>
+		<%= image_tag gravatar_url( user.email, 100) , class: 'gravatar_image' %>
+		<p>
+			<strong>
+				<%= link_to user.username , user %>
+					
+				</strong>
+			<%= pluralize user.rank, "point" %>
+		</p>
+
+	<% else %>
+
+		<strong>Utilisateur non trouvé</strong>
+
+	<% end %>
+
+	
 
 </div>
