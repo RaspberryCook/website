@@ -36,7 +36,7 @@ class Recipe < ActiveRecord::Base
 		sql_query =  'name LIKE ?'
 		params_query = [ "%#{params[:name]}%"]
 
-		if params[:ingredients]
+		if params[:ingredients] and not params[:ingredients].empty?
 			sql_query +=  ' AND ingredients LIKE ?'
 			params_query.push "%#{params[:ingredients]}%"
 		end
