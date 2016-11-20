@@ -7,18 +7,42 @@ class RecipesController < ApplicationController
 	#autocomplete :ingredient, :name
 
 	def show
-		@recipe = Recipe.find(params[:id])
-		@comment = Comment.new
-		@title = @recipe.name
-		if @recipe.description
-			@description = 'Une delicieuse recette de %s.' % @recipe.user.firstname
-		else
-			@description = @recipe.description
-		end
 
-		if current_user
-			@recipe.mark_as_read! :for => current_user
-			@recipe.comments.each { |com| com.mark_as_read! :for => current_user }
+		session['recipes_viewed'] = 0 unless session.has_key? 'recipes_viewed'
+
+		# if user is connected or user have consulted less than 5 recipes
+		if current_user or session['recipes_viewed'] < 3 
+
+			@recipe = Recipe.find(params[:id])
+			@comment = Comment.new
+			@title = @recipe.name
+
+			if @recipe.description
+				@description = 'Une delicieuse recette de %s.' % @recipe.user.firstname
+			else
+				@description = @recipe.description
+			end
+
+			if current_user
+				@recipe.mark_as_read! :for => current_user
+				@recipe.comments.each { |com| com.mark_as_read! :for => current_user }
+			end
+
+			unless current_user
+				flash[:notice] = "%s ou %s pour faire vivre Raspberry Cook <3." % [view_context.link_to("Connectez-vous", signin_path), view_context.link_to("créez un compte", signup_path)]
+				session['recipes_viewed'] += 1
+			end
+
+			
+			
+
+		else
+			flash[:error] = "Vous avez déjà consulté %s recettes. Vous devez vous %s, %s ou bien revenir plus tard." % [ 
+				session['recipes_viewed'] ,
+				view_context.link_to("connecter", signin_path), 
+				view_context.link_to("créer un compte", signup_path)
+			]
+			redirect_to signin_path
 		end
 	end
 
