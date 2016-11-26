@@ -6,6 +6,7 @@
 			<li><%= link_to "home" , home_path %></li>
 		<% end %>
 		<li><%= link_to "bibliothèque" , recipes_path %></li>
+		<li><%= link_to "au hasard" , recipes_shuffle_path %></li>
 		<li><%= link_to "créer une recette" , new_recipe_path %></li>
 
 		<% if signed_in? %>
