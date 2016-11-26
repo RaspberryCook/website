@@ -9,4 +9,16 @@
 		<%= f.submit 'ajouter' %><br/>
 
 	<% end %>
+
+	<p>Ou bien importez une recette depuis <%= link_to "marmiton.org", "http://www.marmiton.org/" %></p>
+
+	<%= form_tag( recipes_import_path ) do %>
+
+
+		<%= url_field_tag recipes_import_path,  nil, placeholder: "adresse web d'un recette Marmiton"  %><br/>
+
+		<%= submit_tag 'importer' %><br/>
+
+	<% end %>
+
 </section>
