@@ -1,5 +1,5 @@
 class RecipesController < ApplicationController
-	before_filter :authenticate, :only =>  [:destroy , :update , :edit ,:new, :add, :create, :fork]
+	before_filter :authenticate, :only =>  [:destroy , :update , :edit ,:new, :add, :create, :fork, :import]
 	before_filter :check_recipe_owner, :only =>  [:destroy , :update , :edit]
 
 
@@ -111,6 +111,13 @@ class RecipesController < ApplicationController
 		random  = Recipe.offset(offset).first
 		flash[:success] = "Celle ci à l'air vraiment pas mal, régalez vous!"
 		redirect_to recipe_path random
+	end
+
+
+	# POST /recipes/import
+	# import a recipe from marmiton.org
+	def import 
+		# TODO: add logic here
 	end
 
 	# a fork is a copy of the current recipe
