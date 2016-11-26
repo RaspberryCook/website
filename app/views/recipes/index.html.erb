@@ -1,6 +1,62 @@
 <section id="content">
 	<h1>Bibliothèque</h1>
 
+	<ul id="select_types">
+
+	<li><%= link_to 'Toutes', recipes_path %></li>
+		<% Recipe.types.each do |type| %>
+			<li><%= link_to type, recipes_path(type: type) %></li>
+
+		<% end %>
+	</ul>
+
+	<div id="filter">
+		<%= link_to image_tag("/assets/images/icons/filter.svg", size: "56")+"filtrer" , '#' %>
+	</div>
+
+
+	<%= form_tag  recipes_path , method: "GET", id: "search_recipe_form" do  %>
+		<fieldset>
+
+			<div class="field">
+				<%= label_tag  'Nom de recette' %>
+				<%= text_field_tag 'name' , params[:name], :placeholder => "recherchez une recette"  %>
+			</div>
+
+			<div class="field">
+				<%= label_tag  'Ingrédients' %>
+				<%= text_field_tag 'ingredients' , params[:ingredients] , :placeholder => "ingrédients"  %>
+			</div>
+
+			<div class="field">
+				<%= label_tag  'Type de recette' %>
+				<%= select_tag "type",
+					options_for_select(['Toutes','Entrée','Plat','Dessert','Cocktail','Apéritif'], params[:type]) %>
+			</div>
+
+			<div class="field">
+				<%= label_tag  'Saison' %>
+				<%= select_tag "season",
+					options_for_select(['Toutes','Printemps','Eté','Automne','Hiver'], params[:season]) %>
+			</div>
+
+				<%= submit_tag "go!" %>
+		</fieldset>
+	<% end %>
+
 	<%= render 'shared/recipes' , :recipes => @recipes %>
 	<%= will_paginate @recipes , :class => "apple_pagination" %>
 </section>
+
+<script type="text/javascript">
+	document.addEventListener("DOMContentLoaded", function(event) { 
+		$('#filter').on('click', function(e){
+			e.preventDefault();
+			$("#search_recipe_form").slideToggle();
+		})
+
+		if(window.location.search.substr('recipe=')){
+			$('#filter').trigger('click');
+		}
+	});
+</script>

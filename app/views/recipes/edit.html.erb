@@ -21,7 +21,7 @@
 
 	<label class="radio_buttons_with_icon">Type de recette</label>
 	<ul class="radio_buttons_with_icon">
-		<% ['Entrée', 'Plat', 'Dessert', 'Cocktail', 'Apéritif'].each do |type| %>
+		<% Recipe.types.each do |type| %>
 			<li>
 				<%= f.radio_button :rtype, type %>
 				<%= f.label :rtype, image_tag("/assets/images/type_of_food/%s.svg"%type ) + type , value: type %>
@@ -31,7 +31,7 @@
 
 	<label class="radio_buttons_with_icon">Saison adaptée à la dégustation de celle-ci</label>
 	<ul class="radio_buttons_with_icon">
-		<% ['Toutes', 'Printemps', 'Eté', 'Automne', 'Hiver'].each do |type| %>
+		<% Recipe.seasons.each do |type| %>
 			<li>
 				<%= f.radio_button :season, type %>
 				<%= f.label :season, image_tag("/assets/images/seasons/%s.svg"%type ) + type , value: type %>

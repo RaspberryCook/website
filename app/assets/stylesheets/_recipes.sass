@@ -3,6 +3,9 @@
 @import button
 @import url(https://fonts.googleapis.com/css?family=Pacifico)
 
+$filter_height: 30px
+$filter_color: #bdc3c7 
+
 @media all and (min-width: 740px)
 
 	ul.recipes
@@ -55,7 +58,6 @@ figure.recipe
 	text-align: center
 	margin-left: 0px
 	margin-right: 0px
-
 
 
 // display of recipes list
@@ -304,45 +306,72 @@ section#recipe_edit
 		background-size: cover
 		display: none
 
+ul#select_types
+	list-style: none
+	text-align: center
+	padding: 0
+
+	li
+		font-size: 20px
+		display: inline-block
+		padding: 5px
+
+		a
+			text-decoration: none
+			&:hover
+				font-weight: bold
 
 
+#filter
+	display: block
+	background-color: $filter_color
+	height: $filter_height
+	width: 110px
+	font-size: large
+	padding: 5px
+	margin: auto
+	@include border-radius(5px)
 
-section#recipe_search
+	a
+		text-decoration: none
 
-	fieldset
-		color: $primary_color
-		width: 510px
-		margin: auto
-		padding: 20px
+	img
+		height: 100%
+		float: left
 
-		legend
-			color: $primary_color
-			font-size: 24px
+form#search_recipe_form
+	display: none
+	width: 770px
+	text-align: center
+	background-color: $filter_color
+	margin: auto
 
-		label,
-		input[type=text]
-			display: inline-block
-			@include box-sizing (true)
+@media all and (min-width: 740px)
+
+	div.field
+		width: 170px
+		padding: 5px
+		float: left
+
+
+		input,
+		select
+			width: 160px
+
+@media all and (max-width: 780px)
+
+	div.field
+		width: 100%
 
 		label
+			display: inline-block 
 			width: 200px
-			font-size: 18px
-			color: $second_color
-
-		input[type=text]
-			background-color: transparent
-			border: none
-			border-bottom: 1px dashed
-			text-align: center
-			width: 300px
-
-		input[type=submit]
-
-			background-color: transparent
-			border: none
-			color: $primary_color
-			font-size: 24px
-			margin-top: 20px
-			margin-bottom: 0
 			text-align: right
-			width: 100%
+
+		input,
+		select
+			display: inline-block
+			width: 200px
+			padding: 1px
+			margin: 5px
+

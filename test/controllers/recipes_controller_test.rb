@@ -20,15 +20,15 @@ class RecipesControllerTest < ActionController::TestCase
   end
 
 
-  test "should get new" do
-    UserSession.create(users(:ben))
-    get :new
-    assert_response :success
+  test "should be redirect to a random recipe path" do
+    get :shuffle
+    assert_redirected_to recipe_path
   end
 
 
-  test "should get search" do
-    get :search
+  test "should get new" do
+    UserSession.create(users(:ben))
+    get :new
     assert_response :success
   end
 

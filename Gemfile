@@ -54,6 +54,7 @@ group :development do
 	gem 'capistrano-bundler', 	require: false
 	gem 'sitemap_generator'
 	gem 'quiet_assets'
+	gem 'simplecov', :require => false
 end
 
 gem 'authlogic'
