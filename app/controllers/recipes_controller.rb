@@ -104,7 +104,14 @@ class RecipesController < ApplicationController
 			:disposition => 'attachment') 
 	end
 
-
+	# GET /recipes/shuffle
+	# get a random recipe and redirect user on this
+	def shuffle
+		offset = rand Recipe.count
+		random  = Recipe.offset(offset).first
+		flash[:success] = "Celle ci à l'air vraiment pas mal, régalez vous!"
+		redirect_to recipe_path random
+	end
 
 	# a fork is a copy of the current recipe
 	def fork

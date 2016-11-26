@@ -10,6 +10,7 @@ RaspberryCook::Application.routes.draw do
   patch  'recipes/:id' ,         to: 'recipes#update', id: /[0-9]+/
   get     'recipes/fork/:id' ,  to: 'recipes#fork'
   post    'recipes/fork' ,      to: 'recipes#fork'
+  get    'recipes/shuffle' ,      to: 'recipes#shuffle'
   get     'recipes/save/:id' , to: 'recipes#save', as: 'recipe_save'
   get     'recipes/vote/:id' ,  to: 'recipes#vote'
 
