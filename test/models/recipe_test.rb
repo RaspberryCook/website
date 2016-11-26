@@ -75,4 +75,12 @@ class RecipeTest < ActiveSupport::TestCase
     assert_equal  ['Toutes', 'Printemps', 'Eté', 'Automne', 'Hiver'], Recipe.seasons
   end
 
+  test "should fail to import recipe (url not valid)" do
+    assert_raise(ArgumentError){  Recipe.import "http://google.com" }
+  end
+
+  test "should import a recipe from marmiton" do
+    assert_instance_of Recipe,  Recipe.import("http://www.marmiton.org/recettes/recette_paupiettes-de-veau-en-cocotte_18361.aspx")
+  end
+
 end

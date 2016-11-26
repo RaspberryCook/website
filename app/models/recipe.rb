@@ -55,6 +55,17 @@ class Recipe < ActiveRecord::Base
 	end
 
 
+	# Create a recipe from a marmiton url
+	def self.import url
+		if url.include? 'http://www.marmiton.org/recettes/'
+			new_recipe = Recipe.new
+			return new_recipe
+		else
+			raise ArgumentError
+		end
+	end
+
+
 	def self.types
 		return @@types
 	end
@@ -140,6 +151,7 @@ class Recipe < ActiveRecord::Base
 	end
 
 	private
+
 
 	# set default time on t_baking, t_cooling, t_cooking, t_rest if not already set
 	def set_default_time
