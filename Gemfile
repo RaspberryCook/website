@@ -54,9 +54,14 @@ group :development do
 	gem 'capistrano-bundler', 	require: false
 	gem 'sitemap_generator'
 	gem 'quiet_assets'
+	gem 'simplecov', :require => false
 end
 
 gem 'authlogic'
+
+# to get recipe data from marmiton.org
+gem 'nokogiri'
+gem 'marmiton_crawler', '~> 1.0.1' # my first gem :')
 
 
 #for upload picture
