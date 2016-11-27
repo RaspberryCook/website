@@ -3,8 +3,6 @@ require 'marmiton_crawler'
 class Recipe < ActiveRecord::Base
 	before_save :set_default_time
 
-	attr_reader :t_cooking
-
 	attr_accessible :name , :description , 
 		:ingredients , :steps  , :season , 
 		:t_baking , :t_cooling , :t_cooking ,:t_rest ,
@@ -12,8 +10,6 @@ class Recipe < ActiveRecord::Base
 		:root_recipe_id,
 		:variant_name,
 		:rtype
-
-	# attr_reader :id
 
 	belongs_to :user
 	has_many :comments , :dependent => :destroy
@@ -32,6 +28,7 @@ class Recipe < ActiveRecord::Base
 
  	@@types = ['Entrée', 'Plat', 'Dessert', 'Cocktail', 'Apéritif']
  	@@seasons = ['Toutes', 'Printemps', 'Eté', 'Automne', 'Hiver']
+ 	@@time_zero = Time.new 2000, 01, 01, 01, 00, 00
 
  	# search all recipes given by a search query params
 	def self.search params
@@ -68,8 +65,10 @@ class Recipe < ActiveRecord::Base
 			new_recipe.name = marmiton_recipe_data[:title]
 			new_recipe.ingredients = marmiton_recipe_data[:ingredients].join "\r\n"
 			new_recipe.steps = marmiton_recipe_data[:steps].join "\r\n"
-			new_recipe.t_cooking = marmiton_recipe_data[:cooktime].to_i
-			new_recipe.t_baking = marmiton_recipe_data[:preptime].to_i
+			cooking_minutes = marmiton_recipe_data[:cooktime].to_i
+			baking_minutes = marmiton_recipe_data[:preptime].to_i
+			new_recipe.t_cooking = @@time_zero.advance minutes: cooking_minutes
+			new_recipe.t_baking   = @@time_zero.advance minutes:  baking_minutes
 			new_recipe.user_id = user_id
 
 			if new_recipe.save
