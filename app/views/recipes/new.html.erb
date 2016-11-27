@@ -10,15 +10,17 @@
 
 	<% end %>
 
-	<p>Ou bien importez une recette depuis <%= link_to "marmiton.org", "http://www.marmiton.org/" %></p>
 
-	<%= form_tag( recipes_import_path ) do %>
+	<div id="import">
+		<p>Ou bien importez une recette depuis <%= link_to "marmiton.org", "http://www.marmiton.org/" %></p>
 
+		<%= form_tag( recipes_import_path ) do %>
+			<%= url_field_tag 'url', nil, placeholder: "http://www.marmiton.org/recettes/recette_paupiettes-de-veau-en-cocotte_18361.aspx"  %><br/>
+			<%= submit_tag 'importer' %><br/>
+		<% end %>
 
-		<%= url_field_tag 'url', nil, placeholder: "adresse web d'un recette Marmiton"  %><br/>
+	</div>
 
-		<%= submit_tag 'importer' %><br/>
-
-	<% end %>
+	
 
 </section>
