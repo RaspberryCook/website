@@ -1,5 +1,5 @@
 class RecipesController < ApplicationController
-	before_filter :authenticate, :only =>  [:destroy , :update , :edit ,:new, :add, :create, :fork]
+	before_filter :authenticate, :only =>  [:destroy , :update , :edit ,:new, :add, :create, :fork, :import]
 	before_filter :check_recipe_owner, :only =>  [:destroy , :update , :edit]
 
 
@@ -65,7 +65,7 @@ class RecipesController < ApplicationController
 			redirect_to edit_recipe_path(@recipe)
 		else
 			@title = "nouvelle recette"
-			flash[:error] = "Une erreure est survenue, veuillez éssayer à nouveau"
+			flash[:error] = "Une erreur est survenue, veuillez essayer à nouveau"
 			render 'new'
 		end
 	end
@@ -79,7 +79,7 @@ class RecipesController < ApplicationController
 	def destroy
   		# todo:add an identification
 		Recipe.find(params[:id]).destroy
-		flash[:success] = 'recette supprimee'
+		flash[:success] = 'recette supprimée'
 		redirect_to  recipes_path 
 	end
 
@@ -109,8 +109,16 @@ class RecipesController < ApplicationController
 	def shuffle
 		offset = rand Recipe.count
 		random  = Recipe.offset(offset).first
-		flash[:success] = "Celle ci à l'air vraiment pas mal, régalez vous!"
+		flash[:success] = "Celle ci a l'air vraiment pas mal, régalez vous!"
 		redirect_to recipe_path random
+	end
+
+
+	# POST /recipes/import
+	# import a recipe from marmiton.org
+	def import
+		recipe_imported = Recipe.import params[:url], current_user.id
+		redirect_to edit_recipe_path(recipe_imported)
 	end
 
 	# a fork is a copy of the current recipe

@@ -22,7 +22,7 @@ class RecipesControllerTest < ActionController::TestCase
 
   test "should be redirect to a random recipe path" do
     get :shuffle
-    assert_redirected_to recipe_path
+    assert_redirected_to(  controller: "recipes", action: "show", id: /[0-9]+/ ) 
   end
 
 
@@ -47,6 +47,11 @@ class RecipesControllerTest < ActionController::TestCase
     end
   end
 
+
+  test "should be redirected to signup path when non-logged user want import a recipe" do
+    post :import
+    assert_redirected_to signup_path
+  end
 
   test "should be redirected to signup path when non-logged user want create a recipe" do
     get :create
