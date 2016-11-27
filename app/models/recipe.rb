@@ -1,4 +1,5 @@
 require 'marmiton_crawler'
+require 'open-uri'
 
 class Recipe < ActiveRecord::Base
 	before_save :set_default_time
@@ -70,6 +71,14 @@ class Recipe < ActiveRecord::Base
 			new_recipe.t_cooking = @@time_zero.advance minutes: cooking_minutes
 			new_recipe.t_baking   = @@time_zero.advance minutes:  baking_minutes
 			new_recipe.user_id = user_id
+
+			extention = marmiton_recipe_data[:image].split('.').last
+
+			open("/tmp/image_from_marmiton.#{extention}", 'wb') do |file|
+			  file << open(marmiton_recipe_data[:image]).read
+			  new_recipe.image = file
+			end
+
 
 			if new_recipe.save
 				return new_recipe

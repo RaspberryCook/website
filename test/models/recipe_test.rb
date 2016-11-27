@@ -93,9 +93,14 @@ class RecipeTest < ActiveSupport::TestCase
       assert_not_nil recipe_imported.t_baking 
       assert_not_nil recipe_imported.t_cooking 
       assert_equal 1, recipe_imported.user_id 
-      
+
     end
 
+  end
+
+  test "Should import the marmiton picture" do
+    recipe_imported =  Recipe.import "http://www.marmiton.org/recettes/recette_paupiettes-de-veau-en-cocotte_18361.aspx", 1
+    assert_not_nil recipe_imported.true_image_url
   end
 
 end
