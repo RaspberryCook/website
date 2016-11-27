@@ -15,7 +15,7 @@
 	<%= form_tag( recipes_import_path ) do %>
 
 
-		<%= url_field_tag recipes_import_path,  nil, placeholder: "adresse web d'un recette Marmiton"  %><br/>
+		<%= url_field_tag 'url', nil, placeholder: "adresse web d'un recette Marmiton"  %><br/>
 
 		<%= submit_tag 'importer' %><br/>
 
