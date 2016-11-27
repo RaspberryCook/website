@@ -80,18 +80,22 @@ class RecipeTest < ActiveSupport::TestCase
   end
 
   test "should import a recipe from marmiton" do
-    recipe_imported =  Recipe.import "http://www.marmiton.org/recettes/recette_paupiettes-de-veau-en-cocotte_18361.aspx", 1
-    # check if recipe founded is a recipe
-    assert_instance_of Recipe,  recipe_imported
-    # check if informations are correct
-    assert_equal 'Paupiettes de veau en cocotte', recipe_imported.name 
-    assert_not_nil recipe_imported.steps
-    assert_not_nil recipe_imported.ingredients 
-    assert_not_nil recipe_imported.t_baking 
-    assert_not_nil recipe_imported.t_cooking 
-    assert_equal 1, recipe_imported.user_id 
 
-    # TODO: check if recipe is saved
+    assert_difference('Recipe.count') do
+
+      recipe_imported =  Recipe.import "http://www.marmiton.org/recettes/recette_paupiettes-de-veau-en-cocotte_18361.aspx", 1
+      # check if recipe founded is a recipe
+      assert_instance_of Recipe,  recipe_imported
+      # check if informations are correct
+      assert_equal 'Paupiettes de veau en cocotte', recipe_imported.name 
+      assert_not_nil recipe_imported.steps
+      assert_not_nil recipe_imported.ingredients 
+      assert_not_nil recipe_imported.t_baking 
+      assert_not_nil recipe_imported.t_cooking 
+      assert_equal 1, recipe_imported.user_id 
+      
+    end
+
   end
 
 end
