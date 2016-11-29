@@ -1,0 +1,19 @@
+<div id="import">
+
+	<h2>Vous êtes flemmard?</h2>
+
+	<p>Moi aussi! Importez <strong>instantanément</strong> une recette depuis un autre site en copiant uniquement l'adresse web de la recette, <%= link_to "Raspberry Cook", home_path %> travaille pour vous!</p>
+
+	<%= form_tag( recipes_import_path ) do %>
+		<%= url_field_tag 'url', nil, placeholder: "http://www.marmiton.org/recettes/recette_paupiettes-de-veau-en-cocotte_18361.aspx"  %><br/>
+		<%= submit_tag 'importer' %><br/>
+	<% end %>
+
+	<small>* fonctionne avec:
+	<ul>
+		<li><%= link_to "Marmiton.org", "http://www.marmiton.org/" %></li>
+		<li><%= link_to "750g.com", "http://www.750g.com/" %></li>
+		<li><%= link_to "CuisineAZ.com", "http://www.cuisineaz.com/" %></li>
+	</ul></small>
+
+</div>	
