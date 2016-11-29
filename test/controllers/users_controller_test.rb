@@ -27,6 +27,22 @@ class UsersControllerTest < ActionController::TestCase
     end
   end
 
+  test "should not create an user because of wrong email" do
+    password = 'oneTest28'
+    assert_no_difference('User.count' ) do
+      post :create, user: { email: 'a_wrong_email.fr', username: 'test', firstname: 'test', password: password, password_confirmation: password}
+    end
+    assert_response 200
+  end
+
+  test "should not create an user because of wrong password_confirmation" do
+    password = 'oneTest28'
+    assert_no_difference('User.count' ) do
+      post :create, user: { email: 'test@test.fr', username: 'test', firstname: 'test', password: password, password_confirmation: "wrong_password_confirmation"}
+    end
+    assert_response 200
+  end
+
 
   test "should show user" do
     get :show, id: @user
