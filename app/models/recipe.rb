@@ -1,4 +1,4 @@
-require 'marmiton_crawler'
+require 'recipe_crawler'
 require 'open-uri'
 
 class Recipe < ActiveRecord::Base
@@ -57,36 +57,35 @@ class Recipe < ActiveRecord::Base
 
 	# Create a recipe from a marmiton url
 	def self.import url, user_id
-		if url.include? 'http://www.marmiton.org/recettes/'
-			# get  data from url
-			marmiton_recipe = MarmitonCrawler::Recipe.new url
-			marmiton_recipe_data = marmiton_recipe.to_hash
-			# create recipe
-			new_recipe = Recipe.new
-			new_recipe.name = marmiton_recipe_data[:title]
-			new_recipe.ingredients = marmiton_recipe_data[:ingredients].join "\r\n"
-			new_recipe.steps = marmiton_recipe_data[:steps].join "\r\n"
-			cooking_minutes = marmiton_recipe_data[:cooktime].to_i
-			baking_minutes = marmiton_recipe_data[:preptime].to_i
-			new_recipe.t_cooking = @@time_zero.advance minutes: cooking_minutes
-			new_recipe.t_baking   = @@time_zero.advance minutes:  baking_minutes
-			new_recipe.user_id = user_id
 
+		# get  data from url
+		marmiton_recipe = RecipeCrawler::Recipe.new url
+		marmiton_recipe_data = marmiton_recipe.to_hash
+		# create recipe
+		new_recipe = Recipe.new
+		new_recipe.name = marmiton_recipe_data[:title]
+		new_recipe.ingredients = marmiton_recipe_data[:ingredients].join "\r\n"
+		new_recipe.steps = marmiton_recipe_data[:steps].join "\r\n"
+		cooking_minutes = marmiton_recipe_data[:cooktime].to_i
+		baking_minutes = marmiton_recipe_data[:preptime].to_i
+		new_recipe.t_cooking = @@time_zero.advance minutes: cooking_minutes
+		new_recipe.t_baking   = @@time_zero.advance minutes:  baking_minutes
+		new_recipe.user_id = user_id
+
+
+		if marmiton_recipe_data[:image]
 			extention = marmiton_recipe_data[:image].split('.').last
 
 			open("/tmp/image_from_marmiton.#{extention}", 'wb') do |file|
 			  file << open(marmiton_recipe_data[:image]).read
 			  new_recipe.image = file
 			end
+		end
 
-
-			if new_recipe.save
-				return new_recipe
-			else
-				raise 'Something goes wrong in fetching data from marmiton.org'
-			end
+		if new_recipe.save
+			return new_recipe
 		else
-			raise ArgumentError
+			raise 'Something goes wrong in fetching data from marmiton.org'
 		end
 	end
 
