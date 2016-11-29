@@ -53,6 +53,31 @@ class RecipesControllerTest < ActionController::TestCase
     assert_redirected_to signup_path
   end
 
+
+  test "should  import a recipe from 750g" do
+    UserSession.create(users(:ben))
+    assert_difference('Recipe.count', 1) do
+      post :import, url: "http://www.750g.com/bowl-cake-r100568.htm"
+    end
+  end
+
+
+  test "should  import a recipe from marmiton" do
+    UserSession.create(users(:ben))
+    assert_difference('Recipe.count', 1) do
+      post :import, url: "http://www.750g.com/bowl-cake-r100568.htm"
+    end
+  end
+
+
+  test "should  import a recipe from cuisineaz" do
+    UserSession.create(users(:ben))
+    assert_difference('Recipe.count', 1) do
+      post :import,  url: "http://www.cuisineaz.com/recettes/roules-de-poulet-et-jambon-farcis-sauce-foie-gras-66302.aspx"
+    end
+  end
+
+
   test "should be redirected to signup path when non-logged user want create a recipe" do
     get :create
     assert_redirected_to signup_path
