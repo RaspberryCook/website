@@ -72,6 +72,7 @@ Development
 * [sitemap_generator](https://github.com/christianhellsten/sitemap-generator) to build automatically a beautiful Site Map `ruby config/sitemap.rb`
 * [authlogic](https://github.com/binarylogic/authlogic) for authentication
 * [unread](https://github.com/ledermann/unread) for notifications system
+* [simplecov](https://github.com/colszowka/simplecov) for units tests coverage
 
 Things I want to do
 ----------------------------

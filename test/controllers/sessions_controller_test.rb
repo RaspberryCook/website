@@ -11,12 +11,17 @@ class SessionsControllerTest < ActionController::TestCase
   end
 
 
-  test "should signup" do 
+  test "should signup and redirect to user" do
     ben = users(:ben)
-    assert_nil controller.session["user_credentials"]
-    assert UserSession.create(ben)
-    assert_equal controller.session["user_credentials"], ben.persistence_token
+    post :create, sessions: { username: 'whatever', password: 'whatever' } 
+    assert_redirected_to(  controller: "users", action: "show", id: ben.id ) 
   end
 
+
+  test "should not signup" do
+    ben = users(:ben)
+    post :create, sessions: { username: 'whatever', password: 'invalid' } 
+    assert_response :success
+  end
 
 end

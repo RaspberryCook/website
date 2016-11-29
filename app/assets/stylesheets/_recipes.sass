@@ -3,7 +3,7 @@
 @import button
 @import url(https://fonts.googleapis.com/css?family=Pacifico)
 
-$filter_height: 45px
+$filter_height: 30px
 $filter_color: #bdc3c7 
 
 @media all and (min-width: 740px)
@@ -100,6 +100,21 @@ section#recipe_new
 		height: 60px
 		font-size: 45px
 		border: 1px solid lightgray
+
+		&[type=text],
+		&[type=url]
+			width: 100%
+
+		
+
+	#import
+
+
+		input
+			font-size: 25px
+			height: 25px
+			line-height: 25px
+
 
 
 section#recipe ,
@@ -326,7 +341,7 @@ ul#select_types
 	display: block
 	background-color: $filter_color
 	height: $filter_height
-	width: 150px
+	width: 110px
 	font-size: large
 	padding: 5px
 	margin: auto

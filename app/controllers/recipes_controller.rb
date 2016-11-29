@@ -1,5 +1,5 @@
 class RecipesController < ApplicationController
-	before_filter :authenticate, :only =>  [:destroy , :update , :edit ,:new, :add, :create, :fork]
+	before_filter :authenticate, :only =>  [:destroy , :update , :edit ,:new, :add, :create, :fork, :import]
 	before_filter :check_recipe_owner, :only =>  [:destroy , :update , :edit]
 
 
@@ -7,18 +7,42 @@ class RecipesController < ApplicationController
 	#autocomplete :ingredient, :name
 
 	def show
-		@recipe = Recipe.find(params[:id])
-		@comment = Comment.new
-		@title = @recipe.name
-		if @recipe.description
-			@description = 'Une delicieuse recette de %s.' % @recipe.user.firstname
-		else
-			@description = @recipe.description
-		end
 
-		if current_user
-			@recipe.mark_as_read! :for => current_user
-			@recipe.comments.each { |com| com.mark_as_read! :for => current_user }
+		session['recipes_viewed'] = 0 unless session.has_key? 'recipes_viewed'
+
+		# if user is connected or user have consulted less than 5 recipes
+		if current_user or session['recipes_viewed'] < 3 
+
+			@recipe = Recipe.find(params[:id])
+			@comment = Comment.new
+			@title = @recipe.name
+
+			if @recipe.description
+				@description = 'Une delicieuse recette de %s.' % @recipe.user.firstname
+			else
+				@description = @recipe.description
+			end
+
+			if current_user
+				@recipe.mark_as_read! :for => current_user
+				@recipe.comments.each { |com| com.mark_as_read! :for => current_user }
+			end
+
+			unless current_user
+				flash[:notice] = "%s ou %s pour faire vivre Raspberry Cook <3." % [view_context.link_to("Connectez-vous", signin_path), view_context.link_to("créez un compte", signup_path)]
+				session['recipes_viewed'] += 1
+			end
+
+			
+			
+
+		else
+			flash[:error] = "Vous avez déjà consulté %s recettes. Vous devez vous %s, %s ou bien revenir plus tard." % [ 
+				session['recipes_viewed'] ,
+				view_context.link_to("connecter", signin_path), 
+				view_context.link_to("créer un compte", signup_path)
+			]
+			redirect_to signin_path
 		end
 	end
 
@@ -41,7 +65,7 @@ class RecipesController < ApplicationController
 			redirect_to edit_recipe_path(@recipe)
 		else
 			@title = "nouvelle recette"
-			flash[:error] = "Une erreure est survenue, veuillez éssayer à nouveau"
+			flash[:error] = "Une erreur est survenue, veuillez essayer à nouveau"
 			render 'new'
 		end
 	end
@@ -55,7 +79,7 @@ class RecipesController < ApplicationController
 	def destroy
   		# todo:add an identification
 		Recipe.find(params[:id]).destroy
-		flash[:success] = 'recette supprimee'
+		flash[:success] = 'recette supprimée'
 		redirect_to  recipes_path 
 	end
 
@@ -80,7 +104,22 @@ class RecipesController < ApplicationController
 			:disposition => 'attachment') 
 	end
 
+	# GET /recipes/shuffle
+	# get a random recipe and redirect user on this
+	def shuffle
+		offset = rand Recipe.count
+		random  = Recipe.offset(offset).first
+		flash[:success] = "Celle ci a l'air vraiment pas mal, régalez vous!"
+		redirect_to recipe_path random
+	end
 
+
+	# POST /recipes/import
+	# import a recipe from marmiton.org
+	def import
+		recipe_imported = Recipe.import params[:url], current_user.id
+		redirect_to edit_recipe_path(recipe_imported)
+	end
 
 	# a fork is a copy of the current recipe
 	def fork

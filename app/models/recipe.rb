@@ -1,7 +1,8 @@
+require 'recipe_crawler'
+require 'open-uri'
+
 class Recipe < ActiveRecord::Base
 	before_save :set_default_time
-
-	attr_reader :t_cooking
 
 	attr_accessible :name , :description , 
 		:ingredients , :steps  , :season , 
@@ -10,8 +11,6 @@ class Recipe < ActiveRecord::Base
 		:root_recipe_id,
 		:variant_name,
 		:rtype
-
-	# attr_reader :id
 
 	belongs_to :user
 	has_many :comments , :dependent => :destroy
@@ -30,6 +29,7 @@ class Recipe < ActiveRecord::Base
 
  	@@types = ['Entrée', 'Plat', 'Dessert', 'Cocktail', 'Apéritif']
  	@@seasons = ['Toutes', 'Printemps', 'Eté', 'Automne', 'Hiver']
+ 	@@time_zero = Time.new 2000, 01, 01, 01, 00, 00
 
  	# search all recipes given by a search query params
 	def self.search params
@@ -52,6 +52,41 @@ class Recipe < ActiveRecord::Base
 		end
 
 		self.where(sql_query , *params_query).paginate( :page => params[:page] ).order('id DESC')
+	end
+
+
+	# Create a recipe from a marmiton url
+	def self.import url, user_id
+
+		# get  data from url
+		marmiton_recipe = RecipeCrawler::Recipe.new url
+		marmiton_recipe_data = marmiton_recipe.to_hash
+		# create recipe
+		new_recipe = Recipe.new
+		new_recipe.name = marmiton_recipe_data[:title]
+		new_recipe.ingredients = marmiton_recipe_data[:ingredients].join "\r\n"
+		new_recipe.steps = marmiton_recipe_data[:steps].join "\r\n"
+		cooking_minutes = marmiton_recipe_data[:cooktime].to_i
+		baking_minutes = marmiton_recipe_data[:preptime].to_i
+		new_recipe.t_cooking = @@time_zero.advance minutes: cooking_minutes
+		new_recipe.t_baking   = @@time_zero.advance minutes:  baking_minutes
+		new_recipe.user_id = user_id
+
+
+		if marmiton_recipe_data[:image]
+			extention = marmiton_recipe_data[:image].split('.').last
+
+			open("/tmp/image_from_marmiton.#{extention}", 'wb') do |file|
+			  file << open(marmiton_recipe_data[:image]).read
+			  new_recipe.image = file
+			end
+		end
+
+		if new_recipe.save
+			return new_recipe
+		else
+			raise 'Something goes wrong in fetching data from marmiton.org'
+		end
 	end
 
 
@@ -140,6 +175,7 @@ class Recipe < ActiveRecord::Base
 	end
 
 	private
+
 
 	# set default time on t_baking, t_cooling, t_cooking, t_rest if not already set
 	def set_default_time

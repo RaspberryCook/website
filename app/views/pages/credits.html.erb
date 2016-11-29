@@ -70,11 +70,16 @@
 
 	<h3>Ma copine</h3>
 
-	<p>Un grand merci à <strong><%= link_to 'ma copine' , user_path(2) %></strong> pour son soutien et son aide pour la création d'une tonne de déliceuses recettes sur Raspberry Cook.</p>
+	<ul>
+		<li><strong><%= link_to 'ma copine' , user_path(2) %></strong> pour son soutien et son aide pour la création d'une tonne de déliceuses recettes sur Raspberry Cook.</li>
+		<li><strong><%= link_to 'moncoincuisine.com' , 'https://moncoincuisine.com/' %></strong> pour sa publicité et son soutien</li>
+	</ul>
+
+	<p>Un grand merci à </p>
 
 	<h3>Ressources</h3>
 
-	<p>Je souhaite aussi à remercier la tonne de tutoriels qui m'a permis de créer cette application. En voici une liste non exhaustive:</p>
+	<p>Je souhaite aussi à remercier la tonne de tutoriels qui m'ont permis de créer cette application. En voici une liste non exhaustive:</p>
 	<ul>
 		<li><%= link_to 'Apprendre Rails par l\'exemple' , 'http://french.railstutorial.org/chapters/beginning' %></li>
 		<li><%= link_to 'Serveur web à la maison' , 'http://raspberry-pi.developpez.com/cours-tutoriels/serveur-web/' %></li>

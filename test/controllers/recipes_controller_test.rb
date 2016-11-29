@@ -20,6 +20,12 @@ class RecipesControllerTest < ActionController::TestCase
   end
 
 
+  test "should be redirect to a random recipe path" do
+    get :shuffle
+    assert_redirected_to(  controller: "recipes", action: "show", id: /[0-9]+/ ) 
+  end
+
+
   test "should get new" do
     UserSession.create(users(:ben))
     get :new
@@ -38,6 +44,36 @@ class RecipesControllerTest < ActionController::TestCase
     UserSession.create(users(:ben))
     assert_difference('Recipe.count', 1) do
       post :create, recipe: { name: "hello" }
+    end
+  end
+
+
+  test "should be redirected to signup path when non-logged user want import a recipe" do
+    post :import
+    assert_redirected_to signup_path
+  end
+
+
+  test "should  import a recipe from 750g" do
+    UserSession.create(users(:ben))
+    assert_difference('Recipe.count', 1) do
+      post :import, url: "http://www.750g.com/bowl-cake-r100568.htm"
+    end
+  end
+
+
+  test "should  import a recipe from marmiton" do
+    UserSession.create(users(:ben))
+    assert_difference('Recipe.count', 1) do
+      post :import, url: "http://www.750g.com/bowl-cake-r100568.htm"
+    end
+  end
+
+
+  test "should  import a recipe from cuisineaz" do
+    UserSession.create(users(:ben))
+    assert_difference('Recipe.count', 1) do
+      post :import,  url: "http://www.cuisineaz.com/recettes/roules-de-poulet-et-jambon-farcis-sauce-foie-gras-66302.aspx"
     end
   end
 

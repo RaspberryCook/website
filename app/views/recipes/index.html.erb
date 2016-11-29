@@ -11,7 +11,7 @@
 	</ul>
 
 	<div id="filter">
-		<%= link_to image_tag("/assets/images/icons/filter.svg", size: "56")+"filtrer les résultats" , '#' %>
+		<%= link_to image_tag("/assets/images/icons/filter.svg", size: "56")+"filtrer" , '#' %>
 	</div>
 
 
@@ -20,7 +20,7 @@
 
 			<div class="field">
 				<%= label_tag  'Nom de recette' %>
-				<%= text_field_tag 'recipe' , params[:recipe], :placeholder => "recherchez une recette"  %>
+				<%= text_field_tag 'name' , params[:name], :placeholder => "recherchez une recette"  %>
 			</div>
 
 			<div class="field">
