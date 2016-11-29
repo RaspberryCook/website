@@ -1,196 +1,252 @@
 require 'marmiton_crawler'
 require 'open-uri'
 
+# a recipe represent a delicious recipe posted on raspberry-cook.fr
 class Recipe < ActiveRecord::Base
-	before_save :set_default_time
+  before_save :set_default_time
 
-	attr_accessible :name , :description , 
-		:ingredients , :steps  , :season , 
-		:t_baking , :t_cooling , :t_cooking ,:t_rest ,
-		:image,
-		:root_recipe_id,
-		:variant_name,
-		:rtype
+  # @attribute name [String] the name of the recipe
+  # @attribute description [String] the description of the recipe
+  # @attribute ingredients [Array] ingredients needed for the recipe
+  # @attribute steps [Array] steps to create the recipe
+  # @attribute season [String] season to cook recipe
+  # @attribute t_baking [DateTime] Baking time needed
+  # @attribute t_cooling [DateTime] Cooling time needed
+  # @attribute t_cooking [DateTime] Cooking time needed
+  # @attribute t_rest [DateTime] Rest time needed
+  # @attribute image [String] Url of picture
+  # @attribute root_recipe_id [Integer] Id of original recipe
+  # @attribute variant_name [String] name of the variant
+  # @attribute rtype [String] Type of the recipe
+  attr_accessible [
+    :name,
+    :description, 
+    :ingredients,
+    :steps,
+    :season, 
+    :t_baking,
+    :t_cooling,
+    :t_cooking,
+    :t_rest,
+    :image,
+    :root_recipe_id,
+    :variant_name,
+    :rtype
+  ]
 
-	belongs_to :user
-	has_many :comments , :dependent => :destroy
+  # @association user [User] as owner of recipe
+  # @association comments [Array<Comment>] comments owned by recipe
+  belongs_to :user
+  has_many :comments , :dependent => :destroy
+  mount_uploader :image , ImageUploader
 
+  validates :name , :presence   => true
+  acts_as_readable :on => :created_at # for use of unread gem
 
-	mount_uploader :image , ImageUploader
-
-	self.per_page = 20
-
-	validates :name , 
-		:presence 	=> true 
-
-
-
- 	acts_as_readable :on => :created_at # for use of unread gem
-
- 	@@types = ['Entrée', 'Plat', 'Dessert', 'Cocktail', 'Apéritif']
- 	@@seasons = ['Toutes', 'Printemps', 'Eté', 'Automne', 'Hiver']
- 	@@time_zero = Time.new 2000, 01, 01, 01, 00, 00
-
- 	# search all recipes given by a search query params
-	def self.search params
-		sql_query =  'name LIKE ?'
-		params_query = [ "%#{params[:name]}%"]
-
-		if params[:ingredients] and not params[:ingredients].empty?
-			sql_query +=  ' AND ingredients LIKE ?'
-			params_query.push "%#{params[:ingredients]}%"
-		end
-
-		if params.has_key?(:season) and not params[:season] == 'Toutes' 
-			sql_query +=  'AND season LIKE ?'
-			params_query.push params[:season] 
-		end
-
-		if params.has_key?(:type) and not params[:type] == 'Toutes' 
-			sql_query +=  'AND rtype LIKE ?'
-			params_query.push params[:type] 
-		end
-
-		self.where(sql_query , *params_query).paginate( :page => params[:page] ).order('id DESC')
-	end
+  self.per_page = 20
+  @@types = ['Entrée', 'Plat', 'Dessert', 'Cocktail', 'Apéritif']
+  @@seasons = ['Toutes', 'Printemps', 'Eté', 'Automne', 'Hiver']
+  @@time_zero = Time.new 2000, 01, 01, 01, 00, 00
 
 
-	# Create a recipe from a marmiton url
-	def self.import url, user_id
-		if url.include? 'http://www.marmiton.org/recettes/'
-			# get  data from url
-			marmiton_recipe = MarmitonCrawler::Recipe.new url
-			marmiton_recipe_data = marmiton_recipe.to_hash
-			# create recipe
-			new_recipe = Recipe.new
-			new_recipe.name = marmiton_recipe_data[:title]
-			new_recipe.ingredients = marmiton_recipe_data[:ingredients].join "\r\n"
-			new_recipe.steps = marmiton_recipe_data[:steps].join "\r\n"
-			cooking_minutes = marmiton_recipe_data[:cooktime].to_i
-			baking_minutes = marmiton_recipe_data[:preptime].to_i
-			new_recipe.t_cooking = @@time_zero.advance minutes: cooking_minutes
-			new_recipe.t_baking   = @@time_zero.advance minutes:  baking_minutes
-			new_recipe.user_id = user_id
+  # search all recipes given by a search query params
+  # 
+  # @param params [Hash] as GET params
+  # @return [ActiveRecord::Base] as Recipes corresponding to params
+  def self.search params
+    sql_query =  'name LIKE ?'
+    params_query = [ "%#{params[:name]}%"]
 
-			extention = marmiton_recipe_data[:image].split('.').last
+    if params[:ingredients] and not params[:ingredients].empty?
+      sql_query +=  ' AND ingredients LIKE ?'
+      params_query.push "%#{params[:ingredients]}%"
+    end
 
-			open("/tmp/image_from_marmiton.#{extention}", 'wb') do |file|
-			  file << open(marmiton_recipe_data[:image]).read
-			  new_recipe.image = file
-			end
+    if params.has_key?(:season) and not params[:season] == 'Toutes' 
+      sql_query +=  'AND season LIKE ?'
+      params_query.push params[:season] 
+    end
 
+    if params.has_key?(:type) and not params[:type] == 'Toutes' 
+      sql_query +=  'AND rtype LIKE ?'
+      params_query.push params[:type] 
+    end
 
-			if new_recipe.save
-				return new_recipe
-			else
-				raise 'Something goes wrong in fetching data from marmiton.org'
-			end
-		else
-			raise ArgumentError
-		end
-	end
+    self.where(sql_query , *params_query).paginate( :page => params[:page] ).order('id DESC')
+  end
 
 
-	def self.types
-		return @@types
-	end
+  # Create a recipe from a marmiton url
+  #
+  # @param url [String] as url recipe
+  # @param user_id [Integer] as id of the User creator of the recipe
+  # @return [Recipe] as recipe created
+  def self.import url, user_id
+    if url.include? 'http://www.marmiton.org/recettes/'
+      # get  data from url
+      marmiton_recipe = MarmitonCrawler::Recipe.new url
+      marmiton_recipe_data = marmiton_recipe.to_hash
+      # create recipe
+      new_recipe = Recipe.new
+      new_recipe.name = marmiton_recipe_data[:title]
+      new_recipe.ingredients = marmiton_recipe_data[:ingredients].join "\r\n"
+      new_recipe.steps = marmiton_recipe_data[:steps].join "\r\n"
+      cooking_minutes = marmiton_recipe_data[:cooktime].to_i
+      baking_minutes = marmiton_recipe_data[:preptime].to_i
+      new_recipe.t_cooking = @@time_zero.advance minutes: cooking_minutes
+      new_recipe.t_baking   = @@time_zero.advance minutes:  baking_minutes
+      new_recipe.user_id = user_id
 
-	def self.seasons
-		return @@seasons
-	end
+      extention = marmiton_recipe_data[:image].split('.').last
 
-
-
-	# copy the current recipe to a new user
-	def fork(new_user_id)
-		forked_recipe = self.dup
-		forked_recipe.root_recipe_id = self.id
-		forked_recipe.user_id = new_user_id
-		return forked_recipe
-	end
-
-
-	def rate
-		rates = []
-		self.comments.each{|com| rates.append com.rate}
-		return rates.reduce(:+) / rates.size.to_f if rates.size > 0 else 0
-	end
-
-
-
-	def forked?
-		return true  if self.root_recipe_id != 0 else return false
-	end
+      open("/tmp/image_from_marmiton.#{extention}", 'wb') do |file|
+        file << open(marmiton_recipe_data[:image]).read
+        new_recipe.image = file
+      end
 
 
+      if new_recipe.save
+        return new_recipe
+      else
+        raise 'Something goes wrong in fetching data from marmiton.org'
+      end
+    else
+      raise ArgumentError
+    end
+  end
 
-	# return the origin recipe
-	def root_recipe
-		if self.root_recipe_id != 0
-			return Recipe.find self.root_recipe_id
-		else
-			return self
-		end
-	end
 
-	# copyt the current recipe to a new user
-	def forked_recipes
-		return Recipe.where(root_recipe_id: self.id ).order( :variant_name )
-	end
+  # Type of of recipes ('Entrée', 'Plat', etc..)
+  #
+  # @return [Array] as types
+  def self.types
+    return @@types
+  end
+
+
+  # Seasons ('Toutes', 'Printemps', etc..)
+  #
+  # @return [Array] as seasons
+  def self.seasons
+    return @@seasons
+  end
 
 
 
-	# get image_url :thumb
-	# if the recipe havn't picture and she's forked , we get the parent image 
-	def true_thumb_image_url
-		bd_image = self.image_url(:thumb)
-
-		if self.forked? and not picture_exist? bd_image
-			return self.root_recipe.image_url(:thumb)
-		else
-			return bd_image
-		end
-	end
-
-	# get image_url
-	# if the recipe havn't picture and she's forked , we get the parent image 
-	def true_image_url
-		bd_image = self.image_url
-
-		if self.forked? and not picture_exist? bd_image
-			return self.root_recipe.image_url
-		else
-			return bd_image
-		end
-	end
+  # Copy the recipe from the user to a new user
+  #
+  # @param new_user_id [Integer] as id of the user owner of the new recipe
+  # @return [Recipe] as recipe created
+  def fork new_user_id
+    forked_recipe = self.dup
+    forked_recipe.root_recipe_id = self.id
+    forked_recipe.user_id = new_user_id
+    return forked_recipe
+  end
 
 
-
-	# count the total vote for this recipe
-	def note
-		note = 0
-		self.votes.each do |vote|
-			note += vote.value
-		end
-		return note
-	end
-
-	private
+  # Get the average rate of this recipe 
+  #
+  # @return [Integer] as rate
+  def rate
+    rates = []
+    self.comments.each{|com| rates.append com.rate}
+    return rates.reduce(:+) / rates.size.to_f if rates.size > 0 else 0
+  end
 
 
-	# set default time on t_baking, t_cooling, t_cooking, t_rest if not already set
-	def set_default_time
+  # Check if recipe is original or is a copy of another
+  #
+  # @return [Bollean] as true if it's a copy
+  def forked?
+    return true  if self.root_recipe_id != 0 else return false
+  end
 
-		zero_time = Time.new 2000, 1, 1, 1, 0, 0
 
-		[:t_baking, :t_cooling, :t_cooking, :t_rest].each { |t_time|
-			self.send("#{t_time}=".to_sym, zero_time) unless self.send(t_time).present?
-		}
-	end
 
-	def picture_exist? picture_url
-		absolute_path =  File.join Rails.root , 'public', picture_url
-		return File.file? absolute_path
-	end
+  # Get the original recipe if this is a copy
+  #
+  # @return [Recipe] as original recipe or self if it's the original
+  def root_recipe
+    if self.root_recipe_id != 0
+      return Recipe.find self.root_recipe_id
+    else
+      return self
+    end
+  end
+
+  
+  # search all recipes given by a search query params
+  # 
+  # @param params [Hash] as GET params
+  # @return [ActiveRecord::Base] as Recipes corresponding to params
+  def forked_recipes
+    return Recipe.where(root_recipe_id: self.id ).order( :variant_name )
+  end
+
+
+  # get image_url :thumb
+  # if the recipe havn't picture and she's forked , we get the parent image 
+  #
+  # @return [String] as url of the image
+  def true_thumb_image_url
+    bd_image = self.image_url(:thumb)
+
+    if self.forked? and not picture_exist? bd_image
+      return self.root_recipe.image_url(:thumb)
+    else
+      return bd_image
+    end
+  end
+
+
+  # get image_url
+  # if the recipe havn't picture and she's forked , we get the parent image 
+  #
+  # @return [String] as url of the image
+  def true_image_url
+    bd_image = self.image_url
+
+    if self.forked? and not picture_exist? bd_image
+      return self.root_recipe.image_url
+    else
+      return bd_image
+    end
+  end
+
+
+  # count the total vote for this recipe
+  #
+  # @return [Integer] ad count
+  def note
+    note = 0
+    self.votes.each do |vote|
+      note += vote.value
+    end
+    return note
+  end
+
+  private
+
+
+  # set default time on t_baking, t_cooling, t_cooking, t_rest if not already set
+  def set_default_time
+
+    zero_time = Time.new 2000, 1, 1, 1, 0, 0
+
+    [:t_baking, :t_cooling, :t_cooking, :t_rest].each { |t_time|
+      self.send("#{t_time}=".to_sym, zero_time) unless self.send(t_time).present?
+    }
+  end
+
+
+  # Ensure to picture exists
+  #
+  # @param picture_url [String] as url to check
+  # @return [Boolean] if picture exists
+  def picture_exist? picture_url
+    absolute_path =  File.join Rails.root , 'public', picture_url
+    return File.file? absolute_path
+  end
 
 end
