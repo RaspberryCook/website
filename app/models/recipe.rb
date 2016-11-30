@@ -112,13 +112,13 @@ class Recipe < ActiveRecord::Base
 	def rate
 		rates = []
 		self.comments.each{|com| rates.append com.rate}
-		return rates.reduce(:+) / rates.size.to_f if rates.size > 0 else 0
+		return rates.size > 0 ? rates.reduce(:+) / rates.size.to_f : 0
 	end
 
 
 
 	def forked?
-		return true  if self.root_recipe_id != 0 else return false
+		return self.root_recipe_id != 0 
 	end
 
 

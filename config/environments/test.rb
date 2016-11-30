@@ -34,6 +34,10 @@ RaspberryCook::Application.configure do
   # Print deprecation notices to the stderr.
   config.active_support.deprecation = :stderr
 
+  # setup for rails 5
+  config.active_support.test_order = :sorted
+  config.active_record.raise_in_transactional_callbacks = true
+
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
 end

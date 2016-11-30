@@ -15,7 +15,7 @@ class SessionsController < ApplicationController
 			redirect_to user_path( @user_session.user )
 		else
 			flash.now[:error] = "Combinaison Pseudo/Mot de passe invalide."
-			puts @user_session.errors.full_messages.inspect
+			# puts @user_session.errors.full_messages.inspect
 			@title = "S'identifier"
 			@description = "se connecter sur un site qu'il est bien!"
 			render 'new'

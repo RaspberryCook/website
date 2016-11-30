@@ -2,7 +2,7 @@ module SessionsHelper
 
 
 	def signed_in?
-		return true if  current_user else false
+		return  current_user
 	end
 
 	#check if the curentuser correspond to one user
