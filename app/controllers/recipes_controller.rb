@@ -74,6 +74,11 @@ class RecipesController < ApplicationController
 		@title = "liste des recettes"
 		@description = 'Beaucoup d\'excllentes recettes (oui, oui).'
 		@recipes = Recipe.search params
+		respond_to do |format|
+			format.html { render "index" }
+			format.json { render json: @recipes  }
+		    end
+
 	end
 
 	def destroy
