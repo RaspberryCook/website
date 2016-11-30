@@ -8,13 +8,13 @@ class CommentsController < ApplicationController
   def create
     @comment = current_user.comments.create(comment_params)
 
-    msg = 'Votre commentaire à été correctement ajouté!' if @comment.save else 'Une erreure est survenue dans l\'ajout de votre commentaire'
+    msg = @comment.save ?  'Votre commentaire à été correctement ajouté!' : 'Une erreure est survenue dans l\'ajout de votre commentaire'
     redirect_to  recipe_path( @comment.recipe_id ), notice: msg
   end
 
   # PATCH/PUT /comments/1
   def update
-    msg = 'Votre commentaire à été correctement mis à jour!' if @comment.update(comment_params) else 'Une erreure est survenue dans la mise à jour de votre commentaire'
+    msg = @comment.update(comment_params) ? 'Votre commentaire à été correctement mis à jour!' : 'Une erreure est survenue dans la mise à jour de votre commentaire'
     redirect_to  recipe_path( @comment.recipe_id ), notice: msg
   end
 

@@ -47,7 +47,6 @@ class UsersController < ApplicationController
 			flash[:success] = "Profil mis a jour"
 			redirect_to @user
 		else
-			# puts Rails.logger.info(@user.errors.messages.inspect)
 			flash[:error] = "Une erreur est survenue"
 			redirect_to edit_user_path(@user)
 		end
