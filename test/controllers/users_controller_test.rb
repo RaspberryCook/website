@@ -20,12 +20,24 @@ class UsersControllerTest < ActionController::TestCase
 
 
   test "should create a new user" do
+    # check if no one is connected before
+    assert_nil controller.session["user_credentials"]
     password = 'oneTest28'
-
     assert_difference('User.count', 1) do
       post :create, user: { email: 'test@test.fr', username: 'test', firstname: 'test', password: password, password_confirmation: password}
     end
+    # check if now someone is connected
+    assert controller.session["user_credentials"]
   end
+
+
+  test "should redirect if attempt to create a new user but he is already connected" do
+    ben = users(:ben)
+    assert UserSession.create(ben)
+    get :new
+    assert_redirected_to user_path(ben)
+  end
+
 
   test "should not create an user because of wrong email" do
     password = 'oneTest28'

@@ -17,9 +17,14 @@ class UsersController < ApplicationController
 	# GET /users/new
 	# GET /signup
 	def new
-		@user = User.new
-		@title = "S'inscrire"
-		@description = "S'inscrire sur Raspberry Cook."
+		# redirect user to his page if he's already connected
+		if current_user
+			redirect_to current_user
+		else
+			@user = User.new
+			@title = "S'inscrire"
+			@description = "S'inscrire sur Raspberry Cook."
+		end
 	end
 
 
