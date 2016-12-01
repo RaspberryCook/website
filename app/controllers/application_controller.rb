@@ -1,3 +1,5 @@
+# Application controller is the parent class for all controllers
+# to share code between all of them
 class ApplicationController < ActionController::Base
 	protect_from_forgery
 

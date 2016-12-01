@@ -1,11 +1,10 @@
+# Recipe controller permit to CRUD recipes
 class RecipesController < ApplicationController
 	before_filter :authenticate, :only =>  [:destroy , :update , :edit ,:new, :add, :create, :fork, :import]
 	before_filter :check_recipe_owner, :only =>  [:destroy , :update , :edit]
 
 
-	#for autocomplete ingredients
-	#autocomplete :ingredient, :name
-
+	# GET /recipes/1
 	def show
 
 		session['recipes_viewed'] = 0 unless session.has_key? 'recipes_viewed'
@@ -46,18 +45,24 @@ class RecipesController < ApplicationController
 		end
 	end
 
+
+	# GET /recipes/new
 	def new
 		@recipe = Recipe.new
 		@title = "nouvelle recette"
 		@description = 'Composez votre nouvelle recettes.'
 	end
 
+
+	# GET /recipes/1/edit
 	def edit
 		@recipe = Recipe.find(params[:id])
 		@title = 'editer "%s" recette' % @recipe.name
 		@description = 'Editer la recette %s (pour la rendre encore meilleure).' % @recipe.name
 	end
 
+
+	# POST /recipes 
 	def create
 		@recipe = current_user.recipes.create(params[:recipe])
 		if @recipe.save
@@ -70,19 +75,24 @@ class RecipesController < ApplicationController
 		end
 	end
 
+
+	# GET /recipes
 	def index
 		@title = "liste des recettes"
 		@description = 'Beaucoup d\'excllentes recettes (oui, oui).'
 		@recipes = Recipe.search params
 	end
 
+
+	# DELETE /recipes/1
 	def destroy
-  		# todo:add an identification
 		Recipe.find(params[:id]).destroy
 		flash[:success] = 'recette supprimée'
 		redirect_to  recipes_path 
 	end
 
+
+	# PATCH/PUT /recipes/1
 	def update
 		@recipe = Recipe.find(params[:id])
 		if @recipe.update_attributes(params[:recipe])
@@ -94,6 +104,9 @@ class RecipesController < ApplicationController
 		end
 	end
 
+
+	# GET /recipes/1/save
+	# Generate a PDF document about this recipe and serve it to user
 	def save
 		@title = "save recipe"
 		@recipe = Recipe.find(params[:id])
@@ -103,6 +116,7 @@ class RecipesController < ApplicationController
 			:filename => "#{@recipe.name}.pdf", 
 			:disposition => 'attachment') 
 	end
+
 
 	# GET /recipes/shuffle
 	# get a random recipe and redirect user on this
@@ -121,6 +135,8 @@ class RecipesController < ApplicationController
 		redirect_to edit_recipe_path(recipe_imported)
 	end
 
+
+	# GET/POST /recipes/1/fork
 	# a fork is a copy of the current recipe
 	def fork
 		if request.get?
