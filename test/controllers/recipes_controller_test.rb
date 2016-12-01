@@ -140,5 +140,11 @@ class RecipesControllerTest < ActionController::TestCase
     end
   end
 
+  test "should increment number of view when a recipe is consulted" do
+    assert_difference('@recipe.views', 1) do
+      get :show, id: @recipe
+    end
+  end
+
 
 end
