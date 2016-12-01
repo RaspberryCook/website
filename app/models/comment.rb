@@ -1,7 +1,9 @@
+# Comment is a text posted by a User on a Recipe
+#
+# @attr user [User] Owner of this comment
+# @attr recipe [Recipe] Recipe concerned by this comment
 class Comment < ActiveRecord::Base
-
-  # @association user [User] as owner of this comment
-  # @association recipe [Recipe] as recipe concerned by this comment
+  
  	belongs_to :user
  	belongs_to :recipe
 

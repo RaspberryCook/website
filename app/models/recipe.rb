@@ -1,23 +1,27 @@
 require 'marmiton_crawler'
 require 'open-uri'
 
-# a recipe represent a delicious recipe posted on raspberry-cook.fr
+# Recipe represent a delicious recipe posted on raspberry-cook.fr
+#
+# @attr name [String] the name of the recipe
+# @attr description [String] the description of the recipe
+# @attr ingredients [String] ingredients needed for the recipe
+# @attr steps [String] steps to create the recipe
+# @attr season [String] season to cook recipe
+# @attr t_baking [DateTime] Baking time needed
+# @attr t_cooling [DateTime] Cooling time needed
+# @attr t_cooking [DateTime] Cooking time needed
+# @attr t_rest [DateTime] Rest time needed
+# @attr image [String] Url of picture
+# @attr root_recipe_id [Integer] Id of original recipe
+# @attr variant_name [String] name of the variant
+# @attr rtype [String] Type of the recipe
+#
+# @attr user [User] as owner of recipe
+# @attr comments [Array<Comment>] comments owned by recipe
 class Recipe < ActiveRecord::Base
   before_save :set_default_time
 
-  # @attribute name [String] the name of the recipe
-  # @attribute description [String] the description of the recipe
-  # @attribute ingredients [Array] ingredients needed for the recipe
-  # @attribute steps [Array] steps to create the recipe
-  # @attribute season [String] season to cook recipe
-  # @attribute t_baking [DateTime] Baking time needed
-  # @attribute t_cooling [DateTime] Cooling time needed
-  # @attribute t_cooking [DateTime] Cooking time needed
-  # @attribute t_rest [DateTime] Rest time needed
-  # @attribute image [String] Url of picture
-  # @attribute root_recipe_id [Integer] Id of original recipe
-  # @attribute variant_name [String] name of the variant
-  # @attribute rtype [String] Type of the recipe
   attr_accessible [
     :name,
     :description, 
@@ -34,8 +38,7 @@ class Recipe < ActiveRecord::Base
     :rtype
   ]
 
-  # @association user [User] as owner of recipe
-  # @association comments [Array<Comment>] comments owned by recipe
+  
   belongs_to :user
   has_many :comments , :dependent => :destroy
   mount_uploader :image , ImageUploader
@@ -44,8 +47,11 @@ class Recipe < ActiveRecord::Base
   acts_as_readable :on => :created_at # for use of unread gem
 
   self.per_page = 20
+  # Availables types of recipe
   @@types = ['Entrée', 'Plat', 'Dessert', 'Cocktail', 'Apéritif']
+  # Availables seasons for a  recipe
   @@seasons = ['Toutes', 'Printemps', 'Eté', 'Automne', 'Hiver']
+  # Time zero represent zero value for a task
   @@time_zero = Time.new 2000, 01, 01, 01, 00, 00
 
 
@@ -178,7 +184,6 @@ class Recipe < ActiveRecord::Base
   
   # search all recipes given by a search query params
   # 
-  # @param params [Hash] as GET params
   # @return [ActiveRecord::Base] as Recipes corresponding to params
   def forked_recipes
     return Recipe.where(root_recipe_id: self.id ).order( :variant_name )

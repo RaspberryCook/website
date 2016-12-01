@@ -1,12 +1,18 @@
+# user is someone abloe to connect on Raspberry Cook and CRUD a recipe or a comment
+#
+# @attr username [String] the username of this user: 'madeindjs'
+# @attr firstname [String] the firstname of this user:
+# @attr lastname [String] the lastname of this user
+# @attr email [String] the email of this user
+# @attr password [String] the password of this user
+# @attr password_confirmation [String] the password confirmed by user
+# @attr crypted_password [String] the password crypted
+#
+# @attr recipes [Array<Recipe>] as recipes owned by this user
+# @attr comments [Array<Comment>] as comments owned by this user
 class User < ActiveRecord::Base
 
-	# @attribute username [String] the username of this user: 'madeindjs'
-	# @attribute firstname [String] the firstname of this user:
-	# @attribute lastname [String] the lastname of this user
-	# @attribute email [String] the email of this user
-	# @attribute password [String] the password of this user
-	# @attribute password_confirmation [String] the password confirmed by user
-	# @attribute crypted_password [String] the password crypted
+
 	attr_accessible[
 		:username,
 		:firstname,
@@ -17,8 +23,6 @@ class User < ActiveRecord::Base
 		:crypted_password
 	]
 
-	# @association recipes [Array<Recipe>] as recipes owned by this user
-  # @association comments [Array<Comment>] as comments owned by this user
 	has_many :recipes , :dependent => :destroy
 	has_many :comments , :dependent => :destroy
 
@@ -85,11 +89,5 @@ class User < ActiveRecord::Base
 		def rank
 			self.comments.count + self.recipes.count*5
 		end
-
-	# private
-
-	# 	def users_params
-	# 		params.require(:user).permit(:email, :password, :password_confirmation)
-	# 	end
 
 end
