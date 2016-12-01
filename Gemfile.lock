@@ -219,6 +219,7 @@ GEM
       activerecord (>= 3)
     will_paginate (3.1.5)
     wkhtmltopdf-binary (0.12.3.1)
+    yard (0.9.5)
 
 PLATFORMS
   ruby
@@ -259,6 +260,7 @@ DEPENDENCIES
   unread
   will_paginate
   wkhtmltopdf-binary
+  yard
 
 BUNDLED WITH
-   1.11.2
+   1.13.2

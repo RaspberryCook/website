@@ -13,7 +13,7 @@
 
 ActiveRecord::Schema.define(version: 20161007054058) do
 
-  create_table "comments", force: true do |t|
+  create_table "comments", force: :cascade do |t|
     t.string   "title"
     t.string   "content"
     t.integer  "user_id"
@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(version: 20161007054058) do
     t.integer  "rate",       default: 5
   end
 
-  create_table "read_marks", force: true do |t|
+  create_table "read_marks", force: :cascade do |t|
     t.integer  "readable_id"
     t.string   "readable_type", null: false
     t.integer  "reader_id"
@@ -33,7 +33,7 @@ ActiveRecord::Schema.define(version: 20161007054058) do
 
   add_index "read_marks", ["reader_id", "reader_type", "readable_type", "readable_id"], name: "read_marks_reader_readable_index", unique: true
 
-  create_table "recipes", force: true do |t|
+  create_table "recipes", force: :cascade do |t|
     t.string   "name"
     t.integer  "user_id"
     t.datetime "created_at"
@@ -53,7 +53,7 @@ ActiveRecord::Schema.define(version: 20161007054058) do
     t.string   "rtype"
   end
 
-  create_table "users", force: true do |t|
+  create_table "users", force: :cascade do |t|
     t.string   "username"
     t.string   "email"
     t.datetime "created_at"
@@ -77,7 +77,7 @@ ActiveRecord::Schema.define(version: 20161007054058) do
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
 
-  create_table "votes", force: true do |t|
+  create_table "votes", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "recipe_id"
     t.integer  "value"
