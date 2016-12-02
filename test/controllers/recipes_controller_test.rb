@@ -22,7 +22,7 @@ class RecipesControllerTest < ActionController::TestCase
 
   test "should be redirect to a random recipe path" do
     get :shuffle
-    assert_redirected_to(  controller: "recipes", action: "show", id: /[0-9]+/ ) 
+    assert_redirected_to %r(/recipes/[0-9]+)
   end
 
 
