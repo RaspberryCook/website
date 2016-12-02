@@ -18,8 +18,19 @@
 		<pre><%= session['recipes_viewed'] %></pre>
 	<% end %>
 
+	<script type="text/javascript">
+		function defer(method){
+			if(window.jQuery)
+				method();
+			else
+				setTimeout(function(){defer(method)},50)
+		}
+	</script>
+
 
 	<%= yield %>
+
+
 
 	<header><%= render 'layouts/header' %></header>
 	<footer><%= render 'layouts/footer' %></footer>
@@ -33,11 +44,17 @@
 
 	<% end %> 
 
+	
+	
+
 
 	<script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
 	<script src="//code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
 
-	<%= javascript_include_tag 'application' %>
+	<script src="http://code.highcharts.com/highcharts.js"></script>
+	<script src="http://code.highcharts.com/modules/exporting.js"></script>
+
+	
 
 
 	<!-- Google Analytic -->

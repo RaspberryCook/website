@@ -19,8 +19,9 @@
 
 <section class="home" style="background-image: url('/assets/images/recipe.png'); background-position: right">
 	<h2>Des <strong>recettes</strong>. Partout. Tout plein</h2>
-	<p>Consultez, partagez, télechargez vos recettes préferées. C'est tout simplement génial!</p>
-	<%= render 'shared/recipes' , :recipes => @recipes %>
+
+	<p>Les recettes du moment</p>
+	<%= render 'recipes/podium' , :recipes => @recipes %>
 </section>
 
 <section class="home" style="background-image: url('/assets/images/flatvsrealism.png')">
