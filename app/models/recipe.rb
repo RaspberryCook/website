@@ -25,12 +25,14 @@ class Recipe < ActiveRecord::Base
 
   attr_accessible :name, :description, :ingredients, :steps, :season,
     :t_baking, :t_cooling, :t_cooking, :t_rest,
-    :image, :root_recipe_id, :variant_name, :rtype, :views
+    :image, :root_recipe_id, :variant_name, :rtype
   
 
   
   belongs_to :user
   has_many :comments , :dependent => :destroy
+  has_many :views , :dependent => :destroy
+
   mount_uploader :image , ImageUploader
 
   validates :name , :presence   => true
@@ -222,10 +224,18 @@ class Recipe < ActiveRecord::Base
 
   # Add view on recipe
   #
-  # @return [Boolean] as true if success
-  def add_view
-    self.views += 1
-    return self.save
+  # @param user_id [Integer]
+  # @return [View] as view object added
+  def add_view user_id=nil
+    View.create recipe_id: self.id, user_id: user_id
+  end
+
+  
+  # Get nouber of this recipe has been counted
+  #
+  # @return [Integer] as count
+  def count_views
+    self.views.count
   end
 
   private

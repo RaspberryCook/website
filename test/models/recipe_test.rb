@@ -106,8 +106,8 @@ class RecipeTest < ActiveSupport::TestCase
   test "should increment count of views" do
     recipe = Recipe.create name: 'test', user_id: 1
 
-    assert_difference('recipe.views',1) do
-     assert recipe.add_view
+    assert_difference('recipe.views.count',1) do
+     assert recipe.add_view 1
     end
   end
 
