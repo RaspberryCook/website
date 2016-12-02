@@ -103,4 +103,12 @@ class RecipeTest < ActiveSupport::TestCase
     assert_not_nil recipe_imported.true_image_url
   end
 
+  test "should increment count of views" do
+    recipe = Recipe.create name: 'test', user_id: 1
+
+    assert_difference('recipe.views',1) do
+     assert recipe.add_view
+    end
+  end
+
 end

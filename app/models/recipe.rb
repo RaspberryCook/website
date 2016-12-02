@@ -219,6 +219,15 @@ class Recipe < ActiveRecord::Base
     return note
   end
 
+
+  # Add view on recipe
+  #
+  # @return [Boolean] as true if success
+  def add_view
+    self.views += 1
+    return self.save
+  end
+
   private
 
 
@@ -241,5 +250,6 @@ class Recipe < ActiveRecord::Base
     absolute_path =  File.join Rails.root , 'public', picture_url
     return File.file? absolute_path
   end
+
 
 end

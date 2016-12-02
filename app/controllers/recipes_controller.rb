@@ -3,7 +3,6 @@ class RecipesController < ApplicationController
 	before_filter :authenticate, :only =>  [:destroy , :update , :edit ,:new, :add, :create, :fork, :import]
 	before_filter :check_recipe_owner, :only =>  [:destroy , :update , :edit]
 
-
 	# GET /recipes/1
 	def show
 
@@ -13,6 +12,8 @@ class RecipesController < ApplicationController
 		if current_user or session['recipes_viewed'] < 3 
 
 			@recipe = Recipe.find(params[:id])
+			@recipe.add_view
+			
 			@comment = Comment.new
 			@title = @recipe.name
 
@@ -25,15 +26,12 @@ class RecipesController < ApplicationController
 			if current_user
 				@recipe.mark_as_read! :for => current_user
 				@recipe.comments.each { |com| com.mark_as_read! :for => current_user }
-			end
-
-			unless current_user
+			
+			else current_user
 				flash[:notice] = "%s ou %s pour faire vivre Raspberry Cook <3." % [view_context.link_to("Connectez-vous", signin_path), view_context.link_to("créez un compte", signup_path)]
 				session['recipes_viewed'] += 1
 			end
 
-			
-			
 
 		else
 			flash[:error] = "Vous avez déjà consulté %s recettes. Vous devez vous %s, %s ou bien revenir plus tard." % [ 
