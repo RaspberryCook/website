@@ -1,41 +1,36 @@
 <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
 
+<pre>
+  <%= best_recipes_json.html_safe %>
+</pre>
+
 <script type="text/javascript">
 
   defer(function(){
 
     $('#container').highcharts({
-        chart: {
-            type: 'column'
-        },
-        title: {
-            text: 'RATING'
-        },
-        xAxis: {
-            categories: false,
-            lineWidth: 0,
-            minorGridLineWidth: 0,
-            lineColor: 'transparent',
-            labels: {
-               enabled: false
-           },
-            minorTickLength: 0,
-            tickLength: 0
-        },
-        yAxis: {
-            min: 0,
-            gridLineWidth: 0,
-            title: {
-                text: false
-            },
-            labels: {
-               enabled: false
-           }
-        },
-         legend: {
-               enabled: false
-           
-        },
+      chart: {
+        type: 'column',
+        backgroundColor: 'transparent'
+      },
+      title: {
+        text: 'Les recettes du moment'
+      },
+      xAxis: {
+        categories: false,
+        lineWidth: 0,
+        minorGridLineWidth: 0,
+        lineColor: 'transparent',
+        labels: { enabled: false },
+        minorTickLength: 0,
+        tickLength: 0
+      },
+      yAxis: {
+        min: 0,
+        gridLineWidth: 0,
+        title: {text: false },
+        labels: {enabled: false } },
+        legend: {enabled: false },
         tooltip: {
             headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
             pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
@@ -58,14 +53,8 @@
         },
        
         series: [{
-            name: 'RATING',
-            data:[
-                ['MD', 2],
-                ['ML', 4],
-                ['SB', 5],
-                ['JB', 3],
-                ['TB', 1]
-                ],
+            name: 'views',
+            data:<%= best_recipes_json.html_safe %>,
             dataLabels: {
                 enabled: true,
                 color: 'white',
