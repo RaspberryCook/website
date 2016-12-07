@@ -31,6 +31,8 @@ class Recipe < ActiveRecord::Base
   
   belongs_to :user
   has_many :comments , :dependent => :destroy
+  has_many :views , :dependent => :destroy
+
   mount_uploader :image , ImageUploader
 
   validates :name , :presence   => true
@@ -219,6 +221,23 @@ class Recipe < ActiveRecord::Base
     return note
   end
 
+
+  # Add view on recipe
+  #
+  # @param user_id [Integer]
+  # @return [View] as view object added
+  def add_view user_id=nil
+    View.create recipe_id: self.id, user_id: user_id
+  end
+
+  
+  # Get nouber of this recipe has been counted
+  #
+  # @return [Integer] as count
+  def count_views
+    self.views.count
+  end
+
   private
 
 
@@ -241,5 +260,6 @@ class Recipe < ActiveRecord::Base
     absolute_path =  File.join Rails.root , 'public', picture_url
     return File.file? absolute_path
   end
+
 
 end
