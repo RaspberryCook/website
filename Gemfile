@@ -30,9 +30,6 @@ gem 'unread'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
-# Use jquery as the JavaScript library
-gem 'jquery-rails'
-gem 'jquery-ui-rails'
 gem 'json'
 
 #for use old version of rails for attributes
