@@ -61,7 +61,11 @@
 	<% end %></span>
 <% end %>
 
+
+
 <%= render 'shared/user' , :user => @recipe.user %>
+
+
 
 
 <!-- forked recipes -->
@@ -103,6 +107,11 @@ if forked_recipes.length > 0 %>
 	<% end %>
 
 </ul>
+
+<span id="count_views">
+	 <%= image_tag "/assets/images/icons/views.svg" %>
+	 <strong>vue <%= @recipe.count_views %> fois</strong>
+</span>
 
 
 

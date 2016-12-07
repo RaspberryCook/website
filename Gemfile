@@ -1,27 +1,27 @@
 source 'https://rubygems.org'
 
-gem 'rails', '4.0.13'# Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
+gem 'rails' , '~>4.2.7.1'# Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 
 
 
 
 #Database
 gem 'sqlite3'# Use sqlite3 as the database for Active Record
-gem 'mysql2' , '~> 0.3.18' #need to install libmysqlclient-dev
+gem 'mysql2'  #need to install libmysqlclient-dev
 
 #for avatar
 gem 'gravatar'
 
 # Use SCSS & SASS for stylesheets
-gem 'sass-rails', '~> 4.0.2'
+gem 'sass-rails'
 gem 'compass'
 gem 'compass-rails'
 
 # Use Uglifier as compressor for JavaScript assets
-gem 'uglifier', '>= 1.3.0'
+gem 'uglifier'
 
 # Use CoffeeScript for .js.coffee assets and views
-gem 'coffee-rails', '~> 4.0.0'
+gem 'coffee-rails'
 
 # to manage read/unread status of ActiveRecord objects - and it's fast.
 gem 'unread'
@@ -42,7 +42,7 @@ gem 'protected_attributes'
 gem 'rails4-autocomplete'
 gem 'rails-jquery-autocomplete'
 
-gem 'will_paginate', '~> 3.0.6'#https://github.com/mislav/will_paginate
+gem 'will_paginate'#https://github.com/mislav/will_paginate
 
 
 group :development do
@@ -61,7 +61,7 @@ gem 'authlogic'
 
 # to get recipe data from marmiton.org
 gem 'nokogiri'
-gem 'recipe_crawler', '>= 2.0.0' # my first gem :')
+gem 'recipe_scraper', '~>2.2.1' # my first gem :')
 
 
 #for upload picture
@@ -76,9 +76,10 @@ gem 'wkhtmltopdf-binary'
 gem 'turbolinks'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 1.2'
+gem 'jbuilder'
 
 group :doc do
 	# bundle exec rake doc:rails generates the API under doc/api.
 	gem 'sdoc', require: false
+	gem 'yard', require: false
 end

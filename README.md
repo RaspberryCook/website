@@ -41,7 +41,7 @@ My configuration
 * HP Pavillon G72-a55sf
 * Linux Mint 17.3 Cinnamon 64-bit
 * Ruby 2.1.5p273
-* Rails 4.2.5.1
+* Rails 4.2.7.1
 * Sublime Text 3
 * Firefox 44
 
