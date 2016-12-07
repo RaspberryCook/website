@@ -63,8 +63,8 @@
 
 <%= render 'shared/user' , :user => @recipe.user %>
 
-<span id="count_views">
-	 <%= image_tag "/assets/images/icons/views.svg" %>*<%= @recipe.count_views %>
+<span id="count_views" style="background-image: url(/assets/images/icons/views.svg)">
+*<%= @recipe.count_views %>
 </span>
 
 
