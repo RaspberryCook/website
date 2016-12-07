@@ -174,6 +174,44 @@ class Recipe < ActiveRecord::Base
 		return note
 	end
 
+
+
+	#
+	#  Overwride to_json to render view
+	# @param options [Hashs]  options to formate json
+	# 
+	# @return [String]  as json
+	def as_json options
+
+		data = {
+			id: self.id,
+			name: self.name,
+			type: self.rtype,
+			season: self.season,
+			time: {
+				baking: self.t_baking,
+				cooling: self.t_cooling,
+				cooking: self.t_cooking,
+				rest: self.t_rest,
+			}
+		}
+
+		data[:steps] = self.steps.lines if self.steps
+		data[:ingredients] = self.ingredients.lines if self.ingredients
+		data[:user] = {
+			id: self.user.id,
+			username: self.user.username,
+		} if self.user
+
+		return data
+
+		# :ingredients , :steps 
+		# :image,
+		# :root_recipe_id,
+		# :variant_name,
+	end
+
+
 	private
 
 
