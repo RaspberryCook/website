@@ -1,4 +1,4 @@
-require 'recipe_crawler'
+require 'recipe_scraper'
 require 'open-uri'
 
 # Recipe represent a delicious recipe posted on raspberry-cook.fr
@@ -81,7 +81,7 @@ class Recipe < ActiveRecord::Base
   # @return [Recipe] as recipe created
   def self.import url, user_id
     # get  data from url
-    marmiton_recipe = RecipeCrawler::Recipe.new url
+    marmiton_recipe = RecipeScraper::Recipe.new url
     marmiton_recipe_data = marmiton_recipe.to_hash
     # create recipe
     new_recipe = Recipe.new
