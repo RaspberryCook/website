@@ -18,35 +18,33 @@
 </section>
 
 <section class="home" style="background-image: url('/assets/images/recipe.png'); background-position: right">
-	<h2>Des <strong>recettes</strong>. Partout. Tout plein</h2>
-	<p>Consultez, partagez, télechargez vos recettes préferées. C'est tout simplement génial!</p>
+	<h2>Ne soyez pas qu'un simple <strong>glouton</strong>!</h2>
+	<p>Devenez un contributeur en <strong>dupliquant</strong> une recette existante pour ensuite créer <strong>votre propre variante</strong>!</p>
+	<p>Testez votre nouveau pouvoir parmi une recette récement ajoutée.</p>
 	<%= render 'shared/recipes' , :recipes => @recipes %>
+</section>
+
+
+
+<section class="home" style="background-image: url('/assets/images/icons/thief.svg'); background-position: -200px">
+	<h2>Votre recette n'est pas sur Raspberry Cook?</h2>
+
+	<p><strong>Importez</strong> une recette depuis un site "partenaire"!</p>
+	<p>Chez Raspberry Cook nous demanderons <strong>JAMAIS</strong> de travailler. Entrez simplement une addrese web et notre petit robot super entrainé ira la copier pour vous!</p>
 </section>
 
 <section class="home" style="background-image: url('/assets/images/flatvsrealism.png')">
 	<h2>Un <strong>design</strong> IM-PEC-CABLE</h2>
+
 	<p>Ou du moins quand même bien foutu.</p>
 </section>
 
 
-<section class="home" style="background-image: url('/assets/images/github-octocat.svg'); background-position: right -160px center">
-	<h2>Un projet <strong>open-source</strong></h2>
-	<p>Et ça ne veut pas seulement dire "<strong>gratuit</strong>" !</p>
-</section>
-
-
-<section class="home" style="background-image: url('/assets/images/icons/thief.svg'); background-position: -200px">
-	<h2>Vous êtes flemmard? Moi aussi!</h2>
-
-	<p><strong>Importez</strong> instantanément une recette depuis un autre site! <br/><%= link_to "Raspberry Cook", home_path %> travaille pour vous!</p>
-
-	<p><%= link_to "Marmiton.org", "http://www.marmiton.org/" %>, <%= link_to "750g.com", "http://www.750g.com/" %> et <%= link_to "CuisineAZ.com", "http://www.cuisineaz.com/" %>: on prend tout!</p>
-
-</section>
 
 <section class="home" style="background-image: url('/assets/images/charity.svg')">
 	<h2>Participez à l'avènement d'un site <strong>révolutionnaire</strong></h2>
-	<p><strong>Partagez</strong>, <strong>participez</strong> et <strong>contribuez</strong> au projet!</p>
+	<p>Nous avons qu'un seul but: que tout le monde soit gros et heureux!</p>
+	<p><strong>Partagez</strong> et/ou <strong>contribuez</strong> au projet!</p>
 	<ul class="share">
 		<li><%= link_to(image_tag("/assets/images/icons/fb.svg"),'https://www.facebook.com/raspberrycook')%>La page <strong>Facebook</strong></li>
 		<li><%= link_to(image_tag("/assets/images/icons/intgr.svg"),'https://www.instagram.com/raspberry_cook/')%>La chaine <strong>Instagram</strong></li>
