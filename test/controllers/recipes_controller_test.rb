@@ -11,6 +11,8 @@ class RecipesControllerTest < ActionController::TestCase
   test "should get index" do
     get :index
     assert_response :success
+    get :index, format: 'json'
+    assert_response :success
   end
 
 
@@ -86,6 +88,8 @@ class RecipesControllerTest < ActionController::TestCase
 
   test "should show recipe" do
     get :show, id: @recipe
+    assert_response :success
+    get :show, id: @recipe, format: 'json'
     assert_response :success
   end
 

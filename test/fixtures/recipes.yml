@@ -5,29 +5,49 @@ one:
   name: Tomato & Cucumber
   user_id: 1
   description: a pretty description
-  ingredients: tomato \r\ncucumber
-  steps: step 1 \r\nstep 2 \r\nstep 3
+  ingredients: |
+    tomato
+    cucumber
+  steps: |
+    step 1
+    step 2
+    step 3
 
 two:
   name: Tomato & Cucumber
   user_id: 2
   description: a pretty description
-  ingredients: tomato \r\ncucumber
-  steps: step 1 \r\nstep 2 \r\nstep 3
+  ingredients: |
+    tomato
+    cucumber
+  steps: |
+    step 1
+    step 2
+    step 3
 
 my_recipe:
   name: my_recipe
   user_id: 1
   description: a pretty description
-  ingredients: tomato \r\ncucumber
-  steps: step 1 \r\nstep 2 \r\nstep 3
+  ingredients: |
+    tomato
+    cucumber
+  steps: |
+    step 1
+    step 2
+    step 3
 
 girlfirend_recipe:
   name: girlfirend_recipe
   user_id: 2
   description: a pretty description
-  ingredients: tomato \r\ncucumber
-  steps: step 1 \r\nstep 2 \r\nstep 3
+  ingredients: |
+    tomato
+    cucumber
+  steps: |
+    step 1
+    step 2
+    step 3
 
 searched_recipe:
   name: to_search
@@ -44,13 +64,13 @@ bouchee_pommes_de_terre:
   created_at: 2015-09-24 19:10:59
   updated_at: 2016-02-13 19:12:09
   description: Une recette idéale en hiver
-  ingredients: > 
+  ingredients: |
     3 pommes de terre
     2 tranches de bacon / personne
     Un camembert
     Crème
     Poivre
-  steps: >
+  steps: |
     CibouletteRincer, peler et découper les pommes de terre en petits morceaux. 
     Les faire cuire dans de l'eau à ébullition pendant 20 minutes.
     Une fois cuites, les écraser avec la crème, le poivre et la ciboulette.
@@ -70,10 +90,10 @@ pasta:
   created_at: 2015-09-25 16:31:12
   updated_at: 2016-04-04 18:30:11
   description: Simplement des pâtes cuites avec ... de l'eau!
-  ingredients: > 
+  ingredients: |
     un sachet de pâte
     de l'eau
-  steps: >
+  steps: |
     Mettre les pâtes dans l'eau bouillante et attendre une dizaine de minutes.
     Laisser égoutter quelques minutes et c'est prêt.
     miam!
@@ -87,10 +107,18 @@ pasta:
 recipe8:
   name: recipe8
   user_id: 999
+  steps: |
+    step 1
+    step 2
+    step 3
 
 recipe9:
   name: recipe9
   user_id: 999
+  steps: |
+    step 1
+    step 2
+    step 3
 
 recipe10:
   name: recipe10
