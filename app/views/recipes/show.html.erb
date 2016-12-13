@@ -89,9 +89,7 @@ if forked_recipes.length > 0 %>
 	<li><%= link_to "sauvegarder", recipe_save_path( :id => @recipe.id) , :class => 'button_save' %></li>
 
 	<!-- Add a fork button if the user is connected -->
-	<% if current_user and  @recipe.root_recipe_id == 0%>
-		<li><%= link_to "créer une variante" , recipes_fork_path( :id => @recipe.id) , :class => 'button_edit' %></li>
-	<% end %>
+	<li><%= link_to "créer une variante" , recipes_fork_path( :id => @recipe.id) , :class => 'button_edit' %></li>
 
 	<!-- if it's the owner of the recipe  -->
 	<% if current_user == @recipe.user %>

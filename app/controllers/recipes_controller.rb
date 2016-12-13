@@ -1,3 +1,5 @@
+require 'uri'
+
 # Recipe controller permit to CRUD recipes
 class RecipesController < ApplicationController
 	before_filter :authenticate, :only =>  [:destroy , :update , :edit ,:new, :add, :create, :fork, :import]
@@ -13,24 +15,32 @@ class RecipesController < ApplicationController
 
 			@recipe = Recipe.find(params[:id])
 			@recipe.add_view
-			
-			@comment = Comment.new
-			@title = @recipe.name
 
-			if @recipe.description
-				@description = 'Une delicieuse recette de %s.' % @recipe.user.firstname
-			else
-				@description = @recipe.description
-			end
+			respond_to do |format|
+				format.json { render json: @recipe  }
+				format.html {
+					@comment = Comment.new
+					@title = @recipe.name
 
-			if current_user
-				@recipe.mark_as_read! :for => current_user
-				@recipe.comments.each { |com| com.mark_as_read! :for => current_user }
-			
-			else current_user
-				flash[:notice] = "%s ou %s pour faire vivre Raspberry Cook <3." % [view_context.link_to("Connectez-vous", signin_path), view_context.link_to("créez un compte", signup_path)]
-				session['recipes_viewed'] += 1
+					if @recipe.description
+						@description = 'Une delicieuse recette de %s.' % @recipe.user.firstname
+					else
+						@description = @recipe.description
+					end
+
+					if current_user
+						@recipe.mark_as_read! :for => current_user
+						@recipe.comments.each { |com| com.mark_as_read! :for => current_user }
+					
+					else current_user
+						flash[:notice] = "%s ou %s pour faire vivre Raspberry Cook <3." % [view_context.link_to("Connectez-vous", signin_path), view_context.link_to("créez un compte", signup_path)]
+						session['recipes_viewed'] += 1
+					end
+					render "show"
+				}
 			end
+			
+			
 
 
 		else
@@ -62,14 +72,35 @@ class RecipesController < ApplicationController
 
 	# POST /recipes 
 	def create
-		@recipe = current_user.recipes.create(params[:recipe])
-		if @recipe.save
-			flash[:success] = "huuummm! Dites nous en plus!"
-			redirect_to edit_recipe_path(@recipe)
+		name_sent = params[:recipe][:name]
+
+		# we check before if the name sent is an url
+		# if name_sent is an url, we try to import recipe from host
+		if name_sent =~ URI::regexp
+			begin
+				# import from the url
+				recipe_imported = Recipe.import name_sent, current_user.id
+				redirect_to edit_recipe_path(recipe_imported)
+
+			rescue ArgumentError
+				flash[:error] = "Cette URL n'est pas suportée par Raspberry Cook :("
+				redirect_to new_recipe_path
+
+			rescue Error
+				flash[:error] = "Quelque chose a merdé :("
+				redirect_to new_recipe_path
+			end
+			
 		else
-			@title = "nouvelle recette"
-			flash[:error] = "Une erreur est survenue, veuillez essayer à nouveau"
-			render 'new'
+			# Create the recipe
+			@recipe = current_user.recipes.create(params[:recipe])
+			if @recipe.save
+				flash[:success] = "huuummm! Dites nous en plus!"
+				redirect_to edit_recipe_path(@recipe)
+			else
+				flash[:error] = "Une erreur est survenue, veuillez essayer à nouveau"
+				redirect_to new_recipe_path
+			end
 		end
 	end
 
@@ -79,6 +110,11 @@ class RecipesController < ApplicationController
 		@title = "liste des recettes"
 		@description = 'Beaucoup d\'excllentes recettes (oui, oui).'
 		@recipes = Recipe.search params
+		respond_to do |format|
+			format.html { render "index" }
+			format.json { render json: @recipes  }
+		end
+
 	end
 
 
@@ -125,13 +161,6 @@ class RecipesController < ApplicationController
 		redirect_to recipe_path random
 	end
 
-
-	# POST /recipes/import
-	# import a recipe from marmiton.org
-	def import
-		recipe_imported = Recipe.import params[:url], current_user.id
-		redirect_to edit_recipe_path(recipe_imported)
-	end
 
 
 	# GET/POST /recipes/1/fork

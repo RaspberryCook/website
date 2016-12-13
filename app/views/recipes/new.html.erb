@@ -1,18 +1,27 @@
 <section id="recipe_new">
 	<h1>Créez votre recette</h1>
+
+
 	<%= form_for(@recipe) do |f| %>
 
 		<%= render 'shared/error_messages' , :object => f.object %>
+
+		<p>Donnez un nom à votre recette <strong style="display:block">ou</strong> copiez l'adresse web d'une recette hébergée par site "partenaire"*</p>
 
 		<%= f.text_field :name , :placeholder => "Harry Covers et les surgelés"%><br/>
 
 		<%= f.submit 'ajouter' %><br/>
 
+		<small style="display:block;text-align:left;width:100%">
+		* les sites "partenaires" sont:
+			<ul>
+				<li><%= link_to "Marmiton.org", "http://www.marmiton.org/" %></li>
+				<li><%= link_to "750g.com", "http://www.750g.com/" %></li>
+				<li><%= link_to "CuisineAZ.com", "http://www.cuisineaz.com/" %></li>
+			</ul>
+		</small>
+
 	<% end %>
-
-
-	<%= render 'recipes/import' %>
-
 	
 
 </section>

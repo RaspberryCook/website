@@ -7,7 +7,8 @@ class PagesController < ApplicationController
 	# a web page to present Raspberry Cook
 	def home
 		@description = 'Des recettes. Partout. Tout plein!'
-		@recipes = Recipe.last(3).reverse
+		# @recipes = Recipe.last(3).reverse
+		@recipes = Recipe.where.not(image: nil).limit(3)
 	end
 
 

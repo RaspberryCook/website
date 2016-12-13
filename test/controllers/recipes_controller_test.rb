@@ -11,6 +11,8 @@ class RecipesControllerTest < ActionController::TestCase
   test "should get index" do
     get :index
     assert_response :success
+    get :index, format: 'json'
+    assert_response :success
   end
 
 
@@ -48,16 +50,10 @@ class RecipesControllerTest < ActionController::TestCase
   end
 
 
-  test "should be redirected to signup path when non-logged user want import a recipe" do
-    post :import
-    assert_redirected_to signup_path
-  end
-
-
   test "should  import a recipe from 750g" do
     UserSession.create(users(:ben))
     assert_difference('Recipe.count', 1) do
-      post :import, url: "http://www.750g.com/bowl-cake-r100568.htm"
+      post :create, recipe: { name: "http://www.750g.com/bowl-cake-r100568.htm" }
     end
   end
 
@@ -65,7 +61,7 @@ class RecipesControllerTest < ActionController::TestCase
   test "should  import a recipe from marmiton" do
     UserSession.create(users(:ben))
     assert_difference('Recipe.count', 1) do
-      post :import, url: "http://www.750g.com/bowl-cake-r100568.htm"
+      post :create, recipe: { name: "http://www.750g.com/bowl-cake-r100568.htm" }
     end
   end
 
@@ -73,7 +69,15 @@ class RecipesControllerTest < ActionController::TestCase
   test "should  import a recipe from cuisineaz" do
     UserSession.create(users(:ben))
     assert_difference('Recipe.count', 1) do
-      post :import,  url: "http://www.cuisineaz.com/recettes/roules-de-poulet-et-jambon-farcis-sauce-foie-gras-66302.aspx"
+      post :create, recipe: { name: "http://www.cuisineaz.com/recettes/roules-de-poulet-et-jambon-farcis-sauce-foie-gras-66302.aspx" }
+    end
+  end
+
+  test "should not import a recipe because url is not valid" do
+    UserSession.create(users(:ben))
+    assert_no_difference('Recipe.count') do
+      post :create, recipe: { name: "https://www.google.fr" }
+      assert_redirected_to new_recipe_path
     end
   end
 
@@ -86,6 +90,8 @@ class RecipesControllerTest < ActionController::TestCase
 
   test "should show recipe" do
     get :show, id: @recipe
+    assert_response :success
+    get :show, id: @recipe, format: 'json'
     assert_response :success
   end
 
