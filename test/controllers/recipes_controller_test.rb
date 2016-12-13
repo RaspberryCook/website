@@ -75,7 +75,7 @@ class RecipesControllerTest < ActionController::TestCase
 
   test "should not import a recipe because url is not valid" do
     UserSession.create(users(:ben))
-    assert_difference('Recipe.count', 1) do
+    assert_no_difference('Recipe.count') do
       post :create, recipe: { name: "https://www.google.fr" }
       assert_redirected_to new_recipe_path
     end
