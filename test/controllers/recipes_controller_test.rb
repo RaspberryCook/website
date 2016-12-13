@@ -73,6 +73,14 @@ class RecipesControllerTest < ActionController::TestCase
     end
   end
 
+  test "should not import a recipe because url is not valid" do
+    UserSession.create(users(:ben))
+    assert_difference('Recipe.count', 1) do
+      post :create, recipe: { name: "https://www.google.fr" }
+      assert_redirected_to new_recipe_path
+    end
+  end
+
 
   test "should be redirected to signup path when non-logged user want create a recipe" do
     get :create

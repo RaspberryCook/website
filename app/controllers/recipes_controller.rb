@@ -77,9 +77,20 @@ class RecipesController < ApplicationController
 		# we check before if the name sent is an url
 		# if name_sent is an url, we try to import recipe from host
 		if name_sent =~ URI::regexp
-			# import from the url
-			recipe_imported = Recipe.import name_sent, current_user.id
-			redirect_to edit_recipe_path(recipe_imported)
+			begin
+				# import from the url
+				recipe_imported = Recipe.import name_sent, current_user.id
+				redirect_to edit_recipe_path(recipe_imported)
+
+			rescue ArgumentError
+				flash[:error] = "Cette URL n'est pas suportée par Raspberry Cook :("
+				redirect_to new_recipe_path
+
+			rescue Error
+				flash[:error] = "Quelque chose a merdé :("
+				redirect_to new_recipe_path
+			end
+			
 		else
 			# Create the recipe
 			@recipe = current_user.recipes.create(params[:recipe])
@@ -87,9 +98,8 @@ class RecipesController < ApplicationController
 				flash[:success] = "huuummm! Dites nous en plus!"
 				redirect_to edit_recipe_path(@recipe)
 			else
-				@title = "nouvelle recette"
 				flash[:error] = "Une erreur est survenue, veuillez essayer à nouveau"
-				render 'new'
+				redirect_to new_recipe_path
 			end
 		end
 	end
