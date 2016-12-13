@@ -22,7 +22,7 @@ class RecipesControllerTest < ActionController::TestCase
 
   test "should be redirect to a random recipe path" do
     get :shuffle
-    assert_redirected_to(  controller: "recipes", action: "show", id: /[0-9]+/ ) 
+    assert_redirected_to %r(/recipes/[0-9]+)
   end
 
 
@@ -137,6 +137,14 @@ class RecipesControllerTest < ActionController::TestCase
     UserSession.create(users(:ben))
     assert_no_difference('Recipe.count') do
       delete :destroy, id: @recipe
+    end
+  end
+
+  test "should increment number of view when a recipe is consulted" do
+    recipe = recipes(:one)
+    assert_difference('recipe.count_views', 1) do
+      get :show, id: recipe
+      assert_response :success
     end
   end
 
