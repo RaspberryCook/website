@@ -1,3 +1,5 @@
+require 'uri'
+
 # Recipe controller permit to CRUD recipes
 class RecipesController < ApplicationController
 	before_filter :authenticate, :only =>  [:destroy , :update , :edit ,:new, :add, :create, :fork, :import]
@@ -70,14 +72,25 @@ class RecipesController < ApplicationController
 
 	# POST /recipes 
 	def create
-		@recipe = current_user.recipes.create(params[:recipe])
-		if @recipe.save
-			flash[:success] = "huuummm! Dites nous en plus!"
-			redirect_to edit_recipe_path(@recipe)
+		name_sent = params[:recipe][:name]
+
+		# we check before if the name sent is an url
+		# if name_sent is an url, we try to import recipe from host
+		if name_sent =~ URI::regexp
+			# import from the url
+			recipe_imported = Recipe.import name_sent, current_user.id
+			redirect_to edit_recipe_path(recipe_imported)
 		else
-			@title = "nouvelle recette"
-			flash[:error] = "Une erreur est survenue, veuillez essayer à nouveau"
-			render 'new'
+			# Create the recipe
+			@recipe = current_user.recipes.create(params[:recipe])
+			if @recipe.save
+				flash[:success] = "huuummm! Dites nous en plus!"
+				redirect_to edit_recipe_path(@recipe)
+			else
+				@title = "nouvelle recette"
+				flash[:error] = "Une erreur est survenue, veuillez essayer à nouveau"
+				render 'new'
+			end
 		end
 	end
 
@@ -138,13 +151,6 @@ class RecipesController < ApplicationController
 		redirect_to recipe_path random
 	end
 
-
-	# POST /recipes/import
-	# import a recipe from marmiton.org
-	def import
-		recipe_imported = Recipe.import params[:url], current_user.id
-		redirect_to edit_recipe_path(recipe_imported)
-	end
 
 
 	# GET/POST /recipes/1/fork
