@@ -13,24 +13,32 @@ class RecipesController < ApplicationController
 
 			@recipe = Recipe.find(params[:id])
 			@recipe.add_view
-			
-			@comment = Comment.new
-			@title = @recipe.name
 
-			if @recipe.description
-				@description = 'Une delicieuse recette de %s.' % @recipe.user.firstname
-			else
-				@description = @recipe.description
-			end
+			respond_to do |format|
+				format.json { render json: @recipe  }
+				format.html {
+					@comment = Comment.new
+					@title = @recipe.name
 
-			if current_user
-				@recipe.mark_as_read! :for => current_user
-				@recipe.comments.each { |com| com.mark_as_read! :for => current_user }
-			
-			else current_user
-				flash[:notice] = "%s ou %s pour faire vivre Raspberry Cook <3." % [view_context.link_to("Connectez-vous", signin_path), view_context.link_to("créez un compte", signup_path)]
-				session['recipes_viewed'] += 1
+					if @recipe.description
+						@description = 'Une delicieuse recette de %s.' % @recipe.user.firstname
+					else
+						@description = @recipe.description
+					end
+
+					if current_user
+						@recipe.mark_as_read! :for => current_user
+						@recipe.comments.each { |com| com.mark_as_read! :for => current_user }
+					
+					else current_user
+						flash[:notice] = "%s ou %s pour faire vivre Raspberry Cook <3." % [view_context.link_to("Connectez-vous", signin_path), view_context.link_to("créez un compte", signup_path)]
+						session['recipes_viewed'] += 1
+					end
+					render "show"
+				}
 			end
+			
+			
 
 
 		else
@@ -82,7 +90,7 @@ class RecipesController < ApplicationController
 		respond_to do |format|
 			format.html { render "index" }
 			format.json { render json: @recipes  }
-		    end
+		end
 
 	end
 
