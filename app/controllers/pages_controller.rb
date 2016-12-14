@@ -50,10 +50,6 @@ class PagesController < ApplicationController
 				query << "ingredients LIKE ?"
 				ingredients_params << "%#{ing}%"
 			}
-			puts "="*80
-			puts query.join(" AND ")
-			puts ingredients_params
-			puts "="*80
 			recipes = Recipe.where(query.join(" AND "), *ingredients_params)
 		else
 			recipes = Recipe.all
