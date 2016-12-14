@@ -18,7 +18,7 @@
     <%= submit_tag "rechercher" %>
   <% end %>
 
-  <% if @recipe # if @recipes exists, we display them %>
+  <% if @recipes # if @recipes exists, we display them %>
     <h2>Nos résultats</h2>
     <%= render 'shared/recipes' , :recipes => @recipes %>
     <%= will_paginate @recipes , :class => "apple_pagination" %>
