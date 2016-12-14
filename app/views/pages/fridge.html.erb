@@ -1,0 +1,60 @@
+<section id="fridge">
+  <h1><%= @title %></h1>
+  <p><%= @description %></p>
+
+  <form id="ingredients_adder">
+    <input id="ingredient" type="text" name="ingredient">
+    <input type="submit" value="+">
+  </form>
+
+  <ul id="ingredients_list">
+  </ul>
+
+  
+
+  <%= form_tag  fridge_path , method: "GET" do  %>
+    <%= text_field_tag 'ingredients' , params[:name], :placeholder => "recherchez une recette"  %>
+    <%= submit_tag "Trouve moi ca!" %>
+  <% end %>
+
+</section>
+
+<script type="text/javascript">
+  // get elements 
+  var form_add_ingredient = document.getElementById('ingredients_adder');
+  var list = document.getElementById('ingredients_list');
+  var input = document.getElementById('ingredient');
+  var output = document.getElementById('ingredients');
+  output.value = "";
+
+  // when user enter a new elements, it will be added to the list
+  form_add_ingredient.addEventListener("submit", function(eForm){
+    eForm.preventDefault();
+
+    var ingredient_name = input.value ;
+    input.value = "";
+
+    // check before if this ingredients was previously added
+    if( output.value.indexOf(ingredient_name) == -1){
+
+      // add ingrdients in the search input 
+      output.value = output.value + ingredient_name + "_";
+
+      // add element to the list
+      var li = document.createElement('li');
+      li.innerHTML = ingredient_name;
+      list.appendChild(li);
+      // if user click on this ellemnts it will be destroyed
+      li.addEventListener("click", function(eLi){
+        // remove ingredient item value from the search box
+        output.value = output.value.replace(this.innerHTML+"_", "")
+        this.remove();
+      });
+
+    }
+
+
+    
+
+  });
+</script>
