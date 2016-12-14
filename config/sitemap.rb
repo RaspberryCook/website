@@ -12,6 +12,8 @@ SitemapGenerator::Sitemap.create do
 	add '/signup'
 	add '/signin' 
 	add '/signout' 
+	add '/feeds', :changefreq => 'daily'
+	add '/fridge'
 
 	add '/pages/credits'
 	add '/pages/home'

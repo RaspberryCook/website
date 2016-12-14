@@ -26,6 +26,8 @@ class RoutesTest < ActionController::TestCase
 
 
   test "pages route test" do
+    assert_recognizes({controller: "pages", action: "fridge"}, {path: '/fridge', method: :get})
+    assert_recognizes({controller: "pages", action: "feeds"}, {path: '/feeds', method: :get})
     assert_recognizes({controller: "pages", action: "home"}, {path: '/home', method: :get})
     assert_recognizes({controller: "pages", action: "infos"}, {path: '/infos', method: :get})
     assert_recognizes({controller: "pages", action: "credits"}, {path: '/credits', method: :get})

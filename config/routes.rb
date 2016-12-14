@@ -20,6 +20,8 @@ RaspberryCook::Application.routes.draw do
   
   match "/404", to: "errors#not_found", :via => :all
   match "/500", to: "errors#internal_server_error", :via => :all
+  
+  match '/fridge' ,   to: 'pages#fridge', as: 'fridge', :via => :all
 
   get '/home' ,   to: 'pages#home', as: 'home'
   get '/feeds' ,   to: 'pages#feeds', as: 'feeds'
