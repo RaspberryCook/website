@@ -10,9 +10,12 @@
 		<% end %>
 	</ul>
 
+
 	<div id="filter">
 		<%= link_to image_tag("/assets/images/icons/filter.svg", size: "56")+"filtrer" , '#' %>
 	</div>
+
+
 
 
 	<%= form_tag  recipes_path , method: "GET", id: "search_recipe_form" do  %>
@@ -44,8 +47,12 @@
 		</fieldset>
 	<% end %>
 
+
+
 	<%= render 'shared/recipes' , :recipes => @recipes %>
 	<%= will_paginate @recipes , :class => "apple_pagination" %>
+
+	
 </section>
 
 <script type="text/javascript">

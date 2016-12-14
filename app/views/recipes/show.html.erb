@@ -66,8 +66,6 @@
 <%= render 'shared/user' , :user => @recipe.user %>
 
 
-
-
 <!-- forked recipes -->
 <% forked_recipes = @recipe.forked_recipes 
 if forked_recipes.length > 0 %>
@@ -105,6 +103,8 @@ if forked_recipes.length > 0 %>
 	<% end %>
 
 </ul>
+
+<p class="tip">Cett recette vous a paru trop grasse? <%= link_to "Créez votre variante" , recipes_fork_path( :id => @recipe.id) %>!</p>
 
 <span id="count_views">
 	 <%= image_tag "/assets/images/icons/views.svg" %>
