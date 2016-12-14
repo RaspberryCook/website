@@ -1,24 +1,32 @@
 <section id="fridge">
   <h1><%= @title %></h1>
-  <p><%= @description %></p>
+
+  <p>Chez <strong>Raspberry Cook</strong> nous détestons le <strong>gachis</strong>! C'est pourquoi nous vous sélectionnons <strong>les meilleurs recettes</strong> avec ce qu'il vous reste!</p>
+
+  <p>Ajoutez vos ingrédients un par un et confirmez la recherche.</p>
+
+  <ul id="ingredients_list">  </ul>
 
   <form id="ingredients_adder">
     <input id="ingredient" type="text" name="ingredient">
-    <input type="submit" value="+">
+    <input type="submit" value="+" style="width:50px">
   </form>
 
-  <ul id="ingredients_list">
-  </ul>
-
   
-
   <%= form_tag  fridge_path , method: "GET" do  %>
     <%= hidden_field_tag 'ingredients' , params[:name], :placeholder => "recherchez une recette"  %>
-    <%= submit_tag "Trouve moi ca!" %>
+    <%= submit_tag "rechercher" %>
   <% end %>
 
-  <%= render 'shared/recipes' , :recipes => @recipes %>
-  <%= will_paginate @recipes , :class => "apple_pagination" %>
+  <% if @recipe # if @recipes exists, we display them %>
+    <h2>Nos résultats</h2>
+    <%= render 'shared/recipes' , :recipes => @recipes %>
+    <%= will_paginate @recipes , :class => "apple_pagination" %>
+
+  <% elsif params[:ingredients] # if @recipes is empty but params is specified, we display that no result were founded %>
+    <p>Ouups ... Il semblerait que nous n'avons rien trouvé</p>
+
+  <% end %>
 
 </section>
 
