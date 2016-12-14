@@ -30,5 +30,13 @@ class PagesController < ApplicationController
 		@recipes_feeds = Recipe.unread_by(current_user).paginate(:page => params[:page]).order('id DESC')
 		@unread_comments = Comment.unread_by(current_user)
 	end
+
+
+	# GET /fridge
+	# GET /pages/fridge
+	def fridge
+		@title = 'Vider mon frigo'
+		@description = 'Cuisinez avec tout ce qui traine dans votre frigo'
+	end
 	
 end

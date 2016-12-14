@@ -22,6 +22,7 @@ RaspberryCook::Application.routes.draw do
   match "/500", to: "errors#internal_server_error", :via => :all
 
   get '/home' ,   to: 'pages#home', as: 'home'
+  get '/fridge' ,   to: 'pages#fridge', as: 'fridge'
   get '/feeds' ,   to: 'pages#feeds', as: 'feeds'
   get '/infos' ,  to: 'pages#infos', as: 'infos'
   get '/credits' ,  to: 'pages#credits', as: 'credits'
