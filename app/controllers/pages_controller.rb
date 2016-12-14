@@ -8,7 +8,7 @@ class PagesController < ApplicationController
 	def home
 		@description = 'Des recettes. Partout. Tout plein!'
 		# @recipes = Recipe.last(3).reverse
-		@recipes = Recipe.where.not(image: nil).limit(3)
+		@recipes = Recipe.where.not(image: nil).order(id: 'DESC').limit(3)
 	end
 
 

@@ -86,7 +86,7 @@ class RecipesController < ApplicationController
 				flash[:error] = "Cette URL n'est pas suportée par Raspberry Cook :("
 				redirect_to new_recipe_path
 
-			rescue Error
+			rescue Exception
 				flash[:error] = "Quelque chose a merdé :("
 				redirect_to new_recipe_path
 			end
