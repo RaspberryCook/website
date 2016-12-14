@@ -29,6 +29,7 @@ class PagesController < ApplicationController
 		@description = 'Tout ce que vous n\'avez pas ecore vu'
 		@recipes_feeds = Recipe.unread_by(current_user).paginate(:page => params[:page]).order('id DESC')
 		@unread_comments = Comment.unread_by(current_user)
+		Comment.mark_as_read! :all, for: current_user
 	end
 
 
