@@ -12,14 +12,8 @@
 
 		<%= f.submit 'ajouter' %><br/>
 
-		<small style="display:block;text-align:left;width:100%">
-		* les sites "partenaires" sont:
-			<ul>
-				<li><%= link_to "Marmiton.org", "http://www.marmiton.org/" %></li>
-				<li><%= link_to "750g.com", "http://www.750g.com/" %></li>
-				<li><%= link_to "CuisineAZ.com", "http://www.cuisineaz.com/" %></li>
-			</ul>
-		</small>
+
+		<p class="tip">Copiez l'adresse d'un site partenaire pour importer la recette sur Raspberry Cook <small>(<%= link_to "Marmiton", "http://www.marmiton.org/" %>, <%= link_to "750g", "http://www.750g.com/" %> ou <%= link_to "CuisineAZ", "http://www.cuisineaz.com/" %>)</small></p>
 
 	<% end %>
 	

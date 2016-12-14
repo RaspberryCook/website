@@ -1,0 +1,86 @@
+<section id="fridge">
+  <h1><%= @title %></h1>
+
+  <p>Chez <strong>Raspberry Cook</strong> nous détestons le <strong>gachis</strong>! C'est pourquoi nous vous sélectionnons <strong>les meilleurs recettes</strong> avec ce qu'il vous reste!</p>
+
+  <p class="tip">Ajoutez vos ingrédients un par un et confirmez la recherche.</p>
+
+  <ul id="ingredients_list">  </ul>
+
+  <form id="ingredients_adder">
+    <input id="ingredient" type="text" name="ingredient">
+    <input type="submit" value="+" style="width:50px">
+  </form>
+
+  
+  <%= form_tag  fridge_path , method: "GET" do  %>
+    <%= hidden_field_tag 'ingredients' , params[:name], :placeholder => "recherchez une recette"  %>
+    <%= submit_tag "rechercher" %>
+  <% end %>
+
+  <% if @recipe # if @recipes exists, we display them %>
+    <h2>Nos résultats</h2>
+    <%= render 'shared/recipes' , :recipes => @recipes %>
+    <%= will_paginate @recipes , :class => "apple_pagination" %>
+
+  <% elsif params[:ingredients] # if @recipes is empty but params is specified, we display that no result were founded %>
+    <p>Ouups ... Il semblerait que nous n'avons rien trouvé</p>
+
+  <% end %>
+
+</section>
+
+<script type="text/javascript">
+  // get elements 
+  var form_add_ingredient = document.getElementById('ingredients_adder');
+  var list = document.getElementById('ingredients_list');
+  var input = document.getElementById('ingredient');
+  var output = document.getElementById('ingredients');
+  output.value = "";
+
+  /**
+  * Add an ingredient to the list
+  * @param name String the name of ingredients
+  */
+  function add_ingredient(name){
+    // add ingrdients in the search input 
+    output.value = output.value + name + "_";
+    // add element to the list
+    var li = document.createElement('li');
+    li.innerHTML = name;
+    list.appendChild(li);
+    // if user click on this ellemnts it will be destroyed
+    li.addEventListener("click", function(eLi){
+      // remove ingredient item value from the search box
+      output.value = output.value.replace(this.innerHTML+"_", "")
+      this.remove();
+    });
+
+  }
+
+  // get params
+  var params = {} ;
+  location.search.substr(1).split("&").forEach(function(item){
+    data = item.split("=");
+    params[data[0]] = data[1] ;
+  });
+
+  //foreach 
+  if(params['ingredients'] != undefined){
+    params['ingredients'].split("_").forEach(function(item){
+      if(item != ""){add_ingredient(item)}
+    });
+  }
+  
+
+  // when user enter a new elements, it will be added to the list
+  form_add_ingredient.addEventListener("submit", function(eForm){
+    eForm.preventDefault();
+    // check before if this ingredients was previously added
+    if( output.value.indexOf(input.value) == -1){
+      add_ingredient(input.value);
+    }
+    input.value = "";
+
+  });
+</script>

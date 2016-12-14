@@ -7,6 +7,7 @@
 		<% end %>
 		<li><%= link_to "bibliothèque" , recipes_path %></li>
 		<li><%= link_to "au hasard" , recipes_shuffle_path %></li>
+		<li><%= link_to "vider le frigo" , fridge_path %></li>
 		<li><%= link_to "créer une recette" , new_recipe_path %></li>
 
 		<% if signed_in? %>
