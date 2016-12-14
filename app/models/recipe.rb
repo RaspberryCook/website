@@ -44,7 +44,7 @@ class Recipe < ActiveRecord::Base
   # Availables seasons for a  recipe
   @@seasons = ['Toutes', 'Printemps', 'Eté', 'Automne', 'Hiver']
   # Time zero represent zero value for a task
-  @@time_zero = Time.new 2000, 01, 01, 01, 00, 00
+  ZERO_TIME = DateTime.new 2000, 01, 01, 00, 00, 00
 
 
   # search all recipes given by a search query params
@@ -90,8 +90,8 @@ class Recipe < ActiveRecord::Base
     new_recipe.steps = marmiton_recipe_data[:steps].join "\r\n"
     cooking_minutes = marmiton_recipe_data[:cooktime].to_i
     baking_minutes = marmiton_recipe_data[:preptime].to_i
-    new_recipe.t_cooking = @@time_zero.advance minutes: cooking_minutes
-    new_recipe.t_baking   = @@time_zero.advance minutes:  baking_minutes
+    new_recipe.t_cooking = ZERO_TIME.advance minutes: cooking_minutes
+    new_recipe.t_baking   = ZERO_TIME.advance minutes:  baking_minutes
     new_recipe.user_id = user_id
 
 

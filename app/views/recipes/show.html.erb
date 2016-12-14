@@ -44,7 +44,7 @@
 	<% %w(cooking baking cooling rest).each do |time| %>
 		<% time_of_recipe = @recipe.public_send("t_#{time}") %>
 		
-		<%  if time_of_recipe.is_a? Time %>
+		<% if time_of_recipe.is_a? Time and time_of_recipe != Recipe::ZERO_TIME %>
 			<div style="background-image:url(/assets/images/time/<%= time %>.svg)" >
 				<time><%=time_of_recipe.strftime "%H:%M"%></time>
 			</div>
