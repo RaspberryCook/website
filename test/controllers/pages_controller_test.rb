@@ -34,5 +34,10 @@ class PagesControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+  test "should post fridge" do
+    post :fridge, ingredients: "az_az"
+    assert_response :success
+  end
+
 
 end

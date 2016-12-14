@@ -13,9 +13,12 @@
   
 
   <%= form_tag  fridge_path , method: "GET" do  %>
-    <%= text_field_tag 'ingredients' , params[:name], :placeholder => "recherchez une recette"  %>
+    <%= hidden_field_tag 'ingredients' , params[:name], :placeholder => "recherchez une recette"  %>
     <%= submit_tag "Trouve moi ca!" %>
   <% end %>
+
+  <%= render 'shared/recipes' , :recipes => @recipes %>
+  <%= will_paginate @recipes , :class => "apple_pagination" %>
 
 </section>
 
@@ -55,9 +58,12 @@
   });
 
   //foreach 
-  params['ingredients'].split("_").forEach(function(item){
-    if(item != ""){add_ingredient(item)}
-  });
+  if(params['ingredients'] != undefined){
+    params['ingredients'].split("_").forEach(function(item){
+      if(item != ""){add_ingredient(item)}
+    });
+  }
+  
 
   // when user enter a new elements, it will be added to the list
   form_add_ingredient.addEventListener("submit", function(eForm){

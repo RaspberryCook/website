@@ -34,9 +34,35 @@ class PagesController < ApplicationController
 
 	# GET /fridge
 	# GET /pages/fridge
+	# POST /fridge
+	# POST /pages/fridge
 	def fridge
 		@title = 'Vider mon frigo'
 		@description = 'Cuisinez avec tout ce qui traine dans votre frigo'
+
+		recipes = nil
+
+		if params[:ingredients]
+			ingredients = params[:ingredients].split('_')
+			query = []
+			ingredients_params = []
+			ingredients.map{|ing|
+				query << "ingredients LIKE ?"
+				ingredients_params << "%#{ing}%"
+			}
+			puts "="*80
+			puts query.join(" AND ")
+			puts ingredients_params
+			puts "="*80
+			recipes = Recipe.where(query.join(" AND "), *ingredients_params)
+		else
+			recipes = Recipe.all
+		end
+		
+
+
+		@recipes = recipes.paginate :page => params[:page]
+		
 	end
 	
 end
