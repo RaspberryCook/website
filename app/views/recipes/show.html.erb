@@ -84,10 +84,10 @@ if forked_recipes.length > 0 %>
 <ul class="actions" >
 
 
-	<li><%= link_to "sauvegarder", recipe_save_path( :id => @recipe.id) , :class => 'button_save' %></li>
+	<li><%= link_to "sauvegarder", save_recipe_path(id: @recipe.id)	, :class => 'button_save' %></li>
 
 	<!-- Add a fork button if the user is connected -->
-	<li><%= link_to "créer une variante" , recipes_fork_path( :id => @recipe.id) , :class => 'button_edit' %></li>
+	<li><%= link_to "créer une variante" , fork_recipe_path( :id => @recipe.id) , :class => 'button_edit' %></li>
 
 	<!-- if it's the owner of the recipe  -->
 	<% if current_user == @recipe.user %>
@@ -104,7 +104,7 @@ if forked_recipes.length > 0 %>
 
 </ul>
 
-<p class="tip">Cett recette vous a paru trop grasse? <%= link_to "Créez votre variante" , recipes_fork_path( :id => @recipe.id) %>!</p>
+<p class="tip">Cett recette vous a paru trop grasse? <%= link_to "Créez votre variante" , fork_recipe_path( :id => @recipe.id) %>!</p>
 
 <span id="count_views">
 	 <%= image_tag "/assets/images/icons/views.svg" %>
