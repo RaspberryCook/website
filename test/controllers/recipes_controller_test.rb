@@ -34,6 +34,8 @@ class RecipesControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+  
+
 
   test "should not create recipe because no one is connected" do
     assert_no_difference('Recipe.count') do
@@ -92,6 +94,11 @@ class RecipesControllerTest < ActionController::TestCase
     get :show, id: @recipe
     assert_response :success
     get :show, id: @recipe, format: 'json'
+    assert_response :success
+  end
+
+  test "should get save" do
+    get :save, id: @recipe
     assert_response :success
   end
 

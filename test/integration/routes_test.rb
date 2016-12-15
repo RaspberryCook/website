@@ -14,9 +14,9 @@ class RoutesTest < ActionController::TestCase
   end
 
   test "recipes socials route test" do
-    assert_recognizes({controller: "recipes", action: "fork", id: "1"}, {path: '/recipes/fork/1', method: :get})
-    assert_recognizes({controller: "recipes", action: "fork"}, {path: '/recipes/fork', method: :post})
-    assert_recognizes({controller: "recipes", action: "save", id: "1"}, {path: '/recipes/save/1', method: :get})
+    assert_recognizes({controller: "recipes", action: "fork", id: "1"}, {path: '/recipes/1/fork', method: :get})
+    assert_recognizes({controller: "recipes", action: "fork", id: "1"}, {path: '/recipes/1/fork', method: :post})
+    assert_recognizes({controller: "recipes", action: "save", id: "1"}, {path: '/recipes/1/save', method: :get})
   end
 
 
