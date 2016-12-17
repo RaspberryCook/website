@@ -6,7 +6,8 @@
 	}
 </style>
 
-<section id="section_home_first" class="home" style="background-image: url('/assets/images/raspberry_cook.svg');background-position: -100px ;  ">
+<div id="section_home_first" class="row home" style="background-image: url('/assets/images/raspberry_cook.svg');background-position: -100px ;  ">
+<!-- <div id="section_home_first" class="home" style="background-image: url('/assets/images/raspberry_cook.svg');background-position: -100px ;  "> -->
 	
 	<h1>Raspberry Cook</h1>
 
@@ -15,27 +16,27 @@
 		<legend>Barack Obama - 2008</legend>
 	</div>
 
-</section>
+</div>
 
-<section class="home" style="background-image: url('/assets/images/icons/people_eating.svg'); background-position: right">
+<div class="row home" style="background-image: url('/assets/images/icons/people_eating.svg'); background-position: right">
 	<h2>Ne soyez pas qu'un simple <strong>glouton</strong>!</h2>
 	<p>Devenez un contributeur en <strong>dupliquant</strong> une recette existante pour ensuite créer <strong>votre propre variante</strong>!</p>
 	<p>Testez votre nouveau pouvoir parmi une recette récement ajoutée.</p>
 	<%= render 'shared/recipes' , :recipes => @recipes %>
-</section>
+</div>
 
 
 
-<section class="home" style="background-image: url('/assets/images/icons/robot.svg'); background-position: -200px">
+<div class="row home" style="background-image: url('/assets/images/icons/robot.svg'); background-position: -200px">
 	<h2>Votre recette n'est pas sur Raspberry Cook?</h2>
 
 	<p><strong>Importez</strong> une recette depuis un site "partenaire"!</p>
 	<p>Chez Raspberry Cook nous ne vous demanderons <strong>JAMAIS</strong> de travailler. Entrez simplement une adresse web et notre petit robot super entraîné ira la copier pour vous!</p>
-</section>
+</div>
 
 
 
-<section class="home" style="background-image: url('/assets/images/charity.svg')">
+<div class="row home" style="background-image: url('/assets/images/charity.svg')">
 	<h2>Participez à l'avènement d'un site <strong>révolutionnaire</strong></h2>
 	<p>Nous n'avons qu'un seul but: que tout le monde soit gros et heureux!</p>
 	<p><strong>Partagez</strong> et/ou <strong>contribuez</strong> au projet!</p>
@@ -45,5 +46,5 @@
 		<li><%= link_to(image_tag("/assets/images/icons/github-icon.svg"),'https://github.com/madeindjs/raspberry_cook')%>Le <strong>projet Github</strong></li>
 		<li><%= link_to(image_tag("/assets/images/icons/wordpress-icon.svg"),'http://blog.raspberry-cook.fr/')%>Le <strong>blog</strong> de développement</li>
 	</ul>
-</section>
+</div>
 

@@ -16,7 +16,7 @@
 				<%= link_to "Raspberry Cook" , home_path , class: "navbar-brand" %>
 			</div>
 			<div id="navbar" class="navbar-collapse collapse">
-				<ul class="nav navbar-nav navbar-left">
+				<ul class="nav navbar-nav navbar-right">
 					<% if signed_in? %>
 						<li><%= link_to "actualités" , feeds_path %></li>
 					<% end %>
@@ -31,14 +31,14 @@
 
 					<li><%= link_to "à propos" , credits_path %></li>
 				</ul>
-				<form class="navbar-form navbar-right">
+				<form class="navbar-form navbar-center">
 					<input class="form-control" placeholder="Search..." type="text">
 				</form>
 			</div>
 		</div>
 	</nav>
 
-	<div class="container">
+	<div class="container-fluid" style="padding-top: 50px">
 		<%= yield %>
 	</div>
 

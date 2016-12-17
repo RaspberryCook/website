@@ -1,59 +1,59 @@
-<section id="content">
-	<h1>Bibliothèque</h1>
+<h1>Bibliothèque</h1>
 
-	<ul id="select_types">
-
-	<li><%= link_to 'Toutes', recipes_path %></li>
+<div class="row" class="list-group">
+		<li  class="list-group-item col-xs-2"><%= link_to 'Toutes', recipes_path %></li>
 		<% Recipe.types.each do |type| %>
-			<li><%= link_to type, recipes_path(type: type) %></li>
-
+			<li class="list-group-item col-xs-2"><%= link_to type, recipes_path(type: type) %></li>
 		<% end %>
-	</ul>
+</div>
 
-
+<div class="row">
 	<div id="filter">
 		<%= link_to image_tag("/assets/images/icons/filter.svg", size: "56")+"filtrer" , '#' %>
 	</div>
+</div>
 
 
+
+<div class="row">
 
 
 	<%= form_tag  recipes_path , method: "GET", id: "search_recipe_form" do  %>
-		<fieldset>
 
-			<div class="field">
-				<%= label_tag  'Nom de recette' %>
-				<%= text_field_tag 'name' , params[:name], :placeholder => "recherchez une recette"  %>
-			</div>
+		<div class="form-group col-md-3 col-xs-6">
+			<%= label_tag  'Nom de recette' %>
+			<%= text_field_tag 'name' , params[:name], placeholder: "recherchez une recette", class: "form-control"  %>
+		</div>
 
-			<div class="field">
-				<%= label_tag  'Ingrédients' %>
-				<%= text_field_tag 'ingredients' , params[:ingredients] , :placeholder => "ingrédients"  %>
-			</div>
+		<div class="form-group col-md-3 col-xs-6">
+			<%= label_tag  'Ingrédients' %>
+			<%= text_field_tag 'ingredients' , params[:ingredients] , placeholder: "ingrédients" , class: "form-control"  %>
+		</div>
 
-			<div class="field">
-				<%= label_tag  'Type de recette' %>
-				<%= select_tag "type",
-					options_for_select(['Toutes','Entrée','Plat','Dessert','Cocktail','Apéritif'], params[:type]) %>
-			</div>
+		<div class="form-group col-md-3 col-xs-6">
+			<%= label_tag  'Type de recette' %>
+			<%= select_tag "type",
+				options_for_select(['Toutes','Entrée','Plat','Dessert','Cocktail','Apéritif'], params[:type]),
+				class: "form-control"  %>
+		</div>
 
-			<div class="field">
-				<%= label_tag  'Saison' %>
-				<%= select_tag "season",
-					options_for_select(['Toutes','Printemps','Eté','Automne','Hiver'], params[:season]) %>
-			</div>
+		<div class="form-group col-md-3 col-xs-6">
+			<%= label_tag  'Saison' %>
+			<%= select_tag "season",
+				options_for_select(['Toutes','Printemps','Eté','Automne','Hiver'], params[:season]),
+				class: "form-control"  %>
+		</div>
 
-				<%= submit_tag "go!" %>
-		</fieldset>
+		<%= submit_tag "go!", class: "btn btn-primary col-md-6"%>
+
 	<% end %>
+</div>
 
 
-
-	<%= render 'shared/recipes' , :recipes => @recipes %>
-	<%= will_paginate @recipes , :class => "apple_pagination" %>
+<%= render 'shared/recipes' , :recipes => @recipes %>
+<%= will_paginate @recipes , :class => "apple_pagination" %>
 
 	
-</section>
 
 <script type="text/javascript">
 	document.addEventListener("DOMContentLoaded", function(event) { 
