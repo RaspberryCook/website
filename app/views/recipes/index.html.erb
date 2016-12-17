@@ -1,6 +1,6 @@
 <h1>Bibliothèque</h1>
 
-<div class="row" class="list-group">
+<div class="row list-group">
 		<li  class="list-group-item col-xs-2"><%= link_to 'Toutes', recipes_path %></li>
 		<% Recipe.types.each do |type| %>
 			<li class="list-group-item col-xs-2"><%= link_to type, recipes_path(type: type) %></li>

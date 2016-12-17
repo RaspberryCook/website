@@ -1,137 +1,115 @@
-<section id="recipe" class="content">
-
-<div id="recipe_fullscreen_picture" 
-	style="background-image: url(<%= @recipe.true_image_url %>);"  ></div>
-
 <h1 class="recipe"><%= @recipe.name  %>
 	<%= " - %s" % @recipe.variant_name if @recipe.variant_name%></h1>
 
 <% recipe_rate = @recipe.rate.to_i %>
 
 
+<div class="row">
 
-<span class="picture_ribon">
-	<ul>
-		
-		<% if @recipe.rtype %>
-			<li><%= link_to image_tag("/assets/images/type_of_food/%s.svg" % @recipe.rtype ) + @recipe.rtype , recipes_path( :type => @recipe.rtype )  %></li>
-		<% end %>
+	<div class="col-md-6">
+		<ul class="list-group-justified">
 
-		<% if @recipe.season %>
-			<li><%= link_to image_tag("/assets/images/seasons/%s.svg" % @recipe.season ) + @recipe.season , recipes_path( :season => @recipe.season )  %></li>
-		<% end %>
+			<li class="list-group-item col-xs-3">
+				<%= link_to image_tag("/assets/images/type_of_food/#{@recipe.rtype}.svg" , class: "icon-recipe" ) + @recipe.rtype , recipes_path( :type => @recipe.rtype )  %>
+			</li>
 
-	</ul>
-</span>
+			<li class="list-group-item col-xs-3">
+				<%= link_to image_tag("/assets/images/seasons/#{@recipe.season}.svg" , class: "icon-recipe" ) + @recipe.season , recipes_path( :season => @recipe.season )  %>
+			</li>
 
+			<li class="list-group-item col-xs-3">
+				<%= recipe_rate.to_i %>/5
+			</li>
 
-<%= image_tag @recipe.true_image_url , alt: 'picture of the recipe for web scrappers' , style: 'display: none'%>
+			<li class="list-group-item col-xs-3">
+				<%= image_tag "/assets/images/icons/views.svg" , class: "icon-recipe"%> vue <%= @recipe.count_views %> fois
+			</li>
 
-<!-- image -->
-<div  id="recipe_picture"
-	style="background-image: url(<%= @recipe.true_image_url %>);"  >
+		</ul>
+		<%= image_tag @recipe.true_image_url , class: "img img-responsive full-width"%>
+	</div>
 
-	<a id="zoom-in" href="#" style="display:none">
-		<%= image_tag("/assets/images/icons/zoom-in.svg", size: "100") %></a>
-		
-</div>
-
+	<div class="col-md-6">
 
 
-<!-- times -->
-<div id="times" class="picture_ribon">
 
-	<% %w(cooking baking cooling rest).each do |time| %>
-		<% time_of_recipe = @recipe.public_send("t_#{time}") %>
-		
-		<% if time_of_recipe.is_a? Time and time_of_recipe != Recipe::ZERO_TIME %>
-			<div style="background-image:url(/assets/images/time/<%= time %>.svg)" >
-				<time><%=time_of_recipe.strftime "%H:%M"%></time>
+		<%= render 'shared/user' , :user => @recipe.user %>
+
+
+		<strong>Ingrédients</strong>
+		<ul class="list-group">
+			<% @recipe.ingredients.each_line do |ingredient|%>
+				<li class="list-group-item"><%= link_to ingredient , recipes_path( :ingredients => ingredient )  %></li>
+			<% end %>
+		</ul>
+
+		<strong>Temps</strong>
+		<ul class="list-group">
+			<% %w(cooking baking cooling rest).each do |time| %>
+				<% time_of_recipe = @recipe.public_send("t_#{time}") %>
+				
+				<% if time_of_recipe.is_a? Time and time_of_recipe != Recipe::ZERO_TIME %>
+					<li  class="list-group-item" >
+						<time><%=time_of_recipe.strftime "%H:%M"%></time>
+					</li>
+				<% end %>
+					
+			<% end %>
+		</ul>
+
+		<div class="btn-group" role="group" aria-label="...">
+			<%= link_to "sauvegarder", save_recipe_path(id: @recipe.id), :class => 'btn btn-primary' %>
+			<!-- Add a fork button if the user is connected -->
+			<%= link_to "créer une variante" , fork_recipe_path( :id => @recipe.id) , :class => 'btn btn-primary' %>
+			<!-- if it's the owner of the recipe  -->
+		</div>
+
+		<p class="tip">Cett recette vous a paru trop grasse? <%= link_to "Créez votre variante" , fork_recipe_path( :id => @recipe.id) %>!</p>
+
+
+		<% if current_user == @recipe.user %>
+			<div class="btn-group" role="group" aria-label="...">
+				<%= link_to "modifier" , edit_recipe_path , 
+							:class => 'btn btn-warning'%>
+				<%= link_to "supprimer" , @recipe ,
+							:class => 'btn btn-danger',
+							:method => :delete, 
+							:confirm => 'Are you sure?' ,
+							:title => "Delete #{@recipe.name}" %>
 			</div>
 		<% end %>
-			
-	<% end %>
+
+	</div>
 
 </div>
 
 
-<%if recipe_rate > 0 %>
-	<span class="star-rating"><% recipe_rate.to_i.times do %>
-		<i style="opacity: 1"></i>
-	<% end %></span>
-<% end %>
+<div class="row">
+	<!-- forked recipes -->
+	<% forked_recipes = @recipe.forked_recipes 
+	if forked_recipes.length > 0 %>
 
+		<h2>Variantes disponnibles</h2>
+		<%= render 'shared/recipes' , :recipes => forked_recipes %>
 
+	<% elsif @recipe.forked?  %>
 
-<%= render 'shared/user' , :user => @recipe.user %>
+		<h2>Recette originelle</h2>
+		<%= render 'shared/recipe' , :recipe => @recipe.root_recipe %>
 
-
-<!-- forked recipes -->
-<% forked_recipes = @recipe.forked_recipes 
-if forked_recipes.length > 0 %>
-
-	<h2>Variantes disponnibles</h2>
-	<%= render 'shared/recipes' , :recipes => forked_recipes %>
-
-<% elsif @recipe.forked?  %>
-
-	<h2>Recette originelle</h2>
-	<%= render 'shared/recipe' , :recipe => @recipe.root_recipe %>
-
-<% end %>
-
-<h2>Actions</h2>
-<ul class="actions" >
-
-
-	<li><%= link_to "sauvegarder", save_recipe_path(id: @recipe.id)	, :class => 'button_save' %></li>
-
-	<!-- Add a fork button if the user is connected -->
-	<li><%= link_to "créer une variante" , fork_recipe_path( :id => @recipe.id) , :class => 'button_edit' %></li>
-
-	<!-- if it's the owner of the recipe  -->
-	<% if current_user == @recipe.user %>
-
-		<li><%= link_to "modifier" , edit_recipe_path , 
-					:class => 'button_edit'%></li>
-
-		<li><%= link_to "supprimer" , @recipe ,
-					:class => 'button_delete',
-					:method => :delete, 
-					:confirm => 'Are you sure?' ,
-					:title => "Delete #{@recipe.name}" %></li>
 	<% end %>
+</div>
 
-</ul>
-
-<p class="tip">Cett recette vous a paru trop grasse? <%= link_to "Créez votre variante" , fork_recipe_path( :id => @recipe.id) %>!</p>
-
-<span id="count_views">
-	 <%= image_tag "/assets/images/icons/views.svg" %>
-	 <strong>vue <%= @recipe.count_views %> fois</strong>
-</span>
-
-
-
-<% if @recipe.ingredients %>
-	<h2>Ingredients</h2>
-	<ul id="ingredients">
-		<% @recipe.ingredients.each_line do |ingredient|%>
-			<li><%= link_to ingredient , recipes_path( :ingredients => ingredient )  %></li>
-		<% end %>
-	</ul>
-<% end %>
-
-<% if @recipe.steps %>
-	<h2>Préparation</h2>
-	<ul id="steps">
-		<% @recipe.steps.each_line do |step|%>
-			<li><span></span><%= step %></li>
-		<% end %>
-	</ul>
-<% end %>
+<div class="row">
+	<% if @recipe.steps %>
+		<h2>Préparation</h2>
+		<ul id="steps">
+			<% @recipe.steps.each_line do |step|%>
+				<li><span></span><%= step %></li>
+			<% end %>
+		</ul>
+	<% end %>
+</div>
 
 
 <%= render 'shared/comments', :comments => @recipe .comments %>
-
-</section>
