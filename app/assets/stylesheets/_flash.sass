@@ -26,3 +26,19 @@ div.flash_notice
 	
 div.flash_success
 	@include message_flash($green)
+
+.tip
+	background-color: $yellow
+	max-width: 400px
+	margin-top: 20px
+	margin-bottom: 20px
+	margin-left: auto
+	margin-right: auto
+	padding: 10px
+	padding-left: 30px
+	text-align: justify
+	@include border-radius(5px)
+	background-image: url('/assets/images/raspberry_cook.svg')
+	background-position: -20px
+	background-size: auto 100%
+	background-repeat: no-repeat

@@ -6,13 +6,11 @@ RaspberryCook::Application.routes.draw do
   match '/signup' , to: 'users#new', :via => [:get, :post]
 
   resources :recipes, :only => [:index, :new , :create , :destroy , :edit]
-  get     'recipes/:id' ,         to: 'recipes#show', id: /[0-9]+/
-  patch  'recipes/:id' ,         to: 'recipes#update', id: /[0-9]+/
-  get     'recipes/fork/:id' ,  to: 'recipes#fork'
-  post    'recipes/fork' ,      to: 'recipes#fork'
-  get     'recipes/save/:id' , to: 'recipes#save', as: 'recipe_save'
-  get     'recipes/search' ,   to: 'recipes#search'
-  get     'recipes/vote/:id' ,  to: 'recipes#vote'
+  get 'recipes/:id', to: 'recipes#show', id: /[0-9]+/
+  patch 'recipes/:id', to: 'recipes#update', id: /[0-9]+/
+  match 'recipes/:id/fork', as: 'fork_recipe', to: 'recipes#fork', id: /[0-9]+/, via: [:get, :post]
+  get 'recipes/shuffle', to: 'recipes#shuffle'
+  get 'recipes/:id/save', as: 'save_recipe', to: 'recipes#save', id: /[0-9]+/
 
   resources :sessions, :only => [:new , :create , :destroy ]
   match '/signin' , to: 'sessions#new', :via => [:get, :post]
@@ -20,6 +18,8 @@ RaspberryCook::Application.routes.draw do
   
   match "/404", to: "errors#not_found", :via => :all
   match "/500", to: "errors#internal_server_error", :via => :all
+  
+  match '/fridge' ,   to: 'pages#fridge', as: 'fridge', :via => :all
 
   get '/home' ,   to: 'pages#home', as: 'home'
   get '/feeds' ,   to: 'pages#feeds', as: 'feeds'

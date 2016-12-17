@@ -14,11 +14,11 @@
 	<ul>
 		
 		<% if @recipe.rtype %>
-			<li><%= link_to image_tag("/assets/images/type_of_food/%s.svg" % @recipe.rtype ) + @recipe.rtype , recipes_search_path( :type => @recipe.rtype )  %></li>
+			<li><%= link_to image_tag("/assets/images/type_of_food/%s.svg" % @recipe.rtype ) + @recipe.rtype , recipes_path( :type => @recipe.rtype )  %></li>
 		<% end %>
 
 		<% if @recipe.season %>
-			<li><%= link_to image_tag("/assets/images/seasons/%s.svg" % @recipe.season ) + @recipe.season , recipes_search_path( :season => @recipe.season )  %></li>
+			<li><%= link_to image_tag("/assets/images/seasons/%s.svg" % @recipe.season ) + @recipe.season , recipes_path( :season => @recipe.season )  %></li>
 		<% end %>
 
 	</ul>
@@ -44,7 +44,7 @@
 	<% %w(cooking baking cooling rest).each do |time| %>
 		<% time_of_recipe = @recipe.public_send("t_#{time}") %>
 		
-		<%  if time_of_recipe.is_a? Time %>
+		<% if time_of_recipe.is_a? Time and time_of_recipe != Recipe::ZERO_TIME %>
 			<div style="background-image:url(/assets/images/time/<%= time %>.svg)" >
 				<time><%=time_of_recipe.strftime "%H:%M"%></time>
 			</div>
@@ -60,6 +60,8 @@
 		<i style="opacity: 1"></i>
 	<% end %></span>
 <% end %>
+
+
 
 <%= render 'shared/user' , :user => @recipe.user %>
 
@@ -82,12 +84,10 @@ if forked_recipes.length > 0 %>
 <ul class="actions" >
 
 
-	<li><%= link_to "sauvegarder", recipe_save_path( :id => @recipe.id) , :class => 'button_save' %></li>
+	<li><%= link_to "sauvegarder", save_recipe_path(id: @recipe.id)	, :class => 'button_save' %></li>
 
 	<!-- Add a fork button if the user is connected -->
-	<% if current_user and  @recipe.root_recipe_id == 0%>
-		<li><%= link_to "créer une variante" , recipes_fork_path( :id => @recipe.id) , :class => 'button_edit' %></li>
-	<% end %>
+	<li><%= link_to "créer une variante" , fork_recipe_path( :id => @recipe.id) , :class => 'button_edit' %></li>
 
 	<!-- if it's the owner of the recipe  -->
 	<% if current_user == @recipe.user %>
@@ -104,13 +104,20 @@ if forked_recipes.length > 0 %>
 
 </ul>
 
+<p class="tip">Cett recette vous a paru trop grasse? <%= link_to "Créez votre variante" , fork_recipe_path( :id => @recipe.id) %>!</p>
+
+<span id="count_views">
+	 <%= image_tag "/assets/images/icons/views.svg" %>
+	 <strong>vue <%= @recipe.count_views %> fois</strong>
+</span>
+
 
 
 <% if @recipe.ingredients %>
 	<h2>Ingredients</h2>
 	<ul id="ingredients">
 		<% @recipe.ingredients.each_line do |ingredient|%>
-			<li><%= link_to ingredient , recipes_search_path( :ingredients => ingredient )  %></li>
+			<li><%= link_to ingredient , recipes_path( :ingredients => ingredient )  %></li>
 		<% end %>
 	</ul>
 <% end %>

@@ -3,12 +3,14 @@ require 'test_helper'
 class RecipeTest < ActiveSupport::TestCase
 
   test "should found one recipe" do
-    recipes = Recipe.search 'to_search' , 'to_search' , nil, nil, 1
-    assert_equal 0, recipes.count
+    params = { :name => 'to_search' , :ingredients => 'to_search' , :page => 1 }
+    recipes = Recipe.search params
+    assert_equal 1, recipes.count
   end
 
   test "should not found one recipe" do
-    recipes = Recipe.search 'not_to_search' , 'to_search' , nil, nil, 1
+    params = { :name => 'not_to_search' , :ingredients => 'to_search' , :page => 1 }
+    recipes = Recipe.search params
     assert_equal 0, recipes.count
   end
 
@@ -63,6 +65,50 @@ class RecipeTest < ActiveSupport::TestCase
   test "sould return 0 if recipe have not comment" do
     new_recipe = Recipe.create user_id: 8 , name:"a recipe without comment :("
     assert_equal 0, new_recipe.rate
+  end
+
+  test "should return all types" do 
+    assert_equal  ['Entrée', 'Plat', 'Dessert', 'Cocktail', 'Apéritif'], Recipe.types
+  end
+
+  test "should return all seasons" do 
+    assert_equal  ['Toutes', 'Printemps', 'Eté', 'Automne', 'Hiver'], Recipe.seasons
+  end
+
+  test "should fail to import recipe (url not valid)" do
+    assert_raise(ArgumentError){  Recipe.import "http://google.com", nil }
+  end
+
+  test "should import a recipe from marmiton" do
+
+    assert_difference('Recipe.count') do
+
+      recipe_imported =  Recipe.import "http://www.marmiton.org/recettes/recette_paupiettes-de-veau-en-cocotte_18361.aspx", 1
+      # check if recipe founded is a recipe
+      assert_instance_of Recipe,  recipe_imported
+      # check if informations are correct
+      assert_equal 'Paupiettes de veau en cocotte', recipe_imported.name 
+      assert_not_nil recipe_imported.steps
+      assert_not_nil recipe_imported.ingredients 
+      assert_not_nil recipe_imported.t_baking 
+      assert_not_nil recipe_imported.t_cooking 
+      assert_equal 1, recipe_imported.user_id 
+
+    end
+
+  end
+
+  test "Should import the marmiton picture" do
+    recipe_imported =  Recipe.import "http://www.marmiton.org/recettes/recette_paupiettes-de-veau-en-cocotte_18361.aspx", 1
+    assert_not_nil recipe_imported.true_image_url
+  end
+
+  test "should increment count of views" do
+    recipe = Recipe.create name: 'test', user_id: 1
+
+    assert_difference('recipe.views.count',1) do
+     assert recipe.add_view 1
+    end
   end
 
 end

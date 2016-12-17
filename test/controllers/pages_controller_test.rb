@@ -29,5 +29,15 @@ class PagesControllerTest < ActionController::TestCase
     assert_redirected_to signup_path
   end
 
+  test "should get fridge" do
+    get :fridge
+    assert_response :success
+  end
+
+  test "should post fridge" do
+    post :fridge, ingredients: "az_az"
+    assert_response :success
+  end
+
 
 end
