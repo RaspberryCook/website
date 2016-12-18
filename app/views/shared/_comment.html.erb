@@ -4,9 +4,7 @@
 
 	<p>
 		<strong><%= link_to comment.user.username , comment.user %></strong> 
-		<span class="star-rating"><% comment.rate.times do %>
-			<span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-		<% end %></span>
+		<%= render 'shared/stars', :stars => comment.rate %>
 		il y  <date><%= pluralize since_days , ' jour' %></date>
 	</p>
 		

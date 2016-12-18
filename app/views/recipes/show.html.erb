@@ -1,43 +1,44 @@
-<h1 class="recipe"><%= @recipe.name  %>
-	<%= " - %s" % @recipe.variant_name if @recipe.variant_name%></h1>
+<div class="row">
 
-<% recipe_rate = @recipe.rate.to_i %>
+	<% if @recipe.user %>
+		<div class="col-xs-1">
+			<%= image_tag gravatar_url( @recipe.user.email, 100) , class: 'img-responsive img-rounded' %>
+		</div>
+	<% end %>
+
+	<div class="col-xs-11">
+		<h1 class="recipe"><%= @recipe.name  %>
+			<%= " - %s" % @recipe.variant_name if @recipe.variant_name%></h1>
+		<p>Une recette de <%= render 'users/link', user: @recipe.user %></p>
+	</div>
+
+</div>
 
 
 <div class="row">
 
 	<div class="col-md-6">
-		<ul class="list-group-justified">
 
-			<li class="list-group-item col-xs-3">
-				<%= link_to image_tag("/assets/images/type_of_food/#{@recipe.rtype}.svg" , class: "icon-recipe" ) + @recipe.rtype , recipes_path( :type => @recipe.rtype )  %>
-			</li>
+		<div class="col-xs-6">
+			<span class="label label-info">Type: <%= link_to @recipe.rtype ,  recipes_path( :type => @recipe.rtype )  %></span>
+			<span class="label label-info">Saison: <%= link_to @recipe.season ,  recipes_path( :season => @recipe.season )  %></span>
+		</div>
 
-			<li class="list-group-item col-xs-3">
-				<%= link_to image_tag("/assets/images/seasons/#{@recipe.season}.svg" , class: "icon-recipe" ) + @recipe.season , recipes_path( :season => @recipe.season )  %>
-			</li>
+		<div class="col-xs-3">
+			<%= image_tag "/assets/images/icons/views.svg" , class: "icon-recipe"%> vue <%= @recipe.count_views %> fois
+		</div>
 
-			<li class="list-group-item col-xs-3">
-				<%= recipe_rate.to_i %>/5
-			</li>
+		<div class="col-xs-3" style="text-align: right">
+			<%= render 'shared/stars', stars: @recipe.rate.to_i %>
+		</div>
 
-			<li class="list-group-item col-xs-3">
-				<%= image_tag "/assets/images/icons/views.svg" , class: "icon-recipe"%> vue <%= @recipe.count_views %> fois
-			</li>
-
-		</ul>
-		<%= image_tag @recipe.true_image_url , class: "img img-responsive full-width"%>
+		<div class=" col-xs-12">
+			<%= image_tag @recipe.true_image_url , class: "img img-responsive full-width"%>
+		</div>
+			
 	</div>
 
 	<div class="col-md-6">
-
-
-		<div class="row">
-			<%= render 'shared/user' , :user => @recipe.user %>
-		</div>
-
-		
-
 
 		<strong>Ingrédients</strong>
 		<ul class="list-group">
