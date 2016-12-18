@@ -44,7 +44,7 @@
 		<ul class="list-group">
 			<% @recipe.ingredients.each_line do |ingredient|%>
 				<li class="list-group-item"><%= link_to ingredient , recipes_path( :ingredients => ingredient )  %></li>
-			<% end %>
+			<% end if @recipe.ingredients %>
 		</ul>
 
 		<strong>Temps</strong>
@@ -112,7 +112,7 @@
 				<li><span></span><%= step %></li>
 			<% end %>
 		</ul>
-	<% end %>
+	<% end if @recipe.steps %>
 </div>
 
 
