@@ -4,6 +4,8 @@
 <head><%= render 'layouts/head' %></head>
 <body>
 
+	<%= render 'layouts/navigation' %>
+
 	<nav class="navbar navbar-inverse navbar-fixed-top">
 		<div class="container-fluid">
 			<div class="navbar-header">
@@ -16,7 +18,7 @@
 				<%= link_to "Raspberry Cook" , home_path , class: "navbar-brand" %>
 			</div>
 			<div id="navbar" class="navbar-collapse collapse">
-				<ul class="nav navbar-nav navbar-right">
+				<ul class="nav navbar-nav navbar-right dropdown-menu">
 					<% if signed_in? %>
 						<li><%= link_to "actualités" , feeds_path %></li>
 					<% end %>
