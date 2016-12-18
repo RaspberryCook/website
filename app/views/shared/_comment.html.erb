@@ -1,13 +1,19 @@
-<div class="bubble">
-	<strong><%= comment.title %></strong>
-	<span class="star-rating"><% comment.rate.times do %>
-		<i style="opacity: 1"></i>
-	<% end %></span>
-	<%= comment.content  %><small><%= comment.rate %></small>
-</div>
-<%= link_to comment.user.firstname , comment.user , :class => 'author' %> - 
-<time><%= comment.created_at.strftime("%d.%m.%y") %></time>
+<% since_days = (Date.today - comment.created_at.to_datetime).to_i %>
 
-<% if not current_page?(controller: 'recipes', action: 'show' ,  id: comment.recipe.id ) %>
-	à propos de <%= link_to comment.recipe.name , recipe_path( id: comment.recipe.id) %>
-<% end %>
+<div class=" comment row">
+
+	<p>
+		<strong><%= link_to comment.user.username , comment.user %></strong> 
+		<span class="star-rating"><% comment.rate.times do %>
+			<span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+		<% end %></span>
+		il y  <date><%= pluralize since_days , ' jour' %></date>
+	</p>
+		
+	<p><strong><%= comment.title %></strong><br/><%= comment.content  %></p>
+
+	<% if not current_page?(controller: 'recipes', action: 'show' ,  id: comment.recipe.id ) %>
+		<p>à propos de <%= link_to comment.recipe.name , recipe_path( id: comment.recipe.id) %></p>
+	<% end %>
+
+</div>
