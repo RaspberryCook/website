@@ -1,9 +1,0 @@
-<span class="star-rating">
-    <%  (1..5).each do |rate|  %>
-    	<% if form %>
-        		<%= form.radio_button(:rate, rate) %><i></i>
-    	<% else %>
-        		<%= radio_button_tag(:rate, rate) %><i></i>
-        	<% end %>
-    <%  end %>
-</span>

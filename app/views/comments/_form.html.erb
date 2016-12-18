@@ -1,31 +1,44 @@
+
 <% if current_user #we check if the user is logged %>
-  <% comment = current_user.comment_on_recipe recipe_id #we check if he already comment this recipe %>
+	<% comment = current_user.comment_on_recipe recipe_id #we check if he already comment this recipe %>
 
 
-    <%= form_for(comment) do |f| %>
-      <% if @comment.errors.any? %>
-        <div id="error_explanation">
-          <h2>Il y a <%= pluralize(@comment.errors.count, "erreurs")%> à corriger :( </h2>
+	<%= form_for(comment) do |f| %>
+		<% if @comment.errors.any? %>
+			<p class="alert alert-danger" role="alert">
+				Il y a <%= pluralize(@comment.errors.count, "erreurs")%> à corriger :( 
 
-          <ul><% @comment.errors.full_messages.each do |msg| %>
-            <li><%= msg %></li>
-          <% end %></ul>
-        </div>
-      <% end %>
+				<ul><% @comment.errors.full_messages.each do |msg| %>
+					<li><%= msg %></li>
+				<% end %></ul>
+			</div>
+		<% end %>
 
-      <div class="bubble">
-        <%= render 'comments/rating' , :form => f %>
-        <%= f.text_field :title %>
-        <%= f.hidden_field :recipe_id , :value => recipe_id %>
-        <%= f.text_area :content %>
-      </div><%= f.submit  'ajouter' %>
+			<div class="form-group col-md-8">
+				<%= f.label :title, "Titre" %>
+				<%= f.text_field :title , class: "form-control" %>
+			</div>
 
-  <% end %>
+			<div class="form-group col-md-4">
+				<%= f.label :rate, "Note" %>
+				<%= f.select :rate , options_for_select([['Bof', 1], ['Moyen', 2], ['Sympa', 3], ['Génial', 4], ['Fantastique', 5], ]),{}, { class: "form-control form-control-lg" }  %>
+			</div>
+
+			<div class="form-group col-md-12">
+				<%= f.label :content, "Contenu" %>
+				<%= f.text_area :content , class: "form-control" %>
+			</div>
+			
+			<%= f.hidden_field :recipe_id , :value => recipe_id %>
+			
+		<%= f.submit  'ajouter' , class: "btn btn-primary"%>
+
+<% end %>
 
 
 
 <% else #if he's not connected, I print somes link to login%>
 
-    <p><%= link_to 'Connectez-vous' , signin_path %></li> ou <%= link_to 'créez un compte' , signup_path %> pour écrire un commentaire</p>
+		<p><%= link_to 'Connectez-vous' , signin_path %></li> ou <%= link_to 'créez un compte' , signup_path %> pour écrire un commentaire</p>
 
 <% end %>

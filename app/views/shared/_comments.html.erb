@@ -1,15 +1,12 @@
-<ul id="comments">
-
+<div class="col-md-6">
 
 	<% if params[:controller] == 'recipes' and params[:action] == 'show' %>
-		<li><%= render 'comments/form', :comment => @comment , :recipe_id => @recipe.id %></li>
+		<div class="row"><%= render 'comments/form', :comment => @comment , :recipe_id => @recipe.id %></div>
 	<% end %>
-
-	
 	
 
 	<% comments.each do |comment| %>
-		<li class="comment"><%= render 'shared/comment', :comment => comment %></li>
+		<div class="row"><%= render 'shared/comment', :comment => comment %></div>
 	<% end %>
 
-</ul>
+</div>
