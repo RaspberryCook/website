@@ -39,31 +39,32 @@
 <div class="row">
 
 
-		<%= form_tag  recipes_path , method: "GET", id: "search_recipe_form", class: "form-inline" do  %>
+		<%= form_tag  recipes_path , method: "GET", id: "search_recipe_form" do  %>
 
-				<div class="form-group col-md-3">
+				<div class="form-group col-md-4 col-sm-12">
 					<%= label_tag  'Titre' %>
 					<%= text_field_tag 'name' , params[:name], placeholder: "recherchez une recette", class: "form-control"  %>
 				</div>
 
-				<div class="form-group col-md-3">
+				<div class="form-group col-md-4 col-sm-4">
 					<%= label_tag  'Ingrédients' %>
 					<%= text_field_tag 'ingredients' , params[:ingredients] , placeholder: "ingrédients" , class: "form-control"  %>
 				</div>
 
-				<div class="form-group col-md-2">
-					<%= label_tag  'Type de recette' %>
+				<div class="form-group col-md-2 col-sm-4 col-xs-6">
+					<%= label_tag  'Type' %>
 					<%= select_tag "type",
-						options_for_select(['Toutes','Entrée','Plat','Dessert','Cocktail','Apéritif'], params[:type]),
+						options_for_select(Recipe.types , params[:type]),
 						class: "form-control"  %>
 				</div>
 
-				<div class="form-group col-md-2">
+				<div class="form-group col-md-2 col-sm-4 col-xs-6">
 					<%= label_tag  'Saison' %>
 					<%= select_tag "season",
-						options_for_select(['Toutes','Printemps','Eté','Automne','Hiver'], params[:season]),
+						options_for_select( Recipe.seasons, params[:season]),
 						class: "form-control"  %>
 				</div>
+
 
 				<div class="form-group col-md-2">	
 					<%= submit_tag "go!", class: "btn btn-primary btn-lg"%>
