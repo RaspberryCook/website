@@ -1,0 +1,31 @@
+@import colors
+
+// sizing the brand picture
+a.navbar-brand
+  padding: 5px
+  img
+    height: 100%
+
+nav.navbar
+  // setup red background color
+  background-color: $primary_color
+
+  .navbar-collapse
+
+    a
+      color: $white
+
+      // disable white background when item is hovered
+      &:hover,
+      &:focus,
+      &:active
+        background-color: inherit
+
+    // retablish black color for link in dropdown items
+    ul.dropdown-menu li
+      a
+        color: inherit
+
+    // disable white background when item is hovered
+    .nav .open a:focus,
+      background-color: $primary_color
