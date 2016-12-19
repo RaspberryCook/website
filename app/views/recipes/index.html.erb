@@ -1,31 +1,24 @@
 <h1>Bibliothèque</h1>
 
-<div class="row list-group">
-		<li  class="list-group-item col-xs-2"><%= link_to 'Toutes', recipes_path %></li>
+<ul class="row dropdown-menu">
+		<li><%= link_to 'Toutes', recipes_path %></li>
 		<% Recipe.types.each do |type| %>
-			<li class="list-group-item col-xs-2"><%= link_to type, recipes_path(type: type) %></li>
+			<li><%= link_to type, recipes_path(type: type) %></li>
 		<% end %>
-</div>
+</ul>
 
-				<li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Pages<span class="caret"></span></a>
-					<ul class="dropdown-menu">
+<div class="btn-group">
+  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Type de recette <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu">
+    <li><%= link_to 'Toutes', recipes_path %></li>
+		<% Recipe.types.each do |type| %>
+			<li><%= link_to type, recipes_path(type: type) %></li>
+		<% end %>
+  </ul>
 
-						
-						<li><%= link_to "au hasard" , recipes_shuffle_path %></li>
-						<li><%= link_to "vider le frigo" , fridge_path %></li>
-
-						<li role="separator" class="divider"></li>
-
-						<li><%= link_to "à propos" , credits_path %></li>
-
-					</ul>
-				</li><!--/.dropdown -->
-
-<div class="row">
-	<div id="filter">
-		<%= link_to image_tag("/assets/images/icons/filter.svg", size: "56")+"filtrer" , '#' %>
-	</div>
+  <button id="filter" type="button" class="btn btn-default">filtrer</button>
 </div>
 
 
@@ -33,40 +26,53 @@
 <div class="row">
 
 
-	<%= form_tag  recipes_path , method: "GET", id: "search_recipe_form" do  %>
+		<%= form_tag  recipes_path , method: "GET", id: "search_recipe_form", class: "form-inline" do  %>
 
-		<div class="form-group col-md-3 col-xs-6">
-			<%= label_tag  'Nom de recette' %>
-			<%= text_field_tag 'name' , params[:name], placeholder: "recherchez une recette", class: "form-control"  %>
-		</div>
+				<div class="form-group col-md-3">
+					<%= label_tag  'Titre' %>
+					<%= text_field_tag 'name' , params[:name], placeholder: "recherchez une recette", class: "form-control"  %>
+				</div>
 
-		<div class="form-group col-md-3 col-xs-6">
-			<%= label_tag  'Ingrédients' %>
-			<%= text_field_tag 'ingredients' , params[:ingredients] , placeholder: "ingrédients" , class: "form-control"  %>
-		</div>
+				<div class="form-group col-md-3">
+					<%= label_tag  'Ingrédients' %>
+					<%= text_field_tag 'ingredients' , params[:ingredients] , placeholder: "ingrédients" , class: "form-control"  %>
+				</div>
 
-		<div class="form-group col-md-3 col-xs-6">
-			<%= label_tag  'Type de recette' %>
-			<%= select_tag "type",
-				options_for_select(['Toutes','Entrée','Plat','Dessert','Cocktail','Apéritif'], params[:type]),
-				class: "form-control"  %>
-		</div>
+				<div class="form-group col-md-2">
+					<%= label_tag  'Type de recette' %>
+					<%= select_tag "type",
+						options_for_select(['Toutes','Entrée','Plat','Dessert','Cocktail','Apéritif'], params[:type]),
+						class: "form-control"  %>
+				</div>
 
-		<div class="form-group col-md-3 col-xs-6">
-			<%= label_tag  'Saison' %>
-			<%= select_tag "season",
-				options_for_select(['Toutes','Printemps','Eté','Automne','Hiver'], params[:season]),
-				class: "form-control"  %>
-		</div>
+				<div class="form-group col-md-2">
+					<%= label_tag  'Saison' %>
+					<%= select_tag "season",
+						options_for_select(['Toutes','Printemps','Eté','Automne','Hiver'], params[:season]),
+						class: "form-control"  %>
+				</div>
 
-		<%= submit_tag "go!", class: "btn btn-primary col-md-6"%>
+				<div class="form-group col-md-2">	
+					<%= submit_tag "go!", class: "btn btn-primary btn-lg"%>
+				</div>
 
-	<% end %>
+		<% end %>
+
+</div>
+
+<div class="row">
+	<%= render 'shared/recipes' , :recipes => @recipes %>
+</div>
+
+<div class="row">
+	<nav aria-label="Page navigation">
+	  <%= will_paginate @recipes , class: "pagination" %>
+	</nav>
 </div>
 
 
-<%= render 'shared/recipes' , :recipes => @recipes %>
-<%= will_paginate @recipes , :class => "apple_pagination" %>
+
+<div class="row alert alert-info" role="alert">Trop de choix? Trouvez des <%= link_to "recettes avec ce qu'il vous reste dans votre frigo" , fridge_path %> ou bien laissez vous tenter par <%= link_to "une recette au hasard" , recipes_shuffle_path %></div>
 
 	
 
