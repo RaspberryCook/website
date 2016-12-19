@@ -1,6 +1,9 @@
 <% begin %>
+
 	<figure class="recipe" >
+
 		<%= link_to image_tag(recipe.true_thumb_image_url , alt: "Thumb - #{recipe.name}", class: "img-responsive") , recipe%>
+		
 		<figcaption>
 			<% if recipe.variant_name %>
 				<%= link_to "%s - %s " % [  recipe.name , recipe.variant_name] , recipe %>
@@ -8,7 +11,9 @@
 				<%= link_to recipe.name , recipe %>
 			<% end %>
 		</figcaption>
+
 	</figure>
+
 <% rescue NoMethodError => e 
 	# can't find this recipe
  end %>

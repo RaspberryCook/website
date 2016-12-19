@@ -1,25 +1,38 @@
-<h1>Bibliothèque</h1>
 
-<ul class="row dropdown-menu">
-		<li><%= link_to 'Toutes', recipes_path %></li>
-		<% Recipe.types.each do |type| %>
-			<li><%= link_to type, recipes_path(type: type) %></li>
-		<% end %>
-</ul>
+<div class="page-header">
 
-<div class="btn-group">
-  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    Type de recette <span class="caret"></span>
-  </button>
-  <ul class="dropdown-menu">
-    <li><%= link_to 'Toutes', recipes_path %></li>
-		<% Recipe.types.each do |type| %>
-			<li><%= link_to type, recipes_path(type: type) %></li>
-		<% end %>
-  </ul>
+	<h1>Bibliothèque</h1>
 
-  <button id="filter" type="button" class="btn btn-default">filtrer</button>
+	<ul class="row dropdown-menu">
+			<li><%= link_to 'Toutes', recipes_path %></li>
+			<% Recipe.types.each do |type| %>
+				<li><%= link_to type, recipes_path(type: type) %></li>
+			<% end %>
+	</ul>
+
+	<div class="btn-group">
+	  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+	    Type de recette <span class="caret"></span>
+	  </button>
+	  <ul class="dropdown-menu">
+	    <li><%= link_to 'Toutes', recipes_path %></li>
+			<% Recipe.types.each do |type| %>
+				<li><%= link_to type, recipes_path(type: type) %></li>
+			<% end %>
+	  </ul>
+
+	  <button id="filter" type="button" class="btn btn-default">filtrer</button>
+	</div>
+
+
+
 </div>
+
+
+
+
+
+
 
 
 
