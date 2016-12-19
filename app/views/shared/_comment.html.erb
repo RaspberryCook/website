@@ -1,17 +1,24 @@
 <% since_days = (Date.today - comment.created_at.to_datetime).to_i %>
 
-<div class=" comment row">
+<div class="comment row">
 
-	<p>
-		<strong><%= link_to comment.user.username , comment.user %></strong> 
-		<%= render 'shared/stars', :stars => comment.rate %>
-		il y  <date><%= pluralize since_days , ' jour' %></date>
-	</p>
+	<div class="col-xs-2">
+		<%= render "users/image", user: @recipe.user %>
+	</div>
+
+	<div class="col-xs-10 well">
+		<p>
+			<strong><%= link_to comment.user.username , comment.user %></strong> 
+			<%= render 'shared/stars', :stars => comment.rate %>
+			il y  <date><%= pluralize since_days , ' jour' %></date>
+		</p>
+			
+		<p><strong><%= comment.title %></strong><br/><%= comment.content  %></p>
+
+		<% if not current_page?(controller: 'recipes', action: 'show' ,  id: comment.recipe.id ) %>
+			<p>à propos de <%= link_to comment.recipe.name , recipe_path( id: comment.recipe.id) %></p>
+		<% end %>
 		
-	<p><strong><%= comment.title %></strong><br/><%= comment.content  %></p>
-
-	<% if not current_page?(controller: 'recipes', action: 'show' ,  id: comment.recipe.id ) %>
-		<p>à propos de <%= link_to comment.recipe.name , recipe_path( id: comment.recipe.id) %></p>
-	<% end %>
+	</div>
 
 </div>

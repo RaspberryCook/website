@@ -2,7 +2,7 @@
 
 	<% if @recipe.user %>
 		<div class="col-xs-1">
-			<%= image_tag gravatar_url( @recipe.user.email, 100) , class: 'img-responsive img-rounded' %>
+			<%= render "users/image", user: @recipe.user %>
 		</div>
 	<% end %>
 
