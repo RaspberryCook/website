@@ -1,43 +1,39 @@
-<section>
+<div class="row page-header">
 
-	<h1 style="display: none"><%= @user.username %></h1>
-
-	<figure class="user_avatar">
-		<%= image_tag gravatar_url( @user.email, 300) , :class => 'big_gravatar_profile' %>
-		<figcaption class="ribbon"><span class="ribbon-content"><%= @user.username %></span></figcaption>
-	</figure>
-	
-	
-
-	<div id="rang"  >
-		<% (@user.rank/10).times do %>
-			<%= image_tag '/assets/images/icons/light-cupcake.svg'  %>
-		<% end %>
-		<p><%= pluralize(@user.rank, "point") %></p>
+	<div class="col-xs-2">
+		<%= render "users/image", user: @user %>
 	</div>
 
-	<p class="tip">Gagnez plus de points en ajoutant de nouvelle recette ou ajoutant des variantes.</p>
+	<div class="col-xs-10">
+		<h1><%= @user.username   %> <small><%= pluralize @user.rank, "point"   %></small></h1>
+	</div>
+
+</div>
 
 
-	<ul class="actions">
-		<% if current_user == @user %>
-			<li><%= link_to "editer mon profil" , edit_user_path( :id => @user.id ) , :class => 'button_edit' %></li>
-			<li><%= link_to "se déconnecter" , signout_path , :class => 'button_edit' %></li>
-		<% end %>
-	</ul>
 
+<p class="alert alert-info" role="alert">Gagnez plus de points en <%= link_to "ajoutant de nouvelles recettes", new_recipe_path %> ou créant des variantes.</p>
+
+
+<% if current_user == @user %>
+
+	<div class="btn-group">
+
+		<%= link_to "editer mon profil" , edit_user_path( :id => @user.id ) , class: 'btn btn-warning' %>
+		<%= link_to "se déconnecter" , signout_path , :class => 'btn btn-danger' %>
+	</div>
+<% end %>
+
+
+<div class="row">
 	<h2>Recettes <small>(<%= pluralize(@user.recipes.count, "recette") %>)</small></h2>
-		
-
 		<%= render 'shared/recipes' , :recipes => @recipes %>
 		<%= will_paginate @recipes , :class => "apple_pagination" %>
+</div>
 
 
+<div class="row">
 	<h2>Commentaires <small>(<%= pluralize(@user.comments.count, "commentaire") %>)</small></h2>
-		<%= render 'shared/comments', :comments => @user.comments %>
-
-
-</section>
-
-
+	<%= render 'shared/comments', :comments => @user.comments %>
+</div>
 

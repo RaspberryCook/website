@@ -3,7 +3,7 @@
 <div class="comment row">
 
 	<div class="col-xs-2">
-		<%= render "users/image", user: @recipe.user %>
+		<%= render("users/image", user: comment.recipe.user) if comment.recipe %>
 	</div>
 
 	<div class="col-xs-10 well">
