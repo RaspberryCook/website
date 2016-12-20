@@ -10,6 +10,9 @@
   img
     height: 40px
 
+button.navbar-toggle
+  color: white
+
 nav.navbar
   // setup red background color
   background-color: $primary_color
@@ -34,3 +37,24 @@ nav.navbar
     // disable white background when item is hovered
     .nav .open a:focus,
       background-color: $primary_color
+
+
+  // overide bootstrap value to display correctly the navigation search
+  form
+    margin: 0px
+    border: none
+    height: 100%
+
+    input, 
+    button
+      background-color: transparent
+      border-top: none
+      border-left: none
+      border-right: none
+      border-color: white
+      color: white
+
+      font-size: 24px
+
+    button
+      border-bottom: none

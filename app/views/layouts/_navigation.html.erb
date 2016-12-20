@@ -2,15 +2,32 @@
 	<div class="container-fluid">
 
 		<div class="navbar-header">
-			<%= link_to image_tag("/assets/images/favicon_var1.svg") , home_path , class: "navbar-brand navbar-img" %>
 			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false" aria-controls="navbar">
 				<span class="sr-only">Toggle navigation</span>
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
+			<%= link_to image_tag("/assets/images/favicon_var1.svg") , home_path , class: "navbar-brand navbar-img" %>
+			
+
+
+			<!-- .navbar-form -->
+			<%= form_tag  recipes_path, method: "GET", class: "collapsed navbar-right", role: "search" do  %>
+
+				<div class="form-group input-group">
+					<%= text_field_tag 'name' , nil, :placeholder => "rechercher" %>
+					<button type="submit">
+						<span class="glyphicon glyphicon-search"></span>
+					</button>
+				</div>
+           
+				
+			<% end %><!--/.navbar-form -->
 			
 		</div>
+
+		
 
 
 		<div class="collapse navbar-collapse" id="navbar-collapse">
@@ -44,16 +61,7 @@
 				<% end # end of signed_in? %>
 			</ul><!--/.navbar-right -->
 
-			<%= form_tag  recipes_path, method: "GET", class: "navbar-form" do  %>
-
-				 <div class="form-group" style="display:inline">
-          <div class="input-group" style="display:table">
-           <%= text_field_tag 'name' , nil, :placeholder => "recherchez une recette", class: "form-control" %>
-            <span class="input-group-addon" style="width:1%"><span class="glyphicon glyphicon-search"></span></span>
-          </div>
-        </div>
-				
-			<% end %>
+			
 
 		</div><!-- navbar-collapse -->
 
