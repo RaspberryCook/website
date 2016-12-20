@@ -62,13 +62,13 @@
 <div class="row col-md-12">
 	<%= f.label :ingredients , 'Ingrédients'%>
 	<%= f.text_area :ingredients , placeholder: "courgettes", class: "form-control"%>
-	<div class="alert alert-info" role="alert">Listez les ingrédients en revenant simplement à la ligne. On s'occupe du reste</div>
+	<div class="help-block">Listez les ingrédients en revenant simplement à la ligne. On s'occupe du reste</div>
 </div>
 
 <div class="row  col-md-12">
 	<%= f.label :steps, 'Etapes' %>
 	<%= f.text_area :steps , :placeholder => "p'lez les carottes", class: "form-control"%>
-	<p class="help-block" role="alert">Listez les étapes en revenant simplement à la ligne.</p>
+	<p class="help-block">Listez les étapes en revenant simplement à la ligne.</p>
 </div>
 
 <%= f.submit "Mettre à jour", class: 'row btn btn-primary' %>
