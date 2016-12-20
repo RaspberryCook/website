@@ -34,9 +34,13 @@
 							<li role="separator" class="divider"></li>
 
 							<li><%= link_to "créer une recette" , new_recipe_path %></li>
+							<li role="separator" class="divider"></li>
+							<li><%= link_to "se déconnecter" , signout_path %></li>
 
 						</ul>
 					</li><!--/.dropdown -->
+				<% else %>
+					<li><%= link_to "se connecter" , signin_path %></li>
 				<% end # end of signed_in? %>
 			</ul><!--/.navbar-right -->
 
