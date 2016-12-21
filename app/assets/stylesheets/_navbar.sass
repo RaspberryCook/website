@@ -1,21 +1,28 @@
 @import colors
 
-// sizing the brand picture
-.navbar-img
-  padding: 5px
-  a
-    max-height: 40px
-    padding-top: 0px
-
-  img
-    height: 40px
-
-button.navbar-toggle
-  color: white
 
 nav.navbar
   // setup red background color
   background-color: $primary_color
+  border-color: $primary_color
+
+  span.icon-bar, 
+  a.navbar-brand
+    color: white
+    border-color: white
+
+  a:hover
+    color: white
+
+  a.navbar-brand
+    font-family: 'Pacifico', cursive
+    font-size: 32px
+
+  form
+    border: none
+
+    input
+      display: inline
 
 
   .navbar-collapse
@@ -37,24 +44,3 @@ nav.navbar
     // disable white background when item is hovered
     .nav .open a:focus,
       background-color: $primary_color
-
-
-  // overide bootstrap value to display correctly the navigation search
-  form
-    margin: 0px
-    border: none
-    height: 100%
-
-    input, 
-    button
-      background-color: transparent
-      border-top: none
-      border-left: none
-      border-right: none
-      border-color: white
-      color: white
-
-      font-size: 24px
-
-    button
-      border-bottom: none
