@@ -1,7 +1,7 @@
 <% begin %>
 
 	<% recipes.each do |recipe| %>
-		<div class="col-sm-4 col-md-3 col-xs-6"><%= render 'shared/recipe' , :recipe => recipe %></div>
+		<%= render 'shared/recipe' , :recipe => recipe %>
 	<% end %>
 		
 <% rescue NoMethodError => e # In case of nil%>

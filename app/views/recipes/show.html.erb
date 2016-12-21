@@ -68,7 +68,7 @@
 			<!-- if it's the owner of the recipe  -->
 		</div>
 
-		<p class="alert alert-info" role="alert">Cett recette vous a paru trop grasse? <%= link_to "Créez votre variante" , fork_recipe_path( :id => @recipe.id) %>!</p>
+		<p class="alert alert-info" role="alert">Cett recette vous a paru trop grasse? <%= link_to "Créez votre variante" , fork_recipe_path( :id => @recipe.id), class: 'alert-link' %>!</p>
 
 
 		<% if current_user == @recipe.user %>
