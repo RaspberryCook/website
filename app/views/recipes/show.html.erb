@@ -1,16 +1,12 @@
-<div class="row page-header">
+<div class="row page-header recipe">
 
 	<% if @recipe.user %>
-		<div class="col-xs-2">
-			<%= render "users/image", user: @recipe.user %>
-		</div>
+		<%= render "users/image", user: @recipe.user %>
 	<% end %>
 
-	<div class="col-xs-10">
-		<h1 class="recipe"><%= @recipe.name  %>
-			<%= " - %s" % @recipe.variant_name if @recipe.variant_name%></h1>
-		<p>Une recette de <%= render 'users/link', user: @recipe.user %></p>
-	</div>
+	<h1 class="recipe"><%= @recipe.name  %>
+		<%= " - %s" % @recipe.variant_name if @recipe.variant_name%></h1>
+	<p>Une recette de <%= render 'users/link', user: @recipe.user %></p>
 
 </div>
 
@@ -25,7 +21,7 @@
 		</div>
 
 		<div class="col-xs-3">
-			<%= image_tag "/assets/images/icons/views.svg" , class: "icon-recipe img-rounded"%> vue <%= @recipe.count_views %> fois
+			<%= image_tag "/assets/images/icons/views.svg" , class: "icon-recipe img-thumbnail"%> vue <%= @recipe.count_views %> fois
 		</div>
 
 		<div class="col-xs-3" style="text-align: right">
@@ -33,7 +29,7 @@
 		</div>
 
 		<div class=" col-xs-12">
-			<%= image_tag @recipe.true_image_url , class: "img img-responsive full-width"%>
+			<%= image_tag @recipe.true_image_url , class: "img img-responsive img-thumbnail full-width"%>
 		</div>
 			
 	</div>
@@ -66,21 +62,20 @@
 			<!-- Add a fork button if the user is connected -->
 			<%= link_to "créer une variante" , fork_recipe_path( :id => @recipe.id) , :class => 'btn btn-primary' %>
 			<!-- if it's the owner of the recipe  -->
+			<%= link_to "modifier" , edit_recipe_path , 
+						:class => 'btn btn-warning'%>
+			<%= link_to "supprimer" , @recipe ,
+						:class => 'btn btn-danger',
+						:method => :delete, 
+						:confirm => 'Are you sure?' ,
+						:title => "Delete #{@recipe.name}" %>
 		</div>
 
-		<p class="alert alert-info" role="alert">Cett recette vous a paru trop grasse? <%= link_to "Créez votre variante" , fork_recipe_path( :id => @recipe.id), class: 'alert-link' %>!</p>
+		<p class="alert alert-info" role="alert">Cette recette vous a paru trop grasse? <%= link_to "Créez votre variante" , fork_recipe_path( :id => @recipe.id), class: 'alert-link' %>!</p>
 
 
 		<% if current_user == @recipe.user %>
-			<div class="btn-group" role="group" aria-label="...">
-				<%= link_to "modifier" , edit_recipe_path , 
-							:class => 'btn btn-warning'%>
-				<%= link_to "supprimer" , @recipe ,
-							:class => 'btn btn-danger',
-							:method => :delete, 
-							:confirm => 'Are you sure?' ,
-							:title => "Delete #{@recipe.name}" %>
-			</div>
+			
 		<% end %>
 
 	</div>
