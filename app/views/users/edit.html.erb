@@ -1,8 +1,8 @@
-<div class="page-header">
+, class: 'alert-link'<div class="page-header">
     <h1>Editer mes informations</h1>
 </div>
 
 <%= render 'users/form', user: @user %>
 
-<p class="alert alert-info">La photo de profil est chargée à partir de <%= link_to "http://gravatar.com/" %>. Vous pouvez la modifier  <%= link_to "ici", "http://gravatar.com/email/%s" % @user.username %></p>
+<p class="alert alert-info">La photo de profil est chargée à partir de <%= link_to "gravatar.com", "http://gravatar.com/", class: 'alert-link' %>. Vous pouvez la modifier  <%= link_to "ici", "http://gravatar.com/email/%s" % @user.username, class: 'alert-link' %></p>
  
