@@ -1,3 +1,4 @@
+<!-- title of recipe -->
 <div class="row page-header recipe">
 
 	<% if @recipe.user %>
@@ -6,90 +7,65 @@
 
 	<h1 class="recipe"><%= @recipe.name  %>
 		<%= " - %s" % @recipe.variant_name if @recipe.variant_name%></h1>
+	<p><%= @recipe.description %></p>
 	<p>Une recette de <%= render 'users/link', user: @recipe.user %></p>
-
 </div>
 
+<!-- labels -->
+<div class="row col-md-12">
+	<ul class="list-inline">
+		<li><span class="label label-info"><%= link_to @recipe.rtype ,  recipes_path( :type => @recipe.rtype )  %></span></li>
+		<li><span class="label label-info"><%= link_to @recipe.season ,  recipes_path( :season => @recipe.season )  %></span></li>
+	</ul>
+</div>
 
+<!-- image of recipes and basics informations -->
 <div class="row">
+
+	<!-- image -->
+	<div class="col-md-6">
+			<%= image_tag @recipe.true_image_url , class: "img img-responsive img-thumbnail full-width"%>
+	</div>
+
 
 	<div class="col-md-6">
 
 		<div class="col-xs-6">
-			<span class="label label-info">Type: <%= link_to @recipe.rtype ,  recipes_path( :type => @recipe.rtype )  %></span>
-			<span class="label label-info">Saison: <%= link_to @recipe.season ,  recipes_path( :season => @recipe.season )  %></span>
+			<span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+			vue <%= @recipe.count_views %> fois
 		</div>
 
-		<div class="col-xs-3">
-			<%= image_tag "/assets/images/icons/views.svg" , class: "icon-recipe img-thumbnail"%> vue <%= @recipe.count_views %> fois
-		</div>
-
-		<div class="col-xs-3" style="text-align: right">
+		<div class="col-xs-6">
 			<%= render 'shared/stars', stars: @recipe.rate.to_i %>
 		</div>
 
-		<div class=" col-xs-12">
-			<%= image_tag @recipe.true_image_url , class: "img img-responsive img-thumbnail full-width"%>
-		</div>
-			
-	</div>
+		<div class="col-xs-12">
 
-	<div class="col-md-6">
 
-		<strong>Ingrédients</strong>
-		<ul class="list-group">
-			<% @recipe.ingredients.each_line do |ingredient|%>
-				<li class="list-group-item"><%= link_to ingredient , recipes_path( :ingredients => ingredient )  %></li>
-			<% end if @recipe.ingredients %>
-		</ul>
-
-		<strong>Temps</strong>
-		<ul class="list-group">
-			<% %w(cooking baking cooling rest).each do |time| %>
-				<% time_of_recipe = @recipe.public_send("t_#{time}") %>
-				
-				<% if time_of_recipe.is_a? Time and time_of_recipe != Recipe::ZERO_TIME %>
-					<li  class="list-group-item" >
-						<time><%=time_of_recipe.strftime "%H:%M"%></time>
-					</li>
-				<% end %>
+			<ul class="list-group">
+				<% %w(cooking baking cooling rest).each do |time| %>
+					<% time_of_recipe = @recipe.public_send("t_#{time}") %>
 					
-			<% end %>
-		</ul>
-
-		<div class="btn-group" role="group" aria-label="...">
-			<%= link_to "sauvegarder", save_recipe_path(id: @recipe.id), :class => 'btn btn-primary' %>
-			<!-- Add a fork button if the user is connected -->
-			<%= link_to "créer une variante" , fork_recipe_path( :id => @recipe.id) , :class => 'btn btn-primary' %>
-			<!-- if it's the owner of the recipe  -->
-			<%= link_to "modifier" , edit_recipe_path , 
-						:class => 'btn btn-warning'%>
-			<%= link_to "supprimer" , @recipe ,
-						:class => 'btn btn-danger',
-						:method => :delete, 
-						:confirm => 'Are you sure?' ,
-						:title => "Delete #{@recipe.name}" %>
+					<% if time_of_recipe.is_a? Time and time_of_recipe != Recipe::ZERO_TIME %>
+						<li  class="list-group-item" >
+							<time><%=time_of_recipe.strftime "%H:%M"%></time>
+						</li>
+					<% end %>
+						
+				<% end %>
+			</ul>
 		</div>
-
-		<p class="alert alert-info" role="alert">Cette recette vous a paru trop grasse? <%= link_to "Créez votre variante" , fork_recipe_path( :id => @recipe.id), class: 'alert-link' %>!</p>
-
-
-		<% if current_user == @recipe.user %>
-			
-		<% end %>
-
 	</div>
+</div><!-- end of image-->
 
-</div>
 
-
+<!-- forked recipes -->
 <div class="row">
 	<!-- forked recipes -->
-	<% forked_recipes = @recipe.forked_recipes 
-	if forked_recipes.length > 0 %>
+	<% if @recipe.forked_recipes.length > 0 %>
 
 		<h2>Variantes disponnibles</h2>
-		<%= render 'shared/recipes' , :recipes => forked_recipes %>
+		<%= render 'shared/recipes' , :recipes => @recipe.forked_recipes %>
 
 	<% elsif @recipe.forked?  %>
 
@@ -99,18 +75,62 @@
 	<% end %>
 </div>
 
+
+<!-- ingredients and steps -->
 <div class="row">
+
+	<!-- ingrédients -->
+	<% if @recipe.ingredients %>
+		<div class="col-sm-3">
+			<h2>Ingrédients</h2>
+
+			<ul class="list-group">
+				<% @recipe.ingredients.each_line do |ingredient|%>
+					<li class="list-group-item"><%= link_to ingredient , recipes_path( :ingredients => ingredient )  %></li>
+				<% end %>
+			</ul>
+
+		</div>
+	<% end %>
+
+	<!-- steps -->
 	<% if @recipe.steps %>
-		<h2>Préparation</h2>
-		<ul id="steps">
+		<div class="col-sm-9">
+			<h2>Préparation</h2>
+
 			<% @recipe.steps.each_line do |step|%>
-				<li><span></span><%= step %></li>
+				<h3>Etape </h3>
+				<p><%= step %></p>
 			<% end %>
-		</ul>
-	<% end if @recipe.steps %>
+
+			<p class="alert alert-info" role="alert">Cette recette vous a paru trop grasse? <%= link_to "Créez votre variante" , fork_recipe_path( :id => @recipe.id), class: 'alert-link' %>!</p>
+
+		</div>
+	<% end %>
 </div>
 
 
+<!-- actions buttons -->
+<div class="row">
+
+	<div class="btn-group btn-group-justified" role="toolbar" aria-label="...">
+		<%= link_to "sauvegarder", save_recipe_path(id: @recipe.id), :class => 'btn btn-primary' %>
+		<!-- Add a fork button if the user is connected -->
+		<%= link_to "créer une variante" , fork_recipe_path( :id => @recipe.id) , :class => 'btn btn-primary' %>
+		<!-- if it's the owner of the recipe  -->
+		<%= link_to "modifier" , edit_recipe_path , 
+					:class => 'btn btn-warning'%>
+		<%= link_to "supprimer" , @recipe ,
+					:class => 'btn btn-danger',
+					:method => :delete, 
+					:confirm => 'Are you sure?' ,
+					:title => "Delete #{@recipe.name}" %>
+	</div>
+
+</div>
+
+
+<!-- commentaires -->
 <div class="row">
 	<h2>Commentaires</h2>
 	<%= render 'shared/comments', :comments => @recipe .comments %>

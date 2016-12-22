@@ -38,7 +38,6 @@
 
 
 <% else #if he's not connected, I print somes link to login%>
-
-		<p><%= link_to 'Connectez-vous' , signin_path %></li> ou <%= link_to 'créez un compte' , signup_path %> pour écrire un commentaire</p>
+		<p class="alert alert-info" role="alert"><%= link_to 'Connectez-vous' , signin_path, class: 'alert-link' %></li> ou <%= link_to 'créez un compte' , signup_path, class: 'alert-link' %> pour écrire un commentaire</p>
 
 <% end %>
