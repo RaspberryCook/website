@@ -1,5 +1,5 @@
 <% size = 150 unless size %>
 
 <% if user %>
-  <%= link_to image_tag( gravatar_url( user.email, size) , class: 'img-responsive img-circle'), user_path(user) %>
+	<%= link_to image_tag( gravatar_url( user.email, size) , class: 'user img-responsive img-circle'), user_path(user) %>
 <% end %>

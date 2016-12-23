@@ -1,5 +1,8 @@
-<span class="star-rating">
+<span class="stars-rating">
 	<% stars.times do %>
-		<span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+		<%= image_tag '/assets/images/icons/star.svg' , alt: 'star' %>
+	<% end %>
+	<% (5-stars).times do %>
+		<%= image_tag '/assets/images/icons/star_empty.svg' , alt: 'star empty' %>
 	<% end %>
 </span>
