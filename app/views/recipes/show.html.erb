@@ -21,43 +21,34 @@
 </div>
 
 <!-- labels -->
-<div class="row col-md-12">
-	<ul class="list-inline">
-		<li><span class="label label-info"><%= link_to @recipe.rtype ,  recipes_path( :type => @recipe.rtype )  %></span></li>
-		<li><span class="label label-info"><%= link_to @recipe.season ,  recipes_path( :season => @recipe.season )  %></span></li>
-	</ul>
+<div class="row">
+	
 </div>
 
 <!-- image of recipes and basics informations -->
-<div class="row">
+<div class="row recipe-picture-ribon">
 
 	<!-- image -->
-	<div class="col-md-6">
-			<%= image_tag @recipe.true_image_url , class: "img img-responsive img-thumbnail full-width"%>
+	<div class="col-md-9">
+			<%= image_tag @recipe.true_image_url , class: "img img-responsive full-width"%>
 	</div>
 
 
-	<div class="col-md-6">
+	<div class="col-md-3">
 
 
 
-		<div class="col-xs-12">
+		<div class="recipe-label col-lg-12 col-md-6 col-xs-2 col-"><%= recipe_label_type @recipe  %></div>
+		<div class="recipe-label col-lg-12 col-md-6 col-xs-2 col-"><%= recipe_label_season @recipe %></div>
 
+		<% %w(cooking baking cooling rest).each do |time| %>
+			<div class="recipe-label col-lg-12 col-md-6 col-xs-2 col-"><%= recipe_label_time @recipe, time %></div>
+		<% end %>
+				
 
-			<ul class="list-group">
-				<% %w(cooking baking cooling rest).each do |time| %>
-					<% time_of_recipe = @recipe.public_send("t_#{time}") %>
-					
-					<% if time_of_recipe.is_a? Time and time_of_recipe != Recipe::ZERO_TIME %>
-						<li  class="list-group-item" >
-							<time><%=time_of_recipe.strftime "%H:%M"%></time>
-						</li>
-					<% end %>
-						
-				<% end %>
-			</ul>
-		</div>
 	</div>
+
+
 </div><!-- end of image-->
 
 
