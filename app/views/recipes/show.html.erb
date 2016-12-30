@@ -119,14 +119,18 @@
 		<%= link_to "sauvegarder", save_recipe_path(id: @recipe.id), :class => 'btn btn-primary' %>
 		<!-- Add a fork button if the user is connected -->
 		<%= link_to "créer une variante" , fork_recipe_path( :id => @recipe.id) , :class => 'btn btn-primary' %>
+
 		<!-- if it's the owner of the recipe  -->
-		<%= link_to "modifier" , edit_recipe_path , 
-					:class => 'btn btn-warning'%>
-		<%= link_to "supprimer" , @recipe ,
-					:class => 'btn btn-danger',
-					:method => :delete, 
-					:confirm => 'Are you sure?' ,
-					:title => "Delete #{@recipe.name}" %>
+		<% if @recipe.user and current_user == @recipe.user %>
+			<%= link_to "modifier" , edit_recipe_path , 
+						:class => 'btn btn-warning'%>
+			<%= link_to "supprimer" , @recipe ,
+						:class => 'btn btn-danger',
+						:method => :delete, 
+						:confirm => 'Are you sure?' ,
+						:title => "Delete #{@recipe.name}" %>
+		<% end %>
+
 	</div>
 
 </div>
