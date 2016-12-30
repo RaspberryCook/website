@@ -3,70 +3,69 @@
 
 	<h1>Bibliothèque</h1>
 
-	<ul class="row dropdown-menu">
+
+	<div class="btn-group">
+
+		<button id="dropdown_type" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			Filtre <span class="caret"></span>
+		</button>
+
+
+		<ul class="dropdown-menu" aria-labelledby="dropdown_type">
+
+			<li class="dropdown-header">Type de recette</li>
 			<li><%= link_to 'Toutes', recipes_path %></li>
 			<% Recipe.types.each do |type| %>
 				<li><%= link_to type, recipes_path(type: type) %></li>
 			<% end %>
-	</ul>
 
-	<div class="btn-group">
-	  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-	    Type de recette <span class="caret"></span>
-	  </button>
-	  <ul class="dropdown-menu">
-	    <li><%= link_to 'Toutes', recipes_path %></li>
-			<% Recipe.types.each do |type| %>
-				<li><%= link_to type, recipes_path(type: type) %></li>
+			<li role="separator" class="divider"></li>
+
+			<li class="dropdown-header">Saison</li>
+			<% Recipe.seasons.each do |season| %>
+				<li><%= link_to season, recipes_path(season: season) %></li>
 			<% end %>
-	  </ul>
 
-	  <button id="filter" type="button" class="btn btn-default">filtrer</button>
+		</ul>
+
+		<button id="filter" type="button" class="btn btn-default">Recherche avancée</button>
 	</div>
 
-
-
 </div>
-
-
-
-
-
-
 
 
 
 <div class="row">
 
 
-		<%= form_tag  recipes_path , method: "GET", id: "search_recipe_form" do  %>
+		<%= form_tag  recipes_path , method: "GET", id: "search_recipe_form" , class: 'form-inline' do  %>
 
-				<div class="form-group col-md-4 col-sm-12">
-					<%= label_tag  'Titre' %>
-					<%= text_field_tag 'name' , params[:name], placeholder: "recherchez une recette", class: "form-control"  %>
+				<div class="form-group">
+					<%= label_tag  'Titre', nil, class: 'sr-only' %>
+					<%= text_field_tag 'name' , params[:name], placeholder: "Titre", class: "form-control"  %>
 				</div>
 
-				<div class="form-group col-md-4 col-sm-4">
-					<%= label_tag  'Ingrédients' %>
-					<%= text_field_tag 'ingredients' , params[:ingredients] , placeholder: "ingrédients" , class: "form-control"  %>
+				<div class="form-group">
+					<%= label_tag  'Ingrédients', nil, class: 'sr-only' %>
+					<%= text_field_tag 'ingredients' , params[:ingredients] , placeholder: "Ingrédient" , class: "form-control"  %>
 				</div>
 
-				<div class="form-group col-md-2 col-sm-4 col-xs-6">
-					<%= label_tag  'Type' %>
+				<div class="form-group">
+					<%= label_tag  'Type', nil, class: 'sr-only' %>
 					<%= select_tag "type",
 						options_for_select(Recipe.types , params[:type]),
 						class: "form-control"  %>
 				</div>
 
-				<div class="form-group col-md-2 col-sm-4 col-xs-6">
-					<%= label_tag  'Saison' %>
+				<div class="form-group">
+					<%= label_tag  'Saison', nil, class: 'sr-only' %>
 					<%= select_tag "season",
 						options_for_select( Recipe.seasons, params[:season]),
 						class: "form-control"  %>
 				</div>
 
 
-				<div class="form-group col-md-2">	
+				<div class="form-group">	
 					<%= submit_tag "go!", class: "btn btn-primary btn-lg"%>
 				</div>
 
@@ -80,7 +79,7 @@
 
 <div class="row">
 	<nav aria-label="Page navigation">
-	  <%= will_paginate @recipes , class: "pagination" %>
+		<%= will_paginate @recipes , class: "pagination" %>
 	</nav>
 </div>
 
@@ -96,9 +95,5 @@
 			e.preventDefault();
 			$("#search_recipe_form").slideToggle();
 		})
-
-		if(window.location.search.substr('recipe=')){
-			$('#filter').trigger('click');
-		}
 	});
 </script>
