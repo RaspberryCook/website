@@ -1,20 +1,11 @@
-<!-- repair section view -->
-<style type="text/css">
-	section.home{
-		max-width: 100%;
-		width: 100%;
-	}
-</style>
-
-<div id="section_home_first" class="row home" style="background-image: url('/assets/images/raspberry_cook.svg');background-position: -100px ;  ">
-<!-- <div id="section_home_first" class="home" style="background-image: url('/assets/images/raspberry_cook.svg');background-position: -100px ;  "> -->
+<div class="row home" style="background-image: url('/assets/images/raspberry_cook.svg');background-position: -100px ;  ">
 	
 	<h1>Raspberry Cook</h1>
 
-	<div id="quote" >
-		<q><font color="#2980b9">Yes</font> <font color="#F2F1EF">you</font> <font color="#e74c3c">Cook!</font></q>
-		<legend>Barack Obama - 2008</legend>
-	</div>
+	<blockquote class="col-md-6">
+		<p><font color="#2980b9">Yes</font> <font color="#F2F1EF">you</font> <font color="#e74c3c">Cook!</font></p>
+		<footer>Barack Obama at <cite title="Raspberry Cook center">Raspberry Cook conference</cite></footer>
+	</blockquote>
 
 </div>
 
@@ -40,7 +31,7 @@
 	<h2>Participez à l'avènement d'un site <strong>révolutionnaire</strong></h2>
 	<p>Nous n'avons qu'un seul but: que tout le monde soit gros et heureux!</p>
 	<p><strong>Partagez</strong> et/ou <strong>contribuez</strong> au projet!</p>
-	<ul class="share">
+	<ul class="list-inline share">
 		<li><%= link_to(image_tag("/assets/images/icons/fb.svg"),'https://www.facebook.com/raspberrycook')%>La page <strong>Facebook</strong></li>
 		<li><%= link_to(image_tag("/assets/images/icons/intgr.svg"),'https://www.instagram.com/raspberry_cook/')%>La chaine <strong>Instagram</strong></li>
 		<li><%= link_to(image_tag("/assets/images/icons/github-icon.svg"),'https://github.com/madeindjs/raspberry_cook')%>Le <strong>projet Github</strong></li>
