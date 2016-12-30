@@ -1,21 +1,22 @@
-<section id="recipe_new">
+<div class="page-header">
 	<h1>Créez votre recette</h1>
+</div>
+
+<div class="row">
+	<div class="col-md-12">
+		<%= form_for @recipe do |f| %>
+
+			<%= render 'shared/error_messages' , :object => f.object %>
+
+			<p>Donnez un nom à votre recette <strong style="display:block">ou</strong> copiez l'adresse web d'une recette hébergée par site "partenaire"*</p>
+
+			<%= f.text_field :name, placeholder: "Harry Covers et les surgelés", class: "form-control" %><br/>
+
+			<%= f.submit 'ajouter', class: "btn btn-primary"%><br/>
 
 
-	<%= form_for(@recipe) do |f| %>
+			<div class="alert alert-info" role="alert">Copiez l'adresse d'un site partenaire pour importer la recette sur Raspberry Cook <small>(<%= link_to "Marmiton", "http://www.marmiton.org/" %>, <%= link_to "750g", "http://www.750g.com/" %> ou <%= link_to "CuisineAZ", "http://www.cuisineaz.com/" %>)</small></div>
 
-		<%= render 'shared/error_messages' , :object => f.object %>
-
-		<p>Donnez un nom à votre recette <strong style="display:block">ou</strong> copiez l'adresse web d'une recette hébergée par site "partenaire"*</p>
-
-		<%= f.text_field :name , :placeholder => "Harry Covers et les surgelés"%><br/>
-
-		<%= f.submit 'ajouter' %><br/>
-
-
-		<p class="tip">Copiez l'adresse d'un site partenaire pour importer la recette sur Raspberry Cook <small>(<%= link_to "Marmiton", "http://www.marmiton.org/" %>, <%= link_to "750g", "http://www.750g.com/" %> ou <%= link_to "CuisineAZ", "http://www.cuisineaz.com/" %>)</small></p>
-
-	<% end %>
-	
-
-</section>
+		<% end %>
+	</div>
+</div>
