@@ -6,10 +6,9 @@
 
 	<div class="btn-group">
 
-		<button id="dropdown_type" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		<button id="dropdown_type" type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 			Filtre <span class="caret"></span>
 		</button>
-
 
 		<ul class="dropdown-menu" aria-labelledby="dropdown_type">
 
@@ -25,10 +24,25 @@
 			<% Recipe.seasons.each do |season| %>
 				<li><%= link_to season, recipes_path(season: season) %></li>
 			<% end %>
-
 		</ul>
 
-		<button id="filter" type="button" class="btn btn-default">Recherche avancée</button>
+		<button id="filter" type="button" class="btn btn-info"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> Recherche</button>
+
+		<!-- Vider mon frigo -->
+		<%= link_to recipes_shuffle_path, class: "btn btn-success" do %>
+			<span class="glyphicon glyphicon-piggy-bank" aria-hidden="true"></span> Vider mon frigo
+		<% end %>
+
+		<!-- Recette au hasard -->
+		<%= link_to recipes_shuffle_path, class: "btn btn-success" do %>
+			<span class="glyphicon glyphicon-random" aria-hidden="true"></span> Recette au hasard
+		<% end %>
+
+		<!-- Ajouter un recette -->
+		<%= link_to new_recipe_path, class: "btn btn-primary" do %>
+			<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Ajouter un recette
+		<% end %>
+
 	</div>
 
 </div>
