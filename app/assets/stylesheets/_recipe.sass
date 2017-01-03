@@ -1,5 +1,6 @@
 @import colors
 @import "compass/css3/box-shadow"
+@import "compass/css3/filter"
 
 
 img.icon-recipe
@@ -78,3 +79,18 @@ div.recipe-picture-ribon
 
 #comments
   background-color: $light_gray
+
+
+#background-blurred-picture
+  left: 0
+  right: 0
+  z-index: -1
+
+  position: fixed
+  display: block
+  width: 100%
+  height: 100vh
+
+  background-size: 100% auto
+
+  @include filter(blur(5px))

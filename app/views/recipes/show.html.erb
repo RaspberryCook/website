@@ -1,7 +1,11 @@
+<div id="background-blurred-picture" style="background-image: url(<%=@recipe.true_image_url%>)">
+</div>
+
+
 <!-- title of recipe -->
 <div class="row page-header recipe">
 
-	<div class="col-sm-9">
+	<div class="col-xs-12">
 		<% if @recipe.user %>
 			<%= render "users/image", user: @recipe.user %>
 		<% end %>
@@ -11,35 +15,20 @@
 		<p><%= @recipe.description %></p>
 		<p>Une recette de <%= render 'users/link', user: @recipe.user %></p>
 	</div>
-
-	<div class="col-sm-3" style="text-align: right">
-		<%= render 'shared/stars', stars: @recipe.rate.to_i %>
-		<hr/>
-		<%= image_tag '/assets/images/icons/views.svg' , class: 'views' %> vue <%= @recipe.count_views %> fois
-	</div>
-	
 </div>
 
-<!-- labels -->
-<div class="row">
-	
-</div>
+
+
 
 <!-- image of recipes and basics informations -->
 <div class="row recipe-picture-ribon">
 
 	<!-- image -->
-	<div class="col-md-9">
-			<%= image_tag @recipe.true_image_url , class: "img img-responsive full-width"%>
-	</div>
+	<%= image_tag @recipe.true_image_url , class: "img img-responsive full-width"%>
+	
 
 
-	<div class="col-md-3">
-
-
-
-		<div class="recipe-label col-lg-12 col-md-6 col-xs-2 col-"><%= recipe_label_type @recipe  %></div>
-		<div class="recipe-label col-lg-12 col-md-6 col-xs-2 col-"><%= recipe_label_season @recipe %></div>
+	<div class="col-xs-12">
 
 		<% %w(cooking baking cooling rest).each do |time| %>
 			<div class="recipe-label col-lg-12 col-md-6 col-xs-2 col-"><%= recipe_label_time @recipe, time %></div>
@@ -48,8 +37,14 @@
 
 	</div>
 
-
 </div><!-- end of image-->
+
+
+
+
+
+
+
 
 
 <!-- forked recipes -->
@@ -72,28 +67,34 @@
 <!-- ingredients and steps -->
 <div class="row">
 
-	<!-- ingrédients -->
-	<% if @recipe.ingredients %>
-		<div id="ingredients" class="col-sm-3">
-			<h2 class="visible-md-block visible-lg-block">Ingrédients</h2>
+	<div class="col-xs-12 col-sm-3">
 
-			<ul class="list-group">
-				<% @recipe.ingredients.each_line do |ingredient|%>
-					<li class="list-group-item"><%= link_to ingredient , recipes_path( :ingredients => ingredient )  %></li>
-				<% end %>
-			</ul>
+		<!-- ingrédients -->
+		<% if @recipe.ingredients %>
+		
+			<div id="ingredients" class="row">
+				
+				<h2 class="visible-md-block visible-sm-block">Ingrédients</h2>
 
-		</div>
-	<% end %>
+				<ul class="list-group col-xs-12">
+					<% @recipe.ingredients.each_line do |ingredient|%>
+						<li class="col-sm-12 col-xs-4 list-group-item"><%= link_to ingredient , recipes_path( :ingredients => ingredient )  %></li>
+					<% end %>
+				</ul>
+			</div><!-- #ingredients -->
+
+		<% end %><!--/ ingrédients -->
+
+
+
+	</div><!--/ .col-sm-3 -->
 
 	<!-- steps -->
 	<% if @recipe.steps %>
 		<div id="steps" class="col-sm-9">
 			<h2>Préparation</h2>
 
-			<% i = 0 %>
 			<% @recipe.steps.each_line do |step|%>
-				<h3 class="visible-md-block visible-lg-block">Etape n°<%= i += 1 %></h3>
 				<p><%= step %></p>
 			<% end %>
 
@@ -101,6 +102,7 @@
 
 		</div>
 	<% end %>
+
 </div>
 
 
@@ -147,4 +149,19 @@
 		<h2>Commentaires</h2>
 		<%= render 'shared/comments', :comments => @recipe .comments %>
 	</div>
+</div>
+
+
+
+
+
+
+
+<div class="recipe-label col-lg-12 col-md-6 col-xs-2 col-"><%= recipe_label_type @recipe  %></div>
+		<div class="recipe-label col-lg-12 col-md-6 col-xs-2 col-"><%= recipe_label_season @recipe %></div>
+
+<div class="col-sm-3" style="text-align: right">
+	<%= render 'shared/stars', stars: @recipe.rate.to_i %>
+	<hr/>
+	<%= image_tag '/assets/images/icons/views.svg' , class: 'views' %> vue <%= @recipe.count_views %> fois
 </div>
