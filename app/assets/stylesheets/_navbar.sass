@@ -1,7 +1,8 @@
 @import colors
+@import 'compass/css3/box-sizing'
 
 
-nav.navbar
+.navbar
   // setup red background color
   background-color: $primary_color
   border-color: $primary_color
@@ -17,36 +18,65 @@ nav.navbar
     img
       height: 40px
 
-  a:hover
-    color: white
 
   a.navbar-brand
     font-family: 'Pacifico', cursive
+    font-size: 28px
+
+
+
+
+
+
+// overwitte 
+.navbar-default .navbar-nav > li > a
+  color: $white
+
+  &:hover,
+  &:focus,
+  &:active
+    background-color: $white
+
+// retablish black color for link in dropdown items
+ul.dropdown-menu li 
+  color: black
+
+.navbar-default .navbar-form
+  border: 0px
+  margin-right: 0px
+  margin-left: 0px
+
+
+#search-icon
+  cursor: pointer
+
+  img
+    height: 50px
+    padding: 10px
+
+  &:hover
+    background-color: $white
+
+
+#search-recipe-form
+  display: none
+  position: fixed
+  top: 50px
+  left: 0
+  right: 0
+  z-index: 1
+  width: 100%
+  background-color: $white
+  height: 50px
+
+  padding: 0
+
+  input
+    border-bottom: dashed 2px $second_color
+    border-top: none
+    border-left: none
+    border-right: none
+    height: 50px
+    width: 100%
+    line-height: 40px
     font-size: 32px
-
-  form
-    border: none
-
-    input
-      display: inline
-
-
-  .navbar-collapse
-
-    a
-      color: $white
-
-      // disable white background when item is hovered
-      &:hover,
-      &:focus,
-      &:active
-        background-color: inherit
-
-    // retablish black color for link in dropdown items
-    ul.dropdown-menu li
-      a
-        color: inherit
-
-    // disable white background when item is hovered
-    .nav .open a:focus,
-      background-color: $primary_color
