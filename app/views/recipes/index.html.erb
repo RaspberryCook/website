@@ -3,49 +3,46 @@
 
 	<h1>Bibliothèque</h1>
 
+</div>
 
-	<div class="btn-group">
+<div class="row">
 
-		<button id="dropdown_type" type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-			Filtre <span class="caret"></span>
-		</button>
 
-		<ul class="dropdown-menu" aria-labelledby="dropdown_type">
-
-			<li class="dropdown-header">Type de recette</li>
+	<div id="recipe-search-tools">
+		
+		<ul class="nav nav-pills" >
 			<li><%= link_to 'Toutes', recipes_path %></li>
 			<% Recipe.types.each do |type| %>
 				<li><%= link_to type, recipes_path(type: type) %></li>
 			<% end %>
-
-			<li role="separator" class="divider"></li>
-
-			<li class="dropdown-header">Saison</li>
-			<% Recipe.seasons.each do |season| %>
-				<li><%= link_to season, recipes_path(season: season) %></li>
-			<% end %>
 		</ul>
 
-		<button id="filter" type="button" class="btn btn-info"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> Recherche</button>
 
-		<!-- Vider mon frigo -->
-		<%= link_to recipes_shuffle_path, class: "btn btn-success" do %>
-			<span class="glyphicon glyphicon-piggy-bank" aria-hidden="true"></span> Vider mon frigo
-		<% end %>
+		<div class="btn-group">
 
-		<!-- Recette au hasard -->
-		<%= link_to recipes_shuffle_path, class: "btn btn-success" do %>
-			<span class="glyphicon glyphicon-random" aria-hidden="true"></span> Recette au hasard
-		<% end %>
+			<button id="filter" type="button" class="btn btn-default"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> Recherche</button>
 
-		<!-- Ajouter un recette -->
-		<%= link_to new_recipe_path, class: "btn btn-primary" do %>
-			<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Ajouter un recette
-		<% end %>
+			<!-- Vider mon frigo -->
+			<%= link_to recipes_shuffle_path, class: "btn btn-default" do %>
+				<span class="glyphicon glyphicon-piggy-bank" aria-hidden="true"></span> Vider mon frigo
+			<% end %>
+
+			<!-- Recette au hasard -->
+			<%= link_to recipes_shuffle_path, class: "btn btn-default" do %>
+				<span class="glyphicon glyphicon-random" aria-hidden="true"></span> Recette au hasard
+			<% end %>
+
+			<!-- Ajouter un recette -->
+			<%= link_to new_recipe_path, class: "btn btn-default" do %>
+				<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Ajouter un recette
+			<% end %>
+		</div>
+
 
 	</div>
-
 </div>
+
+
 
 
 
