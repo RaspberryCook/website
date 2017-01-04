@@ -92,9 +92,10 @@
 </div>
 
 <div class="row">
-	<nav aria-label="Page navigation">
-		<%= will_paginate @recipes , class: "pagination" %>
-	</nav>
+	<div class="col-xs-12">
+		<%= will_paginate @recipes , renderer: BootstrapPagination::Rails, class: "pagination" %>
+		
+	</div>
 </div>
 
 

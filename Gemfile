@@ -40,6 +40,7 @@ gem 'rails4-autocomplete'
 gem 'rails-jquery-autocomplete'
 
 gem 'will_paginate'#https://github.com/mislav/will_paginate
+gem 'will_paginate-bootstrap'
 
 
 group :development , :test do
