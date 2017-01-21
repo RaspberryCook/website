@@ -26,15 +26,12 @@
 	<!-- image -->
 	<%= image_tag @recipe.true_image_url , class: "img img-responsive full-width"%>
 	
-
-
 	<div class="col-xs-12">
 
 		<% %w(cooking baking cooling rest).each do |time| %>
-			<div class="recipe-label col-lg-12 col-md-6 col-xs-2 col-"><%= recipe_label_time @recipe, time %></div>
+			<div class="recipe-label col-xs-2"><%= recipe_label_time @recipe, time %></div>
 		<% end %>
-				
-
+z
 	</div>
 
 </div><!-- end of image-->
