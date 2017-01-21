@@ -4,11 +4,21 @@
 <head><%= render 'layouts/head' %></head>
 <body>
 
+<script type="text/javascript">
+	// a function to use in .html.erb view to run jquery query when it was loaded
+	function defer(method) {
+		if (window.jQuery)
+			method();
+		else
+			setTimeout(function() { defer(method) }, 50);
+	}
+</script>
+
 	<%= render 'layouts/navigation' %>
 
 
 
-	<div class="main-container container-fluid col-md-8  col-sm-10 col-md-offset-2 col-sm-offset-1">
+	<div id="main-container" class="main-container container-fluid col-md-8  col-sm-10 col-md-offset-2 col-sm-offset-1">
 
 		<% flash.each do |key, value| %>
 
