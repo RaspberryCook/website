@@ -2,7 +2,7 @@
 	<div class="col-md-3 col-sm-4 col-xs-6">
 		<figure class="recipe" >
 
-			<%= link_to image_tag(recipe.true_thumb_image_url , alt: "Thumb - #{recipe.name}", class: "img-responsive img-circle") , recipe%>
+			<%= link_to image_tag(recipe.true_thumb_image_url , alt: "Thumb - #{recipe.name}", class: "img-responsive img-rounded") , recipe%>
 			
 			<figcaption>
 				<% if recipe.variant_name %>

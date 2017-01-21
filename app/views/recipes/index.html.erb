@@ -17,25 +17,33 @@
 			<% end %>
 		</ul>
 
+		<div class="btn-group btn-group-justified">
 
-		<div class="btn-group">
-
+			
+			<div class="btn-group" role="group">
 			<button id="filter" type="button" class="btn btn-default"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> Recherche</button>
+			</div>
 
 			<!-- Vider mon frigo -->
+			<div class="btn-group" role="group">
 			<%= link_to recipes_shuffle_path, class: "btn btn-default" do %>
 				<span class="glyphicon glyphicon-piggy-bank" aria-hidden="true"></span> Vider mon frigo
 			<% end %>
+			</div>
 
 			<!-- Recette au hasard -->
+			<div class="btn-group" role="group">
 			<%= link_to recipes_shuffle_path, class: "btn btn-default" do %>
 				<span class="glyphicon glyphicon-random" aria-hidden="true"></span> Recette au hasard
 			<% end %>
+			</div>
 
 			<!-- Ajouter un recette -->
+			<div class="btn-group" role="group">
 			<%= link_to new_recipe_path, class: "btn btn-default" do %>
 				<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Ajouter un recette
 			<% end %>
+			</div>
 		</div>
 
 
