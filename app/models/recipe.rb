@@ -209,6 +209,13 @@ class Recipe < ActiveRecord::Base
     end
   end
 
+  # Return true if user has set an image for this recipe
+  #
+  # @return [Boolean]
+  def has_image?
+    return  true_image_url != ImageUploader.new.default_url
+  end
+
 
   # count the total vote for this recipe
   #

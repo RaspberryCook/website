@@ -1,3 +1,10 @@
+GIT
+  remote: git://github.com/stympy/faker.git
+  revision: 6ef3e31c6f58f6d2c8088ac5e7d86d5f317e3e74
+  specs:
+    faker (1.6.6)
+      i18n (~> 0.5)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -213,6 +220,8 @@ GEM
     unread (0.8.2)
       activerecord (>= 3)
     will_paginate (3.1.5)
+    will_paginate-bootstrap (1.0.1)
+      will_paginate (>= 3.0.3)
     wkhtmltopdf-binary (0.12.3.1)
     yard (0.9.5)
 
@@ -229,6 +238,7 @@ DEPENDENCIES
   coffee-rails
   compass
   compass-rails
+  faker!
   gravatar
   jbuilder
   json
@@ -252,8 +262,9 @@ DEPENDENCIES
   uglifier
   unread
   will_paginate
+  will_paginate-bootstrap
   wkhtmltopdf-binary
   yard
 
 BUNDLED WITH
-   1.11.2
+   1.13.2

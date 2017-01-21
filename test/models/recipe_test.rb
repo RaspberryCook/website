@@ -38,12 +38,13 @@ class RecipeTest < ActiveSupport::TestCase
 
   test "recipe should return default picture as picture" do
     recipe = recipes(:two)
-    assert_equal '/assets/images/default.png', recipe.true_image_url
+    assert_equal '/assets/images/default.svg', recipe.true_image_url
+    assert_not recipe.has_image?
   end
 
   test "recipe should return default picture as thumb" do
     recipe = recipes(:two)
-    assert_equal '/assets/images/default.png', recipe.true_thumb_image_url
+    assert_equal '/assets/images/default.svg', recipe.true_thumb_image_url
   end
 
   test "if forked recipe have not picture, it should return parent's picture" do
@@ -54,7 +55,9 @@ class RecipeTest < ActiveSupport::TestCase
     forked_recipe = recipe.fork 2
     # compare only the filename
     assert_equal forked_recipe.true_image_url.split('/').last, recipe.image.url.split('/').last
+    assert recipe.has_image?
   end
+
 
 
   test "sould return the good average for the rate" do

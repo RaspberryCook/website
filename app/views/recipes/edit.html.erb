@@ -1,70 +1,77 @@
-<section id="recipe_edit" >
-
 <h1 class="recipe"><%= @recipe.name  %></h1>
-
-<h2>Infos</h2>
 
 
 <%= form_for @recipe , :html => {:multipart => true } do |f| %>
 	<%= render 'shared/error_messages', :object => f.object %>
 
 	<!-- if the recipe is forked, insert a text field for variant_name of another-->
-	<% if @recipe.forked?%>
-		<span><label>Nom de la variante</label><%= f.text_field :variant_name , :placeholder => "ex: Sans fruits rouges" %></span>
-	<% end %>
-
-	<span><label>Description</label><%= f.text_field :description , :placeholder => "entrez une description"%></span>
-
-
-	<span><label>Photo</label><%= f.file_field :image  %></span>
-
-
-	<label class="radio_buttons_with_icon">Type de recette</label>
-	<ul class="radio_buttons_with_icon">
-		<% Recipe.types.each do |type| %>
-			<li>
-				<%= f.radio_button :rtype, type %>
-				<%= f.label :rtype, image_tag("/assets/images/type_of_food/%s.svg"%type ) + type , value: type %>
-			</li>
+	<div class="row">
+		<% if @recipe.forked?%>
+			<div class="form-group">
+				<%= f.label :variant_name, "Nom de la variante" %>
+				<%= f.text_field :variant_name , placeholder: "ex: Sans fruits rouges" , class: "form-control" %>
+			</div>
 		<% end %>
-	</ul>
 
-	<label class="radio_buttons_with_icon">Saison adaptée à la dégustation de celle-ci</label>
-	<ul class="radio_buttons_with_icon">
-		<% Recipe.seasons.each do |type| %>
-			<li>
-				<%= f.radio_button :season, type %>
-				<%= f.label :season, image_tag("/assets/images/seasons/%s.svg"%type ) + type , value: type %>
-			</li>
-		<% end %>
-	</ul>
-	
+		<div class="form-group col-sm-8">
+			<%= f.label :description%>
+			<%= f.text_field :description , :placeholder => "entrez une description", class: "form-control" %>
+		</div>
 
+		<div class="form-group col-sm-4">
+			<%= f.label :image  %>
+			<%= f.file_field :image  %>
+		</div>
 
+		<div class="form-group col-sm-6">
+			<%= f.label :rtype, "Type" %>
+			<%= f.select :rtype , options_for_select(Recipe.types),{}, { class: "form-control form-control-lg" }  %>
+		</div>
 
-<h2>Temps</h2>
-	<ul class="times">
-		<li><label>Préparation</label><%= f.time_field :t_cooking  , class: "time_picker"%></li>
-		<li><label>Cuisson</label><%= f.time_field :t_baking  , class: "time_picker"%></li>
-		<li><label>Réfrigération</label><%= f.time_field :t_cooling  , class: "time_picker"%></li>
-		<li><label>repos</label><%= f.time_field :t_rest  , class: "time_picker"%></li>
-	</ul>
-
+		<div class="form-group col-sm-6">
+			<%= f.label :season, "Saison" %>
+			<%= f.select :season , options_for_select(Recipe.seasons),{}, { class: "form-control form-control-lg" }  %>
+		</div>
+	</div>
 
 
-<h2>Ingrédients</h2>
-	<p>Listez les ingrédients en revenant simplement à la ligne. On s'occupe du reste</p>
-	<%= f.text_area :ingredients , :placeholder => "courgettes"%>
+<div class="row  col-md-12">
+	<h2>Temps</h2>
 
-<h2>Etapes</h2>
-	<p>Listez les étapes en revenant simplement à la ligne.</p>
-	<%= f.text_area :steps , :placeholder => "p'lez les carottes"%>
+	<div class="form-group col-sm-3">
+		<%= f.label :t_cooking, 'Préparation'%>
+		<%= f.time_field :t_cooking  , class: "time_picker form-control"%>
+	</div>
 
-</ul>
+	<div class="form-group col-sm-3">
+		<%= f.label :t_baking, 'Cuisson'%>
+		<%= f.time_field :t_baking  , class: "time_picker form-control"%>
+	</div>
 
-<%= f.submit "Mettre à jour" %>
+	<div class="form-group col-sm-3">
+		<%= f.label :t_cooking, 'Réfrigération'%>
+		<%= f.time_field :t_cooking  , class: "time_picker form-control"%>
+	</div>
+
+	<div class="form-group col-sm-3">
+		<%= f.label :t_cooling, 'Repos'%>
+		<%= f.time_field :t_cooling  , class: "time_picker form-control"%>
+	</div>
+</div>
+
+<div class="row col-md-12">
+	<%= f.label :ingredients , 'Ingrédients'%>
+	<%= f.text_area :ingredients , placeholder: "courgettes", class: "form-control"%>
+	<div class="help-block">Listez les ingrédients en revenant simplement à la ligne. On s'occupe du reste</div>
+</div>
+
+<div class="row  col-md-12">
+	<%= f.label :steps, 'Etapes' %>
+	<%= f.text_area :steps , :placeholder => "p'lez les carottes", class: "form-control"%>
+	<p class="help-block">Listez les étapes en revenant simplement à la ligne.</p>
+</div>
+
+<%= f.submit "Mettre à jour", class: 'row btn btn-primary' %>
 
 	
 <% end %>
-
-</section>

@@ -1,33 +1,7 @@
-<section id="login">
+<div class="page-header">
 	<h1>s'inscrire</h1>
+</div>
 
-	<p class="tip">Créez vos recettes et exportez les en PDF avec votre nouveau compte</p>
+<p class="alert alert-info">Créez vos recettes et exportez les en PDF avec votre nouveau compte.<br/>Déjà inscrit ? <%= link_to "Connectez-vous !", signin_path %></p>
 
-	<%= form_for(@user) do |f| %>
-
-		<%= render 'shared/error_messages' , :object => f.object %>
-
-		<%= f.label :email %>
-		<%= f.email_field :email %><br/>
-
-		<%= f.label :username %>
-		<%= f.text_field :username %><br/>
-
-		<%= f.label :firstname %>
-		<%= f.text_field :firstname %><br/>
-
-		<%= f.label :lastname %>
-		<%= f.text_field :lastname %><br/>
-
-		<%= f.label :password %>
-		<%= f.password_field :password %><br/>
-
-		<%= f.label :password_confirmation %>
-		<%= f.password_field :password_confirmation %><br/>
-
-		<%= f.submit 'sign-up' %><br/>
-
-	<% end %>
-
-	<p>Déjà inscrit ? <%= link_to "Connectez-vous !", signin_path %></p>
-</section>
+<%= render 'users/form', user: @user %>
