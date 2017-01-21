@@ -18,29 +18,22 @@
 </div>
 
 
-
-
 <!-- image of recipes and basics informations -->
 <div class="row recipe-picture-ribon">
 
 	<!-- image -->
-	<%= image_tag @recipe.true_image_url , class: "img img-responsive full-width"%>
+	<% if @recipe.has_image? %>
+		<%= image_tag @recipe.true_image_url , class: "img img-responsive full-width"%>
+	<% end %>
 	
 	<div class="col-xs-12">
 
 		<% %w(cooking baking cooling rest).each do |time| %>
 			<div class="recipe-label col-xs-2"><%= recipe_label_time @recipe, time %></div>
 		<% end %>
-z
 	</div>
 
 </div><!-- end of image-->
-
-
-
-
-
-
 
 
 
@@ -165,18 +158,17 @@ z
 			</div><!--/ #steps -->
 		<% end %>
 
-
-		<!-- commentaires -->
-		<div class="row">
-			<div class="col-md-12">
-				<h2>Commentaires</h2>
-				<%= render 'shared/comments', :comments => @recipe .comments %>
-			</div>
-		</div>
-
-		
 	</div><!--/ .col-sm-9 -->
 
+</div>
+
+<!-- commentaires -->
+<div class="row">
+	<div class="col-xs-12">
+		<h2>Commentaires</h2>
+		<%= render 'shared/comments', :comments => @recipe .comments %>
+	</div>
+</div>
 	
 
 </div>
