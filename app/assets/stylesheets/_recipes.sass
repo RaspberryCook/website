@@ -1,351 +1,55 @@
 @import colors
-@import mixin
-@import button
-@import url(https://fonts.googleapis.com/css?family=Pacifico)
-
-$filter_height: 30px
-$filter_color: #bdc3c7 
-
-@media all and (min-width: 740px)
-
-	ul.recipes
-		padding: 5px
-
-		li
-			margin: 30px
-			width: 300px
-
-@media all and (max-width: 740px)
 
 
-	// avoid fall outside
-	ul.recipes
-		width: 100%
-		max-width: 100%
+#search_recipe_form
+  display: none
+  // copy of .well of bootsrap
+  padding: 19px
+  margin-bottom: 20px
+  background-color: #f5f5f5
+  border: 1px solid #e3e3e3
+  border-radius: 4px
+  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.05)
+  box-shadow: inset 0 1px 1px rgba(0,0,0,.05)
+  // add margin
+  margin-top: 10px
 
-		*
-			max-width: 100%
+#recipe-search-tools
+  text-align: center
+
+  padding-top: 20px
+  padding-bottom: 20px
+  margin-bottom: 50px
 
 
+  //display nav-pills centered
+  .navs-tabs,
+  .nav-pills
+    text-align: center
+    li
+      float: none
+      display: inline-block
 
-	ul.recipes
-		padding: 0px
+      a
+        font-size: 24px
+        color: $second_color
 
-		li
-			margin-left: 0px
-			margin-right: 0px
-			margin-top: 15px
-			margin-bottom: 15px
-
-		figure
-			height: 250px
-
-			img
-				max-width: 100%
-				width: 250px
-				height: 250px
-				@include border-radius(20px)
-
-			a
-				max-width: 100%
-
+        &:hover
+          background-color: transparent
+          text-decoration: underline
 
 
 figure.recipe
-	width: 100%
-	height: 250px
-	max-height: 250px
-	text-align: center
-	margin-left: 0px
-	margin-right: 0px
-
-
-// display of recipes list
-ul.recipes
-	margin: auto
-	display: block
-	text-align: center
-
-	li
-		display: inline-block
-		text-align: center
-		vertical-align: top
-
-figure.recipe
-	width: 100%
-	height: 250px
-	max-height: 250px
-	text-align: center
-
-	img
-		width: 200px
-		height: 200px
-		@include border-radius(20px)
-
-	a
-		font-size: 20px
-		font-family: 'Pacifico', cursive
-		text-decoration: none
-		color: #2c3e50
-		display: block
-		max-height: 50px
-		height: 50px
-
-
-
-section#recipe_new
-	margin: auto
-
-	input
-		height: 60px
-		font-size: 45px
-		border: 1px solid lightgray
-
-		&[type=text],
-		&[type=url]
-			width: 100%
-
-
-
-
-section#recipe ,
-section#recipe_edit
-
-	input[type=submit]
-		@include button_class( $green )
-
-
-	span
-		display: inline-block
-
-	#count_views
-		margin: auto
-		display: block
-		color: $second_color
-		height: 80px
-		@include border-radius(80px)
-		background-size: 80px 80px
-		line-height: 80px
-		text-align: center
-
-		*
-			vertical-align: middle
-			height: 60px
-			display: inline
-
-		strong
-			font-weight: normal
-
-		
-		
-	
-
-	#variants 
-		text-align: center
-		list-style-type: none
-
-		a
-			font-size: 20px
-			font-family: 'Pacifico', cursive
-			text-decoration: none
-			color: #2c3e50
-
-			&:hover
-				text-decoration: underline
-
-		a#fav
-			@include star(25px)
-
-
-	ul#steps
-		@include ungit_ol ( 20px , 10px , 30px , $second_color)
-
-		li
-			font-size: 20px
-
-
-	.picture_ribon
-		width: 100%
-		display: inline-block
-		text-align: center
-		vertical-align: center
-		margin: 0px
-
-	span.picture_ribon
-		height: 50px
-		padding-top: 10px
-		padding-bottom: 10px
-		text-align: center
-		text-align: center
-		font-size: 30px
-
-		a
-			text-decoration: none
-			font-family: 'Pacifico', cursive
-			font-weight: 100
-			img
-				height: 40px
-				display: inline-block
-
-		ul
-			list-style-type: none
-
-			li
-				display: inline-block
-				margin-right: 10px
-				margin-left: 10px
-
-
-	//recipe sheet
-	div.picture_ribon
-		background-color: $second_color
-		height: 100px
-
-
-		div 
-			background-size: 60% 60% 
-			background-repeat: no-repeat
-			background-position : center center
-			display: inline-block
-			width: 100px
-			height: 100px
-			display: inline-block 
-			
-
-			time
-				color: $white
-				display: block
-				height: 30px
-				line-height: 30px
-				font-size: 18px
-				@include border-radius(15px)
-
-				background-color: $primary_color
-
-	#recipe_picture
-		// background-color: #ECF0F1 
-		// background-size: cover
-		// background-position: center
-		background: center 0 no-repeat fixed
-		background-size: cover
-		@include effect-picture( 'grayscale' , '100%')
-		margin-top: 50px
-		height: 600px
-		width: 100%
-		margin: auto
-		border-top: 2px solid $second_color
-
-		ul , textarea 
-			position: relative
-			left: 50%
-			top: -300px
-			width: 40% 
-			height: 300px
-			font-size: large
-
-
-		figure 
-			text-align: center
-			width: 350px
-			position: relative
-			display: inline-block
-			margin: auto
-
-		figcaption 
-			text-align: center
-			padding: 5px
-			font-size: small
-
-		img 
-			max-width: 100%
-			max-height: 100%
-
-		// display a magnifier to zoom-in when the user hiver the picture
-		#zoom-in
-			width: 100px
-			height: 100px
-			margin: auto
-			display: block
-			position: relative
-			top: 250px
-
-	// a fullscreen piture displayed to show total view of the recipe's picture
-	#recipe_fullscreen_picture
-		position: fixed
-		top: 0px
-		bottom: 0px
-		width: 100%
-		left: 0px
-		right: 0px
-		background-size: cover
-		display: none
-
-ul#select_types
-	list-style: none
-	text-align: center
-	padding: 0
-
-	li
-		font-size: 20px
-		display: inline-block
-		padding: 5px
-
-		a
-			text-decoration: none
-			&:hover
-				font-weight: bold
-
-
-#filter
-	display: block
-	background-color: $filter_color
-	height: $filter_height
-	width: 110px
-	font-size: large
-	padding: 5px
-	margin: auto
-	@include border-radius(5px)
-
-	a
-		text-decoration: none
-
-	img
-		height: 100%
-		float: left
-
-form#search_recipe_form
-	display: none
-	width: 770px
-	text-align: center
-	background-color: $filter_color
-	margin: auto
-
-@media all and (min-width: 740px)
-
-	div.field
-		width: 170px
-		padding: 5px
-		float: left
-
-
-		input,
-		select
-			width: 160px
-
-@media all and (max-width: 780px)
-
-	div.field
-		width: 100%
-
-		label
-			display: inline-block 
-			width: 200px
-			text-align: right
-
-		input,
-		select
-			display: inline-block
-			width: 200px
-			padding: 1px
-			margin: 5px
-
+  padding: 5px
+  margin: 5px
+
+  // title of recipe in Recipes#Index
+  figcaption
+
+    a
+      text-align: center
+      font-size: 18px
+      font-family: 'Pacifico', cursive
+      color: #2c3e50
+      display: block
+      height: 60px

@@ -1,23 +1,29 @@
-<section id="fridge">
-  <h1><%= @title %></h1>
+<div class="page-header">
 
+  <h1>Bibliothèque</h1>
+
+</div>
+
+<div class="row">
   <p>Chez <strong>Raspberry Cook</strong> nous détestons le <strong>gachis</strong>! C'est pourquoi nous vous sélectionnons <strong>les meilleurs recettes</strong> avec ce qu'il vous reste!</p>
+</div>
 
-  <p class="tip">Ajoutez vos ingrédients un par un et confirmez la recherche.</p>
+<div class="row">
+  <ul id="ingredients_list" class="list-group">  </ul>
 
-  <ul id="ingredients_list">  </ul>
-
-  <form id="ingredients_adder">
-    <input id="ingredient" type="text" name="ingredient">
-    <input type="submit" value="+" style="width:50px">
+  <form id="ingredients_adder" class="form-inline">
+    <input id="ingredient" type="text" name="ingredient" class="form-control">
+    <input type="submit" value="+" class="btn btn-primary">
   </form>
-
   
   <%= form_tag  fridge_path , method: "GET" do  %>
     <%= hidden_field_tag 'ingredients' , params[:name], :placeholder => "recherchez une recette"  %>
-    <%= submit_tag "rechercher" %>
+    <p class="help-block">Ajoutez vos ingrédients un par un et confirmez la recherche.</p>
+    <%= submit_tag "rechercher" , class: "btn btn-primary"%>
   <% end %>
+</div>
 
+<div class="row">
   <% if @recipes # if @recipes exists, we display them %>
     <h2>Nos résultats</h2>
     <%= render 'shared/recipes' , :recipes => @recipes %>
@@ -27,8 +33,7 @@
     <p>Ouups ... Il semblerait que nous n'avons rien trouvé</p>
 
   <% end %>
-
-</section>
+</div>
 
 <script type="text/javascript">
   // get elements 

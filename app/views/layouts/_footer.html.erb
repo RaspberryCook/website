@@ -1,31 +1,16 @@
-<ul>
+<footer class="footer col-md-10 col-md-offset-1">
 
-	<li><strong>Le projet</strong>
-		<ul>
-			<li><%= link_to 'Blog' , "http://blog.raspberry-cook.fr" %></li>
-			<li><%= link_to 'GitHub' , "https://github.com/madeindjs/raspberry_cook" %></li>
-			<li><%= link_to 'Facebook' ,'https://www.facebook.com/raspberrycook' %></li>
-			<li><%= link_to 'Instagram','https://www.instagram.com/raspberry_cook/' %></li>
-		</ul>
-	</li>
+		<div class="container">
 
-	<li><strong>A propos de moi</strong>
-		<ul>
-			<li><%= link_to 'Portfolio' , 'http://rousseau-alexandre.fr' %></li>
+		<ul class="list-inline">
+			<li><%= link_to image_tag("/assets/images/icons/fb.svg"),'https://www.facebook.com/raspberrycook'%></li>
+			<li><%= link_to(image_tag("/assets/images/icons/intgr.svg"),'https://www.instagram.com/raspberry_cook/')%></li>
+			<li><%= link_to image_tag("/assets/images/icons/github-icon.svg"),'https://github.com/madeindjs/raspberry_cook' %></li>
 			<li><%= link_to 'Contactez-moi' , "mailto:RousseauAlexandre.Lyon@gmail.com?subject=Raspberry%20Cook" %></li>
-		</ul>
-	</li>
-
-	<li><strong>Mentions légales</strong>
-		<ul>
 			<li><%= link_to 'Licence MIT' , "https://opensource.org/licenses/MIT" %></li>
 			<li><%= link_to "crédits" , credits_path %></li>
 		</ul>
-	</li>
 
-	
-</ul>
+	</div>
 
-
-
-
+</footer>

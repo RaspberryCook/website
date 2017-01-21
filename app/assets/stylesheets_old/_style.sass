@@ -1,0 +1,173 @@
+@import colors
+@import mixin
+@import button
+@import url(https://fonts.googleapis.com/css?family=Pacifico)
+
+
+$footer_height: 50px
+
+html,
+body,
+header
+	margin: 0px
+
+
+
+h1, h2
+	font-family: 'Pacifico', cursive
+	font-weight: 100
+	text-align: center
+	vertical-align: middle
+	padding: 10px
+	margin: 0px
+
+h1
+	color: $text_color
+
+h2
+	color: $primary_color
+	margin-top: 30px
+	font-size: 40px
+
+h3
+	color: $green
+
+
+
+p,
+a,
+li,
+legend,
+input,
+textarea,
+label
+	color: $text_color
+
+input,
+textarea,
+select
+	font-size: 18px
+
+
+p
+	font-size: 18px
+
+	a
+		color: inherit
+
+
+
+section
+	max-width: 1000px
+	margin: auto
+
+
+//trick to have a great footer
+html
+	height: 100%
+body
+	min-height: 100vh
+	position: relative
+	padding-bottom: $footer_height *4
+footer
+	position: absolute
+	bottom: 0
+	left: 0
+	right: 0
+	padding-bottom: 20px
+	height: $footer_height *3
+	font-size: 20px
+	background-color: $footer_color
+	font-size: 16px
+	color: $light_gray
+
+
+body
+	margin: 0px
+	padding-top: $header_height
+	font-family: sans-serif 
+	background-color: $background_color
+
+
+
+
+
+
+
+ul.actions
+	width: 100%
+	margin: 0px
+	padding-left: 0px
+	padding-right: 0px
+	padding-top: 20px
+	padding-bottom: 10px
+	text-align: center
+
+	li
+
+		display: inline-block
+
+.button_save
+	@include button_class( $dark_red )
+
+.button_delete
+	@include button_class( $dark_red )
+	
+.button_edit
+	@include button_class( $dark_red )
+
+
+ul#ingredients,
+ul#ingredients_list
+	margin-bottom: 0
+	list-style: none
+	padding: 0px
+
+	text-align: center
+
+	li
+		font-size: 18px
+		margin: 5px
+		color: $second_color
+		border: 2px solid
+		display: inline-block
+		line-height: 24px
+		width: 200px
+		height: 24px
+		overflow: hidden
+		@include border-radius(5px)
+
+		&:hover
+			background-color: $second_color
+			color: $white
+			height: auto
+
+		a
+			color: inherit
+			text-decoration: none
+
+
+@media all and (min-width: 740px)
+
+	h1
+		font-size: 60px
+
+
+
+
+@media all and (max-width: 740px)
+
+	// avoid fall outside
+	*
+		max-width: 100%
+
+
+	h1
+		font-size: 40px
+
+	section
+		width: 100%
+
+	input
+		width: 100%
+

@@ -1,0 +1,59 @@
+.ribbon 
+	width: 300px
+	position: absolute
+	text-align: center
+	font-size: 20px!important
+	background-color: #d64b4b
+	font-family: 'Helvetica Neue',Helvetica, sans-serif
+	
+	
+	&:before, 
+	&:after 
+		content: ''
+		position: absolute
+		display: block
+		bottom: -1.2em
+		border: 1.5em solid #c23a3a
+		z-index: -1
+	
+	&:before 
+		left: -1.8em
+		border-right-width: 1.5em
+		border-left-color: transparent
+		-webkit-box-shadow: rgba(000,000,000,0.4) 0px 0px 0px
+		-moz-box-shadow: rgba(000,000,000,0.4) 0px 0px 0px
+		box-shadow: rgba(000,000,000,0.4) 0px 0px 0px
+		
+	&:after 
+		right: -1.8em
+		border-left-width: 1.5em
+		border-right-color: transparent
+		-webkit-box-shadow: rgba(000,000,000,0.4) -0px 0px 0px
+		-moz-box-shadow: rgba(000,000,000,0.4) -0px 0px 0px
+		box-shadow: rgba(000,000,000,0.4) -0px 0px 0px
+	
+	.ribbon-content
+
+		display: inline-block
+		font-size: 25px!important
+		color: #801111
+		margin: 0px
+		padding: 15px 10px
+		height: 25px
+
+		&:before, 
+		&:after 
+			border-color: #871616 transparent transparent transparent
+			position: absolute
+			display: block
+			border-style: solid
+			bottom: -1em
+			content: ''
+		
+		&:before 
+			left: 0
+			border-width: 1em 0 0 1em
+			
+		&:after 
+			right: 0
+			border-width: 1em 1em 0 0

@@ -22,7 +22,7 @@ class RecipesController < ApplicationController
 					@comment = Comment.new
 					@title = @recipe.name
 
-					if @recipe.description
+					if @recipe.user
 						@description = 'Une delicieuse recette de %s.' % @recipe.user.firstname
 					else
 						@description = @recipe.description
@@ -33,7 +33,7 @@ class RecipesController < ApplicationController
 						@recipe.comments.each { |com| com.mark_as_read! :for => current_user }
 					
 					else current_user
-						flash[:notice] = "%s ou %s pour faire vivre Raspberry Cook <3." % [view_context.link_to("Connectez-vous", signin_path), view_context.link_to("créez un compte", signup_path)]
+						flash[:info] = "%s ou %s pour faire vivre Raspberry Cook <3." % [view_context.link_to("Connectez-vous", signin_path), view_context.link_to("créez un compte", signup_path)]
 						session['recipes_viewed'] += 1
 					end
 					render "show"
@@ -44,7 +44,7 @@ class RecipesController < ApplicationController
 
 
 		else
-			flash[:error] = "Vous avez déjà consulté %s recettes. Vous devez vous %s, %s ou bien revenir plus tard." % [ 
+			flash[:warning] = "Vous avez déjà consulté %s recettes. Vous devez vous %s, %s ou bien revenir plus tard." % [ 
 				session['recipes_viewed'] ,
 				view_context.link_to("connecter", signin_path), 
 				view_context.link_to("créer un compte", signup_path)
@@ -83,11 +83,11 @@ class RecipesController < ApplicationController
 				redirect_to edit_recipe_path(recipe_imported)
 
 			rescue ArgumentError
-				flash[:error] = "Cette URL n'est pas suportée par Raspberry Cook :("
+				flash[:warning] = "Cette URL n'est pas suportée par Raspberry Cook :("
 				redirect_to new_recipe_path
 
 			rescue Exception
-				flash[:error] = "Quelque chose a merdé :("
+				flash[:warning] = "Quelque chose a merdé :("
 				redirect_to new_recipe_path
 			end
 			
@@ -98,7 +98,7 @@ class RecipesController < ApplicationController
 				flash[:success] = "huuummm! Dites nous en plus!"
 				redirect_to edit_recipe_path(@recipe)
 			else
-				flash[:error] = "Une erreur est survenue, veuillez essayer à nouveau"
+				flash[:warning] = "Une erreur est survenue, veuillez essayer à nouveau"
 				redirect_to new_recipe_path
 			end
 		end
@@ -189,7 +189,7 @@ class RecipesController < ApplicationController
 
 		def check_recipe_owner
 			@recipe = Recipe.find(params[:id])
-			redirect_to root_path , :notice => "Petit-coquin!" unless current_user == @recipe.user
+			redirect_to root_path , :info => "Petit-coquin!" unless current_user == @recipe.user
 		end
 
 end

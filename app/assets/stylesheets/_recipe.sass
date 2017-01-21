@@ -1,0 +1,75 @@
+@import colors
+@import "compass/css3/box-shadow"
+@import "compass/css3/filter"
+
+
+img.icon-recipe
+  height: 10px
+
+
+
+// Title of recipe in Recipes#Show 
+div.page-header.recipe img.user
+  height: 100px
+  float: left
+  margin-right: 20px
+
+.stars-rating img
+  height: 40px
+
+img.views
+  height: 40px
+
+
+// Recipe picture in Recipes#Show
+div.recipe-picture-ribon
+  background-color: $second_color
+  text-align: center
+
+  .col-md-9
+    padding: 0
+
+
+  div.recipe-label
+    vertical-align: middle
+    padding: 4px
+    text-align: center
+    margin-top: 10px
+
+    font-size: 18px
+    color: $light_gray
+
+    a
+      color: inherit
+
+    img
+      height: 50px
+      display: block
+      margin: auto
+
+
+#background-blurred-picture
+  top: -50px
+  left: -50px
+
+  z-index: -1
+
+  position: fixed
+  display: block
+  width: 150%
+  height: 150%
+
+  background-size: cover
+
+  @include filter(blur(5px))
+
+.recipe-information
+
+  margin-top: 5px
+  margin-bottom: 5px
+
+  strong
+    display: block
+
+  img
+    max-height: 20px

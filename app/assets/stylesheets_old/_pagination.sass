@@ -1,0 +1,36 @@
+// inspired from http://mislav.github.io/will_paginate/
+
+@import colors
+@import mixin
+
+
+@mixin apple_pagination( $size )
+	.apple_pagination
+		background: $white
+		text-align: center
+		padding: 16px
+		cursor: default
+		a, span
+			padding: $size/4
+		.disabled
+			color: #aaaaaa
+		.current
+			font-style: normal
+			background-color: $dark_red
+			color: $white
+			display: inline-block
+			width: $size
+			height: $size
+			line-height: $size
+			@include border-radius($size/2)
+		a
+			text-decoration: none
+			&:hover, &:focus
+				text-decoration: underline
+
+@media all and (min-width: 740px)
+	@include apple_pagination(22px)
+
+	
+@media all and (max-width: 740px)
+	@include apple_pagination(35px)

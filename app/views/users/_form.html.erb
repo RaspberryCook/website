@@ -1,0 +1,43 @@
+<div class="row">
+
+  <%= form_for user do |f| %>
+
+    <%= render 'shared/error_messages' , :object => f.object %>
+
+    <div class="form-group col-sm-6">
+      <%= f.label :email %>
+      <%= f.email_field :email, class: 'form-control' %>
+    </div>
+
+    <div class="form-group col-sm-6">
+      <%= f.label :username %>
+      <%= f.text_field :username, class: 'form-control' %>
+    </div>
+
+    <div class="form-group col-sm-6">
+      <%= f.label :firstname %>
+      <%= f.text_field :firstname, class: 'form-control' %>
+    </div>
+
+    <div class="form-group col-sm-6">
+      <%= f.label :lastname %>
+      <%= f.text_field :lastname, class: 'form-control' %>
+    </div>
+
+    <div class="form-group col-sm-6">
+      <%= f.label :password %>
+      <%= f.password_field :password, class: 'form-control' %>
+    </div>
+
+    <div class="form-group col-sm-6">
+      <%= f.label :password_confirmation %>
+      <%= f.password_field :password_confirmation, class: 'form-control' %>
+    </div>
+
+    <div class="form-group col-sm-6">
+      <%= f.submit 'sign-up', class: 'btn btn-primary' %><br/>
+    </div>
+
+  <% end %>
+
+</div>

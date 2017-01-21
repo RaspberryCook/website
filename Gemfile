@@ -40,9 +40,10 @@ gem 'rails4-autocomplete'
 gem 'rails-jquery-autocomplete'
 
 gem 'will_paginate'#https://github.com/mislav/will_paginate
+gem 'will_paginate-bootstrap'
 
 
-group :development do
+group :development , :test do
 	# Use Capistrano for deployment
 	gem 'net-ssh' 
 	gem 'capistrano',		require: false
@@ -52,6 +53,8 @@ group :development do
 	gem 'sitemap_generator'
 	gem 'quiet_assets'
 	gem 'simplecov', :require => false
+
+	gem 'faker', github: 'stympy/faker'  
 end
 
 gem 'authlogic'

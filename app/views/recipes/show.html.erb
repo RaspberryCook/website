@@ -1,137 +1,174 @@
-<section id="recipe" class="content">
-
-<div id="recipe_fullscreen_picture" 
-	style="background-image: url(<%= @recipe.true_image_url %>);"  ></div>
-
-<h1 class="recipe"><%= @recipe.name  %>
-	<%= " - %s" % @recipe.variant_name if @recipe.variant_name%></h1>
-
-<% recipe_rate = @recipe.rate.to_i %>
-
-
-
-<span class="picture_ribon">
-	<ul>
-		
-		<% if @recipe.rtype %>
-			<li><%= link_to image_tag("/assets/images/type_of_food/%s.svg" % @recipe.rtype ) + @recipe.rtype , recipes_path( :type => @recipe.rtype )  %></li>
-		<% end %>
-
-		<% if @recipe.season %>
-			<li><%= link_to image_tag("/assets/images/seasons/%s.svg" % @recipe.season ) + @recipe.season , recipes_path( :season => @recipe.season )  %></li>
-		<% end %>
-
-	</ul>
-</span>
-
-
-<%= image_tag @recipe.true_image_url , alt: 'picture of the recipe for web scrappers' , style: 'display: none'%>
-
-<!-- image -->
-<div  id="recipe_picture"
-	style="background-image: url(<%= @recipe.true_image_url %>);"  >
-
-	<a id="zoom-in" href="#" style="display:none">
-		<%= image_tag("/assets/images/icons/zoom-in.svg", size: "100") %></a>
-		
+<div id="background-blurred-picture" style="background-image: url(<%=@recipe.true_image_url%>)">
 </div>
 
 
+<!-- title of recipe -->
+<div class="row page-header recipe">
 
-<!-- times -->
-<div id="times" class="picture_ribon">
-
-	<% %w(cooking baking cooling rest).each do |time| %>
-		<% time_of_recipe = @recipe.public_send("t_#{time}") %>
-		
-		<% if time_of_recipe.is_a? Time and time_of_recipe != Recipe::ZERO_TIME %>
-			<div style="background-image:url(/assets/images/time/<%= time %>.svg)" >
-				<time><%=time_of_recipe.strftime "%H:%M"%></time>
-			</div>
+	<div class="col-xs-12">
+		<% if @recipe.user %>
+			<%= render "users/image", user: @recipe.user %>
 		<% end %>
-			
+
+		<h1 class="recipe"><%= @recipe.name  %>
+			<%= " - %s" % @recipe.variant_name if @recipe.variant_name%></h1>
+		<p><%= @recipe.description %></p>
+		<p>Une recette de <%= render 'users/link', user: @recipe.user %></p>
+	</div>
+</div>
+
+
+<!-- image of recipes and basics informations -->
+<div class="row recipe-picture-ribon">
+
+	<!-- image -->
+	<% if @recipe.has_image? %>
+		<%= image_tag @recipe.true_image_url , class: "img img-responsive full-width"%>
 	<% end %>
+	
+	<div class="col-xs-12">
 
-</div>
+		<% %w(cooking baking cooling rest).each do |time| %>
+			<div class="recipe-label col-xs-2"><%= recipe_label_time @recipe, time %></div>
+		<% end %>
+	</div>
 
+</div><!-- end of image-->
 
-<%if recipe_rate > 0 %>
-	<span class="star-rating"><% recipe_rate.to_i.times do %>
-		<i style="opacity: 1"></i>
-	<% end %></span>
-<% end %>
-
-
-
-<%= render 'shared/user' , :user => @recipe.user %>
 
 
 <!-- forked recipes -->
-<% forked_recipes = @recipe.forked_recipes 
-if forked_recipes.length > 0 %>
+<div class="row">
+	<!-- forked recipes -->
+	<% if @recipe.forked_recipes.length > 0 %>
 
-	<h2>Variantes disponnibles</h2>
-	<%= render 'shared/recipes' , :recipes => forked_recipes %>
+		<h2>Variantes disponnibles</h2>
+		<%= render 'shared/recipes' , :recipes => @recipe.forked_recipes %>
 
-<% elsif @recipe.forked?  %>
+	<% elsif @recipe.forked?  %>
 
-	<h2>Recette originelle</h2>
-	<%= render 'shared/recipe' , :recipe => @recipe.root_recipe %>
+		<h2>Recette originelle</h2>
+		<%= render 'shared/recipe' , :recipe => @recipe.root_recipe %>
 
-<% end %>
-
-<h2>Actions</h2>
-<ul class="actions" >
-
-
-	<li><%= link_to "sauvegarder", save_recipe_path(id: @recipe.id)	, :class => 'button_save' %></li>
-
-	<!-- Add a fork button if the user is connected -->
-	<li><%= link_to "créer une variante" , fork_recipe_path( :id => @recipe.id) , :class => 'button_edit' %></li>
-
-	<!-- if it's the owner of the recipe  -->
-	<% if current_user == @recipe.user %>
-
-		<li><%= link_to "modifier" , edit_recipe_path , 
-					:class => 'button_edit'%></li>
-
-		<li><%= link_to "supprimer" , @recipe ,
-					:class => 'button_delete',
-					:method => :delete, 
-					:confirm => 'Are you sure?' ,
-					:title => "Delete #{@recipe.name}" %></li>
 	<% end %>
-
-</ul>
-
-<p class="tip">Cett recette vous a paru trop grasse? <%= link_to "Créez votre variante" , fork_recipe_path( :id => @recipe.id) %>!</p>
-
-<span id="count_views">
-	 <%= image_tag "/assets/images/icons/views.svg" %>
-	 <strong>vue <%= @recipe.count_views %> fois</strong>
-</span>
+</div>
 
 
+<!-- ingredients and steps -->
+<div class="row">
 
-<% if @recipe.ingredients %>
-	<h2>Ingredients</h2>
-	<ul id="ingredients">
-		<% @recipe.ingredients.each_line do |ingredient|%>
-			<li><%= link_to ingredient , recipes_path( :ingredients => ingredient )  %></li>
+	<div class="col-xs-12 col-sm-3">
+
+		<!-- ingrédients -->
+		<% if @recipe.ingredients %>
+		
+			<div id="ingredients" class="row">
+				
+				<h2 class="visible-md-block visible-sm-block">Ingrédients</h2>
+
+				<ul class="list-group col-xs-12">
+					<% @recipe.ingredients.each_line do |ingredient|%>
+						<li class="col-sm-12 col-xs-4 list-group-item"><%= link_to ingredient , recipes_path( :ingredients => ingredient )  %></li>
+					<% end %>
+				</ul>
+			</div><!-- #ingredients -->
+
+		<% end %><!--/ ingrédients -->
+
+
+		<div id="informations" class="row">
+			<h2 class="visible-md-block visible-sm-block">Informations</h2>
+
+
+			<div class="recipe-information col-sm-12 col-xs-3">
+				<strong>Notations</strong>
+				<%= render 'shared/stars', stars: @recipe.rate.to_i %>
+			</div>
+
+			<div class="recipe-information col-sm-12 col-xs-3">
+				<strong>Vues</strong>
+				<%= image_tag '/assets/images/icons/views.svg' , class: 'views' %> vue <%= @recipe.count_views %> fois
+			</div>
+
+			<div class="recipe-information col-sm-12 col-xs-3">
+				<strong>Type</strong>
+				<%= recipe_label_type @recipe  %>
+			</div>
+
+			<div class="recipe-information col-sm-12 col-xs-3">
+				<strong>Saison</strong>
+				<%= recipe_label_season @recipe %>
+			</div>
+
+		</div>
+
+		<!-- actions buttons -->
+		<div class="row">
+
+			<div class="col-md-12">
+
+					<h2>Actions</h2>
+
+					<!-- save button -->
+					<%= link_to save_recipe_path(id: @recipe.id), :class => 'btn btn-primary col-xs-3 col-sm-12' do %>
+						<span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> sauvegarder
+					<% end %>
+
+					<!-- fork button -->
+					<%= link_to fork_recipe_path( :id => @recipe.id) , :class => 'btn btn-primary col-xs-3 col-sm-12' do %>
+						<span class="glyphicon glyphicon-transfer" aria-hidden="true"></span> créer une variante
+					<% end %>
+
+
+					<!-- if it's the owner of the recipe  -->
+					<% if @recipe.user and current_user == @recipe.user %>
+
+						<!-- edit button -->
+						<%= link_to edit_recipe_path , :class => 'btn btn-warning col-xs-3 col-sm-12' do %>
+							<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> modifier
+						<% end %>
+
+						<!-- delete button -->
+						<%= link_to @recipe , :class => 'btn btn-danger col-xs-3 col-sm-12', :method => :delete, :confirm => 'Are you sure?' , :title => "Supprimer #{@recipe.name}?" do %>
+							<span class="glyphicon glyphicon-trash" aria-hidden="true"></span> supprimer
+						<% end %>
+
+					<% end %>
+
+			</div>
+		</div>
+
+
+	</div><!--/ .col-sm-3 -->
+
+
+	<div class="col-sm-9">
+
+		<!-- steps -->
+		<% if @recipe.steps %>
+			<div id="steps"">
+				<h2>Préparation</h2>
+
+				<% @recipe.steps.each_line do |step|%>
+					<p><%= step %></p>
+				<% end %>
+
+				<p class="alert alert-info" role="alert">Cette recette vous a paru trop grasse? <%= link_to "Créez votre variante" , fork_recipe_path( :id => @recipe.id), class: 'alert-link' %>!</p>
+
+			</div><!--/ #steps -->
 		<% end %>
-	</ul>
-<% end %>
 
-<% if @recipe.steps %>
-	<h2>Préparation</h2>
-	<ul id="steps">
-		<% @recipe.steps.each_line do |step|%>
-			<li><span></span><%= step %></li>
-		<% end %>
-	</ul>
-<% end %>
+	</div><!--/ .col-sm-9 -->
 
+</div>
 
-<%= render 'shared/comments', :comments => @recipe .comments %>
+<!-- commentaires -->
+<div class="row">
+	<div class="col-xs-12">
+		<h2>Commentaires</h2>
+		<%= render 'shared/comments', :comments => @recipe .comments %>
+	</div>
+</div>
+	
 
-</section>
+</div>

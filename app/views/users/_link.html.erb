@@ -1,0 +1,5 @@
+<% if user %>
+	<%= link_to user.username , user %> <small>(<%= pluralize user.rank, "point" %>)</small>
+<% else %>
+	<div class="alert alert-danger" role="alert">utilisateur non trouvé</div>
+<% end %>
