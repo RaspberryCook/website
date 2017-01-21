@@ -7,6 +7,7 @@ RaspberryCook::Application.routes.draw do
 
   resources :recipes, :only => [:index, :new , :create , :destroy , :edit]
   get 'recipes/:id', to: 'recipes#show', id: /[0-9]+/
+  get 'recipes/:slug', to: 'recipes#show', slug: /[A-z]+/
   patch 'recipes/:id', to: 'recipes#update', id: /[0-9]+/
   match 'recipes/:id/fork', as: 'fork_recipe', to: 'recipes#fork', id: /[0-9]+/, via: [:get, :post]
   get 'recipes/shuffle', to: 'recipes#shuffle'

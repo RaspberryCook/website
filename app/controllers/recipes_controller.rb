@@ -13,7 +13,11 @@ class RecipesController < ApplicationController
 		# if user is connected or user have consulted less than 5 recipes
 		if current_user or session['recipes_viewed'] < 3 
 
-			@recipe = Recipe.find(params[:id])
+			if params[:id]
+				@recipe = Recipe.find params[:id]
+			elsif params[:slug]
+				raise Exception.new "not implemented yet"
+			end
 			@recipe.add_view
 
 			respond_to do |format|
