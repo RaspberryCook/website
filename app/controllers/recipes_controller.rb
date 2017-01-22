@@ -1,50 +1,132 @@
+require 'uri'
+
+# Recipe controller permit to CRUD recipes
 class RecipesController < ApplicationController
-	before_filter :authenticate, :only =>  [:destroy , :update , :edit ,:add, :create, :vote, :fork]
+	before_filter :authenticate, :only =>  [:destroy , :update , :edit ,:new, :add, :create, :fork, :import]
 	before_filter :check_recipe_owner, :only =>  [:destroy , :update , :edit]
 
-
-	#for autocomplete ingredients
-	#autocomplete :ingredient, :name
-
+	# GET /recipes/1
 	def show
-		@recipe = Recipe.find(params[:id])
-		@comment = Comment.new
-		@title = @recipe.name
-	end
 
-	def new
-		@title = "nouvelle recette"
-		@recipe = Recipe.new
-	end
+		session['recipes_viewed'] = 0 unless session.has_key? 'recipes_viewed'
 
-	def edit
-		@title = 'editer recette'
-		@recipe = Recipe.find(params[:id])
-	end
+		# if user is connected or user have consulted less than 5 recipes
+		if current_user or session['recipes_viewed'] < 3 
 
-	def create
-		@recipe = current_user.recipes.create(params[:recipe])
-		if @recipe.save
-			flash[:success] = "huuummm! Dites nous en plus!"
-			redirect_to edit_recipe_path(@recipe)
+			@recipe = Recipe.find(params[:id])
+			@recipe.add_view
+
+			respond_to do |format|
+				format.json { render json: @recipe  }
+				format.html {
+					@comment = Comment.new
+					@title = @recipe.name
+
+					if @recipe.user
+						@description = 'Une delicieuse recette de %s.' % @recipe.user.firstname
+					else
+						@description = @recipe.description
+					end
+
+					if current_user
+						@recipe.mark_as_read! :for => current_user
+						@recipe.comments.each { |com| com.mark_as_read! :for => current_user }
+					
+					else current_user
+						flash[:info] = "%s ou %s pour faire vivre Raspberry Cook <3." % [view_context.link_to("Connectez-vous", signin_path), view_context.link_to("créez un compte", signup_path)]
+						session['recipes_viewed'] += 1
+					end
+					render "show"
+				}
+			end
+			
+			
+
+
 		else
-			@titre = "nouvelle recette"
-			render 'new'
+			flash[:warning] = "Vous avez déjà consulté %s recettes. Vous devez vous %s, %s ou bien revenir plus tard." % [ 
+				session['recipes_viewed'] ,
+				view_context.link_to("connecter", signin_path), 
+				view_context.link_to("créer un compte", signup_path)
+			]
+			redirect_to signin_path
 		end
 	end
 
+
+	# GET /recipes/new
+	def new
+		@recipe = Recipe.new
+		@title = "nouvelle recette"
+		@description = 'Composez votre nouvelle recettes.'
+	end
+
+
+	# GET /recipes/1/edit
+	def edit
+		@recipe = Recipe.find(params[:id])
+		@title = 'editer "%s" recette' % @recipe.name
+		@description = 'Editer la recette %s (pour la rendre encore meilleure).' % @recipe.name
+	end
+
+
+	# POST /recipes 
+	def create
+		name_sent = params[:recipe][:name]
+
+		# we check before if the name sent is an url
+		# if name_sent is an url, we try to import recipe from host
+		if name_sent =~ URI::regexp
+			begin
+				# import from the url
+				recipe_imported = Recipe.import name_sent, current_user.id
+				redirect_to edit_recipe_path(recipe_imported)
+
+			rescue ArgumentError
+				flash[:warning] = "Cette URL n'est pas suportée par Raspberry Cook :("
+				redirect_to new_recipe_path
+
+			rescue Exception
+				flash[:warning] = "Quelque chose a merdé :("
+				redirect_to new_recipe_path
+			end
+			
+		else
+			# Create the recipe
+			@recipe = current_user.recipes.create(params[:recipe])
+			if @recipe.save
+				flash[:success] = "huuummm! Dites nous en plus!"
+				redirect_to edit_recipe_path(@recipe)
+			else
+				flash[:warning] = "Une erreur est survenue, veuillez essayer à nouveau"
+				redirect_to new_recipe_path
+			end
+		end
+	end
+
+
+	# GET /recipes
 	def index
-		@title = "recettes"
-		@recipes = Recipe.paginate(:page => params[:page]).order('id DESC')
+		@title = "liste des recettes"
+		@description = 'Beaucoup d\'excllentes recettes (oui, oui).'
+		@recipes = Recipe.search params
+		respond_to do |format|
+			format.html { render "index" }
+			format.json { render json: @recipes  }
+		end
+
 	end
 
+
+	# DELETE /recipes/1
 	def destroy
-  		# todo:add an identification
 		Recipe.find(params[:id]).destroy
-		flash[:success] = 'recette supprimee'
-		redirect_to recipes_index_path
+		flash[:success] = 'recette supprimée'
+		redirect_to  recipes_path 
 	end
 
+
+	# PATCH/PUT /recipes/1
 	def update
 		@recipe = Recipe.find(params[:id])
 		if @recipe.update_attributes(params[:recipe])
@@ -56,6 +138,9 @@ class RecipesController < ApplicationController
 		end
 	end
 
+
+	# GET /recipes/1/save
+	# Generate a PDF document about this recipe and serve it to user
 	def save
 		@title = "save recipe"
 		@recipe = Recipe.find(params[:id])
@@ -67,59 +152,24 @@ class RecipesController < ApplicationController
 	end
 
 
-	def search
-		@title = "rechercher une recette"
-		@recipes = Recipe.search params[:recipe], params[:ingredients], params[:season], params[:type], params[:page]
-	end
-
-
-	# function to vote on a recipe with : http://localhost:3000/recipes/vote?id=93&value=1
-	def vote
-		#check before if the user can't try to send bad value
-		if [-1 , 1 ].include? params[:value].to_i
-
-			# search if another vote exists
-			vote = Vote.where( user_id: current_user.id , recipe_id: params[:id]).first
-			filename = nil
-
-			# if vote exist, we update it or send a warkning if is strickly the same
-			if vote
-				if vote.value == params[:value].to_i
-					filename = 'vote_exists.js.erb' 
-				else
-					vote.value = params[:value].to_i
-					filename = 'vote_updated.js.erb' 
-				end
-
-			# if vote don't exist, I create it
-			else
-				vote = current_user.votes.create user_id: 1, recipe_id: params[:id], value: params[:value]
-			end
-
-			# check if the save method work and send js.erb file as response
-			if vote.save
-				respond_to do |format|
-					format.js { render filename}
-				end
-			else
-				respond_to do |format|
-					format.js { render 'vote_failed.js.erb'}
-				end
-			end
-
-
-		else
-			redirect_to root_path , :notice => "Petit-coquin!"
-		end
+	# GET /recipes/shuffle
+	# get a random recipe and redirect user on this
+	def shuffle
+		offset = rand Recipe.count
+		random  = Recipe.offset(offset).first
+		flash[:success] = "Celle ci a l'air vraiment pas mal, régalez vous!"
+		redirect_to recipe_path random
 	end
 
 
 
+	# GET/POST /recipes/1/fork
 	# a fork is a copy of the current recipe
 	def fork
 		if request.get?
 			@recipe = Recipe.find(params[:id])
-			@title = "Créer une variante de %s" % @recipe.name
+			@title = "Variante de %s" % @recipe.name
+			@description = "Créer une variante de %s (sans gluten, version light, etc..)" % @recipe.name
 		elsif request.post?
 			recipe = Recipe.find params[:id]
 			forked_recipe = recipe.fork current_user.id
@@ -136,13 +186,10 @@ class RecipesController < ApplicationController
 
 
 	private
-		def authenticate
-			redirect_to signup_path , :notice => "Connectez-vous" unless current_user
-		end
 
 		def check_recipe_owner
 			@recipe = Recipe.find(params[:id])
-			redirect_to root_path , :notice => "Petit-coquin!" unless current_user == @recipe.user
+			redirect_to root_path , :info => "Petit-coquin!" unless current_user == @recipe.user
 		end
 
 end

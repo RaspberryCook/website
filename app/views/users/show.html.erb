@@ -1,49 +1,39 @@
-<section>
-	
-	<h1><%= @user.nom %></h1>
+<div class="row page-header">
 
-	<div id="rang"><%= pluralize(@user.rank, "point") %></div>
+	<div class="col-xs-2">
+		<%= render "users/image", user: @user %>
+	</div>
 
-	<h2>Recettes</h2>
-		<p><%= pluralize(@user.recipes.count, "recette") %> à son actif</p>
+	<div class="col-xs-10">
+		<h1><%= @user.username   %> <small><%= pluralize @user.rank, "point"   %></small></h1>
+	</div>
 
+</div>
+
+
+
+<p class="alert alert-info" role="alert">Gagnez plus de points en <%= link_to "ajoutant de nouvelles recettes", new_recipe_path , class: 'alert-link'%> ou créant des variantes.</p>
+
+
+<% if current_user == @user %>
+
+	<div class="btn-group">
+
+		<%= link_to "editer mon profil" , edit_user_path( :id => @user.id ) , class: 'btn btn-warning' %>
+		<%= link_to "se déconnecter" , signout_path , :class => 'btn btn-danger' %>
+	</div>
+<% end %>
+
+
+<div class="row">
+	<h2>Recettes <small>(<%= pluralize(@user.recipes.count, "recette") %>)</small></h2>
 		<%= render 'shared/recipes' , :recipes => @recipes %>
 		<%= will_paginate @recipes , :class => "apple_pagination" %>
-
-	
-
+</div>
 
 
-	<h2>Commentaires</h2>
-		<p><%= pluralize(@user.comments.count, "commentaire") %> à son actif</p>
-
-		<% begin %>
-
-			<ul>
-			<% @comments.each do |comment| %>
-				<% begin %>
-					<li>
-						à propos de <%= link_to comment.recipe.name, comment.recipe %> 
-						le <time><%= comment.created_at.strftime("%d.%m.%y") %></time>
-						<blockquote><strong><%= comment.title %></strong>
-						<%= comment.content  %></blockquote>
-
-					</li>
-				<% rescue Exception => e %>
-				<% end %>
-
-			<% end %>
-			</ul>
-		
-		<% rescue NoMethodError => e # In case of %>
-			
-		<% end %>
-
-
-
-
-
-</section>
-
-
+<div class="row">
+	<h2>Commentaires <small>(<%= pluralize(@user.comments.count, "commentaire") %>)</small></h2>
+	<%= render 'shared/comments', :comments => @user.comments %>
+</div>
 

@@ -1,27 +1,44 @@
+# Session controller allow user to signin/signout on Raspberry Cook
 class SessionsController < ApplicationController
 
-  def new
+
+	# GET /sessions/new
+	# GET /signin
+	def new
 		@title = 'signin'
-  end
-
-
-  def create
-    user = User.authenticate(params[:session][:email],
-                             params[:session][:password])
-    if user.nil?
-      flash.now[:error] = "Combinaison Email/Mot de passe invalide."
-      @titre = "S'identifier"
-      render 'new'
-    else
-      sign_in user
-      flash[:success] = "bienvenue #{current_user.nom}!"
-			redirect_back_or user
-    end
+		@description = "Accéder à des milliers, des million, des milliards de recettes"
+		@user_session = UserSession.new
 	end
 
-  def destroy
-    sign_out
-    redirect_to root_path , :success => "A bientot!"
-  end
+
+	# POST /sessions 
+	def create
+		@user_session = UserSession.new user_session_params
+
+		if @user_session.save
+			flash[:success] = "bienvenue #{current_user.firstname}!"
+			redirect_to user_path( @user_session.user )
+		else
+			flash.now[:warning] = "Combinaison Pseudo/Mot de passe invalide."
+			# puts @user_session.errors.full_messages.inspect
+			@title = "S'identifier"
+			@description = "se connecter sur un site qu'il est bien!"
+			render 'new'
+		end
+	end
+
+
+	# DELETE /sessions/1
+	def destroy
+		current_user_session.destroy
+		redirect_to root_path , :success => "A bientot!"
+	end
+
+
+	private
+
+	def user_session_params
+		params.require(:sessions).permit(:email, :username, :password, :remember_me)
+	end
 
 end

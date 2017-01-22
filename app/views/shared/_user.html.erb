@@ -1,10 +1,16 @@
 
-<div class="user_infos">
-	<%= image_tag gravatar_url("you@youremail.com", 100) , :class => 'gravatar_image' %>
+<div class="user-thumb col-xs-6">
 
-	<p>
-		<strong><%= link_to user.nom , user %></strong>
-		<%= pluralize user.rank, "point" %>
-	</p>
+	<% if user %>
+		<%= image_tag gravatar_url( user.email, 100) , class: 'img-responsive img-rounded' %>
+		<p>
+			<strong> <%= link_to user.username , user %></strong>
+			<br/>
+			<%= pluralize user.rank, "point" %>
+		</p>
+
+	<% else %>
+		<strong>Utilisateur non trouvé</strong>
+	<% end %>
 
 </div>

@@ -4,24 +4,64 @@
 <head><%= render 'layouts/head' %></head>
 <body>
 
+<script type="text/javascript">
+	// a function to use in .html.erb view to run jquery query when it was loaded
+	function defer(method) {
+		if (window.jQuery)
+			method();
+		else
+			setTimeout(function() { defer(method) }, 50);
+	}
+</script>
 
-	<%= yield %>
+	<%= render 'layouts/navigation' %>
 
-	<header><%= render 'layouts/header' %></header>
-	<footer><%= render 'layouts/footer' %></footer>
+
+	<div id="main-container" class="main-container container-fluid col-md-8  col-sm-10 col-md-offset-2 col-sm-offset-1">
+
+		<% flash.each do |key, value| %>
+
+			<div class="row">
+				<div class="alert alert-dismissible alert-<%= key %>" role="alert">
+					<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<%= value.html_safe %>
+				</div>
+			</div>
+			
+		<% end %> 
+
+
+		<%= yield %>
+
+		<%= render 'layouts/footer' %>
+		
+	</div>
+
+
+
+
+
+	<% if Rails.env.development? and false%>
+		<strong>current_user_session</strong>
+		<pre><%= current_user_session %></pre>
+		<% if current_user %>
+			<strong>Unread comments</strong>
+			<pre><% Comment.unread_by(current_user).each do |noti|%>
+				<%= noti.inspect %>
+			<%end%></pre>
+		<% end %>
+
+		<strong>Session recipe</strong>
+		<pre><%= session['recipes_viewed'] %></pre>
+	<% end %>
+
 	
-
-	<% flash.each do |key, value| %>
-		<div class="flash_<%= key %>">
-			<%= value %>
-		</div>
-		<%= javascript_include_tag 'flash.js' %>
-
-	<% end %> 
+	
 
 
 	<script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
 	<script src="//code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 	<%= javascript_include_tag 'application' %>
 

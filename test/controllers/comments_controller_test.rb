@@ -1,49 +1,58 @@
 require 'test_helper'
+require "authlogic/test_case" # include at the top of test_helper.rb
 
 class CommentsControllerTest < ActionController::TestCase
   setup do
-    @comment = comments(:one)
+    @recipe = recipes(:one)
+    @my_comment = comments(:my_comment_about_pasta)
+    @gf_comment = comments(:girlfriend_comment_about_pasta)
   end
 
-  test "should get index" do
-    get :index
-    assert_response :success
-    assert_not_nil assigns(:comments)
-  end
+  setup :activate_authlogic
 
-  test "should get new" do
-    get :new
-    assert_response :success
-  end
 
-  test "should create comment" do
-    assert_difference('Comment.count') do
-      post :create, comment: { content: @comment.content, title: @comment.title, user_id: @comment.user_id }
+  test "should create a comment" do
+    UserSession.create(users(:ben))
+    assert_difference('Comment.count', 1) do
+      post :create, comment: { title: "good", content: 'not so bad recipe', recipe_id: 1 }
     end
-
-    assert_redirected_to comment_path(assigns(:comment))
   end
 
-  test "should show comment" do
-    get :show, id: @comment
-    assert_response :success
+  test "should not create comment because no one is connected" do
+    assert_no_difference('Comment.count') do
+      post :create, comment: { title: "good", content: 'not so bad recipe', recipe_id: 1 }
+    end
   end
 
-  test "should get edit" do
-    get :edit, id: @comment
-    assert_response :success
-  end
 
   test "should update comment" do
-    patch :update, id: @comment, comment: { content: @comment.content, title: @comment.title, user_id: @comment.user_id }
-    assert_redirected_to comment_path(assigns(:comment))
+    UserSession.create(users(:me))
+    patch :update, id: @my_comment, comment: { title: "good", content: 'not so bad recipe'}
+    assert_redirected_to recipe_path(@my_comment.recipe)
   end
+
+
+  test "should not update comment because current_user is not the author" do
+    UserSession.create(users(:my_girlfriend))
+    patch :update, id: @my_comment, comment: { title: "good", content: 'not so bad recipe'}
+    assert_redirected_to '/'
+  end
+
 
   test "should destroy comment" do
+    UserSession.create(users(:me))
     assert_difference('Comment.count', -1) do
-      delete :destroy, id: @comment
+      delete :destroy, id: @my_comment
     end
-
-    assert_redirected_to comments_path
   end
+
+
+  test "should not destroy comment because current_user is not the author" do
+    UserSession.create(users(:ben))
+    assert_no_difference('Comment.count') do
+      delete :destroy, id: @my_comment
+    end
+  end
+  
+
 end

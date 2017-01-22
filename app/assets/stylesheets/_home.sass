@@ -1,0 +1,56 @@
+@import colors
+
+div.home
+	background-repeat: no-repeat
+	background-size: auto 100%
+
+	min-height: 400px
+	
+	padding-top: 20px
+	padding-bottom: 20px
+
+	@media only screen and (max-width: 640px)
+		padding-left: 10px
+		padding-right: 10px
+
+	@media only screen and (min-width: 640px) and (max-width: 760px)
+		padding-left: 100px
+		padding-right: 100px
+
+	@media only screen and (min-width: 760px)
+		padding-left: 200px
+		padding-right: 200px
+
+
+	h1
+		color: $white
+		text-align: center
+
+
+	blockquote
+		font-size: 24px
+
+		footer
+			font-size: 18px
+
+
+	&:first-child
+		background-color: $primary_color
+
+	&:nth-child(even)
+		background-color: $light_gray
+
+
+	ul.share
+		text-align: center
+
+		li 
+			padding: 10px
+
+			img
+				height: 50px
+				display: block
+				margin: auto
+
+
+

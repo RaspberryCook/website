@@ -1,20 +1,22 @@
+# Comment is a text posted by a User on a Recipe
+#
+# @attr user [User] Owner of this comment
+# @attr recipe [Recipe] Recipe concerned by this comment
 class Comment < ActiveRecord::Base
- 	belongs_to :user #association avec la table des utilisateurs
- 	belongs_to :recipe #association avec la table des utilisateurs
+  
+ 	belongs_to :user
+ 	belongs_to :recipe
 
- 	public 
+ 	acts_as_readable :on => :created_at # for use of unread gem
+ 	after_create :mark_read
 
- 	def self.did_I_comment_this? user_id , recipe_id
- 		#problem cauz we search on all database but we want searchonly on comments.recipe.user_id
- 		#dont return a nill but a strange object
+ 	private
 
- 		#self.exists? :user_id => user_id , :recipe_id => recipe_id 
- 		comment = self.where( :user_id => user_id , :recipe_id => recipe_id ).first
-
- 		comment = Comment.new if comment.blank?
- 			
-
- 		return comment
+  # mark this comment as read
+ 	def mark_read
+ 		User.where.not(id: self.user_id, id: self.recipe.user_id).each{|user|
+ 			self.mark_as_read! :for => user
+ 		}
 
  	end
 

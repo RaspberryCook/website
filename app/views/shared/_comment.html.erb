@@ -1,15 +1,24 @@
-<div class="bubble">
-	<strong><%= comment.title %></strong><%= comment.content  %>
+<% since_days = (Date.today - comment.created_at.to_datetime).to_i %>
 
+<div class="comment row">
+
+	<div class="col-xs-2">
+		<%= render("users/image", user: comment.recipe.user) if comment.recipe %>
+	</div>
+
+	<div class="col-xs-10 well">
+		<p>
+			<strong><%= link_to comment.user.username , comment.user %></strong> 
+			<%= render 'shared/stars', :stars => comment.rate %>
+			il y  <date><%= pluralize since_days , ' jour' %></date>
+		</p>
 			
+		<p><strong><%= comment.title %></strong><br/><%= comment.content  %></p>
 
-
-			<%# if comment.user_id == current_user.id %>
-				<%#= link_to 'Edit', edit_comment_path(comment) %>
-		        <%#= link_to 'Destroy', comment, method: :delete, data: { confirm: 'Are you sure?' } %>
-		    <%# end %>
-
+		<% if not current_page?(controller: 'recipes', action: 'show' ,  id: comment.recipe.id ) %>
+			<p>à propos de <%= link_to comment.recipe.name , recipe_path( id: comment.recipe.id) %></p>
+		<% end %>
+		
+	</div>
 
 </div>
-<%= link_to comment.user.nom , comment.user , :class => 'author' %> - 
-<time><%= comment.created_at.strftime("%d.%m.%y") %></time>

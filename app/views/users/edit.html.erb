@@ -1,25 +1,8 @@
-<h1>Edit</h1>
-
-<%= form_for(@user) do |f| %>
-  <%= render 'shared/error_messages', :object => f.object %>
-
-    <%= f.label :nom, "Nom" %>
-    <%= f.text_field :nom %><br />
- 
-    <%= f.label :email, "eMail" %>
-    <%= f.text_field :email %><br />
-  
-    <%= f.label :password, "Mot de passe" %>
-    <%= f.password_field :password %><br />
-  
-    <%= f.label :password_confirmation, "Confirmation" %>
-    <%= f.password_field :password_confirmation %><br />
-  
-    <%= f.submit "Update" %>
-  
-<% end %>
-
-<div>
-  <%= gravatar_image_tag @user.email %>
-  <a href="http://gravatar.com/emails">changer</a>
+, class: 'alert-link'<div class="page-header">
+    <h1>Editer mes informations</h1>
 </div>
+
+<%= render 'users/form', user: @user %>
+
+<p class="alert alert-info">La photo de profil est chargée à partir de <%= link_to "gravatar.com", "http://gravatar.com/", class: 'alert-link' %>. Vous pouvez la modifier  <%= link_to "ici", "http://gravatar.com/email/%s" % @user.username, class: 'alert-link' %></p>
+ 

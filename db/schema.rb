@@ -11,23 +11,33 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160828161157) do
+ActiveRecord::Schema.define(version: 20161202123157) do
 
-  create_table "comments", force: true do |t|
+  create_table "comments", force: :cascade do |t|
     t.string   "title"
     t.string   "content"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "recipe_id"
-    t.integer  "note"
+    t.integer  "rate",       default: 5
   end
 
-  create_table "recipes", force: true do |t|
+  create_table "read_marks", force: :cascade do |t|
+    t.integer  "readable_id"
+    t.string   "readable_type", null: false
+    t.integer  "reader_id"
+    t.string   "reader_type",   null: false
+    t.datetime "timestamp"
+  end
+
+  add_index "read_marks", ["reader_id", "reader_type", "readable_type", "readable_id"], name: "read_marks_reader_readable_index", unique: true
+
+  create_table "recipes", force: :cascade do |t|
     t.string   "name"
     t.integer  "user_id"
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.text     "description"
     t.text     "ingredients"
     t.text     "steps"
@@ -36,30 +46,45 @@ ActiveRecord::Schema.define(version: 20160828161157) do
     t.time     "t_cooling"
     t.time     "t_cooking"
     t.time     "t_rest"
-    t.string   "photo_file_name"
-    t.string   "photo_content_type"
-    t.integer  "photo_file_size"
-    t.datetime "photo_updated_at"
     t.string   "photo"
     t.string   "image"
-    t.integer  "rank"
-    t.integer  "root_recipe_id",     default: 0
+    t.integer  "root_recipe_id", default: 0
     t.string   "variant_name"
     t.string   "rtype"
   end
 
-  create_table "users", force: true do |t|
-    t.string   "nom"
+  create_table "users", force: :cascade do |t|
+    t.string   "username"
     t.string   "email"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
-    t.string   "encrypted_password"
-    t.string   "salt"
-    t.boolean  "admin"
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.string   "photo"
+    t.string   "lastname"
+    t.string   "firstname"
+    t.string   "persistence_token"
+    t.string   "crypted_password"
+    t.string   "password_salt"
+    t.string   "single_access_token"
+    t.string   "perishable_token"
+    t.integer  "login_count",         default: 0, null: false
+    t.integer  "failed_login_count",  default: 0, null: false
+    t.datetime "last_request_at"
+    t.datetime "current_login_at"
+    t.datetime "last_login_at"
+    t.string   "current_login_ip"
+    t.string   "last_login_ip"
   end
 
-  create_table "votes", force: true do |t|
+  add_index "users", ["email"], name: "index_users_on_email", unique: true
+
+  create_table "views", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "user_id"
+    t.integer  "recipe_id"
+  end
+
+  create_table "votes", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "recipe_id"
     t.integer  "value"

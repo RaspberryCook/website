@@ -3,7 +3,7 @@
 	<p>Vous êtes sur le point de créer une copie de cette recette</p>
 	<%= render 'shared/recipe' , :recipe => @recipe %>
 
-	<%= form_tag  recipes_fork_path , method: "POST" do  %>
+	<%= form_tag  fork_recipe_path , method: "POST" do  %>
 		<%= hidden_field_tag 'id' , @recipe.id  %>
 		<%= submit_tag "C'est parti!" %>
 	<% end %>

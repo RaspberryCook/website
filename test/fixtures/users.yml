@@ -1,0 +1,43 @@
+me:
+  id: 1
+  username: madeindjs
+  firstname: Alexandre
+  lastname: Rousseau
+  email: madeindjs@gmail.com
+  password_salt: <%= salt = Authlogic::Random.hex_token %>
+  crypted_password: <%= Authlogic::CryptoProviders::Sha512.encrypt("madeindjs" + salt) %>
+  persistence_token: <%= Authlogic::Random.hex_token %>
+  single_access_token: <%= Authlogic::Random.friendly_token %>
+  perishable_token: <%= Authlogic::Random.friendly_token %>
+
+my_girlfriend:
+  id: 2
+  username: lolotop
+  firstname: Lorène
+  lastname: Odet
+  email: lorene.odet@orange.fr
+  password_salt: <%= salt = Authlogic::Random.hex_token %>
+  crypted_password: <%= Authlogic::CryptoProviders::Sha512.encrypt("lolotop" + salt) %>
+  persistence_token: <%= Authlogic::Random.hex_token %>
+  single_access_token: <%= Authlogic::Random.friendly_token %>
+  perishable_token: <%= Authlogic::Random.friendly_token %>
+
+ben:
+  id: 3
+  username: whatever
+  email: whatever@whatever.com
+  password_salt: <%= salt = Authlogic::Random.hex_token %>
+  crypted_password: <%= Authlogic::CryptoProviders::Sha512.encrypt("whatever" + salt) %>
+  persistence_token: <%= Authlogic::Random.hex_token %>
+  single_access_token: <%= Authlogic::Random.friendly_token %>
+  perishable_token: <%= Authlogic::Random.friendly_token %>
+
+recipe_man:
+  id: 4
+  username: recipe_man
+  email: recipe_man@recipe_man.com
+  password_salt: <%= salt = Authlogic::Random.hex_token %>
+  crypted_password: <%= Authlogic::CryptoProviders::Sha512.encrypt("whatever" + salt) %>
+  persistence_token: <%= Authlogic::Random.hex_token %>
+  single_access_token: <%= Authlogic::Random.friendly_token %>
+  perishable_token: <%= Authlogic::Random.friendly_token %>

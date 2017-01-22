@@ -1,69 +1,87 @@
-require 'digest'
-
+# user is someone abloe to connect on Raspberry Cook and CRUD a recipe or a comment
+#
+# @attr username [String] the username of this user: 'madeindjs'
+# @attr firstname [String] the firstname of this user:
+# @attr lastname [String] the lastname of this user
+# @attr email [String] the email of this user
+# @attr password [String] the password of this user
+# @attr password_confirmation [String] the password confirmed by user
+# @attr crypted_password [String] the password crypted
+#
+# @attr recipes [Array<Recipe>] as recipes owned by this user
+# @attr comments [Array<Comment>] as comments owned by this user
 class User < ActiveRecord::Base
-	attr_accessible :nom, :email, :password, :password_confirmation
-	attr_accessor :password
+
+
+	attr_accessible :username, :firstname, :lastname, :email,
+		:password, :password_confirmation, :crypted_password
+	
+
 	has_many :recipes , :dependent => :destroy
 	has_many :comments , :dependent => :destroy
-	has_many :votes , :dependent => :destroy
 
 	email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
-	validates :email , 
-		:presence 	=> true ,
-		:format 		=> { :with => email_regex },
-		:uniqueness => { :case_sensitive => false }
+	validates :email, :presence => true , :format => { :with => email_regex }, :uniqueness => { :case_sensitive => false }
+	validates :username , :presence  => true , :uniqueness => true
+	validates :firstname , :presence => true , :length  => { :maximum => 50 }
+	validates :password, :presence => true, :confirmation => true, :length => { :within => 6..40 }
 
-	validates :nom , 
-		:presence 	=> true ,
-		:length 		=> { :maximum => 50 }
+	acts_as_authentic do |c|
+		c.crypto_provider = Authlogic::CryptoProviders::Sha512
+		c.validate_email_field = true
+	end
 
-	validates :password, 
-		:presence     => true,
-		:confirmation => true,
-		:length       => { :within => 6..40 }
-
-	before_save :encrypt_password
+	acts_as_reader
 
 	public
 
-		def has_password?(password_sent)
-			return self.encrypted_password == encrypt(password_sent)
+
+		# Construct the complete name as "John Doe"
+		#
+		# @return [String] as complete name
+		def complete_name
+			return '%s %s' % [ self.lastname, self.firstname ]
 		end
 
-		def self.authenticate(email, submitted_password)
+
+		# Get user's comment on the specified recipe id
+		#
+		# @param recipe_id [Integer] as Id of the recipe
+		# @return [Comment] as comment founded
+		def comment_on_recipe recipe_id
+			comment = Comment.where( :user_id => self.id , :recipe_id => recipe_id ).first
+			comment = Comment.new if comment.blank?
+			return comment
+		end
+
+
+		# Check password equality with encrypt
+		#
+		# @param password_sent [String] as pasword sent by user
+		# @return [Boolean] if password correspond
+		def has_password? password_sent
+			return self.password == encrypt(password_sent)
+		end
+
+
+		# Connect user to Rasberry-cook.fr
+		#
+		# @param email [String] as email sent by user
+		# @param submitted_password [String] as pasword sent by user
+		# @return [Boolean] as true if success
+		def self.authenticate email, submitted_password
 			user = find_by_email(email)
 			return nil if user.nil?
 			return user if user.has_password?(submitted_password)
 		end
 
-		def self.authenticate_with_salt (id , cookie_salt )
-			user = find_by_id(id)
-			(user && user.salt == cookie_salt ) ? user : nil
-		end
 
-		# return rank of this user nRecipes*10+nComments
+		# Get rank of this user nRecipes*10 + nComments
+		#
+		# @return [Integer] as score
 		def rank
-			self.comments.count + self.recipes.count*10
-		end
-
-	private
-
-		def encrypt_password
-			self.salt = make_salt if new_record?
-			self.encrypted_password = encrypt (self.password)
-		end
-
-		def encrypt(string)
-			return string
-		end
-
-		def make_salt
-			secure_hash("#{Time.now.utc}--#{password}")
-		end
-
-		def secure_hash(string)
-			Digest::SHA2.hexdigest(string)
+			self.comments.count + self.recipes.count*5
 		end
 
 end

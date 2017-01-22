@@ -1,4 +1,8 @@
-<h1>users#index</h1>
+<h1>Liste des utilisateurs</h1>
+
+	<% if current_user and  [1,2].include? current_user.id %>
+		<%= render 'users/table' , :users => User.all %>
+	<% end %>
 
 <ul class="users">
 	<% @users.each do |user| %>
