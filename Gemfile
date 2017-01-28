@@ -80,7 +80,7 @@ gem 'jbuilder'
 
 
 # to slugify routes
-gem 'friendly_id'
+gem 'friendly_id', '~> 5.1.0'
 
 group :doc do
 	# bundle exec rake doc:rails generates the API under doc/api.

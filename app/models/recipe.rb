@@ -20,6 +20,8 @@ require 'open-uri'
 # @attr user [User] as owner of recipe
 # @attr comments [Array<Comment>] comments owned by recipe
 class Recipe < ActiveRecord::Base
+  extend FriendlyId
+  friendly_id :name, use: :slugged
 
   before_save :set_default_time
 
@@ -47,8 +49,7 @@ class Recipe < ActiveRecord::Base
   ZERO_TIME = DateTime.new 2000, 01, 01, 00, 00, 00
 
 
-  extend FriendlyId
-  friendly_id %i(name location), use: :slugged
+  
 
 
   # search all recipes given by a search query params
