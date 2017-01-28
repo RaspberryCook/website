@@ -20,6 +20,8 @@ require 'open-uri'
 # @attr user [User] as owner of recipe
 # @attr comments [Array<Comment>] comments owned by recipe
 class Recipe < ActiveRecord::Base
+  extend FriendlyId
+  friendly_id :name, use: :slugged
 
   before_save :set_default_time
 
@@ -45,6 +47,9 @@ class Recipe < ActiveRecord::Base
   @@seasons = ['Toutes', 'Printemps', 'Eté', 'Automne', 'Hiver']
   # Time zero represent zero value for a task
   ZERO_TIME = DateTime.new 2000, 01, 01, 00, 00, 00
+
+
+  
 
 
   # search all recipes given by a search query params
@@ -266,6 +271,14 @@ class Recipe < ActiveRecord::Base
   def picture_exist? picture_url
     absolute_path =  File.join Rails.root , 'public', picture_url
     return File.file? absolute_path
+  end
+
+
+  # check if we need to generate slug for this model
+  #
+  # @return [Boolean] if picture exists
+  def should_generate_new_friendly_id?
+    name_changed? || super
   end
 
 

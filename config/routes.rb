@@ -5,8 +5,7 @@ RaspberryCook::Application.routes.draw do
   resources :users
   match '/signup' , to: 'users#new', :via => [:get, :post]
 
-  resources :recipes, :only => [:index, :new , :create , :destroy , :edit]
-  get 'recipes/:id', to: 'recipes#show', id: /[0-9]+/
+  resources :recipes, :only => [:show, :index, :new , :create , :destroy , :edit]
   patch 'recipes/:id', to: 'recipes#update', id: /[0-9]+/
   match 'recipes/:id/fork', as: 'fork_recipe', to: 'recipes#fork', id: /[0-9]+/, via: [:get, :post]
   get 'recipes/shuffle', to: 'recipes#shuffle'

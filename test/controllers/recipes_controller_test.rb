@@ -97,6 +97,14 @@ class RecipesControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+  test "should show recipe by it's slug" do
+    @recipe.save!
+    get :show, id: @recipe.friendly_id
+    assert_response :success
+    get :show, id: @recipe.friendly_id, format: 'json'
+    assert_response :success
+  end
+
   test "should get save" do
     get :save, id: @recipe
     assert_response :success

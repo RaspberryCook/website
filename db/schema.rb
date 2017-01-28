@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161202123157) do
+ActiveRecord::Schema.define(version: 20170128142811) do
 
   create_table "comments", force: :cascade do |t|
     t.string   "title"
@@ -51,7 +51,10 @@ ActiveRecord::Schema.define(version: 20161202123157) do
     t.integer  "root_recipe_id", default: 0
     t.string   "variant_name"
     t.string   "rtype"
+    t.string   "slug"
   end
+
+  add_index "recipes", ["slug"], name: "index_recipes_on_slug", unique: true
 
   create_table "users", force: :cascade do |t|
     t.string   "username"
