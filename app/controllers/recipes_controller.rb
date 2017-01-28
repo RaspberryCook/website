@@ -14,7 +14,7 @@ class RecipesController < ApplicationController
 		if current_user or session['recipes_viewed'] < 3 
 
 			if params[:id]
-				@recipe = Recipe.find params[:id]
+				@recipe = Recipe.friendly.find params[:id]
 			elsif params[:slug]
 				raise Exception.new "not implemented yet"
 			end

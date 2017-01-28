@@ -278,7 +278,7 @@ class Recipe < ActiveRecord::Base
   #
   # @return [Boolean] if picture exists
   def should_generate_new_friendly_id?
-    slug.nil? || name_changed? || location_changed?
+    name_changed? || super
   end
 
 
