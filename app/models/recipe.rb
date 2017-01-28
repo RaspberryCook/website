@@ -47,6 +47,10 @@ class Recipe < ActiveRecord::Base
   ZERO_TIME = DateTime.new 2000, 01, 01, 00, 00, 00
 
 
+  extend FriendlyId
+  friendly_id %i(name location), use: :slugged
+
+
   # search all recipes given by a search query params
   # 
   # @param params [Hash] as GET params
@@ -266,6 +270,14 @@ class Recipe < ActiveRecord::Base
   def picture_exist? picture_url
     absolute_path =  File.join Rails.root , 'public', picture_url
     return File.file? absolute_path
+  end
+
+
+  # check if we need to generate slug for this model
+  #
+  # @return [Boolean] if picture exists
+  def should_generate_new_friendly_id?
+    slug.nil? || name_changed? || location_changed?
   end
 
 
