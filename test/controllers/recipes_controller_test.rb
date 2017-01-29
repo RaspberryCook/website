@@ -97,6 +97,14 @@ class RecipesControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+  test "should show recipe by it's slug" do
+    @recipe.save!
+    get :show, id: @recipe.friendly_id
+    assert_response :success
+    get :show, id: @recipe.friendly_id, format: 'json'
+    assert_response :success
+  end
+
   test "should get save" do
     get :save, id: @recipe
     assert_response :success
@@ -128,7 +136,8 @@ class RecipesControllerTest < ActionController::TestCase
   test "should update recipe" do
     UserSession.create(users(:me))
     patch :update, id: @recipe, recipe: { name: 'hello' }
-    assert_redirected_to recipe_path(@recipe)
+    # if recipe was savec correctly, we should get a new slug so we should be redirected to friendly url
+    assert_redirected_to recipe_path('hello')
   end
 
   test "should not update recipe because current_user is not the author" do

@@ -4,7 +4,7 @@ class RoutesTest < ActionController::TestCase
 
   test "recipes global route test" do
     assert_recognizes({controller: "recipes", action: "index"}, {path: '/recipes', method: :get})
-    assert_recognizes({controller: "recipes", action: "shuffle"}, {path: '/recipes/shuffle', method: :get})
+    assert_recognizes({controller: "recipes", action: "shuffle"}, {path: '/shuffle', method: :get})
     assert_recognizes({controller: "recipes", action: "update", id: "1"}, {path: '/recipes/1', method: :patch})
   end
 

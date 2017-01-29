@@ -13,8 +13,10 @@ class RecipesController < ApplicationController
 		# if user is connected or user have consulted less than 5 recipes
 		if current_user or session['recipes_viewed'] < 3 
 
-			@recipe = Recipe.find(params[:id])
+			@recipe = Recipe.friendly.find params[:id]
 			@recipe.add_view
+
+			@recipe.save  unless @recipe.slug?
 
 			respond_to do |format|
 				format.json { render json: @recipe  }
@@ -64,7 +66,7 @@ class RecipesController < ApplicationController
 
 	# GET /recipes/1/edit
 	def edit
-		@recipe = Recipe.find(params[:id])
+		@recipe = Recipe.friendly.find(params[:id])
 		@title = 'editer "%s" recette' % @recipe.name
 		@description = 'Editer la recette %s (pour la rendre encore meilleure).' % @recipe.name
 	end
@@ -120,7 +122,7 @@ class RecipesController < ApplicationController
 
 	# DELETE /recipes/1
 	def destroy
-		Recipe.find(params[:id]).destroy
+		Recipe.friendly.find(params[:id]).destroy
 		flash[:success] = 'recette supprimée'
 		redirect_to  recipes_path 
 	end
@@ -128,7 +130,7 @@ class RecipesController < ApplicationController
 
 	# PATCH/PUT /recipes/1
 	def update
-		@recipe = Recipe.find(params[:id])
+		@recipe = Recipe.friendly.find(params[:id])
 		if @recipe.update_attributes(params[:recipe])
 			flash[:success] = "Recette mise a jour"
 			redirect_to @recipe
@@ -143,7 +145,7 @@ class RecipesController < ApplicationController
 	# Generate a PDF document about this recipe and serve it to user
 	def save
 		@title = "save recipe"
-		@recipe = Recipe.find(params[:id])
+		@recipe = Recipe.friendly.find(params[:id])
 		html = render_to_string(:action => 'save', :encoding => "UTF-8" , :layout => false)
 		doc = PDFKit.new( html )
 		send_data( doc.to_pdf , 
@@ -167,11 +169,11 @@ class RecipesController < ApplicationController
 	# a fork is a copy of the current recipe
 	def fork
 		if request.get?
-			@recipe = Recipe.find(params[:id])
+			@recipe = Recipe.friendly.find(params[:id])
 			@title = "Variante de %s" % @recipe.name
 			@description = "Créer une variante de %s (sans gluten, version light, etc..)" % @recipe.name
 		elsif request.post?
-			recipe = Recipe.find params[:id]
+			recipe = Recipe.friendly.find params[:id]
 			forked_recipe = recipe.fork current_user.id
 
 			if forked_recipe.save
@@ -188,7 +190,7 @@ class RecipesController < ApplicationController
 	private
 
 		def check_recipe_owner
-			@recipe = Recipe.find(params[:id])
+			@recipe = Recipe.friendly.find(params[:id])
 			redirect_to root_path , :info => "Petit-coquin!" unless current_user == @recipe.user
 		end
 
