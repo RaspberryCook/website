@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170128142811) do
+ActiveRecord::Schema.define(version: 20170129185839) do
 
   create_table "comments", force: :cascade do |t|
     t.string   "title"
@@ -52,6 +52,10 @@ ActiveRecord::Schema.define(version: 20170128142811) do
     t.string   "variant_name"
     t.string   "rtype"
     t.string   "slug"
+    t.integer  "baking",         default: 0
+    t.integer  "cooling",        default: 0
+    t.integer  "rest",           default: 0
+    t.integer  "cooking",        default: 0
   end
 
   add_index "recipes", ["slug"], name: "index_recipes_on_slug", unique: true

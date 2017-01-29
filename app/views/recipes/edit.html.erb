@@ -38,25 +38,17 @@
 <div class="row  col-md-12">
 	<h2>Temps</h2>
 
-	<div class="form-group col-sm-3">
-		<%= f.label :t_cooking, 'Préparation'%>
-		<%= f.time_field :t_cooking  , class: "time_picker form-control"%>
-	</div>
+	<% { cooking: "Préparation", baking: "Cuisson", cooling: "Réfrigération", rest: "Repos" }.each do |type, description| %>
+		
+		<div class="form-group col-sm-3">
+			<%= f.label type, description %>
+			<div class="input-group">
+				<%= f.number_field type, class: "time_picker form-control" , step: 5  %>
+				<span class="input-group-addon">minutes</span>
+			</div>
+		</div>
 
-	<div class="form-group col-sm-3">
-		<%= f.label :t_baking, 'Cuisson'%>
-		<%= f.time_field :t_baking  , class: "time_picker form-control"%>
-	</div>
-
-	<div class="form-group col-sm-3">
-		<%= f.label :t_cooking, 'Réfrigération'%>
-		<%= f.time_field :t_cooking  , class: "time_picker form-control"%>
-	</div>
-
-	<div class="form-group col-sm-3">
-		<%= f.label :t_cooling, 'Repos'%>
-		<%= f.time_field :t_cooling  , class: "time_picker form-control"%>
-	</div>
+	<% end %>
 </div>
 
 <div class="row col-md-12">
