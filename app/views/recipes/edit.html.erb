@@ -38,7 +38,7 @@
 <div class="row  col-md-12">
 	<h2>Temps</h2>
 
-	<% { t_cooking: "Préparation", t_baking: "Cuisson", t_cooling: "Réfrigération", t_rest: "Repos" }.each do |type, description| %>
+	<% { cooking: "Préparation", baking: "Cuisson", cooling: "Réfrigération", rest: "Repos" }.each do |type, description| %>
 		
 		<div class="form-group col-sm-3">
 			<%= f.label type, description %>
