@@ -1,8 +1,9 @@
 source 'https://rubygems.org'
 
-gem 'rails' , '~>4.2.7.1'# Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
+gem 'rails'
 
 
+gem 'json', github: 'flori/json', branch: 'v1.8'
 
 
 #Database
@@ -26,11 +27,6 @@ gem 'coffee-rails'
 # to manage read/unread status of ActiveRecord objects - and it's fast.
 gem 'unread'
 
-
-# See https://github.com/sstephenson/execjs#readme for more supported runtimes
-# gem 'therubyracer', platforms: :ruby
-
-gem 'json'
 
 #for use old version of rails for attributes
 gem 'protected_attributes'

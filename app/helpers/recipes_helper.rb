@@ -37,10 +37,10 @@ module RecipesHelper
 	# @return [String] as Html content
 	# @return [nil] if it's not possible to create Html content
 	def recipe_label_time recipe, time_name
-		time_of_recipe = recipe.public_send "t_#{time_name}"
+		time_of_recipe = recipe.public_send time_name
 					
-		if time_of_recipe.is_a? Time and time_of_recipe != Recipe::ZERO_TIME
-			time = "<time>%s</time>" % time_of_recipe.strftime("%H:%M")
+		if time_of_recipe
+			time = "<time>%s\"</time>" % time_of_recipe
 			image_tag = image_tag "/assets/images/time/#{time_name}.svg", class: "recipe-label"
 			"#{image_tag} #{time}".html_safe
 		else

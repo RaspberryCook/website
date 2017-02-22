@@ -17,3 +17,26 @@ namespace "friendlyid" do
 		end
 	end
 end
+
+namespace "migrations" do
+
+	# I had several issues with recipe time
+	# * sometimes I saved minutes as seconds
+	# * sometimes I saved 1:00:00 for zero time
+	# this script will attempts to convert these data to minutes
+	desc "Convert times to integer"
+	task :preptimes  => :environment do
+
+		Recipe.all.each do |recipe|
+			%w(cooking cooling baking rest).each do |time_type|
+				# for each recipe, we check if old time (begining by `t_` ) exists.
+				# if yes , we try to build an intger from it and we update the recipe
+				if time = recipe.send("t_#{time_type}")
+					time_estimated = time.sec + time.min
+					recipe.send("#{time_type}=" , time_estimated)
+					recipe.save
+				end
+			end
+		end
+	end
+end

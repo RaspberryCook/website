@@ -27,6 +27,7 @@ class Recipe < ActiveRecord::Base
 
   attr_accessible :name, :description, :ingredients, :steps, :season,
     :t_baking, :t_cooling, :t_cooking, :t_rest,
+    :baking, :cooling, :cooking, :rest,
     :image, :root_recipe_id, :variant_name, :rtype
   
 

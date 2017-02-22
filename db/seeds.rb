@@ -29,6 +29,10 @@ end
 	Recipe.create(
 		name: Faker::Book.title,
 		user_id: Random.new.rand(1...100) ,
+		cooking: Random.new.rand(1...100) ,
+		cooling: Random.new.rand(1...100) ,
+		rest: Random.new.rand(1...100) ,
+		baking: Random.new.rand(1...100) ,
 		description: Faker::Hipster.sentence,
 		ingredients: ingredients.join("\r\n"),
 		steps: steps.join("\r\n"),

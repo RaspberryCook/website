@@ -14,7 +14,7 @@ class Comment < ActiveRecord::Base
 
   # mark this comment as read
  	def mark_read
- 		User.where.not(id: self.user_id, id: self.recipe.user_id).each{|user|
+ 		User.where.not(id: self.recipe.user_id).each{|user|
  			self.mark_as_read! :for => user
  		}
 
