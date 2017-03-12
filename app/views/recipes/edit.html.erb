@@ -25,12 +25,12 @@
 
 		<div class="form-group col-sm-6">
 			<%= f.label :rtype, "Type" %>
-			<%= f.select :rtype , options_for_select(Recipe.types),{}, { class: "form-control form-control-lg" }  %>
+			<%= f.select :rtype , options_for_select(Recipe.types),{selected: @recipe.rtype}, { class: "form-control form-control-lg" }  %>
 		</div>
 
 		<div class="form-group col-sm-6">
 			<%= f.label :season, "Saison" %>
-			<%= f.select :season , options_for_select(Recipe.seasons),{}, { class: "form-control form-control-lg" }  %>
+			<%= f.select :season , options_for_select(Recipe.seasons),{selected: @recipe.season}, { class: "form-control form-control-lg" }  %>
 		</div>
 	</div>
 
