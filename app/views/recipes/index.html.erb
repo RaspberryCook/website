@@ -48,33 +48,23 @@
 
 	<%= form_tag  recipes_path , method: "GET", id: "search_recipe_form" , class: 'form-inline' do  %>
 
-		<div class="form-group">
-			<%= label_tag  'Titre', nil, class: 'sr-only' %>
-			<%= text_field_tag 'name' , params[:name], placeholder: "Titre", class: "form-control"  %>
-		</div>
+		<%= label_tag  'Titre', nil, class: 'sr-only' %>
+		<%= text_field_tag 'name' , params[:name], placeholder: "Titre", class: "form-control form-control-lg"  %>
 
-		<div class="form-group">
-			<%= label_tag  'Ingrédients', nil, class: 'sr-only' %>
-			<%= text_field_tag 'ingredients' , params[:ingredients] , placeholder: "Ingrédient" , class: "form-control"  %>
-		</div>
+		<%= label_tag  'Ingrédients', nil, class: 'sr-only' %>
+		<%= text_field_tag 'ingredients' , params[:ingredients] , placeholder: "Ingrédient" , class: "form-control form-control-lg"  %>
 
-		<div class="form-group">
-			<%= label_tag  'Type', nil, class: 'sr-only' %>
-			<%= select_tag "type",
-				options_for_select(Recipe.types , params[:type]),
-				class: "form-control"  %>
-		</div>
+		<%= label_tag  'Type', nil, class: 'sr-only' %>
+		<%= select_tag "type",
+			options_for_select((Recipe.types+["Toutes"]) , params[:type]),
+			class: "form-control form-control-lg"  %>
 
-		<div class="form-group">
-			<%= label_tag  'Saison', nil, class: 'sr-only' %>
-			<%= select_tag "season",
-				options_for_select( Recipe.seasons, params[:season]),
-				class: "form-control"  %>
-		</div>
+		<%= label_tag  'Saison', nil, class: 'sr-only' %>
+		<%= select_tag "season",
+			options_for_select( Recipe.seasons, params[:season]),
+			class: "form-control form-control-lg"  %>
 
-		<div class="form-group">	
-			<%= submit_tag "go!", class: "btn btn-primary btn-lg"%>
-		</div>
+		<%= submit_tag "go!", class: "btn btn-primary btn-lg"%>
 
 	<% end %>
 
