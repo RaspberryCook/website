@@ -58,23 +58,32 @@ class Recipe < ActiveRecord::Base
   # @param params [Hash] as GET params
   # @return [ActiveRecord::Base] as Recipes corresponding to params
   def self.search params
-    sql_query =  'name LIKE ?'
-    params_query = [ "%#{params[:name]}%"]
 
-    if params[:ingredients] and not params[:ingredients].empty?
-      sql_query +=  ' AND ingredients LIKE ?'
-      params_query.push "%#{params[:ingredients]}%"
+    sql_query = ''
+    params_query = []
+
+    # add all name exploded 
+    params[:name].split(' ').each do |part_name|
+      sql_query +=  ' name LIKE ? OR '
+      params_query.push "%#{part_name}%"
     end
 
-    if params.has_key?(:season) and not params[:season] == 'Toutes' 
-      sql_query +=  'AND season LIKE ?'
-      params_query.push params[:season] 
-    end
+    sql_query.chomp! 'OR '
 
-    if params.has_key?(:type) and not params[:type] == 'Toutes' 
-      sql_query +=  'AND rtype LIKE ?'
-      params_query.push params[:type] 
-    end
+    # if params[:ingredients] and not params[:ingredients].empty?
+    #   sql_query +=  ' AND ingredients LIKE ?'
+    #   params_query.push "%#{params[:ingredients]}%"
+    # end
+
+    # if params.has_key?(:season) and not params[:season] == 'Toutes' 
+    #   sql_query +=  'AND season LIKE ?'
+    #   params_query.push params[:season] 
+    # end
+
+    # if params.has_key?(:type) and not params[:type] == 'Toutes' 
+    #   sql_query +=  'AND rtype LIKE ?'
+    #   params_query.push params[:type] 
+    # end
 
     self.where(sql_query , *params_query).paginate( :page => params[:page] ).order('id DESC')
   end
