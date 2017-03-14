@@ -78,10 +78,10 @@ class Recipe < ActiveRecord::Base
     if params.has_key?(:ingredients) and params[:ingredients] != ''
       ingredients_query_part = ''
       params[:ingredients].split(' ').each do |part_ingredient|
-        ingredients_query_part +=  ' ingredients LIKE ? OR '
+        ingredients_query_part +=  ' ingredients LIKE ? AND '
         params_query.push "%#{part_ingredient}%"
       end
-      ingredients_query_part.chomp! 'OR '
+      ingredients_query_part.chomp! 'AND '
       sql_query_parts.push "( #{ingredients_query_part} )"
     end
 
