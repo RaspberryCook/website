@@ -59,16 +59,31 @@ class Recipe < ActiveRecord::Base
   # @return [ActiveRecord::Base] as Recipes corresponding to params
   def self.search params
 
-    sql_query = ''
+    sql_query_parts = []
     params_query = []
 
     # add all name exploded 
-    params[:name].split(' ').each do |part_name|
-      sql_query +=  ' name LIKE ? OR '
-      params_query.push "%#{part_name}%"
+    if params[:name] != ""
+      name_query_part = ''
+      params[:name].split(' ').each do |part_name|
+        name_query_part +=  ' name LIKE ? OR '
+        params_query.push "%#{part_name}%"
+      end
+      name_query_part.chomp! 'OR '
+      # surround with ()
+      sql_query_parts.push "(#{name_query_part})"
     end
 
-    sql_query.chomp! 'OR '
+    # add all ingredients exploded
+    if params[:ingredients]
+      ingredients_query_part = ''
+      params[:ingredients].split(' ').each do |part_ingredient|
+        ingredients_query_part +=  ' ingredients LIKE ? OR '
+        params_query.push "%#{part_ingredient}%"
+      end
+      ingredients_query_part.chomp! 'OR '
+      sql_query_parts.push "( #{ingredients_query_part} )"
+    end
 
     # if params[:ingredients] and not params[:ingredients].empty?
     #   sql_query +=  ' AND ingredients LIKE ?'
@@ -84,6 +99,8 @@ class Recipe < ActiveRecord::Base
     #   sql_query +=  'AND rtype LIKE ?'
     #   params_query.push params[:type] 
     # end
+
+    sql_query = sql_query_parts.join ' AND '
 
     self.where(sql_query , *params_query).paginate( :page => params[:page] ).order('id DESC')
   end
