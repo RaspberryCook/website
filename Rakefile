@@ -18,6 +18,21 @@ namespace "friendlyid" do
 	end
 end
 
+
+namespace "pictures"  do
+	desc "regenerate recipe pictures size"
+	task :resize => :environment do
+		Recipe.all.select{|r| r.has_image? }.each do |recipe|
+			 begin
+				recipe.image.recreate_versions!
+				puts "#{recipe.id} - #{recipe.name} resized!"
+			rescue => e
+				puts  "ERROR: #{recipe.id} - #{recipe.name} -> #{e.to_s}"
+			end
+		end
+	end
+end
+
 namespace "migrations" do
 
 	# I had several issues with recipe time
