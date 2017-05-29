@@ -12,7 +12,7 @@
 
 		</div>
 
-		
+
 
 
 		<div class="collapse navbar-collapse" id="navbar-collapse">
@@ -25,7 +25,7 @@
 			<ul class="nav navbar-nav navbar-right">
 
 				<li><%= link_to "Recettes" , recipes_path %></li>
-				
+
 
 
 				<% if signed_in? %>
@@ -36,7 +36,7 @@
 
 							<li><%= link_to "profil" , user_path(current_user) %></li>
 							<li><%= link_to "actualités" , feeds_path %></li>
-							
+
 
 							<li role="separator" class="divider"></li>
 
@@ -53,17 +53,17 @@
 
 
 				<li id="search-icon">
-					<%= image_tag '/assets/images/icons/search.svg', class: 'hidden-xs' %>
+					<%= image_tag 'icons/search.svg', class: 'hidden-xs' %>
 					<a class="hidden-sm hidden-md hidden-lg">Rechercher</a>
-					
+
 				</li>
 
 
 			</ul><!--/.navbar-right -->
 
-			
 
-			
+
+
 
 		</div><!-- navbar-collapse -->
 
@@ -76,5 +76,5 @@
 <%= form_tag  recipes_path, method: "GET", id: "search-recipe-form", class: 'form-inline',role: "search" do  %>
 
 	<%= text_field_tag 'name' , nil, :placeholder => "rechercher", class: 'form-control' %>
-	
+
 <% end %><!--/.navbar-form -->
