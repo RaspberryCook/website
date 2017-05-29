@@ -2,32 +2,15 @@
 	<h1>se connecter</h1>
 </div>
 
-<div class="row">
-	<%= form_for :sessions, :url => sessions_path do |f| %>
-
-		<div class="form-group col-md-6">
-	    <%= f.label :username, "username" %>
-	    <%= f.text_field :username, class: 'form-control' %>
-	  </div>
-
-		<div class="form-group col-md-6">
-	    <%= f.label :password, "password" %>
-	    <%= f.password_field :password, class: 'form-control' %>
-	  </div>
-	    
-		<div class="form-group col-md-6">
-	    <%= f.check_box :remember_me %>
-	    <%= f.label :remember_me, "se souvenir de moi" %>
-	  </div>
-
-		<div class="form-group col-md-12">
-	    <%= f.submit "S'identifier", class: 'btn btn-primary' %>
-	  </div>
-
+<div class="col-xs-12">
+	<%= bootstrap_form_for :sessions, :url => sessions_path do |f| %>
+    <%= f.text_field :username, label: 'Pseudo' %>
+    <%= f.password_field :password, label: 'Mot de passe' %>
+    <%= f.check_box :remember_me, label: "se souvenir de moi" %>
+    <%= f.submit "S'identifier" %>
 	<% end %>
 </div>
 
-<div class="row">
+<div class="col-xs-12">
 	<p class="alert alert-info">Pas encore inscrit ? <%= link_to "S'inscrire !", signup_path %></p>
 </div>
-
