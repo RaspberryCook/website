@@ -41,6 +41,9 @@ gem 'bootstrap_form'
 gem 'will_paginate'#https://github.com/mislav/will_paginate
 gem 'will_paginate-bootstrap'
 
+# cache system
+gem 'rack-cache'
+
 
 group :development , :test do
 	# Use Capistrano for deployment
