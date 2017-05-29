@@ -1,6 +1,3 @@
-<div id="background-blurred-picture" style="background-image: url(<%=@recipe.true_image_url%>)">
-</div>
-
 <!-- title of recipe -->
 <div class="row page-header recipe">
 
@@ -23,7 +20,7 @@
 	<% if @recipe.has_image? %>
 			<%= image_tag @recipe.true_image_url , class: "img img-responsive full-width recipe-image"%>
 	<% end %>
-	
+
 	<!-- times -->
 	<div class="col-xs-12">
 		<% %w(cooking baking cooling rest).each do |time| %>
@@ -87,7 +84,7 @@
 
 				<div class="recipe-information col-sm-12 col-xs-3">
 					<strong>Vues</strong>
-					<%= image_tag '/assets/images/icons/views.svg' , class: 'views' %> vue <%= @recipe.count_views %> fois
+					<%= image_tag 'icons/views.svg' , class: 'views' %> vue <%= @recipe.count_views %> fois
 				</div>
 
 				<div class="recipe-information col-sm-12 col-xs-3">
@@ -101,7 +98,7 @@
 				</div>
 			</div>
 		</div><!-- / #informations -->
-			
+
 		<!-- actions buttons -->
 		<div class="row">
 

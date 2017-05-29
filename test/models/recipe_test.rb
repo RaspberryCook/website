@@ -38,13 +38,13 @@ class RecipeTest < ActiveSupport::TestCase
 
   test "recipe should return default picture as picture" do
     recipe = recipes(:two)
-    assert_equal '/assets/images/default.svg', recipe.true_image_url
+    assert_equal 'default.svg', recipe.true_image_url
     assert_not recipe.has_image?
   end
 
   test "recipe should return default picture as thumb" do
     recipe = recipes(:two)
-    assert_equal '/assets/images/default.svg', recipe.true_thumb_image_url
+    assert_equal 'default.svg', recipe.true_thumb_image_url
   end
 
   test "if forked recipe have not picture, it should return parent's picture" do
@@ -70,11 +70,11 @@ class RecipeTest < ActiveSupport::TestCase
     assert_equal 0, new_recipe.rate
   end
 
-  test "should return all types" do 
+  test "should return all types" do
     assert_equal  ['Entrée', 'Plat', 'Dessert', 'Cocktail', 'Apéritif'], Recipe.types
   end
 
-  test "should return all seasons" do 
+  test "should return all seasons" do
     assert_equal  ['Toutes', 'Printemps', 'Eté', 'Automne', 'Hiver'], Recipe.seasons
   end
 
@@ -90,12 +90,12 @@ class RecipeTest < ActiveSupport::TestCase
       # check if recipe founded is a recipe
       assert_instance_of Recipe,  recipe_imported
       # check if informations are correct
-      assert_equal 'Paupiettes de veau en cocotte', recipe_imported.name 
+      assert_equal 'Paupiettes de veau en cocotte', recipe_imported.name
       assert_not_nil recipe_imported.steps
-      assert_not_nil recipe_imported.ingredients 
-      assert_not_nil recipe_imported.t_baking 
-      assert_not_nil recipe_imported.t_cooking 
-      assert_equal 1, recipe_imported.user_id 
+      assert_not_nil recipe_imported.ingredients
+      assert_not_nil recipe_imported.t_baking
+      assert_not_nil recipe_imported.t_cooking
+      assert_equal 1, recipe_imported.user_id
 
     end
 

@@ -57,6 +57,7 @@ GEM
       activesupport (>= 3.2, < 5.1)
       request_store (~> 1.0)
       scrypt (>= 1.2, < 4.0)
+    bootstrap_form (2.6.0)
     builder (3.2.3)
     capistrano (3.7.2)
       airbrussh (>= 1.0.0)
@@ -234,6 +235,7 @@ PLATFORMS
 
 DEPENDENCIES
   authlogic
+  bootstrap_form
   capistrano
   capistrano-bundler
   capistrano-rails
@@ -272,4 +274,4 @@ DEPENDENCIES
   yard
 
 BUNDLED WITH
-   1.14.4
+   1.14.5
