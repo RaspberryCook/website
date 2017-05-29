@@ -5,7 +5,7 @@
 <div class="row">
 
 	<div id="recipe-search-tools">
-		
+
 		<ul class="nav nav-pills" >
 			<li><%= link_to 'Toutes', recipes_path %></li>
 			<% Recipe.types.each do |type| %>
@@ -14,7 +14,7 @@
 		</ul>
 
 		<div class="btn-group">
-			
+
 			<div class="btn-group" role="group">
 			<button id="filter" type="button" class="btn btn-default"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> Recherche</button>
 			</div>
@@ -81,14 +81,8 @@
 </div>
 
 <div class="row">
-	<p alert alert-info" role="alert">Trop de choix? Trouvez des <%= link_to "recettes avec ce qu'il vous reste dans votre frigo" , fridge_path, class: 'alert-link' %> ou bien laissez vous tenter par <%= link_to "une recette au hasard" , recipes_shuffle_path, class: 'alert-link' %></p>
+	<p class="alert alert-info" role="alert">
+		Trop de choix? Trouvez des <%= link_to "recettes avec ce qu'il vous reste dans votre frigo" , fridge_path, class: 'alert-link' %>
+		ou bien laissez vous tenter par <%= link_to "une recette au hasard" , recipes_shuffle_path, class: 'alert-link' %>
+	</p>
 </div>
-
-<script type="text/javascript">
-	document.addEventListener("DOMContentLoaded", function(event) { 
-		$('#filter').on('click', function(e){
-			e.preventDefault();
-			$("#search_recipe_form").slideToggle();
-		})
-	});
-</script>
