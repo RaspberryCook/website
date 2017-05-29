@@ -15,7 +15,7 @@ class ImageUploader < CarrierWave::Uploader::Base
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
   def default_url
-    return "/assets/images/default.svg"
+    return "default.svg"
   end
 
   # Process files as they are uploaded:
@@ -43,4 +43,3 @@ class ImageUploader < CarrierWave::Uploader::Base
   # end
 
 end
-  
