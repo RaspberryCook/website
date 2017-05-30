@@ -7,13 +7,7 @@
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://raspberry-cook.fr/recipes/tortilla-au-chorizo</loc>
-    <lastmod>2017-05-30</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://raspberry-cook.fr/recipes/tarte-aux-legumes-d-ete</loc>
+    <loc>https://raspberry-cook.fr/credits</loc>
     <lastmod>2017-05-30</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
@@ -31,12 +25,6 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://raspberry-cook.fr/recipes/pancakes-sans-gluten-comme-des-pains-perdus</loc>
-    <lastmod>2017-05-30</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>https://raspberry-cook.fr/users/2?page=13</loc>
     <lastmod>2017-05-30</lastmod>
     <changefreq>daily</changefreq>
@@ -49,10 +37,16 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://raspberry-cook.fr/users/2?page=12</loc>
+    <loc>https://raspberry-cook.fr/users/2?page=11</loc>
     <lastmod>2017-05-30</lastmod>
     <changefreq>daily</changefreq>
-    <priority>0.7</priority>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://raspberry-cook.fr/recipes/tortilla-au-chorizo</loc>
+    <lastmod>2017-05-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
   </url>
   <url>
     <loc>https://raspberry-cook.fr/users/2?page=10</loc>
@@ -61,16 +55,28 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://raspberry-cook.fr/users/2?page=11</loc>
+    <loc>https://raspberry-cook.fr/recipes/cake-reblochon-et-lardons</loc>
     <lastmod>2017-05-30</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://raspberry-cook.fr/recipes/pain-de-mais</loc>
+    <loc>https://raspberry-cook.fr/users/2?page=3</loc>
     <lastmod>2017-05-30</lastmod>
     <changefreq>daily</changefreq>
-    <priority>0.6</priority>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://raspberry-cook.fr/users/2?page=12</loc>
+    <lastmod>2017-05-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://raspberry-cook.fr/users/2?page=4</loc>
+    <lastmod>2017-05-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://raspberry-cook.fr/recipes/gaufres-comme-un-sandwich</loc>
@@ -79,13 +85,49 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://raspberry-cook.fr/users/2?page=6</loc>
+    <lastmod>2017-05-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://raspberry-cook.fr/recipes/pancakes-sans-gluten-comme-des-pains-perdus</loc>
+    <lastmod>2017-05-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://raspberry-cook.fr/recipes/pain-de-mais</loc>
+    <lastmod>2017-05-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://raspberry-cook.fr/recipes/sandwich-americain-sans-gluten</loc>
+    <lastmod>2017-05-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://raspberry-cook.fr/recipes/tarte-carotte-moutarde</loc>
     <lastmod>2017-05-30</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://raspberry-cook.fr/users/2?page=3</loc>
+    <loc>https://raspberry-cook.fr/recipes?ingredients=125+g+de+farine+sans+gluten+%0D%0A</loc>
+    <lastmod>2017-05-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://raspberry-cook.fr/recipes?ingredients=Des+frites+%0D%0A</loc>
+    <lastmod>2017-05-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://raspberry-cook.fr/recipes/feuilletes-au-pesto-au-piment-rouge</loc>
     <lastmod>2017-05-30</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.7</priority>
@@ -103,43 +145,25 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://raspberry-cook.fr/users/2?page=4</loc>
-    <lastmod>2017-05-30</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>https://raspberry-cook.fr/users/2?page=7</loc>
     <lastmod>2017-05-30</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://raspberry-cook.fr/users/2?page=6</loc>
-    <lastmod>2017-05-30</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://raspberry-cook.fr/recipes/crevettes-curry-et-lait-de-coco</loc>
-    <lastmod>2017-05-30</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://raspberry-cook.fr/recipes/gratin-de-poireaux</loc>
-    <lastmod>2017-05-30</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://raspberry-cook.fr/recipes/choux-fleurs-a-l-indienne</loc>
-    <lastmod>2017-05-30</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>https://raspberry-cook.fr/users/2?page=8</loc>
+    <lastmod>2017-05-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://raspberry-cook.fr/recipes?ingredients=Du+poivre+</loc>
+    <lastmod>2017-05-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://raspberry-cook.fr/recipes?ingredients=1+oignon%0D%0A</loc>
     <lastmod>2017-05-30</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.7</priority>
@@ -157,16 +181,22 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://raspberry-cook.fr/recipes/choux-fleurs-a-l-indienne</loc>
+    <lastmod>2017-05-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://raspberry-cook.fr/users/2?page=1</loc>
     <lastmod>2017-05-30</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://raspberry-cook.fr/recipes/omelette-aux-cornflakes</loc>
+    <loc>https://raspberry-cook.fr/recipes?ingredients=6+oeufs+</loc>
     <lastmod>2017-05-30</lastmod>
     <changefreq>daily</changefreq>
-    <priority>0.8</priority>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://raspberry-cook.fr/users/2?page=2</loc>
@@ -193,16 +223,16 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://raspberry-cook.fr/recipes/poulet-moutarde-et-champignons</loc>
-    <lastmod>2017-05-30</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
     <loc>https://raspberry-cook.fr/recipes/poulet-aux-saveurs-exotiques</loc>
     <lastmod>2017-05-30</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://raspberry-cook.fr/recipes/gratin-de-puree-au-jambon</loc>
+    <lastmod>2017-05-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://raspberry-cook.fr/recipes/puree-avec-fromage-et-pancetta</loc>
@@ -211,16 +241,34 @@
     <priority>0.5</priority>
   </url>
   <url>
+    <loc>https://raspberry-cook.fr/recipes?type=Plat</loc>
+    <lastmod>2017-05-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://raspberry-cook.fr/recipes/houmous-et-carottes</loc>
     <lastmod>2017-05-30</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://raspberry-cook.fr/recipes?ingredients=Une+p%C3%A2te+%C3%A0+pizza+sans+gluten%0D%0A</loc>
+    <lastmod>2017-05-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://raspberry-cook.fr/recipes/risotto-aux-champignons</loc>
     <lastmod>2017-05-30</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://raspberry-cook.fr/recipes/salade-avec-patates-douces-lardons-et-champignons</loc>
+    <lastmod>2017-05-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://raspberry-cook.fr/recipes/tarte-aux-4-fromages</loc>
@@ -235,22 +283,28 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://raspberry-cook.fr/recipes/riz-cremeux-et-ses-legumes</loc>
-    <lastmod>2017-05-30</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
     <loc>https://raspberry-cook.fr/recipes/tarte-tatin-de-carottes-chevre-curry</loc>
     <lastmod>2017-05-30</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://raspberry-cook.fr/recipes/riz-cremeux-et-ses-legumes</loc>
+    <lastmod>2017-05-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://raspberry-cook.fr/recipes?season=Toutes</loc>
+    <lastmod>2017-05-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://raspberry-cook.fr/recipes/pates-carbonara-aux-champignons</loc>
     <lastmod>2017-05-30</lastmod>
     <changefreq>daily</changefreq>
-    <priority>0.6</priority>
+    <priority>0.5</priority>
   </url>
   <url>
     <loc>https://raspberry-cook.fr/recipes/boulettes-de-lentilles-aux-epices</loc>
@@ -259,10 +313,22 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://raspberry-cook.fr/recipes?ingredients=50+ml+de+lait%0D%0A</loc>
+    <lastmod>2017-05-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://raspberry-cook.fr/recipes/cervelas-a-l-alsacienne</loc>
     <lastmod>2017-05-30</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://raspberry-cook.fr/recipes/poulet-lait-de-coco-et-citron</loc>
+    <lastmod>2017-05-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://raspberry-cook.fr/recipes/pates-aux-noix-ricotta-et-miel</loc>
@@ -283,7 +349,13 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://raspberry-cook.fr/recipes/frites-de-patates-douces</loc>
+    <loc>https://raspberry-cook.fr/recipes?ingredients=Du+poivre</loc>
+    <lastmod>2017-05-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://raspberry-cook.fr/recipes/gnocchis-de-patates-douces</loc>
     <lastmod>2017-05-30</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -295,25 +367,19 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://raspberry-cook.fr/recipes/poke-bowl-au-saumon-fume</loc>
-    <lastmod>2017-05-30</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>https://raspberry-cook.fr/recipes/sushis-avec-feuilles-d-algue</loc>
     <lastmod>2017-05-30</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://raspberry-cook.fr/recipes/patates-comme-une-pizza</loc>
+    <loc>https://raspberry-cook.fr/recipes/poke-bowl-au-saumon-fume</loc>
     <lastmod>2017-05-30</lastmod>
     <changefreq>daily</changefreq>
-    <priority>0.6</priority>
+    <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://raspberry-cook.fr/recipes/tarte-aux-champignons-et-au-jambon</loc>
+    <loc>https://raspberry-cook.fr/recipes?ingredients=Du+pesto+au+piment+rouge+%28%22pesto+d%27enfer%22%29%0D%0A</loc>
     <lastmod>2017-05-30</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -325,10 +391,10 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://raspberry-cook.fr/recipes</loc>
+    <loc>https://raspberry-cook.fr/recipes/ficelles-picardes</loc>
     <lastmod>2017-05-30</lastmod>
     <changefreq>daily</changefreq>
-    <priority>0.9</priority>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://raspberry-cook.fr/recipes/nems-boeuf-et-feta</loc>
@@ -337,19 +403,31 @@
     <priority>0.5</priority>
   </url>
   <url>
+    <loc>https://raspberry-cook.fr/recipes/clafoutis-espagnol</loc>
+    <lastmod>2017-05-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://raspberry-cook.fr/recipes/croque-monsieur-jambon-cru-mozzarella</loc>
     <lastmod>2017-05-30</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://raspberry-cook.fr/recipes/muffins-aux-knackis</loc>
+    <loc>https://raspberry-cook.fr/recipes</loc>
     <lastmod>2017-05-30</lastmod>
     <changefreq>daily</changefreq>
-    <priority>0.6</priority>
+    <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://raspberry-cook.fr/recipes/clafoutis-espagnol</loc>
+    <loc>https://raspberry-cook.fr/recipes?ingredients=De+la+vache+qui+rit%0D%0A</loc>
+    <lastmod>2017-05-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://raspberry-cook.fr/recipes?ingredients=1+tomate%0D%0A</loc>
     <lastmod>2017-05-30</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.7</priority>
@@ -361,16 +439,28 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://raspberry-cook.fr/recipes/veloute-de-potiron-au-roquefort</loc>
+    <lastmod>2017-05-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>https://raspberry-cook.fr/recipes/cabillaud-au-teriyaki-et-riz</loc>
     <lastmod>2017-05-30</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://raspberry-cook.fr/recipes/veloute-de-potiron-au-roquefort</loc>
+    <loc>https://raspberry-cook.fr/recipes?ingredients=40+g+de+beurre%0D%0A</loc>
     <lastmod>2017-05-30</lastmod>
     <changefreq>daily</changefreq>
-    <priority>0.6</priority>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://raspberry-cook.fr/recipes?ingredients=180g+de+farine%0D%0A</loc>
+    <lastmod>2017-05-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
   </url>
   <url>
     <loc>https://raspberry-cook.fr/recipes/pommes-de-terre-farcies-au-brebis</loc>
@@ -379,14 +469,13 @@
     <priority>0.6</priority>
   </url>
   <url>
-  <url>
-    <loc>https://raspberry-cook.fr/recipes/gateau-au-yaourt-d-halloween</loc>
+    <loc>https://raspberry-cook.fr/recipes?ingredients=De+l%27origan</loc>
     <lastmod>2017-05-30</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://raspberry-cook.fr/recipes/tourte-aux-champignons</loc>
+    <loc>https://raspberry-cook.fr/recipes?ingredients=60+g+d%27allumettes+de+lardon+fum%C3%A9%0D%0A</loc>
     <lastmod>2017-05-30</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.7</priority>
@@ -398,16 +487,22 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://raspberry-cook.fr/recipes/pates-champignon-et-moutarde</loc>
+    <loc>https://raspberry-cook.fr/recipes/concombre-farci</loc>
+    <lastmod>2017-05-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://raspberry-cook.fr/recipes?ingredients=Des+sauces+%28ketchup%2C+mayonnaise%2C+sauce+samoura%C3%AF..%29+</loc>
     <lastmod>2017-05-30</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://raspberry-cook.fr/recipes/concombre-farci</loc>
+    <loc>https://raspberry-cook.fr/recipes/pates-champignon-et-moutarde</loc>
     <lastmod>2017-05-30</lastmod>
     <changefreq>daily</changefreq>
-    <priority>0.8</priority>
+    <priority>0.5</priority>
   </url>
   <url>
     <loc>https://raspberry-cook.fr/recipes/carottes-en-croquette</loc>
@@ -416,10 +511,16 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://raspberry-cook.fr/recipes/tajine-de-poulet-aux-fruits-secs</loc>
+    <loc>https://raspberry-cook.fr/recipes/veloute-de-champignons</loc>
     <lastmod>2017-05-30</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://raspberry-cook.fr/recipes/tajine-de-poulet-aux-fruits-secs</loc>
+    <lastmod>2017-05-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
   </url>
   <url>
     <loc>https://raspberry-cook.fr/recipes/poelee-de-champignons-avec-des-oeufs-au-plat</loc>
@@ -434,13 +535,7 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://raspberry-cook.fr/recipes/veloute-de-potiron-aux-chataignes-grillees</loc>
-    <lastmod>2017-05-30</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://raspberry-cook.fr/recipes/gratin-de-pates-aux-lardons-et-champignons</loc>
+    <loc>https://raspberry-cook.fr/recipes?ingredients=Pour+la+p%C3%A2te+%3A%0D%0A</loc>
     <lastmod>2017-05-30</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -452,16 +547,46 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://raspberry-cook.fr/recipes/veloute-de-potiron-aux-chataignes-grillees</loc>
+    <lastmod>2017-05-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://raspberry-cook.fr/recipes?ingredients=40+g+de+sucre+%0D%0A</loc>
+    <lastmod>2017-05-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://raspberry-cook.fr/recipes/brownie-sans-gluten</loc>
     <lastmod>2017-05-30</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://raspberry-cook.fr/recipes/potimarron-bacon-fromage</loc>
+    <loc>https://raspberry-cook.fr/recipes/gratin-de-pates-aux-lardons-et-champignons</loc>
     <lastmod>2017-05-30</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://raspberry-cook.fr/recipes?ingredients=3+%C5%93ufs%0D%0A</loc>
+    <lastmod>2017-05-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://raspberry-cook.fr/recipes?ingredients=4+tomates+s%C3%A9ch%C3%A9es%0D%0A</loc>
+    <lastmod>2017-05-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://raspberry-cook.fr/recipes?ingredients=Deux+steaks+hach%C3%A9s+%0D%0A</loc>
+    <lastmod>2017-05-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
   </url>
   <url>
     <loc>https://raspberry-cook.fr/recipes/crumble-de-chou-fleur</loc>
@@ -470,10 +595,22 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://raspberry-cook.fr/recipes?ingredients=Du+fromage+r%C3%A2p%C3%A9%0D%0A</loc>
+    <lastmod>2017-05-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://raspberry-cook.fr/recipes/pizza-tartiflette</loc>
     <lastmod>2017-05-30</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://raspberry-cook.fr/recipes?ingredients=De+la+ciboulette%0D%0A</loc>
+    <lastmod>2017-05-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://raspberry-cook.fr/recipes/poulet-au-lait-de-coco-et-ananas-en-cocotte</loc>
@@ -482,10 +619,22 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://raspberry-cook.fr/recipes?ingredients=3+oignons%0D%0A</loc>
+    <lastmod>2017-05-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://raspberry-cook.fr/recipes/salade-composee-au-poulet</loc>
     <lastmod>2017-05-30</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://raspberry-cook.fr/recipes/salade-lardon-pommes-et-toast-au-camembert</loc>
+    <lastmod>2017-05-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://raspberry-cook.fr/recipes/poelee-de-pommes-de-terre-et-carottes</loc>
@@ -494,10 +643,10 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://raspberry-cook.fr/recipes/patate-douce-farcie-au-four</loc>
+    <loc>https://raspberry-cook.fr/recipes?ingredients=1+sachet+de+sucre+vanill%C3%A9+%0D%0A</loc>
     <lastmod>2017-05-30</lastmod>
     <changefreq>daily</changefreq>
-    <priority>0.7</priority>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://raspberry-cook.fr/recipes/bouchees-de-pommes-de-terre-au-camembert</loc>
@@ -518,7 +667,19 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://raspberry-cook.fr/recipes?ingredients=2+cuill%C3%A8res+%C3%A0+soupe+de+sucre+%0D%0A</loc>
+    <lastmod>2017-05-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://raspberry-cook.fr/users/9</loc>
+    <lastmod>2017-05-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://raspberry-cook.fr/recipes/pates-a-l-eau</loc>
     <lastmod>2017-05-30</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.7</priority>
@@ -536,10 +697,10 @@
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://raspberry-cook.fr/recipes/pates-a-l-eau</loc>
+    <loc>https://raspberry-cook.fr/recipes?ingredients=Du+fromage+%C3%A0+hamburger+%0D%0A</loc>
     <lastmod>2017-05-30</lastmod>
     <changefreq>daily</changefreq>
-    <priority>0.7</priority>
+    <priority>0.5</priority>
   </url>
   <url>
     <loc>https://raspberry-cook.fr/recipes/tarte-poireaux-et-lardons</loc>
@@ -548,28 +709,34 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://raspberry-cook.fr/recipes/oeuf-cocotte-et-champignons</loc>
+    <loc>https://raspberry-cook.fr/recipes?ingredients=1+p%C3%A2te+feuillet%C3%A9e+sans+gluten%0D%0A</loc>
     <lastmod>2017-05-30</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://raspberry-cook.fr/recipes/gratin-de-pates-a-la-tome</loc>
+    <loc>https://raspberry-cook.fr/recipes?ingredients=100g+de+lardons+allumettes%0D%0A</loc>
     <lastmod>2017-05-30</lastmod>
     <changefreq>daily</changefreq>
-    <priority>0.6</priority>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://raspberry-cook.fr/recipes?type=Dessert</loc>
+    <lastmod>2017-05-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://raspberry-cook.fr/recipes/fonio-aux-carottes-et-lait-de-coco</loc>
     <lastmod>2017-05-30</lastmod>
     <changefreq>daily</changefreq>
-    <priority>0.6</priority>
+    <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://raspberry-cook.fr/recipes/polenta-au-fromage-de-brebis</loc>
+    <loc>https://raspberry-cook.fr/recipes?ingredients=De+la+roquette%0D%0A</loc>
     <lastmod>2017-05-30</lastmod>
     <changefreq>daily</changefreq>
-    <priority>0.6</priority>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://raspberry-cook.fr/recipes/13</loc>
@@ -578,10 +745,28 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://raspberry-cook.fr/recipes/petits-pains-farcis-au-fromage-et-aux-champignons</loc>
+    <loc>https://raspberry-cook.fr/recipes?ingredients=12+tranches+de+bacon%0D%0A</loc>
     <lastmod>2017-05-30</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://raspberry-cook.fr/recipes?ingredients=800+g+de+pommes+de+terre%0D%0A</loc>
+    <lastmod>2017-05-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://raspberry-cook.fr/recipes/polenta-au-fromage-de-brebis</loc>
+    <lastmod>2017-05-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://raspberry-cook.fr/recipes?ingredients=Deux+baguettes+%0D%0A</loc>
+    <lastmod>2017-05-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
   </url>
   <url>
     <loc>https://raspberry-cook.fr/recipes/muffins-de-pommes-de-terre-au-fromage</loc>
@@ -596,25 +781,31 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://raspberry-cook.fr/recipes/soupe-de-carottes-au-lait-de-coco-accompagnee-de-boulettes</loc>
-    <lastmod>2017-05-30</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>https://raspberry-cook.fr/recipes/navets-caramelises</loc>
     <lastmod>2017-05-30</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://raspberry-cook.fr/recipes/omelette-chevre-epinards</loc>
+    <loc>https://raspberry-cook.fr/recipes/soupe-de-carottes-au-lait-de-coco-accompagnee-de-boulettes</loc>
     <lastmod>2017-05-30</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://raspberry-cook.fr/recipes?ingredients=20+g+de+sucre+%0D%0A</loc>
+    <lastmod>2017-05-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://raspberry-cook.fr/recipes/pains-a-la-chataigne-et-au-chocolat</loc>
+    <lastmod>2017-05-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://raspberry-cook.fr/recipes/tarte-au-citron-meringuee</loc>
     <lastmod>2017-05-30</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -626,22 +817,34 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://raspberry-cook.fr/recipes/tarte-au-citron-meringuee</loc>
-    <lastmod>2017-05-30</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://raspberry-cook.fr/recipes/tarte-pommes-camembert</loc>
-    <lastmod>2017-05-30</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
     <loc>https://raspberry-cook.fr/signup</loc>
     <lastmod>2017-05-30</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://raspberry-cook.fr/recipes?ingredients=200+g+de+chorizo%0D%0A</loc>
+    <lastmod>2017-05-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://raspberry-cook.fr/recipes?type=Ap%C3%A9ritif</loc>
+    <lastmod>2017-05-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://raspberry-cook.fr/recipes/tartare-de-saumon-avocat-et-mozzarella</loc>
+    <lastmod>2017-05-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://raspberry-cook.fr/recipes/domes-de-concombres-et-de-rillettes-de-thon</loc>
+    <lastmod>2017-05-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
   </url>
   <url>
     <loc>https://raspberry-cook.fr/recipes/quiche-pommes-de-terre-camembert-et-jambon-cru</loc>
@@ -650,13 +853,25 @@
     <priority>0.5</priority>
   </url>
   <url>
+    <loc>https://raspberry-cook.fr/recipes?ingredients=12+%C5%93ufs%0D%0A</loc>
+    <lastmod>2017-05-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://raspberry-cook.fr/recipes/tarte-tatin-oignons-chevre</loc>
     <lastmod>2017-05-30</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://raspberry-cook.fr/recipes/domes-de-concombres-et-de-rillettes-de-thon</loc>
+    <loc>https://raspberry-cook.fr/recipes/soupe-courge-et-carottes</loc>
+    <lastmod>2017-05-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://raspberry-cook.fr/recipes?ingredients=2+%C5%93ufs+%0D%0A</loc>
     <lastmod>2017-05-30</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -674,22 +889,22 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://raspberry-cook.fr/credits</loc>
+    <loc>https://raspberry-cook.fr/recipes?ingredients=200g+de+reblochon%0D%0A</loc>
     <lastmod>2017-05-30</lastmod>
     <changefreq>daily</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://raspberry-cook.fr/recipes/veloute-de-patates-douces</loc>
-    <lastmod>2017-05-30</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
+    <priority>0.5</priority>
   </url>
   <url>
     <loc>https://raspberry-cook.fr/recipes/veloute-de-carotte-au-lait-de-coco</loc>
     <lastmod>2017-05-30</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://raspberry-cook.fr/recipes/veloute-de-patates-douces</loc>
+    <lastmod>2017-05-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://raspberry-cook.fr/recipes/poulet-type-kfc-sans-gluten</loc>
@@ -704,6 +919,18 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://raspberry-cook.fr/recipes?ingredients=Fa%C3%A7on+pain+perdu+%3A%0D%0A</loc>
+    <lastmod>2017-05-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://raspberry-cook.fr/recipes?ingredients=6+cuill%C3%A8res+%C3%A0+soupe+de+cr%C3%A8me+fra%C3%AEche%0D%0A</loc>
+    <lastmod>2017-05-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://raspberry-cook.fr/recipes/tarte-oignons-et-camembert</loc>
     <lastmod>2017-05-30</lastmod>
     <changefreq>daily</changefreq>
@@ -716,25 +943,43 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://raspberry-cook.fr/recipes/gratin-de-courgettes</loc>
-    <lastmod>2017-05-30</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>https://raspberry-cook.fr/recipes/bechamel</loc>
     <lastmod>2017-05-30</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://raspberry-cook.fr/recipes/cake-carotte-cumin</loc>
+    <loc>https://raspberry-cook.fr/recipes/gratin-de-courgettes</loc>
+    <lastmod>2017-05-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://raspberry-cook.fr/recipes?ingredients=Du+poivre%0D%0A</loc>
+    <lastmod>2017-05-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://raspberry-cook.fr/recipes/crevettes-curry-et-lait-de-coco</loc>
     <lastmod>2017-05-30</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://raspberry-cook.fr/recipes/sandwich-americain-sans-gluten</loc>
+    <loc>https://raspberry-cook.fr/recipes?ingredients=140g+de+farine+de+ma%C3%AFs%5Cr%5Cn125g+de+farine%5Cr%5Cn115g+de+beurre%5Cr%5Cn135g+de+sucre+blanc%5Cr%5Cn2g+de+bicarbonate+alimentaire%5Cr%5Cn2+oeufs+%5Cr%5Cn235+ml+de+lait+ferment%C3%A9%5Cr%5Cn1%2F2+cuill%C3%A8re+%C3%A0+caf%C3%A9+de+sel</loc>
+    <lastmod>2017-05-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://raspberry-cook.fr/signin</loc>
+    <lastmod>2017-05-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://raspberry-cook.fr/recipes?ingredients=1+cuill%C3%A8re+%C3%A0+soupe+de+levure+%0D%0A</loc>
     <lastmod>2017-05-30</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -746,22 +991,10 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://raspberry-cook.fr/signin</loc>
-    <lastmod>2017-05-30</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
     <loc>https://raspberry-cook.fr/recipes/poulet-facon-thaie</loc>
     <lastmod>2017-05-30</lastmod>
     <changefreq>daily</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://raspberry-cook.fr/recipes/saucisses-momies-d-halloween</loc>
-    <lastmod>2017-05-30</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.7</priority>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://raspberry-cook.fr/home</loc>
@@ -776,16 +1009,34 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://raspberry-cook.fr/recipes/filets-de-cabillauds-sauce-moutarde</loc>
+    <lastmod>2017-05-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://raspberry-cook.fr/recipes/riz-indien-oeufs-crevettes</loc>
     <lastmod>2017-05-30</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://raspberry-cook.fr/recipes/potimarron-au-parmesan</loc>
+    <lastmod>2017-05-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://raspberry-cook.fr/recipes/baguettes-sans-gluten</loc>
     <lastmod>2017-05-30</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://raspberry-cook.fr/recipes?ingredients=1+p%C3%A2te+%C3%A0+pizza+sans+gluten%0D%0A</loc>
+    <lastmod>2017-05-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://raspberry-cook.fr/recipes/wrap-chevre-chorizo</loc>
@@ -812,13 +1063,25 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://raspberry-cook.fr/recipes?ingredients=15+cl+de+lait</loc>
+    <lastmod>2017-05-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://raspberry-cook.fr/recipes/90</loc>
     <lastmod>2017-05-30</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://raspberry-cook.fr/recipes/souffle-au-potiron</loc>
+    <loc>https://raspberry-cook.fr/recipes/pates-au-saumon-et-au-potiron</loc>
+    <lastmod>2017-05-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://raspberry-cook.fr/recipes/flan-de-potiron</loc>
     <lastmod>2017-05-30</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -836,25 +1099,19 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://raspberry-cook.fr/recipes/tomate-farcies-originales</loc>
+    <lastmod>2017-05-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>https://raspberry-cook.fr/fridge</loc>
     <lastmod>2017-05-30</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://raspberry-cook.fr/recipes/tomate-farcies-originales</loc>
-    <lastmod>2017-05-30</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://raspberry-cook.fr/recipes/biscuits-courge-et-chevre-frais</loc>
-    <lastmod>2017-05-30</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://raspberry-cook.fr/recipes/petits-pois-au-chorizo</loc>
+    <loc>https://raspberry-cook.fr/recipes/tarte-aux-lentilles-corail-et-gorgonzola</loc>
     <lastmod>2017-05-30</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -866,19 +1123,13 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://raspberry-cook.fr/recipes/tarte-aux-lentilles-corail-et-gorgonzola</loc>
+    <loc>https://raspberry-cook.fr/recipes/petits-pois-au-chorizo</loc>
     <lastmod>2017-05-30</lastmod>
     <changefreq>daily</changefreq>
-    <priority>0.6</priority>
+    <priority>0.5</priority>
   </url>
   <url>
     <loc>https://raspberry-cook.fr/recipes/mini-cakes-tomates-confites-comte-moutarde-mi-forte</loc>
-    <lastmod>2017-05-30</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://raspberry-cook.fr/recipes/wok-de-legumes-sauce-aigre-douce</loc>
     <lastmod>2017-05-30</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.7</priority>
@@ -890,22 +1141,22 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://raspberry-cook.fr/recipes/mangue-et-creme-de-coco</loc>
+    <loc>https://raspberry-cook.fr/recipes/wok-de-legumes-sauce-aigre-douce</loc>
     <lastmod>2017-05-30</lastmod>
     <changefreq>daily</changefreq>
-    <priority>0.7</priority>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://raspberry-cook.fr/recipes/pave-de-truite-a-la-moutarde</loc>
     <lastmod>2017-05-30</lastmod>
     <changefreq>daily</changefreq>
-    <priority>0.6</priority>
+    <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://raspberry-cook.fr/recipes/gauffre-courgettes-lardons-et-chevre</loc>
+    <loc>https://raspberry-cook.fr/recipes/mangue-et-creme-de-coco</loc>
     <lastmod>2017-05-30</lastmod>
     <changefreq>daily</changefreq>
-    <priority>0.6</priority>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://raspberry-cook.fr/recipes/riz-aux-crevettes-sauce-avocat</loc>
@@ -920,16 +1171,16 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://raspberry-cook.fr/recipes/agrumes-au-basilic</loc>
+    <loc>https://raspberry-cook.fr/recipes/tartare-de-saumon-avocat-et-mozzarella-612aa340-93d5-4588-8b51-fafd9b400679</loc>
     <lastmod>2017-05-30</lastmod>
     <changefreq>daily</changefreq>
-    <priority>0.7</priority>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://raspberry-cook.fr/recipes/tarte-a-la-tomate</loc>
     <lastmod>2017-05-30</lastmod>
     <changefreq>daily</changefreq>
-    <priority>0.7</priority>
+    <priority>0.5</priority>
   </url>
   <url>
     <loc>https://raspberry-cook.fr/recipes/madeleines-de-saint-valentin</loc>
@@ -944,10 +1195,34 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://raspberry-cook.fr/recipes?type=Entr%C3%A9e</loc>
+    <lastmod>2017-05-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://raspberry-cook.fr/recipes/gaufres-au-potiron-curry-et-lait-de-coco</loc>
+    <lastmod>2017-05-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://raspberry-cook.fr/recipes/concombre-farci-au-thon</loc>
     <lastmod>2017-05-30</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://raspberry-cook.fr/recipes?ingredients=1+sachet+de+levure%0D%0A</loc>
+    <lastmod>2017-05-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://raspberry-cook.fr/recipes?ingredients=1+sachet+de+levure+%0D%0A</loc>
+    <lastmod>2017-05-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://raspberry-cook.fr/recipes/polenta-a-la-sauce-tomate</loc>
@@ -966,18 +1241,6 @@
     <lastmod>2017-05-30</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://raspberry-cook.fr/recipes/pates-au-saumon-fume</loc>
-    <lastmod>2017-05-30</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://raspberry-cook.fr/recipes/quesadillas-sans-gluten</loc>
-    <lastmod>2017-05-30</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://raspberry-cook.fr/recipes/41</loc>
@@ -1007,25 +1270,19 @@
     <loc>https://raspberry-cook.fr/recipes/frites-de-courgettes-au-parmesan</loc>
     <lastmod>2017-05-30</lastmod>
     <changefreq>daily</changefreq>
-    <priority>0.5</priority>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://raspberry-cook.fr/recipes/cabillaud-aux-avocats</loc>
     <lastmod>2017-05-30</lastmod>
     <changefreq>daily</changefreq>
-    <priority>0.6</priority>
+    <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://raspberry-cook.fr/recipes/tarte-chevre-miel-figues-et-jambon-de-bayonne</loc>
+    <loc>https://raspberry-cook.fr/recipes?type=Cocktail</loc>
     <lastmod>2017-05-30</lastmod>
     <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://raspberry-cook.fr/recipes/gratin-de-saumon-et-potiron</loc>
-    <lastmod>2017-05-30</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://raspberry-cook.fr/recipes/cake-au-fromage-de-chere-noix-et-oignons-caramelises</loc>
@@ -1034,16 +1291,22 @@
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://raspberry-cook.fr/recipes/tarte-chou-fleur-roquefort</loc>
+    <loc>https://raspberry-cook.fr/recipes/gratin-de-saumon-et-potiron</loc>
     <lastmod>2017-05-30</lastmod>
     <changefreq>daily</changefreq>
-    <priority>0.7</priority>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://raspberry-cook.fr/recipes/temaki-au-saumon</loc>
     <lastmod>2017-05-30</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://raspberry-cook.fr/recipes/tarte-chou-fleur-roquefort</loc>
+    <lastmod>2017-05-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://raspberry-cook.fr/recipes/pomme-de-terre-au-four-avec-bacon</loc>
@@ -1053,6 +1316,12 @@
   </url>
   <url>
     <loc>https://raspberry-cook.fr/recipes/wrap-au-poulet-pane-sans-gluten</loc>
+    <lastmod>2017-05-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://raspberry-cook.fr/recipes?ingredients=2+boules+de+mozzarella%0D%0A</loc>
     <lastmod>2017-05-30</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -1070,16 +1339,16 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://raspberry-cook.fr/recipes/cake-reblochon-et-lardons</loc>
+    <loc>https://raspberry-cook.fr/recipes/puree-de-patates-douces-et-butternut</loc>
     <lastmod>2017-05-30</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://raspberry-cook.fr/recipes/puree-de-patates-douces-et-butternut</loc>
+    <loc>https://raspberry-cook.fr/recipes/beignets-de-courgette-au-four</loc>
     <lastmod>2017-05-30</lastmod>
     <changefreq>daily</changefreq>
-    <priority>0.6</priority>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://raspberry-cook.fr/recipes/boulettes-de-betteraves-au-fromage-et-aux-noix</loc>
@@ -1088,10 +1357,10 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://raspberry-cook.fr/recipes/beignets-de-courgette-au-four</loc>
+    <loc>https://raspberry-cook.fr/recipes?ingredients=250+g+de+farine+sans+gluten%0D%0A</loc>
     <lastmod>2017-05-30</lastmod>
     <changefreq>daily</changefreq>
-    <priority>0.7</priority>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://raspberry-cook.fr/recipes/riz-au-lait</loc>
@@ -1109,16 +1378,22 @@
     <loc>https://raspberry-cook.fr/recipes/feuillete-poireaux-pommes-de-terre</loc>
     <lastmod>2017-05-30</lastmod>
     <changefreq>daily</changefreq>
-    <priority>0.7</priority>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://raspberry-cook.fr/recipes/tarte-aux-poireaux-et-chevre</loc>
     <lastmod>2017-05-30</lastmod>
     <changefreq>daily</changefreq>
-    <priority>0.7</priority>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://raspberry-cook.fr/recipes/lasagnes-potiron-courgette</loc>
+    <lastmod>2017-05-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://raspberry-cook.fr/recipes?ingredients=Une+p%C3%A2te+feuillet%C3%A9e%5Cr%5Cn6+carottes%5Cr%5CnDeux+gros+oignons%5Cr%5Cn2+cuill%C3%A8res+%C3%A0+soupe+de+moutarde%5Cr%5Cn2+petits+suisses%5Cr%5CnUne+demi-b%C3%BBche+de+ch%C3%A8vre%5Cr%5CnMiel%5Cr%5CnPoivre</loc>
     <lastmod>2017-05-30</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
@@ -1130,31 +1405,37 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://raspberry-cook.fr/recipes?ingredients=150+g+de+saumon%0D%0A</loc>
+    <lastmod>2017-05-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://raspberry-cook.fr/recipes?ingredients=1+boule+de+mozzarella%0D%0A</loc>
+    <lastmod>2017-05-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://raspberry-cook.fr/recipes/cake-sale-aux-patates-douces</loc>
     <lastmod>2017-05-30</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://raspberry-cook.fr/recipes/potiron-farci-aux-champignons-et-aux-lardons</loc>
-    <lastmod>2017-05-30</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://raspberry-cook.fr/recipes/risotto-au-gorgonzola-et-aux-poires</loc>
-    <lastmod>2017-05-30</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
     <loc>https://raspberry-cook.fr/recipes/tarte-champignons-knackis</loc>
     <lastmod>2017-05-30</lastmod>
     <changefreq>daily</changefreq>
-    <priority>0.7</priority>
+    <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://raspberry-cook.fr/recipes/tarte-camembert-pommes-et-lardons</loc>
+    <loc>https://raspberry-cook.fr/recipes?ingredients=Un+emporte+pi%C3%A8ce+en+forme+de+sapin</loc>
+    <lastmod>2017-05-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://raspberry-cook.fr/recipes/potiron-farci-aux-champignons-et-aux-lardons</loc>
     <lastmod>2017-05-30</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -1166,16 +1447,16 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://raspberry-cook.fr/recipes/tarte-camembert-pommes-et-lardons</loc>
+    <lastmod>2017-05-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>https://raspberry-cook.fr/recipes/tartine-bacon-tomate-laitue</loc>
     <lastmod>2017-05-30</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://raspberry-cook.fr/recipes/tarte-aux-epinards-et-chevre</loc>
-    <lastmod>2017-05-30</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://raspberry-cook.fr/recipes/tartare-de-thon</loc>
@@ -1190,10 +1471,10 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://raspberry-cook.fr/recipes/boudin-aux-pommes</loc>
+    <loc>https://raspberry-cook.fr/recipes/gratin-de-pates-courgettes-et-jambon</loc>
     <lastmod>2017-05-30</lastmod>
     <changefreq>daily</changefreq>
-    <priority>0.6</priority>
+    <priority>0.5</priority>
   </url>
   <url>
     <loc>https://raspberry-cook.fr/recipes/flammekuche-sans-gluten</loc>
@@ -1202,7 +1483,13 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://raspberry-cook.fr/recipes/gratin-de-pates-courgettes-et-jambon</loc>
+    <loc>https://raspberry-cook.fr/recipes?ingredients=1+pincee+de+sel%0D%0A</loc>
+    <lastmod>2017-05-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://raspberry-cook.fr/recipes/boudin-aux-pommes</loc>
     <lastmod>2017-05-30</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -1226,19 +1513,13 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://raspberry-cook.fr/recipes/187</loc>
-    <lastmod>2017-05-30</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>https://raspberry-cook.fr/recipes/pizza-au-pesto-de-chou-kale-et-au-potimarron</loc>
     <lastmod>2017-05-30</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://raspberry-cook.fr/recipes/cookie-jambon-et-petits-pois</loc>
+    <loc>https://raspberry-cook.fr/recipes/187</loc>
     <lastmod>2017-05-30</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.7</priority>
@@ -1250,16 +1531,22 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://raspberry-cook.fr/recipes/salade-de-poulet-aux-raisons-et-pignons</loc>
+    <loc>https://raspberry-cook.fr/recipes?ingredients=1+pinc%C3%A9e+de+sel%0D%0A</loc>
+    <lastmod>2017-05-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://raspberry-cook.fr/recipes/galette-de-sarrasin</loc>
     <lastmod>2017-05-30</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://raspberry-cook.fr/recipes/feuillete-de-brocolis-au-bacon</loc>
+    <loc>https://raspberry-cook.fr/recipes/tartines-figues-jambon-cru-et-fromage-de-chevre</loc>
     <lastmod>2017-05-30</lastmod>
     <changefreq>daily</changefreq>
-    <priority>0.7</priority>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://raspberry-cook.fr/recipes/hamburger-au-poulet</loc>
@@ -1277,7 +1564,13 @@
     <loc>https://raspberry-cook.fr/recipes/colin-aux-legumes-et-lait-de-coco</loc>
     <lastmod>2017-05-30</lastmod>
     <changefreq>daily</changefreq>
-    <priority>0.7</priority>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://raspberry-cook.fr/recipes?ingredients=Une+tomate+%0D%0A</loc>
+    <lastmod>2017-05-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
   </url>
   <url>
     <loc>https://raspberry-cook.fr/recipes/tarte-au-potimarron</loc>
@@ -1286,7 +1579,7 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://raspberry-cook.fr/recipes/tartines-avocat-et-oeuf-mollet</loc>
+    <loc>https://raspberry-cook.fr/recipes?ingredients=15+cl+de+lait+%0D%0A</loc>
     <lastmod>2017-05-30</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -1304,22 +1597,22 @@
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://raspberry-cook.fr/recipes/pilons-de-poulet-aux-epices</loc>
-    <lastmod>2017-05-30</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://raspberry-cook.fr/recipes/cabillaud-et-riz-au-lait-de-coco-curry-et-pommes</loc>
+    <loc>https://raspberry-cook.fr/recipes/tartines-avocat-et-oeuf-mollet</loc>
     <lastmod>2017-05-30</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://raspberry-cook.fr/recipes/burritos-rapides</loc>
+    <loc>https://raspberry-cook.fr/recipes/soupe-de-carottes-a-l-orange</loc>
     <lastmod>2017-05-30</lastmod>
     <changefreq>daily</changefreq>
-    <priority>0.7</priority>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://raspberry-cook.fr/recipes/tarte-aux-legumes-d-ete</loc>
+    <lastmod>2017-05-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
   </url>
   <url>
     <loc>https://raspberry-cook.fr/recipes/tarte-camembert-pommes-et-lardons-08a50079-f50a-48da-9aba-04b43be54485</loc>
@@ -1328,10 +1621,34 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://raspberry-cook.fr/recipes/pates-saumon-et-champignons</loc>
+    <loc>https://raspberry-cook.fr/recipes/pilons-de-poulet-aux-epices</loc>
+    <lastmod>2017-05-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://raspberry-cook.fr/recipes?ingredients=50+cl+de+lait%0D%0A</loc>
     <lastmod>2017-05-30</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://raspberry-cook.fr/recipes?ingredients=Un+petit+paquet+de+fromage+r%C3%A2p%C3%A9%0D%0A</loc>
+    <lastmod>2017-05-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://raspberry-cook.fr/recipes/cabillaud-et-riz-au-lait-de-coco-curry-et-pommes</loc>
+    <lastmod>2017-05-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://raspberry-cook.fr/recipes/burritos-rapides</loc>
+    <lastmod>2017-05-30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
   </url>
   <url>
     <loc>https://raspberry-cook.fr/recipes/pates-au-chou-kale-pancetta-et-gorgonzola</loc>
@@ -1349,6 +1666,6 @@
     <loc>https://raspberry-cook.fr/recipes/tarte-courgette-pesto-chevre</loc>
     <lastmod>2017-05-30</lastmod>
     <changefreq>daily</changefreq>
-    <priority>0.7</priority>
+    <priority>0.6</priority>
   </url>
 </urlset>
