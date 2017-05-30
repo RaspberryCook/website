@@ -7,11 +7,10 @@ class RecipesController < ApplicationController
 
 	# GET /recipes/1
 	def show
-
 		session['recipes_viewed'] = 0 unless session.has_key? 'recipes_viewed'
 
 		# if user is connected or user have consulted less than 5 recipes
-		if current_user or session['recipes_viewed'] < 3 
+		if current_user or session['recipes_viewed'] < 3
 
 			@recipe = Recipe.friendly.find params[:id]
 			@recipe.add_view
@@ -33,7 +32,7 @@ class RecipesController < ApplicationController
 					if current_user
 						@recipe.mark_as_read! :for => current_user
 						@recipe.comments.each { |com| com.mark_as_read! :for => current_user }
-					
+
 					else current_user
 						flash[:info] = "%s ou %s pour faire vivre Raspberry Cook <3." % [view_context.link_to("Connectez-vous", signin_path), view_context.link_to("créez un compte", signup_path)]
 						session['recipes_viewed'] += 1
@@ -41,14 +40,11 @@ class RecipesController < ApplicationController
 					render "show"
 				}
 			end
-			
-			
-
 
 		else
-			flash[:warning] = "Vous avez déjà consulté %s recettes. Vous devez vous %s, %s ou bien revenir plus tard." % [ 
+			flash[:warning] = "Vous avez déjà consulté %s recettes. Vous devez vous %s, %s ou bien revenir plus tard." % [
 				session['recipes_viewed'] ,
-				view_context.link_to("connecter", signin_path), 
+				view_context.link_to("connecter", signin_path),
 				view_context.link_to("créer un compte", signup_path)
 			]
 			redirect_to signin_path
@@ -59,7 +55,7 @@ class RecipesController < ApplicationController
 	# GET /recipes/new
 	def new
 		@recipe = Recipe.new
-		@title = "nouvelle recette"
+		@title = "Créer une recette"
 		@description = 'Composez votre nouvelle recettes.'
 	end
 
@@ -67,12 +63,12 @@ class RecipesController < ApplicationController
 	# GET /recipes/1/edit
 	def edit
 		@recipe = Recipe.friendly.find(params[:id])
-		@title = 'editer "%s" recette' % @recipe.name
+		@title = 'Editer "%s" recette' % @recipe.name
 		@description = 'Editer la recette %s (pour la rendre encore meilleure).' % @recipe.name
 	end
 
 
-	# POST /recipes 
+	# POST /recipes
 	def create
 		name_sent = params[:recipe][:name]
 
@@ -92,7 +88,7 @@ class RecipesController < ApplicationController
 				flash[:warning] = "Quelque chose a merdé :("
 				redirect_to new_recipe_path
 			end
-			
+
 		else
 			# Create the recipe
 			@recipe = current_user.recipes.create(params[:recipe])
@@ -109,8 +105,15 @@ class RecipesController < ApplicationController
 
 	# GET /recipes
 	def index
-		@title = "liste des recettes"
-		@description = 'Beaucoup d\'excllentes recettes (oui, oui).'
+
+		if search_params.count
+			@title = "Résultats de votre recherche %s" % [search_params.values.join(' ')]
+			@description = 'Beaucoup d\'excllentes recettes (oui, oui).'
+		else
+			@title = "liste des recettes"
+			@description = 'Beaucoup d\'excllentes recettes (oui, oui).'
+		end
+
 		@recipes = Recipe.search params
 		respond_to do |format|
 			format.html { render "index" }
@@ -124,7 +127,7 @@ class RecipesController < ApplicationController
 	def destroy
 		Recipe.friendly.find(params[:id]).destroy
 		flash[:success] = 'recette supprimée'
-		redirect_to  recipes_path 
+		redirect_to  recipes_path
 	end
 
 
@@ -148,9 +151,9 @@ class RecipesController < ApplicationController
 		@recipe = Recipe.friendly.find(params[:id])
 		html = render_to_string(:action => 'save', :encoding => "UTF-8" , :layout => false)
 		doc = PDFKit.new( html )
-		send_data( doc.to_pdf , 
-			:filename => "#{@recipe.name}.pdf", 
-			:disposition => 'attachment') 
+		send_data( doc.to_pdf ,
+			:filename => "#{@recipe.name}.pdf",
+			:disposition => 'attachment')
 	end
 
 
@@ -192,6 +195,11 @@ class RecipesController < ApplicationController
 		def check_recipe_owner
 			@recipe = Recipe.friendly.find(params[:id])
 			redirect_to root_path , :info => "Petit-coquin!" unless current_user == @recipe.user
+		end
+
+
+		def search_params
+			params.permit(:name, :ingredients, :type, :season)
 		end
 
 end
