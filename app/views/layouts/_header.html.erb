@@ -1,6 +1,6 @@
 <div id="header-title">
 	<a id="nav-button" href="#">&#9776;</a>
-	<%= link_to image_tag("/assets/images/favicon_var1.svg", size: "56") , home_path %>
+	<%= link_to image_tag("favicon_var1.svg", size: "56") , home_path %>
 </div>
 
 <div id="header-search">
@@ -9,14 +9,14 @@
 
 
 <div id="header-sigin">
-	<%= link_to image_tag("/assets/images/icons/add_cupcake.svg", size: "54") , new_recipe_path ,  id: "add_recipe"%>
+	<%= link_to image_tag("icons/add_cupcake.svg", size: "54") , new_recipe_path ,  id: "add_recipe"%>
 	<% if signed_in? %>
 		<% count_unread_comment = Comment.unread_by(current_user).count %>
 		<%= link_to( count_unread_comment, feeds_path, class: "feeds" ) if count_unread_comment > 0 %>
-		<%= link_to image_tag("/assets/images/icons/people.svg", size: "54") , user_path(current_user) %>
+		<%= link_to image_tag("icons/people.svg", size: "54") , user_path(current_user) %>
 		<%#= link_to 'deconnexion' , signout_path %>
 	<% else %>
-		<%= link_to image_tag("/assets/images/icons/sign-in.svg", size: "54") , signin_path %>
+		<%= link_to image_tag("icons/sign-in.svg", size: "54") , signin_path %>
 	<% end %>
 </div>
 
