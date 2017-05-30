@@ -1,5 +1,5 @@
-<div class="row home" style="background-image: url('/assets/images/raspberry_cook.svg');background-position: -100px ;  ">
-	
+<div class="row home" style="background-image: url('<%= image_url "raspberry_cook" %>');background-position: -100px ;  ">
+
 	<h1>Raspberry Cook</h1>
 
 	<blockquote class="col-md-6">
@@ -9,7 +9,7 @@
 
 </div>
 
-<div class="row home" style="background-image: url('/assets/images/icons/people_eating.svg'); background-position: right">
+<div class="row home" style="background-image: url('<%= image_url "icons/people_eating" %>'); background-position: right">
 	<h2>Ne soyez pas qu'un simple <strong>glouton</strong>!</h2>
 	<p>Devenez un contributeur en <strong>dupliquant</strong> une recette existante pour ensuite créer <strong>votre propre variante</strong>!</p>
 	<p>Testez votre nouveau pouvoir parmi une recette récement ajoutée.</p>
@@ -18,7 +18,7 @@
 
 
 
-<div class="row home" style="background-image: url('/assets/images/icons/robot.svg'); background-position: -200px">
+<div class="row home" style="background-image: url('<%= image_url "icons/robot" %>'); background-position: -200px">
 	<h2>Votre recette n'est pas sur Raspberry Cook?</h2>
 
 	<p><strong>Importez</strong> une recette depuis un site "partenaire"!</p>
@@ -27,19 +27,19 @@
 
 
 
-<div class="row home" style="background-image: url('/assets/images/charity.svg')">
+<div class="row home" style="background-image: url('<%= image_url "icons/charity" %>')">
 	<h2>Participez à l'avènement d'un site <strong>révolutionnaire</strong></h2>
 	<p>Nous n'avons qu'un seul but: que tout le monde soit gros et heureux!</p>
 	<p><strong>Partagez</strong> et/ou <strong>contribuez</strong> au projet!</p>
 	<ul class="list-inline share">
-		<li><%= link_to(image_tag("/assets/images/icons/fb.svg"),'https://www.facebook.com/raspberrycook')%>La page <strong>Facebook</strong></li>
-		<li><%= link_to(image_tag("/assets/images/icons/intgr.svg"),'https://www.instagram.com/raspberry_cook/')%>La chaine <strong>Instagram</strong></li>
-		<li><%= link_to(image_tag("/assets/images/icons/github-icon.svg"),'https://github.com/madeindjs/raspberry_cook')%>Le <strong>projet Github</strong></li>
+		<li><%= link_to(image_tag("icons/fb", alt: 'Logo de Facebook',size: '40'),'https://www.facebook.com/raspberrycook')%>La page <strong>Facebook</strong></li>
+		<li><%= link_to(image_tag("icons/intgr", alt: 'Logo d\'Instagram', size: '40'),'https://www.instagram.com/raspberry_cook/')%>La chaine <strong>Instagram</strong></li>
+		<li><%= link_to(image_tag("icons/github-icon", alt: 'Logo de Github', size: '40'),'https://github.com/madeindjs/raspberry_cook')%>Le <strong>projet Github</strong></li>
 	</ul>
 </div>
 
 <script type="text/javascript">
-	// only on this view, we delete the padding on the main-container 
+	// only on this view, we delete the padding on the main-container
 	defer(function(){
 		$("#main-container").attr('class', 'main-container container-fluid');
 	});

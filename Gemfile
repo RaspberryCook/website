@@ -52,7 +52,6 @@ group :development , :test do
 	gem 'capistrano-rvm',		require: false
 	gem 'capistrano-rails',	 	require: false
 	gem 'capistrano-bundler', 	require: false
-	gem 'sitemap_generator', 	require: false
 	gem 'quiet_assets'
 	gem 'simplecov', :require => false
 

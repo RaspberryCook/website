@@ -4,7 +4,9 @@
 
     <%= render 'shared/error_messages' , :object => f.object %>
 
-    <%= f.email_field :email %>
+    <%= f.email_field :email, 
+        help: ("La photo de profil est chargée à partir de " + link_to("gravatar.com", "http://gravatar.com/") +
+            ". Vous pouvez la modifier " + link_to("ici", "http://gravatar.com/email/%s" % @user.email) ).html_safe %>
     <%= f.text_field :username, label: 'Pseudo' %>
     <%= f.text_field :firstname, label: 'Nom de famille' %>
     <%= f.text_field :lastname, label: 'Prénom' %>
