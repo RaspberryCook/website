@@ -39,7 +39,7 @@
 	<h2>Temps</h2>
 
 	<% { cooking: "Préparation", baking: "Cuisson", cooling: "Réfrigération", rest: "Repos" }.each do |type, description| %>
-		
+
 		<div class="form-group col-sm-3">
 			<%= f.label type, description %>
 			<div class="input-group">
@@ -65,5 +65,5 @@
 
 <%= f.submit "Mettre à jour", class: 'row btn btn-primary' %>
 
-	
+
 <% end %>
