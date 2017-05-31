@@ -10,9 +10,8 @@ h1
 body
 	background-color: $background_color
 
-.main-container
-	background-color: $background_color
-	margin-top: 50px
+#main-container
+	padding-top: 50px
 
 // delete border on page-header
 .page-header
@@ -40,12 +39,12 @@ ul.list-group
 
 	li
 		font-size: 18px
-		padding: 0px
+		padding: 2px
 		color: $second_color
-		border: 2px solid
+		background-color: transparent
+		border: 1px solid
 		display: inline-block
 		line-height: 24px
-		height: 26px
 		overflow: hidden
 		@include border-radius(5px)
 
@@ -75,6 +74,6 @@ hr
 			background-color: $second_color
 			border-color: $second_color
 
-.pagination > li 
+.pagination > li
 	a, span
 		color: $second_color

@@ -8,7 +8,7 @@ img.icon-recipe
 
 
 
-// Title of recipe in Recipes#Show 
+// Title of recipe in Recipes#Show
 div.page-header.recipe img.user
   height: 100px
   float: left
@@ -23,7 +23,6 @@ img.views
 
 // Recipe picture in Recipes#Show
 div.recipe-picture-ribon
-  background-color: $second_color
   text-align: center
 
   img.recipe-image
@@ -50,21 +49,13 @@ div.recipe-picture-ribon
       display: block
       margin: auto
 
+.recipe-comments
+  margin-top: 100px
 
-#background-blurred-picture
-  top: -50px
-  left: -50px
 
-  z-index: -1
-
-  position: fixed
-  display: block
-  width: 150%
-  height: 150%
-
-  background-size: cover
-
-  @include filter(blur(5px))
+.recipe-toolbar
+  padding-top: 100px
+  padding-bottom: 100px
 
 .recipe-information
 
