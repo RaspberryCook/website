@@ -5,7 +5,10 @@
 	<% end %>
 
 	<% if params[:controller] == 'recipes' and params[:action] == 'show' %>
-		<div class="row"><%= render 'comments/form', :comment => @comment , :recipe_id => @recipe.id %></div>
+		<div class="well">
+			<h3>Ajoutez votre commentaire</h3>
+			<%= render 'comments/form', :comment => @comment , :recipe_id => @recipe.id %>
+		</div>
 	<% end %>
 
 </div>
