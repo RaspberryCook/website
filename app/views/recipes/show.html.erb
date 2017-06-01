@@ -1,6 +1,5 @@
 <!-- title of recipe -->
 <div class="row page-header recipe">
-
 	<div class="col-xs-12">
 		<% if @recipe.user %>
 			<%= render "users/image", user: @recipe.user %>
@@ -10,24 +9,32 @@
 			<%= " - %s" % @recipe.variant_name if @recipe.variant_name%>
 		</h1>
 		<p><%= @recipe.description %></p>
-		<p>Une recette de <%= render 'users/link', user: @recipe.user %></p>
+		<%#<p>Une recette de <%= render 'users/link', user: @recipe.user % ></p>%>
 	</div>
 </div>
 
 
 <!-- image of recipes and basics informations -->
-<div class="row recipe-picture-ribon">
-	<!-- image -->
-	<% if @recipe.has_image? %>
-			<%= image_tag @recipe.true_image_url , class: "img img-responsive full-width recipe-image"%>
-	<% end %>
-
+<div class="row">
 	<!-- times -->
 	<div class="col-xs-12">
-		<% %w(cooking baking cooling rest).each do |time| %>
-			<div class="recipe-label col-xs-2"><%= recipe_label_time @recipe, time %></div>
-		<% end %>
+		<div class="recipe-times progress">
+			<% {cooking: 'warning', baking: 'danger', cooling: 'info', rest: 'success'}.each do |time, color| %>
+			<% time_value = @recipe.send time %>
+			<div class="recipe-time progress-bar progress-bar-<%= color %>" style="width: <%= @recipe.percentage_time time %>%">
+				<span><span class="recipe-time-title"><%= Recipe::TIME_LABELS[time.to_sym] %></span> <%= @recipe.send time %>"</span>
+			</div>
+			<% end %>
+		</div>
 	</div>
+
+	<!-- image -->
+	<% if @recipe.has_image? %>
+		<div class="col-xs-12">
+			<%= image_tag @recipe.true_image_url , class: "img img-responsive full-width recipe-image"%>
+		</div>
+	<% end %>
+
 </div><!-- end of image-->
 
 <!-- forked recipes -->
@@ -76,6 +83,8 @@
 
 		<div id="informations" class="col-xs-12">
 			<h2 class="visible-md-block visible-sm-block">Informations</h2>
+
+
 
 			<div class="recipe-information col-sm-12 col-xs-3">
 				<strong>Notations</strong>
@@ -153,3 +162,4 @@
 			</div><!--/ .button-group -->
 		<% end %>
 	</div><!--/ .col-xs-12 (buttons)-->
+</div>

@@ -227,7 +227,6 @@ GEM
     will_paginate (3.1.5)
     will_paginate-bootstrap (1.0.1)
       will_paginate (>= 3.0.3)
-    wkhtmltopdf-binary (0.12.3.1)
     yard (0.9.8)
 
 PLATFORMS
@@ -270,7 +269,6 @@ DEPENDENCIES
   unread
   will_paginate
   will_paginate-bootstrap
-  wkhtmltopdf-binary
   yard
 
 BUNDLED WITH
