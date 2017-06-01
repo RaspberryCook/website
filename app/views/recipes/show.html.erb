@@ -1,6 +1,5 @@
 <!-- title of recipe -->
 <div class="row page-header recipe">
-
 	<div class="col-xs-12">
 		<% if @recipe.user %>
 			<%= render "users/image", user: @recipe.user %>
@@ -16,7 +15,7 @@
 
 
 <!-- image of recipes and basics informations -->
-<div class="row recipe-picture-ribon">
+<div class="row">
 	<!-- times -->
 	<div class="col-xs-12">
 		<div class="recipe-times progress">
@@ -163,3 +162,4 @@
 			</div><!--/ .button-group -->
 		<% end %>
 	</div><!--/ .col-xs-12 (buttons)-->
+</div>
