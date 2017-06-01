@@ -29,9 +29,7 @@ class Recipe < ActiveRecord::Base
     :t_baking, :t_cooling, :t_cooking, :t_rest,
     :baking, :cooling, :cooking, :rest,
     :image, :root_recipe_id, :variant_name, :rtype
-  
 
-  
   belongs_to :user
   has_many :comments , :dependent => :destroy
   has_many :views , :dependent => :destroy
@@ -50,11 +48,13 @@ class Recipe < ActiveRecord::Base
   ZERO_TIME = DateTime.new 2000, 01, 01, 00, 00, 00
 
 
-  
+TIME_LABELS = {
+  baking: 'préparation', cooling: 'refrigération', cooking: 'cuisson', rest: 'repos'
+}
 
 
   # search all recipes given by a search query params
-  # 
+  #
   # @param params [Hash] as GET params
   # @return [ActiveRecord::Base] as Recipes corresponding to params
   def self.search params
@@ -62,7 +62,7 @@ class Recipe < ActiveRecord::Base
     sql_query_parts = []
     params_query = []
 
-    # add all name exploded 
+    # add all name exploded
     if params.has_key?(:name) and params[:name] != ''
       name_query_part = ''
       params[:name].split(' ').each do |part_name|
@@ -86,15 +86,15 @@ class Recipe < ActiveRecord::Base
     end
 
     # add seasons
-    if params.has_key?(:season) and not params[:season] == 'Toutes' 
+    if params.has_key?(:season) and not params[:season] == 'Toutes'
       sql_query_parts.push "( season LIKE ? )"
-      params_query.push params[:season] 
+      params_query.push params[:season]
     end
 
     # add type
-    if params.has_key?(:type) and not params[:type] == 'Toutes' 
+    if params.has_key?(:type) and not params[:type] == 'Toutes'
       sql_query_parts.push "( rtype LIKE ? )"
-      params_query.push params[:type] 
+      params_query.push params[:type]
     end
 
     # create query and add ask database
@@ -171,7 +171,7 @@ class Recipe < ActiveRecord::Base
   end
 
 
-  # Get the average rate of this recipe 
+  # Get the average rate of this recipe
   #
   # @return [Integer] as rate
   def rate
@@ -185,7 +185,7 @@ class Recipe < ActiveRecord::Base
   #
   # @return [Bollean] as true if it's a copy
   def forked?
-    return self.root_recipe_id != 0 
+    return self.root_recipe_id != 0
   end
 
 
@@ -201,9 +201,9 @@ class Recipe < ActiveRecord::Base
     end
   end
 
-  
+
   # search all recipes given by a search query params
-  # 
+  #
   # @return [ActiveRecord::Base] as Recipes corresponding to params
   def forked_recipes
     return Recipe.where(root_recipe_id: self.id ).order( :variant_name )
@@ -211,7 +211,7 @@ class Recipe < ActiveRecord::Base
 
 
   # get image_url :thumb
-  # if the recipe havn't picture and she's forked , we get the parent image 
+  # if the recipe havn't picture and she's forked , we get the parent image
   #
   # @return [String] as url of the image
   def true_thumb_image_url
@@ -226,7 +226,7 @@ class Recipe < ActiveRecord::Base
 
 
   # get image_url
-  # if the recipe havn't picture and she's forked , we get the parent image 
+  # if the recipe havn't picture and she's forked , we get the parent image
   #
   # @return [String] as url of the image
   def true_image_url
@@ -267,7 +267,7 @@ class Recipe < ActiveRecord::Base
     View.create recipe_id: self.id, user_id: user_id
   end
 
-  
+
   # Get nouber of this recipe has been counted
   #
   # @return [Integer] as count
@@ -275,14 +275,31 @@ class Recipe < ActiveRecord::Base
     self.views.count
   end
 
+  # Return the sum of the time
+  #
+  # @return [Integer]
+  def sum_of_times
+    sum = 0
+    [:baking, :cooling, :cooking, :rest].each do |time|
+      sum += self.send time
+    end
+    return sum
+  end
+
+  # Return a percentage of time according to the total sum
+  #
+  # @param time [string] as time name
+  # @return [float]
+  def percentage_time time
+    return (self.send(time.to_s).to_f / sum_of_times.to_f) * 100
+  end
+
   private
 
 
   # set default time on t_baking, t_cooling, t_cooking, t_rest if not already set
   def set_default_time
-
     zero_time = Time.new 2000, 1, 1, 1, 0, 0
-
     [:t_baking, :t_cooling, :t_cooking, :t_rest].each { |t_time|
       self.send("#{t_time}=".to_sym, zero_time) unless self.send(t_time).present?
     }
