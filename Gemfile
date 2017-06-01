@@ -71,7 +71,7 @@ gem 'rmagick' # sudo apt-get install libmagickwand-dev
 
 #to build pdf
 gem 'pdfkit' # sudo apt-get install wkhtmltopdf
-gem 'wkhtmltopdf-binary'
+# gem 'wkhtmltopdf-binary'
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
