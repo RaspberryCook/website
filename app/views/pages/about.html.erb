@@ -1,0 +1,46 @@
+<div class="col-xs-12 home" style="background-image: url('<%= image_url "raspberry_cook" %>');background-position: -100px ;  ">
+
+	<h1>Raspberry Cook</h1>
+
+	<blockquote class="col-md-6">
+		<p><font color="#2980b9">Yes</font> <font color="#F2F1EF">you</font> <font color="#e74c3c">Cook!</font></p>
+		<footer>Barack Obama at <cite title="Raspberry Cook center">Raspberry Cook conference</cite></footer>
+	</blockquote>
+
+</div>
+
+<div class="col-xs-12 home" style="background-image: url('<%= image_url "icons/people_eating" %>'); background-position: right">
+	<h2>Ne soyez pas qu'un simple <strong>glouton</strong>!</h2>
+	<p>Devenez un contributeur en <strong>dupliquant</strong> une recette existante pour ensuite créer <strong>votre propre variante</strong>!</p>
+	<p>Testez votre nouveau pouvoir parmi une recette récement ajoutée.</p>
+	<%= render 'shared/recipes' , :recipes => @recipes %>
+</div>
+
+
+
+<div class="col-xs-12 home" style="background-image: url('<%= image_url "icons/robot" %>'); background-position: -200px">
+	<h2>Votre recette n'est pas sur Raspberry Cook?</h2>
+
+	<p><strong>Importez</strong> une recette depuis un site "partenaire"!</p>
+	<p>Chez Raspberry Cook nous ne vous demanderons <strong>JAMAIS</strong> de travailler. Entrez simplement une adresse web et notre petit robot super entraîné ira la copier pour vous!</p>
+</div>
+
+
+
+<div class="col-xs-12 home" style="background-image: url('<%= image_url "charity" %>')">
+	<h2>Participez à l'avènement d'un site <strong>révolutionnaire</strong></h2>
+	<p>Nous n'avons qu'un seul but: que tout le monde soit gros et heureux!</p>
+	<p><strong>Partagez</strong> et/ou <strong>contribuez</strong> au projet!</p>
+	<ul class="list-inline share">
+		<li><%= link_to(image_tag("icons/fb", alt: 'Logo de Facebook',size: '40'),'https://www.facebook.com/raspberrycook')%>La page <strong>Facebook</strong></li>
+		<li><%= link_to(image_tag("icons/intgr", alt: 'Logo d\'Instagram', size: '40'),'https://www.instagram.com/raspberry_cook/')%>La chaine <strong>Instagram</strong></li>
+		<li><%= link_to(image_tag("icons/github-icon", alt: 'Logo de Github', size: '40'),'https://github.com/madeindjs/raspberry_cook')%>Le <strong>projet Github</strong></li>
+	</ul>
+</div>
+
+<script type="text/javascript">
+	// only on this view, we delete the padding on the main-container
+	defer(function(){
+		$("#main-container").attr('class', 'main-container container-fluid');
+	});
+</script>
