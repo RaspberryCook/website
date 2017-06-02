@@ -12,8 +12,8 @@
 <div class="col-xs-12 home" style="background-image: url('<%= image_url "icons/people_eating" %>'); background-position: right">
 	<h2>Ne soyez pas qu'un simple <strong>glouton</strong>!</h2>
 	<p>Devenez un contributeur en <strong>dupliquant</strong> une recette existante pour ensuite créer <strong>votre propre variante</strong>!</p>
-	<p>Testez votre nouveau pouvoir parmi une recette récement ajoutée.</p>
-	<%= render 'shared/recipes' , :recipes => @recipes %>
+	<p>Testez votre nouveau pouvoir parmi une recette du moment.</p>
+	<%= render 'shared/recipes' , :recipes => Recipe.most_viewed(3) %>
 </div>
 
 
