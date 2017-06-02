@@ -10,7 +10,7 @@ class RecipesController < ApplicationController
 		session['recipes_viewed'] = 0 unless session.has_key? 'recipes_viewed'
 
 		# if user is connected or user have consulted less than 5 recipes
-		if current_user or session['recipes_viewed'] < 3
+		if current_user or session['recipes_viewed'] < 5
 
 			@recipe = Recipe.friendly.find params[:id]
 			@recipe.add_view
