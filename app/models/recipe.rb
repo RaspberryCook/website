@@ -48,9 +48,24 @@ class Recipe < ActiveRecord::Base
   ZERO_TIME = DateTime.new 2000, 01, 01, 00, 00, 00
 
 
-TIME_LABELS = {
-  baking: 'préparation', cooling: 'refrigération', cooking: 'cuisson', rest: 'repos'
-}
+  TIME_LABELS = {
+    baking: 'préparation', cooling: 'refrigération', cooking: 'cuisson', rest: 'repos'
+  }
+
+  # Get a given number of record
+  #
+  # @param number [Integer]
+  # @yield [ActiveRecord::Base] as Recipes corresponding to params
+  def self.random number
+    count = self.count
+    if block_given?
+      number.times { yield self.offset(rand(count)).first}
+    else
+      recipes = []
+      number.times { recipes << self.offset(rand(count)).first}
+      return recipes
+    end
+  end
 
 
   # search all recipes given by a search query params

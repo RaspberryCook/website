@@ -84,8 +84,6 @@
 		<div id="informations" class="col-xs-12">
 			<h2 class="visible-md-block visible-sm-block">Informations</h2>
 
-
-
 			<div class="recipe-information col-sm-12 col-xs-3">
 				<strong>Notations</strong>
 				<%= render 'shared/stars', stars: @recipe.rate.to_i %>
@@ -106,8 +104,6 @@
 				<%= recipe_label_season @recipe %>
 			</div>
 		</div><!-- / #informations -->
-
-
 
 	</div><!--/ .col-sm-3 -->
 
@@ -161,5 +157,16 @@
 				<% end %>
 			</div><!--/ .button-group -->
 		<% end %>
+	</div><!--/ .col-xs-12 (buttons)-->
+</div>
+
+
+<div class="row">
+	<!-- actions buttons -->
+	<div class="col-xs-12">
+
+		<h3>Vous pouriez aussi aimer</h3>
+		<%= render 'shared/recipes' , :recipes => Recipe.random(3).to_a %>
+
 	</div><!--/ .col-xs-12 (buttons)-->
 </div>

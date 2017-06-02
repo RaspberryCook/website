@@ -24,11 +24,11 @@ end %>
 <meta name="publisher" content="ROUSSEAU Alexandre">
 
 <% if @recipe %>
-	<meta property="og:image" content="http://raspberry-cook.fr<%= @recipe.image_url %>" >
-	<meta name="thumbnail" content="http://raspberry-cook.fr<%= @recipe.image_url %>" />
+	<meta property="og:image" content="https://raspberry-cook.fr<%= @recipe.image_url %>" >
+	<meta name="thumbnail" content="https://raspberry-cook.fr<%= @recipe.image_url %>" />
 <% else %>
-	<meta property="og:image" content="http://raspberry-cook.fr/assets/images/og_image.png">
-	<meta name="thumbnail" content="http://raspberry-cook.fr/assets/images/og_image.png" />
+	<meta property="og:image" content="<%= image_url 'og_image' %>">
+	<meta name="thumbnail" content="<%= image_url 'og_image' %>" />
 	<meta property="og:image:type" content="image/png">
 	<meta property="og:image:width" content="500">
 	<meta property="og:image:height" content="500">
