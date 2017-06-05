@@ -1,0 +1,9 @@
+<%= bootstrap_form_for recipe do |f| %>
+  <%= render 'shared/error_messages' , :object => f.object %>
+  <%= f.text_field :name, placeholder: "Harry Covers et les surgelés",
+    hide_label: true,
+    input_group_class: 'input-group-lg',
+    help: ("Copiez directement l'adresse d'un site partenaire " + link_to("Marmiton", "http://www.marmiton.org/") + ", " +
+    link_to("750g", "http://www.750g.com/") + " ou " + link_to("CuisineAZ", "http://www.cuisineaz.com/") ).html_safe %>
+  <%= f.submit 'ajouter'%>
+<% end %>
