@@ -62,7 +62,6 @@ class RecipesController < ApplicationController
 
 	# GET /recipes/1/edit
 	def edit
-		@recipe = Recipe.friendly.find(params[:id])
 		@title = 'Editer "%s" recette' % @recipe.name
 		@description = 'Editer la recette %s (pour la rendre encore meilleure).' % @recipe.name
 	end
@@ -123,7 +122,7 @@ class RecipesController < ApplicationController
 
 	# DELETE /recipes/1
 	def destroy
-		Recipe.friendly.find(params[:id]).destroy
+		@recipe.destroy
 		flash[:success] = 'recette supprimée'
 		redirect_to  recipes_path
 	end
@@ -131,7 +130,6 @@ class RecipesController < ApplicationController
 
 	# PATCH/PUT /recipes/1
 	def update
-		@recipe = Recipe.friendly.find(params[:id])
 		if @recipe.update_attributes(params[:recipe])
 			flash[:success] = "Recette mise a jour"
 			redirect_to @recipe
@@ -192,7 +190,7 @@ class RecipesController < ApplicationController
 
 		def check_recipe_owner
 			@recipe = Recipe.friendly.find(params[:id])
-			redirect_to root_path , :info => "Petit-coquin!" unless current_user == @recipe.user
+			redirect_to root_path , :info => "Petit-coquin!" unless current_user.id == @recipe.user_id
 		end
 
 
