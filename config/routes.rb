@@ -13,16 +13,17 @@ RaspberryCook::Application.routes.draw do
   resources :sessions, :only => [:new , :create , :destroy ]
   match '/signin' , to: 'sessions#new', :via => [:get, :post]
   match '/signout' ,to: 'sessions#destroy', :via => [:get, :post]
-  
+
   match "/404", to: "errors#not_found", :via => :all
   match "/500", to: "errors#internal_server_error", :via => :all
-  
+
   match '/fridge' ,   to: 'pages#fridge', as: 'fridge', :via => :all
 
-  get '/home' ,   to: 'pages#home', as: 'home'
-  get '/feeds' ,   to: 'pages#feeds', as: 'feeds'
-  get '/infos' ,  to: 'pages#infos', as: 'infos'
-  get '/credits' ,  to: 'pages#credits', as: 'credits'
+  get '/home', to: 'pages#home', as: 'home'
+  get '/about', to: 'pages#about', as: 'about'
+  get '/feeds', to: 'pages#feeds', as: 'feeds'
+  get '/infos', to: 'pages#infos', as: 'infos'
+  get '/credits', to: 'pages#credits', as: 'credits'
 
   root to: 'pages#home'
 

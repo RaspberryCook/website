@@ -56,6 +56,7 @@ class Recipe < ActiveRecord::Base
   #
   # @param number [Integer]
   # @yield [ActiveRecord::Base] as Recipes corresponding to params
+  # @return [Array] list conatining recipes if no block given
   def self.random number
     count = self.count
     if block_given?
@@ -64,6 +65,21 @@ class Recipe < ActiveRecord::Base
       recipes = []
       number.times { recipes << self.offset(rand(count)).first}
       return recipes
+    end
+  end
+
+
+  # Get most viewed
+  #
+  # @param number [Integer]
+  # @yield [ActiveRecord::Base] as Recipes corresponding to params
+  # @return [Array] list conatining recipes if no block given
+  def self.most_viewed number
+    recipes = []
+    Recipe.joins(:views).group('views.recipe_id').order('count_recipe_id desc').count('recipe_id').each do |id, count|
+      number -= 1
+      recipes << Recipe.find(id)
+      return recipes if number == 0
     end
   end
 
@@ -81,23 +97,13 @@ class Recipe < ActiveRecord::Base
     if params.has_key?(:name) and params[:name] != ''
       name_query_part = ''
       params[:name].split(' ').each do |part_name|
-        name_query_part +=  ' name LIKE ? OR '
+        name_query_part +=  ' name LIKE ? OR ingredients LIKE ? AND '
+        params_query.push "%#{part_name}%"
         params_query.push "%#{part_name}%"
       end
-      name_query_part.chomp! 'OR '
+      name_query_part.chomp! 'AND '
       # surround with ()
       sql_query_parts.push "(#{name_query_part})"
-    end
-
-    # add all ingredients exploded
-    if params.has_key?(:ingredients) and params[:ingredients] != ''
-      ingredients_query_part = ''
-      params[:ingredients].split(' ').each do |part_ingredient|
-        ingredients_query_part +=  ' ingredients LIKE ? AND '
-        params_query.push "%#{part_ingredient}%"
-      end
-      ingredients_query_part.chomp! 'AND '
-      sql_query_parts.push "( #{ingredients_query_part} )"
     end
 
     # add seasons
