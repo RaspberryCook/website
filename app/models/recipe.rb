@@ -77,9 +77,10 @@ class Recipe < ActiveRecord::Base
   def self.most_viewed number
     recipes = []
     Recipe.joins(:views).group('views.recipe_id').order('count_recipe_id desc').count('recipe_id').each do |id, count|
+      number -= 1
       recipes << Recipe.find(id)
+      return recipes if number == 0
     end
-    return recipes
   end
 
 
