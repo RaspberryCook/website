@@ -1,13 +1,23 @@
-# 
+#
 class PagesController < ApplicationController
 	before_filter :authenticate, :only =>  [:feeds]
-	
+
 	# GET /home
 	# GET /pages/home
 	# a web page to present Raspberry Cook
 	def home
 		@description = 'Des recettes. Partout. Tout plein!'
 		# @recipes = Recipe.last(3).reverse
+		@recipes = Recipe.where.not(image: nil).order(id: 'DESC').limit(3)
+	end
+
+
+	# GET /about
+	# GET /pages/about
+	# a web page to present Raspberry Cook
+	def about
+		@title = "A propos de Raspberry Cook"
+		@description = 'Des recettes. Partout. Tout plein!'
 		@recipes = Recipe.where.not(image: nil).order(id: 'DESC').limit(3)
 	end
 
@@ -55,11 +65,11 @@ class PagesController < ApplicationController
 		else
 			recipes = Recipe.all
 		end
-		
+
 
 
 		@recipes = recipes.paginate :page => params[:page]
-		
+
 	end
-	
+
 end

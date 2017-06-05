@@ -58,8 +58,6 @@ class RecipeTest < ActiveSupport::TestCase
     assert recipe.has_image?
   end
 
-
-
   test "sould return the good average for the rate" do
     pasta = recipes(:pasta)
     assert_equal 3, pasta.rate
@@ -96,9 +94,7 @@ class RecipeTest < ActiveSupport::TestCase
       assert_not_nil recipe_imported.t_baking
       assert_not_nil recipe_imported.t_cooking
       assert_equal 1, recipe_imported.user_id
-
     end
-
   end
 
   test "Should import the marmiton picture" do
@@ -112,6 +108,11 @@ class RecipeTest < ActiveSupport::TestCase
     assert_difference('recipe.views.count',1) do
      assert recipe.add_view 1
     end
+  end
+
+
+  test "should get most viewed recipe" do
+    Recipe.order(views: :desc)
   end
 
 end

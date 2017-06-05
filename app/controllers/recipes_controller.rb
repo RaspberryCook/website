@@ -105,7 +105,6 @@ class RecipesController < ApplicationController
 
 	# GET /recipes
 	def index
-
 		if search_params.count
 			@title = "Résultats de votre recherche %s" % [search_params.values.join(' ')]
 			@description = 'Beaucoup d\'excllentes recettes (oui, oui).'
@@ -119,7 +118,6 @@ class RecipesController < ApplicationController
 			format.html { render "index" }
 			format.json { render json: @recipes  }
 		end
-
 	end
 
 

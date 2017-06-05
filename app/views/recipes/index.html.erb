@@ -47,12 +47,7 @@
 <div class="row">
 
 	<%= form_tag  recipes_path , method: "GET", id: "search_recipe_form" , class: 'form-inline' do  %>
-
-		<%= label_tag  'Titre', nil, class: 'sr-only' %>
 		<%= text_field_tag 'name' , params[:name], placeholder: "Titre", class: "form-control form-control-lg"  %>
-
-		<%= label_tag  'Ingrédients', nil, class: 'sr-only' %>
-		<%= text_field_tag 'ingredients' , params[:ingredients] , placeholder: "Ingrédient" , class: "form-control form-control-lg"  %>
 
 		<%= label_tag  'Type', nil, class: 'sr-only' %>
 		<%= select_tag "type",

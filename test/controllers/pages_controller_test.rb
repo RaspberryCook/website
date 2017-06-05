@@ -17,6 +17,12 @@ class PagesControllerTest < ActionController::TestCase
   end
 
 
+  test "should get about" do
+    get :home
+    assert_response :success
+  end
+
+
   test "should get feeds" do
     UserSession.create(users(:my_girlfriend))
     get :feeds
