@@ -50,7 +50,7 @@ class RecipeTest < ActiveSupport::TestCase
   test "if forked recipe have not picture, it should return parent's picture" do
     recipe = recipes(:two)
     # set a picture & fork the recipe
-    picture_url = File.open(Rails.root.join("public/assets/images/raspberry_cook.svg"))
+    picture_url = File.open(Rails.root.join("app/assets/images/default.svg"))
     recipe.image = picture_url
     forked_recipe = recipe.fork 2
     # compare only the filename

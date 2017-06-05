@@ -1,4 +1,4 @@
-# User controller permit to consult data about an user and 
+# User controller permit to consult data about an user and
 # create an account on Raspberry Cook
 class UsersController < ApplicationController
 	before_filter :correct_user, :only => [:edit, :update]
@@ -7,7 +7,7 @@ class UsersController < ApplicationController
 
 	# GET /users/1
 	def show
-		@user = User.find(params[:id])
+		@user = User.includes(:recipes, :comments).find(params[:id])
 		@recipes = @user.recipes.paginate(:page => params[:page]).order('id DESC')
 		@title = @user.username
 		@description = "Tout les informations à propos de %s." % @user.firstname
