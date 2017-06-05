@@ -82,7 +82,6 @@ class Recipe < ActiveRecord::Base
       return recipes if number == 0
     end
   end
->>>>>>> feature/podium
 
 
   # search all recipes given by a search query params
