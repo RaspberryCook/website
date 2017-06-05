@@ -96,23 +96,13 @@ class Recipe < ActiveRecord::Base
     if params.has_key?(:name) and params[:name] != ''
       name_query_part = ''
       params[:name].split(' ').each do |part_name|
-        name_query_part +=  ' name LIKE ? OR '
+        name_query_part +=  ' name LIKE ? OR ingredients LIKE ? AND '
+        params_query.push "%#{part_name}%"
         params_query.push "%#{part_name}%"
       end
-      name_query_part.chomp! 'OR '
+      name_query_part.chomp! 'AND '
       # surround with ()
       sql_query_parts.push "(#{name_query_part})"
-    end
-
-    # add all ingredients exploded
-    if params.has_key?(:ingredients) and params[:ingredients] != ''
-      ingredients_query_part = ''
-      params[:ingredients].split(' ').each do |part_ingredient|
-        ingredients_query_part +=  ' ingredients LIKE ? AND '
-        params_query.push "%#{part_ingredient}%"
-      end
-      ingredients_query_part.chomp! 'AND '
-      sql_query_parts.push "( #{ingredients_query_part} )"
     end
 
     # add seasons
