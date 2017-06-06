@@ -20,6 +20,7 @@
 		<div class="panel panel-default">
 			<div class="panel-heading">A propos de la recette</div>
 			<div class="panel-body">
+				<%= f.text_field :tags , placeholder: "sans gluten", help: 'Séparez les tags par une virgule', wrapper: { class: 'col-xs-12'} %>
 				<%= f.select :rtype, Recipe.types, {label: 'Type'}, wrapper: { class: 'col-sm-6 col-xs-12'}  %>
 				<%= f.select :season, Recipe.seasons, {label: 'Saison'}, wrapper: { class: 'col-sm-6 col-xs-12'}  %>
 			</div>

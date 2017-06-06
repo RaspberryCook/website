@@ -130,7 +130,7 @@ class RecipesController < ApplicationController
 
 	# PATCH/PUT /recipes/1
 	def update
-		if @recipe.update_attributes(params[:recipe])
+		if @recipe.update_attributes recipe_params
 			flash[:success] = "Recette mise a jour"
 			redirect_to @recipe
 		else
@@ -191,6 +191,11 @@ class RecipesController < ApplicationController
 		def check_recipe_owner
 			@recipe = Recipe.friendly.find(params[:id])
 			redirect_to root_path , :info => "Petit-coquin!" unless current_user.id == @recipe.user_id
+		end
+
+
+		def recipe_params
+			params.require(:recipe).permit(:variant_name, :description, :image, :tags, :rtype, :season, :cooking, :baking, :cooling, :rest, :ingredients, :steps)
 		end
 
 
