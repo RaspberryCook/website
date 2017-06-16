@@ -3,6 +3,7 @@
 
 	<p class="lead text-center">Cherchez une recette</p>
 
+
 	<%= bootstrap_form_tag url: recipes_path, method: :get do |f| %>
 	  <%= f.text_field :name, hide_label: true, append: f.submit('chercher',class: "btn btn-default"), input_group_class: 'input-group-lg' %>
 	<% end %>
