@@ -44,6 +44,8 @@ gem 'will_paginate-bootstrap'
 # cache system
 gem 'rack-cache'
 
+gem 'react-rails'
+
 
 group :development , :test do
 	# Use Capistrano for deployment

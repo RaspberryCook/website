@@ -14,4 +14,7 @@
 // require jquery-ui
 // require jquery_ujs
 //= require autocomplete-rails
+//= require react
+//= require react_ujs
+//= require components
 //= require_tree .
