@@ -64,6 +64,7 @@ class RecipesController < ApplicationController
 	def edit
 		@title = 'Editer "%s" recette' % @recipe.name
 		@description = 'Editer la recette %s (pour la rendre encore meilleure).' % @recipe.name
+		@allergens = Allergen.all
 	end
 
 

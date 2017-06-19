@@ -20,7 +20,6 @@
 		<div class="panel panel-default">
 			<div class="panel-heading">A propos de la recette</div>
 			<div class="panel-body">
-				<%= f.text_field :tags , placeholder: "sans gluten", help: 'Séparez les tags par une virgule', wrapper: { class: 'col-xs-12'} %>
 				<%= f.select :rtype, Recipe.types, {label: 'Type'}, wrapper: { class: 'col-sm-6 col-xs-12'}  %>
 				<%= f.select :season, Recipe.seasons, {label: 'Saison'}, wrapper: { class: 'col-sm-6 col-xs-12'}  %>
 			</div>
@@ -44,6 +43,21 @@
 			<div class="panel-body">
 				<%= f.text_area :ingredients , placeholder: "courgettes", label: "Ingrédients", help: "Listez les ingrédients en revenant simplement à la ligne. On s'occupe du reste", wrapper: { class: 'col-xs-12'} %>
 				<%= f.text_area :steps , placeholder: "p'lez les carottes", label: "Etapes", help: "Listez les étapes en revenant simplement à la ligne.", wrapper: { class: 'col-xs-12'} %>
+			</div>
+		</div>
+	</div>
+
+		<div class="col-xs-12">
+		<div class="panel panel-default">
+			<div class="panel-heading">Allergènes</div>
+			<div class="panel-body">
+				
+				<ul class="list-unstyled">
+					<% @allergens.all.each do |allergen| %>
+
+						<li><%= f.check_box :allergens, label: allergen.name %></li>
+					<% end %>
+				</ul>
 			</div>
 		</div>
 	</div>
