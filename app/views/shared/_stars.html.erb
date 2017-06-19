@@ -1,6 +1,9 @@
 <span class="stars-rating">
 	<% stars.times do %>
-		<%= image_tag 'icons/star.svg' , alt: 'star', size: '40' %>
+		<%= react_component("Star", {
+			filled:	true,
+			src: image_path('icons/star')
+		}) %>
 	<% end %>
 	<% (5-stars).times do %>
 		<%= image_tag 'icons/star_empty.svg' , alt: 'star empty', size: '40' %>
