@@ -27,6 +27,9 @@ RaspberryCook::Application.configure do
   # number of complex assets.
   config.assets.debug = true
 
+  # React configuration
+  config.react.variant = :development
+
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
 end

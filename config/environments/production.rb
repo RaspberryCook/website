@@ -4,6 +4,9 @@ RaspberryCook::Application.configure do
   # to have all good asset 
   config.assets.precompile = ['*.js', '*.css', '*.css.erb' , '*.sass']
 
+  # React configuration
+  config.react.variant = :production
+
   # Settings specified here will take precedence over those in config/application.rb.
 
   # Code is not reloaded between requests.
