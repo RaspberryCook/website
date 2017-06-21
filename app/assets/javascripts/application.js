@@ -17,4 +17,5 @@
 //= require react
 //= require react_ujs
 //= require components
+//= require npm-dependencies
 //= require_tree .

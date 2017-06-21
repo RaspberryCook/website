@@ -44,6 +44,8 @@ gem 'will_paginate-bootstrap'
 # cache system
 gem 'rack-cache'
 
+# React
+gem 'npm-rails'
 gem 'react-rails'
 
 

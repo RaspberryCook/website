@@ -20,4 +20,7 @@
 /config/initializers/secret_token.rb
 
 /public/uploads/*
-coverage/*
+coverage/*# Added by npm-rails
+/node_modules
+/coverage
+/vendor
