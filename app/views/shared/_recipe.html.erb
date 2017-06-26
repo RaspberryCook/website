@@ -1,27 +1,16 @@
 <% begin %>
 	<div class="col-md-3 col-sm-4 col-xs-6">
 		<figure class="recipe" >
-
-			<%= link_to image_tag(recipe.true_thumb_image_url , alt: "Thumb - #{recipe.name}", class: "img-responsive img-rounded") , recipe%>
-
+			<%= link_to image_tag(recipe.true_thumb_image_url , alt: "Thumb - #{recipe.name}", class: "img-responsive img-rounded") , recipe %>
 			<figcaption>
-				<p>
-
 					<% if recipe.variant_name %>
 						<%= link_to "%s - %s " % [  recipe.name , recipe.variant_name] , recipe %>
 					<% else %>
 						<%= link_to recipe do %>
 							<%= recipe.name %>
-
-							<% if recipe.tags %>
-								<span class="label label-default"><%= recipe.tags %></span>
-							<% end %>
 						<% end %>
-
 					<% end %>
-				</p>
 			</figcaption>
-
 		</figure>
 	</div>
 
