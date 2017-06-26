@@ -51,11 +51,16 @@
 		<div class="panel panel-default">
 			<div class="panel-heading">Allergènes</div>
 			<div class="panel-body">
-				
+
 				<ul class="list-unstyled">
 					<% @allergens.all.each do |allergen| %>
-
-						<li><%= f.check_box :allergens, label: allergen.name %></li>
+						<% input_name = "recipe[allergens][#{allergen.id}]" %>
+						<li>
+							<%= label_tag input_name do %>
+								<%= check_box_tag input_name %>
+								<%= allergen.name %>
+							<% end %>
+						</li>
 					<% end %>
 				</ul>
 			</div>

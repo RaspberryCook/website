@@ -132,6 +132,12 @@ class RecipesController < ApplicationController
 	# PATCH/PUT /recipes/1
 	def update
 		if @recipe.update_attributes recipe_params
+			# we setup allergens
+			if allergens_params = params['recipe']['allergens']
+				allergens_params.each do |allergen_id, checked|
+					@recipe.allergens << Allergen.find(allergen_id)
+				end
+			end
 			flash[:success] = "Recette mise a jour"
 			redirect_to @recipe
 		else
@@ -196,7 +202,7 @@ class RecipesController < ApplicationController
 
 
 		def recipe_params
-			params.require(:recipe).permit(:variant_name, :description, :image, :tags, :rtype, :season, :cooking, :baking, :cooling, :rest, :ingredients, :steps)
+			params.require(:recipe).permit(:variant_name, :description, :image, :tags, :rtype, :season, :cooking, :baking, :cooling, :rest, :ingredients, :steps, :allergens)
 		end
 
 
