@@ -133,17 +133,26 @@ class RecipesControllerTest < ActionController::TestCase
   end
 
 
-  test "should not update allergens recipe" do
+  test "should not add allergens recipe" do
     assert_no_difference '@recipe.allergens.count' do
       patch :update, id: @recipe, recipe: { allergens: { 1 => 1}}
     end
   end
 
 
-  test "should update allergens recipe" do
+  test "should add allergens recipe" do
     UserSession.create(users(:me))
     assert_difference '@recipe.allergens.count' do
       patch :update, id: @recipe, recipe: { allergens: { 1 => 1}}
+    end
+  end
+
+
+  test "should remove allergens recipe" do
+    UserSession.create(users(:me))
+    @recipe.allergens << Allergen.find(1)
+    assert_difference '@recipe.allergens.count', -1 do
+      patch :update, id: @recipe, recipe: { allergens: {}}
     end
   end
 
