@@ -1,9 +1,20 @@
 <% begin %>
 	<div class="col-md-3 col-sm-4 col-xs-6">
-		<figure class="recipe" >
-			<%= link_to image_tag(recipe.true_thumb_image_url , alt: "Thumb - #{recipe.name}", class: "img-responsive img-rounded") , recipe %>
-			<figcaption><%= link_to recipe.pretty_name , recipe %></figcaption>
-		</figure>
+
+		<div class="thumbnail recipe">
+			<%= image_tag(recipe.true_thumb_image_url , alt: "Thumb - #{recipe.name}", class: "img-responsive img-rounded") %>
+			<div class="caption">
+				<h3><%= link_to recipe.pretty_name , recipe %></h3>
+				<p>
+					<% if recipe.allergens %>
+						<% recipe.allergens.each do |allergen| %>
+							<span class="label label-info"><%= allergen.name %></span>
+						<% end %>
+					<% end %>
+				</p>
+			</div>
+		</div>
+
 	</div>
 
 <% rescue NoMethodError => e
