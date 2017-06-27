@@ -57,7 +57,7 @@
 						<% input_name = "recipe[allergens][#{allergen.id}]" %>
 						<li>
 							<%= label_tag input_name do %>
-								<%= check_box_tag input_name %>
+								<%= check_box_tag input_name, allergen.id, @recipe.allergens.include?(allergen) %>
 								<%= allergen.name %>
 							<% end %>
 						</li>
