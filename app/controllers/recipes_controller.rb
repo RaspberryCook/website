@@ -12,7 +12,7 @@ class RecipesController < ApplicationController
 		# if user is connected or user have consulted less than 5 recipes
 		if current_user or session['recipes_viewed'] < 5
 
-			@recipe = Recipe.friendly.find params[:id]
+			@recipe = Recipe.includes(:allergens, :user, :views).friendly.find(params[:id])
 			@recipe.add_view
 
 			@recipe.save  unless @recipe.slug?
