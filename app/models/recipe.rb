@@ -193,6 +193,15 @@ class Recipe < ActiveRecord::Base
   end
 
 
+
+  # Get the formatted name for the recipe (add variant name if forked recipe)
+  #
+  # @return [String]
+  def pretty_name
+    self.variant_name ? "%s - %s " % [  self.name , self.variant_name] : self.name
+  end
+
+
   # Get the average rate of this recipe
   #
   # @return [Integer] as rate

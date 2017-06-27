@@ -5,9 +5,7 @@
 			<%= render "users/image", user: @recipe.user %>
 		<% end %>
 
-		<h1 class="recipe"><%= @recipe.name  %>
-			<%= " - %s" % @recipe.variant_name if @recipe.variant_name%>
-		</h1>
+		<h1 class="recipe"><%= @recipe.pretty_name %></h1>
 
 		<!-- allergens -->
 		<p class="lead">
