@@ -11,7 +11,7 @@
 		<p class="lead">
 			<% if @recipe.allergens %>
 				<% @recipe.allergens.each do |allergen| %>
-					<span class="label label-info"><%= allergen.name %></span>
+					<%= image_tag "allergens/#{allergen.icon}", size: '50', alt: allergen.name, title: "Cette recette est #{allergen.name}" %>
 				<% end %>
 			<% end %>
 		</p>
