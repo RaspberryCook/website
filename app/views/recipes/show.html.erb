@@ -1,3 +1,7 @@
+<div class="sheet">
+
+
+
 <!-- title of recipe -->
 <div class="row page-header recipe">
 	<div class="col-xs-12">
@@ -5,11 +9,18 @@
 			<%= render "users/image", user: @recipe.user %>
 		<% end %>
 
-		<h1 class="recipe"><%= @recipe.name  %>
-			<%= " - %s" % @recipe.variant_name if @recipe.variant_name%>
-		</h1>
+		<h1 class="recipe"><%= @recipe.pretty_name %></h1>
+
+		<!-- allergens -->
+		<p class="lead">
+			<% if @recipe.allergens %>
+				<% @recipe.allergens.each do |allergen| %>
+					<%= image_tag "allergens/#{allergen.icon}", size: '50', alt: allergen.name, title: "Cette recette est #{allergen.name}" %>
+				<% end %>
+			<% end %>
+		</p>
+
 		<p><%= @recipe.description %></p>
-		<%#<p>Une recette de <%= render 'users/link', user: @recipe.user % ></p>%>
 	</div>
 </div>
 
@@ -81,7 +92,7 @@
 			</div><!-- #ingredients -->
 		<% end %><!--/ ingrédients -->
 
-		<div id="informations" class="col-xs-12">
+		<div id="informations">
 			<h2 class="visible-md-block visible-sm-block">Informations</h2>
 
 			<div class="recipe-information col-sm-12 col-xs-3">
@@ -103,6 +114,7 @@
 				<strong>Saison</strong>
 				<%= recipe_label_season @recipe %>
 			</div>
+
 		</div><!-- / #informations -->
 
 	</div><!--/ .col-sm-3 -->
@@ -121,6 +133,9 @@
 		</div><!--/ #steps -->
 	<% end %>
 </div>
+
+</div><!--/.sheet -->
+
 
 <!-- commentaires -->
 <div class="row">
