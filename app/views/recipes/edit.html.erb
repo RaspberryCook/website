@@ -52,17 +52,23 @@
 			<div class="panel-heading">Allergènes</div>
 			<div class="panel-body">
 
-				<ul class="list-unstyled">
 					<% @allergens.all.each do |allergen| %>
 						<% input_name = "recipe[allergens][#{allergen.id}]" %>
-						<li>
+
+						<div class="well well-sm col-xs-6 col-sm-4 col-md-3">
 							<%= label_tag input_name do %>
-								<%= check_box_tag input_name, allergen.id, @recipe.allergens.include?(allergen) %>
-								<%= allergen.name %>
+								<div class="col-xs-1">
+									<%= check_box_tag input_name, allergen.id, @recipe.allergens.include?(allergen) %>
+								</div>
+								<div class="col-xs-4">
+									<%= image_tag "allergens/#{allergen.icon}", size: '50', alt: allergen.name %>
+								</div>
+								<div class="col-xs-6">
+									<%= allergen.name %>
+								</div>
 							<% end %>
-						</li>
+						</div>
 					<% end %>
-				</ul>
 			</div>
 		</div>
 	</div>
