@@ -2,10 +2,11 @@
 	<h1>Bibliothèque</h1>
 </div>
 
+
+<!-- buttons -->
 <div class="row">
 
 	<div id="recipe-search-tools">
-
 		<ul class="nav nav-pills" >
 			<li><%= link_to 'Toutes', recipes_path %></li>
 			<% Recipe.types.each do |type| %>
@@ -44,25 +45,9 @@
 	</div>
 </div>
 
+
 <div class="row">
-
-	<%= form_tag  recipes_path , method: "GET", id: "search_recipe_form" , class: 'form-inline' do  %>
-		<%= text_field_tag 'name' , params[:name], placeholder: "Titre", class: "form-control form-control-lg"  %>
-
-		<%= label_tag  'Type', nil, class: 'sr-only' %>
-		<%= select_tag "type",
-			options_for_select((Recipe.types+["Toutes"]) , params[:type]),
-			class: "form-control form-control-lg"  %>
-
-		<%= label_tag  'Saison', nil, class: 'sr-only' %>
-		<%= select_tag "season",
-			options_for_select( Recipe.seasons, params[:season]),
-			class: "form-control form-control-lg"  %>
-
-		<%= submit_tag "go!", class: "btn btn-primary btn-lg"%>
-
-	<% end %>
-
+	<%= render 'search_form' %>
 </div>
 
 <div class="row">
