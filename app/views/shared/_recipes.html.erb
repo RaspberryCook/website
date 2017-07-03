@@ -5,7 +5,8 @@
 			name: 		recipe.variant_name ? "#{recipe.name} - #{recipe.variant_name}" : recipe.name,
 			url: 			recipe_path(recipe),
 			imageUrl: image_url(recipe.true_thumb_image_url),
-			ingredients: recipe.ingredients
+			ingredients: recipe.ingredients,
+			allergens: recipe.allergens
 		}) rescue NoMethodError %>
 	<% end %>
 <% rescue NoMethodError => e # In case of nil%>

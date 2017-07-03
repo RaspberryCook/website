@@ -15,7 +15,7 @@ class User < ActiveRecord::Base
 
 	attr_accessible :username, :firstname, :lastname, :email,
 		:password, :password_confirmation, :crypted_password
-	
+
 
 	has_many :recipes , :dependent => :destroy
 	has_many :comments , :dependent => :destroy
@@ -28,7 +28,7 @@ class User < ActiveRecord::Base
 	validates :password, :presence => true, :confirmation => true, :length => { :within => 6..40 }
 
 	acts_as_authentic do |c|
-		c.crypto_provider = Authlogic::CryptoProviders::Sha512
+		# c.crypto_provider = Authlogic::CryptoProviders::Sha512
 		c.validate_email_field = true
 	end
 
