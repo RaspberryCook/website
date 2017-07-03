@@ -7,17 +7,19 @@
     <% Allergen.all.each do |allergen| %>
       <% input_name = "allergens[#{allergen.id}]" %>
 
-      <div class="well well-sm col-xs-6 col-sm-4 col-md-3">
+      <div class="allergen well well-sm col-xs-6 col-sm-4 col-md-3">
         <%= f.check_box input_name do %>
-          <div class="col-xs-4">
+          <div class="col-xs-4 picture">
             <%= image_tag "allergens/#{allergen.icon}", size: '50', alt: allergen.name %>
           </div>
-          <div class="col-xs-6">
+          <div class="col-xs-8 text">
             <%= allergen.name %>
           </div>
         <% end %>
       </div>
     <% end %>
+
+    <div class="clearfix"></div>
 
     <%= f.submit "Rechercher" %>
   </div>
