@@ -3,6 +3,22 @@
     <%= f.text_field :name , value: params[:name], placeholder: "Titre", label: 'Nom'  %>
     <%= f.select :type, options_for_select((Recipe.types+["Toutes"]) , params[:type]), label: 'Saison'  %>
     <%= f.select :season, options_for_select( Recipe.seasons, params[:season]), label: 'Saison' %>
+
+    <% Allergen.all.each do |allergen| %>
+      <% input_name = "allergens[#{allergen.id}]" %>
+
+      <div class="well well-sm col-xs-6 col-sm-4 col-md-3">
+        <%= f.check_box input_name do %>
+          <div class="col-xs-4">
+            <%= image_tag "allergens/#{allergen.icon}", size: '50', alt: allergen.name %>
+          </div>
+          <div class="col-xs-6">
+            <%= allergen.name %>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+
     <%= f.submit "Rechercher" %>
   </div>
 <% end %>
