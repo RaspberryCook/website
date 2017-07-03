@@ -1,0 +1,8 @@
+<%= bootstrap_form_tag url: recipes_path , method: "GET" do |f| %>
+  <div class="well" id="search_recipe_form">
+    <%= f.text_field :name , value: params[:name], placeholder: "Titre", label: 'Nom'  %>
+    <%= f.select :type, options_for_select((Recipe.types+["Toutes"]) , params[:type]), label: 'Saison'  %>
+    <%= f.select :season, options_for_select( Recipe.seasons, params[:season]), label: 'Saison' %>
+    <%= f.submit "Rechercher" %>
+  </div>
+<% end %>

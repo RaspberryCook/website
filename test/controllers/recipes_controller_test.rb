@@ -34,7 +34,7 @@ class RecipesControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  
+
 
 
   test "should not create recipe because no one is connected" do
@@ -129,7 +129,31 @@ class RecipesControllerTest < ActionController::TestCase
     #try to edit as me
     UserSession.create(users(:ben))
     get :edit, id: @recipe
-    assert_redirected_to  '/' 
+    assert_redirected_to  '/'
+  end
+
+
+  test "should not add allergens recipe" do
+    assert_no_difference '@recipe.allergens.count' do
+      patch :update, id: @recipe, recipe: { allergens: { 1 => 1}}
+    end
+  end
+
+
+  test "should add allergens recipe" do
+    UserSession.create(users(:me))
+    assert_difference '@recipe.allergens.count' do
+      patch :update, id: @recipe, recipe: { allergens: { 1 => 1}}
+    end
+  end
+
+
+  test "should remove allergens recipe" do
+    UserSession.create(users(:me))
+    @recipe.allergens << Allergen.find(1)
+    assert_difference '@recipe.allergens.count', -1 do
+      patch :update, id: @recipe, recipe: { allergens: {}}
+    end
   end
 
 
@@ -143,7 +167,7 @@ class RecipesControllerTest < ActionController::TestCase
   test "should not update recipe because current_user is not the author" do
     UserSession.create(users(:ben))
     patch :update, id: @recipe, recipe: { name: 'hello' }
-    assert_redirected_to '/' 
+    assert_redirected_to '/'
   end
 
 

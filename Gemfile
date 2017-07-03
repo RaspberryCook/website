@@ -1,7 +1,8 @@
 source 'https://rubygems.org'
 
 gem 'rails'
-
+gem 'jquery-rails'
+gem 'jquery-ui-rails'
 
 gem 'json', github: 'flori/json', branch: 'v1.8'
 

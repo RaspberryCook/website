@@ -28,11 +28,12 @@ class Recipe < ActiveRecord::Base
   attr_accessible :name, :description, :ingredients, :steps, :season,
     :t_baking, :t_cooling, :t_cooking, :t_rest,
     :baking, :cooling, :cooking, :rest,
-    :image, :root_recipe_id, :variant_name, :rtype
+    :image, :root_recipe_id, :variant_name, :rtype, :tags
 
   belongs_to :user
   has_many :comments , :dependent => :destroy
   has_many :views , :dependent => :destroy
+  has_and_belongs_to_many :allergens
 
   mount_uploader :image , ImageUploader
 
@@ -189,6 +190,15 @@ class Recipe < ActiveRecord::Base
     forked_recipe.root_recipe_id = self.id
     forked_recipe.user_id = new_user_id
     return forked_recipe
+  end
+
+
+
+  # Get the formatted name for the recipe (add variant name if forked recipe)
+  #
+  # @return [String]
+  def pretty_name
+    self.variant_name ? "%s - %s " % [  self.name , self.variant_name] : self.name
   end
 
 

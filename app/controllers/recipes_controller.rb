@@ -12,7 +12,7 @@ class RecipesController < ApplicationController
 		# if user is connected or user have consulted less than 5 recipes
 		if current_user or session['recipes_viewed'] < 5
 
-			@recipe = Recipe.friendly.find params[:id]
+			@recipe = Recipe.includes(:allergens, :user, :views).friendly.find(params[:id])
 			@recipe.add_view
 
 			@recipe.save  unless @recipe.slug?
@@ -64,6 +64,7 @@ class RecipesController < ApplicationController
 	def edit
 		@title = 'Editer "%s" recette' % @recipe.name
 		@description = 'Editer la recette %s (pour la rendre encore meilleure).' % @recipe.name
+		@allergens = Allergen.all
 	end
 
 
@@ -104,7 +105,7 @@ class RecipesController < ApplicationController
 
 	# GET /recipes
 	def index
-		if search_params.count
+		if search_params.count > 0
 			@title = "Résultats de votre recherche %s" % [search_params.values.join(' ')]
 			@description = 'Beaucoup d\'excllentes recettes (oui, oui).'
 		else
@@ -130,7 +131,13 @@ class RecipesController < ApplicationController
 
 	# PATCH/PUT /recipes/1
 	def update
-		if @recipe.update_attributes(params[:recipe])
+		if @recipe.update_attributes recipe_params
+			# we setup allergens
+			if allergens_params = params['recipe']['allergens']
+				@recipe.allergens = allergens_params.map do |allergen_id, checked|
+					 Allergen.find(allergen_id)
+				end
+			end
 			flash[:success] = "Recette mise a jour"
 			redirect_to @recipe
 		else
@@ -191,6 +198,11 @@ class RecipesController < ApplicationController
 		def check_recipe_owner
 			@recipe = Recipe.friendly.find(params[:id])
 			redirect_to root_path , :info => "Petit-coquin!" unless current_user.id == @recipe.user_id
+		end
+
+
+		def recipe_params
+			params.require(:recipe).permit(:variant_name, :description, :image, :tags, :rtype, :season, :cooking, :baking, :cooling, :rest, :ingredients, :steps, :allergens)
 		end
 
 
