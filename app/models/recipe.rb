@@ -42,7 +42,7 @@ class Recipe < ActiveRecord::Base
 
   self.per_page = 20
   # Availables types of recipe
-  @@types = ['Entrée', 'Plat', 'Dessert', 'Cocktail', 'Apéritif']
+  @@types = ['Toutes', 'Entrée', 'Plat', 'Dessert', 'Cocktail', 'Apéritif']
   # Availables seasons for a  recipe
   @@seasons = ['Toutes', 'Printemps', 'Eté', 'Automne', 'Hiver']
   # Time zero represent zero value for a task
@@ -119,10 +119,21 @@ class Recipe < ActiveRecord::Base
       params_query.push params[:type]
     end
 
+    # add allergens
+    if params.has_key?(:allergens)
+      params['allergens'].each_key do |allergen_id|
+        sql_query_parts.push "( allergens_recipes.allergen_id = ? )"
+        params_query.push allergen_id
+      end
+    end
+
     # create query and add ask database
     sql_query = sql_query_parts.join ' AND '
 
-    self.where(sql_query , *params_query).paginate( :page => params[:page] ).order('id DESC')
+    self.joins(:allergens)
+      .where(sql_query , *params_query)
+      .group(:id)
+      .paginate( :page => params[:page] ).order('id DESC')
   end
 
 

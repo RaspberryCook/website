@@ -1,20 +1,23 @@
+@import colors
+
 #search_recipe_form
 
   .allergen
     padding: 2px
+    margin-top: 0
+    margin-bottom: 0
 
-    div.checkbox
-      margin-top: 1px
-      margin-bottom: 1px
+    &.checked
+      background-color: $blue
 
-      input[type="checkbox"]
-        display: none
+    input[type="checkbox"]
+      display: none
 
-      div.picture
-        height: 50px
+    div.picture
+      height: 50px
 
-      div.text
-        line-height: 50px
-        word-wrap: break-word
-        overflow: hidden
-        white-space: nowrap
+    div.text
+      line-height: 50px
+      word-wrap: break-word
+      overflow: hidden
+      white-space: nowrap
