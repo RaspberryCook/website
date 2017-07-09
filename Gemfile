@@ -62,7 +62,7 @@ gem 'authlogic'
 
 # to get recipe data from marmiton.org
 gem 'nokogiri'
-gem 'recipe_scraper', '~>2.2.1' # my first gem :')
+gem 'recipe_scraper', '~>2.2.2' # my first gem :')
 
 
 #for upload picture
