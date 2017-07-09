@@ -42,7 +42,7 @@ class Recipe < ActiveRecord::Base
 
   self.per_page = 20
   # Availables types of recipe
-  @@types = ['Toutes', 'Entrée', 'Plat', 'Dessert', 'Cocktail', 'Apéritif']
+  @@types = ['Entrée', 'Plat', 'Dessert', 'Cocktail', 'Apéritif']
   # Availables seasons for a  recipe
   @@seasons = ['Toutes', 'Printemps', 'Eté', 'Automne', 'Hiver']
   # Time zero represent zero value for a task
