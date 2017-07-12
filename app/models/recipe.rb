@@ -88,7 +88,7 @@ class Recipe < ActiveRecord::Base
   # search all recipes given by a search query params
   #
   # @param params [Hash] as GET params
-  # @return [ActiveRecord::Base] as Recipes corresponding to params
+  # @return [ActiveRecord::Relation] as Recipes corresponding to params
   def self.search params
 
     sql_query_parts = []
@@ -98,7 +98,7 @@ class Recipe < ActiveRecord::Base
     if params.has_key?(:name) and params[:name] != ''
       name_query_part = ''
       params[:name].split(' ').each do |part_name|
-        name_query_part +=  ' name LIKE ? OR ingredients LIKE ? AND '
+        name_query_part +=  ' recipes.name LIKE ? OR ingredients LIKE ? AND '
         params_query.push "%#{part_name}%"
         params_query.push "%#{part_name}%"
       end
@@ -119,10 +119,27 @@ class Recipe < ActiveRecord::Base
       params_query.push params[:type]
     end
 
+    # add allergens
+    if params.has_key?(:allergens)
+      params['allergens'].each_key do |allergen_id|
+        sql_query_parts.push "( allergens_recipes.allergen_id = ? )"
+        params_query.push allergen_id
+      end
+    end
+
     # create query and add ask database
     sql_query = sql_query_parts.join ' AND '
 
-    self.where(sql_query , *params_query).paginate( :page => params[:page] ).order('id DESC')
+
+    self.joins(<<sql
+        LEFT JOIN allergens_recipes ON allergens_recipes.recipe_id = recipes.id
+        LEFT JOIN allergens ON allergens_recipes.allergen_id = allergens.id
+sql
+      )
+      .where(sql_query , *params_query)
+      .group(:id)
+      .paginate( :page => params[:page] )
+      .order('id DESC')
   end
 
 
