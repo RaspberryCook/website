@@ -42,7 +42,7 @@ class Recipe < ActiveRecord::Base
 
   self.per_page = 20
   # Availables types of recipe
-  @@types = ['Toutes', 'Entrée', 'Plat', 'Dessert', 'Cocktail', 'Apéritif']
+  @@types = ['Entrée', 'Plat', 'Dessert', 'Cocktail', 'Apéritif']
   # Availables seasons for a  recipe
   @@seasons = ['Toutes', 'Printemps', 'Eté', 'Automne', 'Hiver']
   # Time zero represent zero value for a task
@@ -88,7 +88,7 @@ class Recipe < ActiveRecord::Base
   # search all recipes given by a search query params
   #
   # @param params [Hash] as GET params
-  # @return [ActiveRecord::Base] as Recipes corresponding to params
+  # @return [ActiveRecord::Relation] as Recipes corresponding to params
   def self.search params
 
     sql_query_parts = []
@@ -98,7 +98,7 @@ class Recipe < ActiveRecord::Base
     if params.has_key?(:name) and params[:name] != ''
       name_query_part = ''
       params[:name].split(' ').each do |part_name|
-        name_query_part +=  ' name LIKE ? OR ingredients LIKE ? AND '
+        name_query_part +=  ' recipes.name LIKE ? OR ingredients LIKE ? AND '
         params_query.push "%#{part_name}%"
         params_query.push "%#{part_name}%"
       end
@@ -130,10 +130,16 @@ class Recipe < ActiveRecord::Base
     # create query and add ask database
     sql_query = sql_query_parts.join ' AND '
 
-    self.joins(:allergens)
+
+    self.joins(<<sql
+        LEFT JOIN allergens_recipes ON allergens_recipes.recipe_id = recipes.id
+        LEFT JOIN allergens ON allergens_recipes.allergen_id = allergens.id
+sql
+      )
       .where(sql_query , *params_query)
       .group(:id)
-      .paginate( :page => params[:page] ).order('id DESC')
+      .paginate( :page => params[:page] )
+      .order('id DESC')
   end
 
 
