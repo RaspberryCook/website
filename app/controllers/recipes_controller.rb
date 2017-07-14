@@ -183,10 +183,10 @@ class RecipesController < ApplicationController
       forked_recipe = recipe.fork current_user.id
 
       if forked_recipe.save
-        flash[:success] = "Forked successfull!"
+        flash[:success] = "C'est maintenant votre recette, faites en ce que vous voulez!"
         redirect_to edit_recipe_path(forked_recipe)
       else
-        flash[:success] = "Forked successfull!"
+        flash[:danger] = "Une erreur est survenue!"
         redirect_to recipe_path(recipe)
       end
     end

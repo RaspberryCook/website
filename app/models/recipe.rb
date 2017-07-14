@@ -37,7 +37,8 @@ class Recipe < ActiveRecord::Base
 
   mount_uploader :image , ImageUploader
 
-  validates :name , presence: true, uniqueness: true
+  validates :name , presence: true, uniqueness: { scope: :root_recipe_id,
+                                                  message: "Cette recette existe déjà. Trouvez la et en créer une variante." }
   acts_as_readable :on => :created_at # for use of unread gem
 
   self.per_page = 20
