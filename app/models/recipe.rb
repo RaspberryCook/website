@@ -37,7 +37,8 @@ class Recipe < ActiveRecord::Base
 
   mount_uploader :image , ImageUploader
 
-  validates :name , :presence   => true
+  validates :name , presence: true, uniqueness: { scope: :root_recipe_id,
+                                                  message: "Cette recette existe déjà. Trouvez la et en créer une variante." }
   acts_as_readable :on => :created_at # for use of unread gem
 
   self.per_page = 20
@@ -131,15 +132,10 @@ class Recipe < ActiveRecord::Base
     sql_query = sql_query_parts.join ' AND '
 
 
-    self.joins(<<sql
-        LEFT JOIN allergens_recipes ON allergens_recipes.recipe_id = recipes.id
-        LEFT JOIN allergens ON allergens_recipes.allergen_id = allergens.id
-sql
-      )
-      .where(sql_query , *params_query)
-      .group(:id)
-      .paginate( :page => params[:page] )
-      .order('id DESC')
+    self.joins("
+      LEFT JOIN allergens_recipes ON allergens_recipes.recipe_id = recipes.id
+      LEFT JOIN allergens ON allergens_recipes.allergen_id = allergens.id
+    ").where(sql_query , *params_query).group(:id).paginate( :page => params[:page] ).order('id DESC')
   end
 
 
@@ -152,6 +148,11 @@ sql
     # get  data from url
     marmiton_recipe = RecipeScraper::Recipe.new url
     marmiton_recipe_data = marmiton_recipe.to_hash
+
+    if marmiton_recipe_data[:ingredients].empty? and marmiton_recipe_data[:steps].empty?
+      raise "Could not find suffiscent informations from #{url}.."
+    end
+
     # create recipe
     new_recipe = Recipe.new
     new_recipe.name = marmiton_recipe_data[:title]
@@ -164,7 +165,7 @@ sql
     new_recipe.user_id = user_id
 
 
-    if marmiton_recipe_data[:image]
+    if marmiton_recipe_data[:image] && marmiton_recipe_data[:image] != NoMethodError
       extention = marmiton_recipe_data[:image].split('.').last
 
       open("/tmp/image_from_marmiton.#{extention}", 'wb') do |file|
@@ -176,7 +177,7 @@ sql
     if new_recipe.save
       return new_recipe
     else
-      raise 'Something goes wrong in fetching data from marmiton.org'
+      raise 'Something goes wrong in fetching data from host'
     end
   end
 

@@ -98,6 +98,7 @@ class RecipesControllerTest < ActionController::TestCase
   end
 
   test "should show recipe by it's slug" do
+    @recipe.name = 'an very unique name'
     @recipe.save!
     get :show, id: @recipe.friendly_id
     assert_response :success

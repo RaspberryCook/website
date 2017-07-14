@@ -2,7 +2,7 @@
 
 one:
   id: 1
-  name: Tomato & Cucumber
+  name: Tomato & Cucumber one
   user_id: 1
   description: a pretty description
   ingredients: |
@@ -15,7 +15,7 @@ one:
     step 3
 
 two:
-  name: Tomato & Cucumber
+  name: Tomato & Cucumber two
   user_id: 2
   description: a pretty description
   ingredients: |
