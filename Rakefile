@@ -38,16 +38,45 @@ namespace "craw" do
   desc "crawl marmiton"
   task :marmiton => :environment do
     # first, we fetch or create marmiton user
-    marmiton_email = 'chef@marmiton.org'
-    user = User.find_by( email: marmiton_email) || User.create(username: 'Marmiton.org', email: marmiton_email,
-                                                               lastname: 'Marie-Laure', firstname: 'Sauty de Chalon',
-                                                               password: Rails.application.secrets.marmiton_password,
-                                                               password_confirmation: Rails.application.secrets.marmiton_password)
+    email = 'chef@marmiton.org'
+    user = User.find_by( email: email) || User.create(username: 'Marmiton.org', email: email,
+                                                      password: Rails.application.secrets.marmiton_password,
+                                                      password_confirmation: Rails.application.secrets.marmiton_password)
 
 
 
     Anemone.crawl('http://www.marmiton.org/', delay: 0.5) do |anemone|
       anemone.on_pages_like(/.*\/recettes\/.*/) do |page|
+
+        begin
+          # import from the url
+          recipe = Recipe.import page.url.to_s, user.id
+          puts "[x] #{recipe.name} importé"
+
+        rescue ArgumentError
+          puts "[ ] Cette URL n'est pas suportée par Raspberry Cook :("
+
+        rescue Exception => e
+          puts "[ ] #{e.to_s}"
+        end
+
+      end
+    end
+  end
+
+
+  desc "crawl 750g"
+  task :g750 => :environment do
+    # first, we fetch or create 750g user
+    email = 'accueil@750g.com'
+    user = User.find_by( email: email) || User.create(username: '750g.com', email: email,
+                                                      password: Rails.application.secrets.marmiton_password,
+                                                      password_confirmation: Rails.application.secrets.marmiton_password)
+
+
+
+    Anemone.crawl('http://www.750g.com', delay: 0.5) do |anemone|
+      anemone.on_every_page do |page|
 
         begin
           # import from the url
