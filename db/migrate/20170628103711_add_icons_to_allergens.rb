@@ -2,6 +2,8 @@ class AddIconsToAllergens < ActiveRecord::Migration
   def up
     add_column :allergens, :icon, :string
 
+    Allergen.reset_column_information
+
     {
       'sans céleri'        => 'celery',
       'sans crustacé'      => 'crustacens',
