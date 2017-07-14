@@ -47,22 +47,22 @@ gem 'rack-cache'
 
 
 group :development , :test do
-	# Use Capistrano for deployment
-	gem 'net-ssh'
-	gem 'capistrano',		require: false
-	gem 'capistrano-rvm',		require: false
-	gem 'capistrano-rails',	 	require: false
-	gem 'capistrano-bundler', 	require: false
-	gem 'quiet_assets'
-	gem 'simplecov', :require => false
+  # Use Capistrano for deployment
+  gem 'net-ssh'
+  gem 'capistrano',		require: false
+  gem 'capistrano-rvm',		require: false
+  gem 'capistrano-rails',	 	require: false
+  gem 'capistrano-bundler', 	require: false
+  gem 'quiet_assets'
+  gem 'simplecov', :require => false
 
-	gem 'faker', github: 'stympy/faker'
+  gem 'faker', github: 'stympy/faker'
 end
 
 gem 'authlogic'
 
 # to get recipe data from marmiton.org
-gem 'nokogiri'
+gem 'anemone'
 gem 'recipe_scraper', '~>2.2.2' # my first gem :')
 
 
@@ -85,7 +85,7 @@ gem 'jbuilder'
 gem 'friendly_id', '~> 5.1.0'
 
 group :doc do
-	# bundle exec rake doc:rails generates the API under doc/api.
-	gem 'sdoc', require: false
-	gem 'yard', require: false
+  # bundle exec rake doc:rails generates the API under doc/api.
+  gem 'sdoc', require: false
+  gem 'yard', require: false
 end
