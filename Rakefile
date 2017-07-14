@@ -33,33 +33,43 @@ namespace "pictures"  do
   end
 end
 
-namespace "craw" do
+namespace "crawl" do
+
+
+  def find_or_create_user email
+    # create username with email hostname
+    username = email.split('@')[1]
+
+    return User.find_by( email: email) || User.create(username: username, email: email,
+                                                      password: Rails.application.secrets.marmiton_password,
+                                                      password_confirmation: Rails.application.secrets.marmiton_password)
+  end
+
+
+  def import_recipe page, user
+    begin
+      # import from the url
+      recipe = Recipe.import page.url.to_s, user.id
+      puts "[x] #{recipe.name} importé"
+
+    rescue ArgumentError
+      puts "[ ] Cette URL n'est pas suportée par Raspberry Cook :("
+
+    rescue Exception => e
+      puts "[ ] #{e.to_s}"
+    end
+  end
+
+
 
   desc "crawl marmiton"
   task :marmiton => :environment do
     # first, we fetch or create marmiton user
-    email = 'chef@marmiton.org'
-    user = User.find_by( email: email) || User.create(username: 'Marmiton.org', email: email,
-                                                      password: Rails.application.secrets.marmiton_password,
-                                                      password_confirmation: Rails.application.secrets.marmiton_password)
-
-
+    user = find_or_create_user 'chef@marmiton.org'
 
     Anemone.crawl('http://www.marmiton.org/', delay: 0.5) do |anemone|
       anemone.on_pages_like(/.*\/recettes\/.*/) do |page|
-
-        begin
-          # import from the url
-          recipe = Recipe.import page.url.to_s, user.id
-          puts "[x] #{recipe.name} importé"
-
-        rescue ArgumentError
-          puts "[ ] Cette URL n'est pas suportée par Raspberry Cook :("
-
-        rescue Exception => e
-          puts "[ ] #{e.to_s}"
-        end
-
+        import_recipe page, user
       end
     end
   end
@@ -68,28 +78,24 @@ namespace "craw" do
   desc "crawl 750g"
   task :g750 => :environment do
     # first, we fetch or create 750g user
-    email = 'accueil@750g.com'
-    user = User.find_by( email: email) || User.create(username: '750g.com', email: email,
-                                                      password: Rails.application.secrets.marmiton_password,
-                                                      password_confirmation: Rails.application.secrets.marmiton_password)
-
-
+    user = find_or_create_user 'accueil@750g.com'
 
     Anemone.crawl('http://www.750g.com', delay: 0.5) do |anemone|
       anemone.on_every_page do |page|
+        import_recipe page, user
+      end
+    end
+  end
 
-        begin
-          # import from the url
-          recipe = Recipe.import page.url.to_s, user.id
-          puts "[x] #{recipe.name} importé"
 
-        rescue ArgumentError
-          puts "[ ] Cette URL n'est pas suportée par Raspberry Cook :("
+  desc "crawl cuisineaz"
+  task :cuisineaz => :environment do
+    # first, we fetch or create 750g user
+    user = find_or_create_user 'recettes@cuisineaz.com'
 
-        rescue Exception => e
-          puts "[ ] #{e.to_s}"
-        end
-
+    Anemone.crawl('http://www.cuisineaz.com/', delay: 0.5) do |anemone|
+      anemone.on_pages_like(/.*\/recettes\/.*/) do |page|
+        import_recipe page, user
       end
     end
   end
