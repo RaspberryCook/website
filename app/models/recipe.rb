@@ -147,6 +147,11 @@ class Recipe < ActiveRecord::Base
     # get  data from url
     marmiton_recipe = RecipeScraper::Recipe.new url
     marmiton_recipe_data = marmiton_recipe.to_hash
+
+    if marmiton_recipe_data[:ingredients].empty? and marmiton_recipe_data[:steps].empty?
+      raise 'Could not find suffiscent informations from web page..'
+    end
+
     # create recipe
     new_recipe = Recipe.new
     new_recipe.name = marmiton_recipe_data[:title]
@@ -171,7 +176,7 @@ class Recipe < ActiveRecord::Base
     if new_recipe.save
       return new_recipe
     else
-      raise 'Something goes wrong in fetching data from marmiton.org'
+      raise 'Something goes wrong in fetching data from host'
     end
   end
 
