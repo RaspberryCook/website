@@ -67,7 +67,7 @@ namespace "crawl" do
     # first, we fetch or create marmiton user
     user = find_or_create_user 'chef@marmiton.org'
 
-    Anemone.crawl('http://www.marmiton.org/', delay: 0.5) do |anemone|
+    Anemone.crawl('http://www.marmiton.org/') do |anemone|
       anemone.on_pages_like(/.*\/recettes\/.*/) do |page|
         import_recipe page, user
       end
@@ -80,7 +80,7 @@ namespace "crawl" do
     # first, we fetch or create 750g user
     user = find_or_create_user 'accueil@750g.com'
 
-    Anemone.crawl('http://www.750g.com', delay: 0.5) do |anemone|
+    Anemone.crawl('http://www.750g.com') do |anemone|
       anemone.on_every_page do |page|
         import_recipe page, user
       end
@@ -93,7 +93,7 @@ namespace "crawl" do
     # first, we fetch or create 750g user
     user = find_or_create_user 'recettes@cuisineaz.com'
 
-    Anemone.crawl('http://www.cuisineaz.com/', delay: 0.5) do |anemone|
+    Anemone.crawl('http://www.cuisineaz.com/') do |anemone|
       anemone.on_pages_like(/.*\/recettes\/.*/) do |page|
         import_recipe page, user
       end
