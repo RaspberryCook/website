@@ -40,9 +40,9 @@ namespace "crawl" do
     # create username with email hostname
     username = email.split('@')[1]
 
-    return User.find_by( email: email) || User.create(username: username, email: email,
-                                                      password: Rails.application.secrets.marmiton_password,
-                                                      password_confirmation: Rails.application.secrets.marmiton_password)
+    return User.find_by( email: email) || User.create(username: username, email: email, firstname: username, lastname: username,
+                                                      password: Rails.application.secrets.foreign_password,
+                                                      password_confirmation: Rails.application.secrets.foreign_password)
   end
 
 
