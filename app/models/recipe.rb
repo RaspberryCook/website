@@ -149,7 +149,7 @@ class Recipe < ActiveRecord::Base
     marmiton_recipe_data = marmiton_recipe.to_hash
 
     if marmiton_recipe_data[:ingredients].empty? and marmiton_recipe_data[:steps].empty?
-      raise 'Could not find suffiscent informations from web page..'
+      raise "Could not find suffiscent informations from #{url}.."
     end
 
     # create recipe
