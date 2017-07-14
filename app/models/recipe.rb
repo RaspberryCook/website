@@ -37,7 +37,7 @@ class Recipe < ActiveRecord::Base
 
   mount_uploader :image , ImageUploader
 
-  validates :name , :presence   => true
+  validates :name , presence: true, uniqueness: true
   acts_as_readable :on => :created_at # for use of unread gem
 
   self.per_page = 20
