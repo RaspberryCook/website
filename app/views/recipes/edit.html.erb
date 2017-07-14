@@ -1,78 +1,67 @@
 <h1 class="recipe"><%= @recipe.name  %></h1>
-
-
 <%= bootstrap_form_for @recipe , :html => {:multipart => true } do |f| %>
-	<%= render 'shared/error_messages', :object => f.object %>
-
-	<div class="col-xs-12">
-		<div class="panel panel-default">
-			<div class="panel-heading">Informations principales</div>
-			<div class="panel-body">
-				<!-- if the recipe is forked, insert a text field for variant_name of another-->
-				<%= f.text_field :variant_name , placeholder: "ex: Sans fruits rouges" , label: "Nom de la variante" if @recipe.forked? %>
-				<%= f.text_field :description , placeholder: "entrez une description" %>
-				<%= f.file_field :image %>
-			</div>
-		</div>
-	</div>
-
-	<div class="col-xs-12">
-		<div class="panel panel-default">
-			<div class="panel-heading">A propos de la recette</div>
-			<div class="panel-body">
-				<%= f.select :rtype, Recipe.types, {label: 'Type'}, wrapper: { class: 'col-sm-6 col-xs-12'}  %>
-				<%= f.select :season, Recipe.seasons, {label: 'Saison'}, wrapper: { class: 'col-sm-6 col-xs-12'}  %>
-			</div>
-		</div>
-	</div>
-
-	<div class="col-xs-12">
-		<div class="panel panel-default">
-			<div class="panel-heading">Temps</div>
-			<div class="panel-body">
-				<% { cooking: "Préparation", baking: "Cuisson", cooling: "Réfrigération", rest: "Repos" }.each do |type, description| %>
-					<%= f.number_field type, step: 5, wrapper: { class: 'col-sm-3 col-xs-6'} , append: 'minutes', label: description  %>
-				<% end %>
-			</div>
-		</div>
-	</div>
-
-	<div class="col-xs-12">
-		<div class="panel panel-default">
-			<div class="panel-heading">Contenu</div>
-			<div class="panel-body">
-				<%= f.text_area :ingredients , placeholder: "courgettes", label: "Ingrédients", help: "Listez les ingrédients en revenant simplement à la ligne. On s'occupe du reste", wrapper: { class: 'col-xs-12'} %>
-				<%= f.text_area :steps , placeholder: "p'lez les carottes", label: "Etapes", help: "Listez les étapes en revenant simplement à la ligne.", wrapper: { class: 'col-xs-12'} %>
-			</div>
-		</div>
-	</div>
-
-		<div class="col-xs-12">
-		<div class="panel panel-default">
-			<div class="panel-heading">Allergènes</div>
-			<div class="panel-body">
-
-					<% @allergens.all.each do |allergen| %>
-						<% input_name = "recipe[allergens][#{allergen.id}]" %>
-
-						<div class="well well-sm col-xs-6 col-sm-4 col-md-3">
-							<%= label_tag input_name do %>
-								<div class="col-xs-1">
-									<%= check_box_tag input_name, allergen.id, @recipe.allergens.include?(allergen) %>
-								</div>
-								<div class="col-xs-4">
-									<%= image_tag "allergens/#{allergen.icon}", size: '50', alt: allergen.name %>
-								</div>
-								<div class="col-xs-6">
-									<%= allergen.name %>
-								</div>
-							<% end %>
-						</div>
-					<% end %>
-			</div>
-		</div>
-	</div>
-
-	<%= f.submit "Mettre à jour" %>
-
+  <%= render 'shared/error_messages', :object => f.object %>
+  <div class="col-xs-12">
+    <div class="panel panel-default">
+      <div class="panel-heading">Informations principales</div>
+      <div class="panel-body">
+        <!-- if the recipe is forked, insert a text field for variant_name of another-->
+        <%= f.text_field :variant_name , placeholder: "ex: Sans fruits rouges" , label: "Nom de la variante" if @recipe.forked? %>
+        <%= f.text_field :description , placeholder: "entrez une description" %>
+        <%= f.file_field :image %>
+      </div>
+    </div>
+  </div>
+  <div class="col-xs-12">
+    <div class="panel panel-default">
+      <div class="panel-heading">A propos de la recette</div>
+      <div class="panel-body">
+        <%= f.select :rtype, Recipe.types, {label: 'Type'}, wrapper: { class: 'col-sm-6 col-xs-12'}  %>
+        <%= f.select :season, Recipe.seasons, {label: 'Saison'}, wrapper: { class: 'col-sm-6 col-xs-12'}  %>
+      </div>
+    </div>
+  </div>
+  <div class="col-xs-12">
+    <div class="panel panel-default">
+      <div class="panel-heading">Temps</div>
+      <div class="panel-body">
+        <% { cooking: "Préparation", baking: "Cuisson", cooling: "Réfrigération", rest: "Repos" }.each do |type, description| %>
+          <%= f.number_field type, step: 5, wrapper: { class: 'col-sm-3 col-xs-6'} , append: 'minutes', label: description  %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="col-xs-12">
+    <div class="panel panel-default">
+      <div class="panel-heading">Contenu</div>
+      <div class="panel-body">
+        <%= f.text_area :ingredients , placeholder: "courgettes", label: "Ingrédients", help: "Listez les ingrédients en revenant simplement à la ligne. On s'occupe du reste", wrapper: { class: 'col-xs-12'} %>
+        <%= f.text_area :steps , placeholder: "p'lez les carottes", label: "Etapes", help: "Listez les étapes en revenant simplement à la ligne.", wrapper: { class: 'col-xs-12'} %>
+      </div>
+    </div>
+  </div>
+  <div class="col-xs-12">
+    <div class="panel panel-default">
+      <div class="panel-heading">Allergènes</div>
+      <div class="panel-body">
+        <% Allergen.all.each do |allergen| %>
+          <% input_name = "recipe[allergens][#{allergen.id}]" %>
+          <div class="well well-sm col-xs-6 col-sm-4 col-md-3">
+            <%= label_tag input_name do %>
+              <div class="col-xs-1">
+                <%= check_box_tag input_name, allergen.id, @recipe.allergens.include?(allergen) %>
+              </div>
+              <div class="col-xs-4">
+                <%= image_tag "allergens/#{allergen.icon}", size: '50', alt: allergen.name %>
+              </div>
+              <div class="col-xs-6">
+                <%= allergen.name %>
+              </div>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <%= f.submit "Mettre à jour" %>
 <% end %>
