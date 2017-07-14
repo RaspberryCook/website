@@ -131,15 +131,10 @@ class Recipe < ActiveRecord::Base
     sql_query = sql_query_parts.join ' AND '
 
 
-    self.joins(<<sql
-        LEFT JOIN allergens_recipes ON allergens_recipes.recipe_id = recipes.id
-        LEFT JOIN allergens ON allergens_recipes.allergen_id = allergens.id
-sql
-      )
-      .where(sql_query , *params_query)
-      .group(:id)
-      .paginate( :page => params[:page] )
-      .order('id DESC')
+    self.joins("
+      LEFT JOIN allergens_recipes ON allergens_recipes.recipe_id = recipes.id
+      LEFT JOIN allergens ON allergens_recipes.allergen_id = allergens.id
+    ").where(sql_query , *params_query).group(:id).paginate( :page => params[:page] ).order('id DESC')
   end
 
 
@@ -164,7 +159,7 @@ sql
     new_recipe.user_id = user_id
 
 
-    if marmiton_recipe_data[:image]
+    if marmiton_recipe_data[:image] && marmiton_recipe_data[:image] != NoMethodError
       extention = marmiton_recipe_data[:image].split('.').last
 
       open("/tmp/image_from_marmiton.#{extention}", 'wb') do |file|
