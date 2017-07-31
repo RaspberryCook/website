@@ -343,6 +343,16 @@ class Recipe < ActiveRecord::Base
     return (self.send(time.to_s).to_f / sum_of_times.to_f) * 100
   end
 
+  # Format a beautifull string
+  #
+  # @return [String] as a JSON object
+  def to_json option
+    data = self.attributes
+    data[:allergens] = self.allergens.map{ |allergen| {name: allergen.name, icon: allergen.icon_path} }
+
+    return data.to_json
+  end
+
   private
 
 
