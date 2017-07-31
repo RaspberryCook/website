@@ -348,7 +348,7 @@ class Recipe < ActiveRecord::Base
   # @return [String] as a JSON object
   def to_json option
     data = self.attributes
-    data[:allergens] = self.allergens.map{ |allergen| {name: allergen.name, icon: allergen.icon_path} }
+    data[:allergens] = self.allergens.map{ |allergen| {name: allergen.name, icon: allergen.icon_url} }
 
     return data.to_json
   end
