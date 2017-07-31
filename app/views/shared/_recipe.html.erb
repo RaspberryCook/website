@@ -6,11 +6,7 @@
 			<div class="caption">
 				<h3><%= link_to recipe.pretty_name , recipe %></h3>
 				<p>
-					<% if recipe.allergens %>
-						<% recipe.allergens.each do |allergen| %>
-							<span class="label label-info"><%= allergen.name %></span>
-						<% end %>
-					<% end %>
+					<%= render 'recipes/allergens', recipe: recipe %>
 				</p>
 			</div>
 		</div>
