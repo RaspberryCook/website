@@ -1,0 +1,5 @@
+<% if recipe.allergens %>
+  <% recipe.allergens.each do |allergen| %>
+    <%= image_tag allergen.image_url, size: '50', alt: allergen.name, title: "Cette recette est #{allergen.name}" %>
+  <% end %>
+<% end %>
