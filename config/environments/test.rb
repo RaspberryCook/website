@@ -38,6 +38,8 @@ RaspberryCook::Application.configure do
   config.active_support.test_order = :sorted
   config.active_record.raise_in_transactional_callbacks = true
 
+  config.action_controller.asset_host = "http://localhost:3000"
+
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
 end

@@ -3,6 +3,6 @@ class Allergen < ActiveRecord::Base
 
   # Get 
   def icon_path
-    ApplicationController.helpers.image_url "allergens/#{self.icon}", host: "http://raspberry-cook.fr"
+    ApplicationController.helpers.image_url "allergens/#{self.icon}"
   end
 end
