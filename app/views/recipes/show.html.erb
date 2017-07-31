@@ -34,11 +34,7 @@
 
 		<!-- allergens -->
 		<p class="lead">
-			<% if @recipe.allergens %>
-				<% @recipe.allergens.each do |allergen| %>
-					<%= image_tag "allergens/#{allergen.icon}", size: '50', alt: allergen.name, title: "Cette recette est #{allergen.name}" %>
-				<% end %>
-			<% end %>
+			<%= render 'recipes/allergens', recipe: @recipe %>
 		</p>
 
 		<p><%= @recipe.description %></p>
