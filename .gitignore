@@ -20,4 +20,5 @@
 /config/initializers/secret_token.rb
 
 /public/uploads/*
+/public/sitemap.xml.gz
 coverage/*
