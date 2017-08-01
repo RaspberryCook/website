@@ -27,6 +27,7 @@
 		<% end %>
 
 		<h1 class="recipe"><%= @recipe.pretty_name %></h1>
+		<pre><%= JSON.pretty_generate( @recipe.to_jsonld ) %></pre>
 
 		<% if @recipe.rate.to_i != 0 %>
 			<%= render 'shared/stars', stars: @recipe.rate.to_i %>
@@ -178,5 +179,7 @@
 		<h3>Vous pouriez aussi aimer</h3>
 		<%= render 'shared/recipes' , :recipes => Recipe.random(3).to_a %>
 
+	
 	</div><!--/ .col-xs-12 (buttons)-->
 </div>
+

@@ -219,6 +219,13 @@ class Recipe < ActiveRecord::Base
     self.variant_name ? "%s - %s " % [  self.name , self.variant_name] : self.name
   end
 
+  # Get the formatted description for the recipe (and provide them if emty)
+  #
+  # @return [String]
+  def pretty_description
+    self.description || "Une délicieuse recette"
+  end
+
 
   # Get the average rate of this recipe
   #
@@ -296,18 +303,6 @@ class Recipe < ActiveRecord::Base
   end
 
 
-  # count the total vote for this recipe
-  #
-  # @return [Integer] ad count
-  def note
-    note = 0
-    self.votes.each do |vote|
-      note += vote.value
-    end
-    return note
-  end
-
-
   # Add view on recipe
   #
   # @param user_id [Integer]
@@ -351,6 +346,45 @@ class Recipe < ActiveRecord::Base
     data[:allergens] = self.allergens.map{ |allergen| {name: allergen.name, icon: allergen.icon_url} }
 
     return data.to_json
+  end
+
+
+  def to_jsonld
+    {
+      "@context" => "http://schema.org/",
+      "@type": "Recipe",
+
+      name: self.name,
+      description: self.pretty_description,
+
+      author: self.user.complete_name,
+      creator: self.user.complete_name,
+      editor: self.user.complete_name,
+      contributor: self.user.complete_name,
+
+      dateCreated: self.created_at,
+      datePublished: self.created_at,
+      dateModified: self.updated_at,
+
+      # todo: insert URL of forked recipe
+      # isBasedOn: ''
+
+      image: ApplicationController.helpers.image_url(self.true_image_url),
+      # thumbnailUrl
+      
+      "aggregateRating": {
+        "@type" => "AggregateRating",
+        ratingValue: self.rate,
+        reviewCount: self.comments.count,
+        bestRating: 5,
+        worstRating: 1
+      },
+      "prepTime": Time.at(self.cooking * 60).utc.strftime('%H:%M:%S'),
+      "totalTime": Time.at(self.sum_of_times * 60).utc.strftime('%H:%M:%S'),
+      # "recipeYield": "8",
+      "recipeIngredient": self.ingredients.split(/\r\n/),
+      "recipeInstructions": self.steps.split(/\r\n/)
+    }
   end
 
   private
