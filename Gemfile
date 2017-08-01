@@ -45,7 +45,7 @@ gem 'will_paginate-bootstrap'
 # cache system
 gem 'rack-cache'
 
-gem 'https://github.com/christianhellsten/sitemap-generator'
+gem 'sitemap_generator'
 
 
 group :development , :test do
