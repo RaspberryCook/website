@@ -45,14 +45,17 @@ gem 'will_paginate-bootstrap'
 # cache system
 gem 'rack-cache'
 
+gem 'sitemap_generator'
+gem 'whenever', :require => false
+
 
 group :development , :test do
   # Use Capistrano for deployment
   gem 'net-ssh'
-  gem 'capistrano',		require: false
-  gem 'capistrano-rvm',		require: false
-  gem 'capistrano-rails',	 	require: false
-  gem 'capistrano-bundler', 	require: false
+  gem 'capistrano',   require: false
+  gem 'capistrano-rvm',   require: false
+  gem 'capistrano-rails',   require: false
+  gem 'capistrano-bundler',   require: false
   gem 'quiet_assets'
   gem 'simplecov', :require => false
 
@@ -64,6 +67,8 @@ gem 'authlogic'
 # to get recipe data from marmiton.org
 gem 'anemone'
 gem 'recipe_scraper', '~>2.2.2' # my first gem :')
+
+gem 'sitemap_generator',        require: false
 
 
 #for upload picture
