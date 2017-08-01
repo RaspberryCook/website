@@ -46,6 +46,7 @@ gem 'will_paginate-bootstrap'
 gem 'rack-cache'
 
 gem 'sitemap_generator'
+gem 'whenever', :require => false
 
 
 group :development , :test do
