@@ -45,8 +45,11 @@ gem 'will_paginate-bootstrap'
 # cache system
 gem 'rack-cache'
 
+# Generate sitemap
 gem 'sitemap_generator'
 gem 'whenever', :require => false
+# generate JSONLD
+gem 'pragmatic_context'
 
 
 group :development , :test do

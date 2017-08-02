@@ -10,10 +10,11 @@ class RecipesController < ApplicationController
     session['recipes_viewed'] = 0 unless session.has_key? 'recipes_viewed'
 
     # if user is connected or user have consulted less than 5 recipes
-    if current_user or session['recipes_viewed'] < 5
+    # if current_user or session['recipes_viewed'] < 5
 
       @recipe = Recipe.includes(:allergens, :user, :views).friendly.find(params[:id])
       @recipe.add_view
+      @jsonld = @recipe.to_jsonld
 
       @recipe.save  unless @recipe.slug?
 
@@ -41,14 +42,14 @@ class RecipesController < ApplicationController
         }
       end
 
-    else
-      flash[:warning] = "Vous avez déjà consulté %s recettes. Vous devez vous %s, %s ou bien revenir plus tard." % [
-        session['recipes_viewed'] ,
-        view_context.link_to("connecter", signin_path),
-        view_context.link_to("créer un compte", signup_path)
-      ]
-      redirect_to signin_path
-    end
+    # else
+    #   flash[:warning] = "Vous avez déjà consulté %s recettes. Vous devez vous %s, %s ou bien revenir plus tard." % [
+    #     session['recipes_viewed'] ,
+    #     view_context.link_to("connecter", signin_path),
+    #     view_context.link_to("créer un compte", signup_path)
+    #   ]
+    #   redirect_to signin_path
+    # end
   end
 
 
