@@ -27,7 +27,7 @@
 		<% end %>
 
 		<h1 class="recipe"><%= @recipe.pretty_name %></h1>
-		<pre><%= JSON.pretty_generate( @recipe.to_jsonld ) %></pre>
+		<pre><%=  %></pre>
 
 		<% if @recipe.rate.to_i != 0 %>
 			<%= render 'shared/stars', stars: @recipe.rate.to_i %>

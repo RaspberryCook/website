@@ -14,6 +14,7 @@ class RecipesController < ApplicationController
 
       @recipe = Recipe.includes(:allergens, :user, :views).friendly.find(params[:id])
       @recipe.add_view
+      @jsonld = @recipe.to_jsonld
 
       @recipe.save  unless @recipe.slug?
 
