@@ -28,7 +28,6 @@ gem 'coffee-rails'
 # to manage read/unread status of ActiveRecord objects - and it's fast.
 gem 'unread'
 
-
 #for use old version of rails for attributes
 gem 'protected_attributes'
 

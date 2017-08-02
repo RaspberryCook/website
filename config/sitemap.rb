@@ -2,10 +2,9 @@
 SitemapGenerator::Sitemap.default_host = 'http://raspberry-cook.fr'
 
 SitemapGenerator::Sitemap.create do
-
-  add home_path, priority: 0.9, changefreq: 'monthly'
-  add infos_path, changefreq: 'monthly'
-  add credits_path, changefreq: 'monthly'
+  add home_path
+  add infos_path
+  add credits_path
   add about_path
 
   add signin_path
@@ -17,8 +16,8 @@ SitemapGenerator::Sitemap.create do
   add recipes_path
   add recipes_shuffle_path
   Recipe.all.each do |recipe|
-    add recipe_path(recipe), changefreq: 'monthly', lastmod: recipe.updated_at
-    add save_recipe_path(recipe.id), changefreq: 'monthly', lastmod: recipe.updated_at
+    add recipe_path(recipe), lastmod: recipe.updated_at
+    add save_recipe_path(recipe.id), lastmod: recipe.updated_at
   end
 
   add users_path
