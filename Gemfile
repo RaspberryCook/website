@@ -28,13 +28,8 @@ gem 'coffee-rails'
 # to manage read/unread status of ActiveRecord objects - and it's fast.
 gem 'unread'
 
-
 #for use old version of rails for attributes
 gem 'protected_attributes'
-
-# for Autocomplete system
-gem 'rails4-autocomplete'
-gem 'rails-jquery-autocomplete'
 
 # Bootstrap
 gem 'bootstrap_form'
@@ -45,6 +40,7 @@ gem 'will_paginate-bootstrap'
 # cache system
 gem 'rack-cache'
 
+# Generate sitemap
 gem 'sitemap_generator'
 gem 'whenever', :require => false
 

@@ -7,6 +7,8 @@ require 'capistrano/deploy'
 #to fix somes issues about ssh commands like rake / bundle / etc..
 require 'capistrano/rvm'
 
+require 'capistrano/sitemap_generator'
+
 # Include tasks from other gems included in your Gemfile
 #
 # For documentation on these, see for example:

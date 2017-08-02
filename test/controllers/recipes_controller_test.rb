@@ -160,9 +160,10 @@ class RecipesControllerTest < ActionController::TestCase
 
   test "should update recipe" do
     UserSession.create(users(:me))
-    patch :update, id: @recipe, recipe: { name: 'hello' }
+    patch :update, id: @recipe, recipe: { ingredients: 'hello' }
+    @recipe.reload
+    assert_equal 'hello', @recipe.ingredients
     # if recipe was savec correctly, we should get a new slug so we should be redirected to friendly url
-    assert_redirected_to recipe_path('hello')
   end
 
   test "should not update recipe because current_user is not the author" do

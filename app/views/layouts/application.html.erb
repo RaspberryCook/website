@@ -18,14 +18,7 @@
 
 	<div id="main-container" class="container">
 
-		<% flash.each do |key, value| %>
-			<div class="row">
-				<div class="alert alert-dismissible alert-<%= key %>" role="alert">
-					<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-					<%= value.html_safe %>
-				</div>
-			</div>
-		<% end %>
+		<%= render 'layouts/flash' %>
 
 		<div class="row">
 			<%= yield %>
@@ -42,6 +35,11 @@
 		<%= stylesheet_link_tag 'application' , :media => "all" %>
 	</noscript>
 
+	<% if @jsonld %>
+		<script type="application/ld+json">
+			<%= @jsonld.to_json.html_safe %>
+		</script>
+	<% end %>
 
 	</body>
 </html>
