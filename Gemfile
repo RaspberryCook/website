@@ -32,10 +32,6 @@ gem 'unread'
 #for use old version of rails for attributes
 gem 'protected_attributes'
 
-# for Autocomplete system
-gem 'rails4-autocomplete'
-gem 'rails-jquery-autocomplete'
-
 # Bootstrap
 gem 'bootstrap_form'
 
@@ -48,8 +44,6 @@ gem 'rack-cache'
 # Generate sitemap
 gem 'sitemap_generator'
 gem 'whenever', :require => false
-# generate JSONLD
-gem 'pragmatic_context'
 
 
 group :development , :test do

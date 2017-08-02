@@ -147,9 +147,6 @@ GEM
     nokogiri (1.7.0.1)
       mini_portile2 (~> 2.1.0)
     pdfkit (0.8.2)
-    pragmatic_context (0.2.1)
-      activemodel
-      activesupport
     protected_attributes (1.1.3)
       activemodel (>= 4.0.1, < 5.0)
     quiet_assets (1.1.0)
@@ -178,10 +175,6 @@ GEM
       rails-deprecated_sanitizer (>= 1.0.1)
     rails-html-sanitizer (1.0.3)
       loofah (~> 2.0)
-    rails-jquery-autocomplete (1.0.3)
-      rails (>= 3.2)
-    rails4-autocomplete (1.1.1)
-      rails (>= 3.0)
     railties (4.2.8)
       actionpack (= 4.2.8)
       activesupport (= 4.2.8)
@@ -272,13 +265,10 @@ DEPENDENCIES
   mysql2
   net-ssh
   pdfkit
-  pragmatic_context
   protected_attributes
   quiet_assets
   rack-cache
   rails
-  rails-jquery-autocomplete
-  rails4-autocomplete
   recipe_scraper (~> 2.2.2)
   rmagick
   sass-rails
