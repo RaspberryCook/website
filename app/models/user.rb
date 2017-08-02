@@ -81,4 +81,25 @@ class User < ActiveRecord::Base
     self.comments.count + self.recipes.count*5
   end
 
+  # Generate an image source from an email
+  #
+  # @return [String] as image url
+  def gravatar_url
+    gravatar = Digest::MD5::hexdigest(self.email).downcase
+    return "https://gravatar.com/avatar/#{gravatar}.png"
+  end
+
+  # Format to json_ld 
+  #
+  # @return [Hash]
+  def to_jsonld
+    {
+      "@context" => "http://schema.org/",
+      "@type": "Person",
+      givenName: self.lastname,
+      image: self.gravatar_url,
+      url: Rails.application.routes.url_helpers.user_url(self.id)
+    }
+  end
+
 end

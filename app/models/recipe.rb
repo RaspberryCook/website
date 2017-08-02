@@ -349,6 +349,9 @@ class Recipe < ActiveRecord::Base
   end
 
 
+  # Format to json_ld 
+  #
+  # @return [Hash]
   def to_jsonld
     {
       "@context" => "http://schema.org/",
@@ -357,10 +360,12 @@ class Recipe < ActiveRecord::Base
       name: self.name,
       description: self.pretty_description,
 
-      author: self.user.complete_name,
-      creator: self.user.complete_name,
-      editor: self.user.complete_name,
-      contributor: self.user.complete_name,
+      url: Rails.application.routes.url_helpers.recipe_url(self.id),
+
+      author: self.user.to_jsonld,
+      creator: self.user.to_jsonld,
+      editor: self.user.to_jsonld,
+      contributor: self.user.to_jsonld,
 
       dateCreated: self.created_at,
       datePublished: self.created_at,
