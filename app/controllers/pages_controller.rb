@@ -81,7 +81,7 @@ class PagesController < ApplicationController
       "@type": "Person",
       givenName: 'Alexandre',
       familyName: 'Rousseau',
-      url: Rails.application.routes.url_helpers.user_url(self.id),
+      url: 'http://rousseau-alexandre.fr',
       contactPoint: {
         email: 'a.rousseau@protonmail.com'
       },
