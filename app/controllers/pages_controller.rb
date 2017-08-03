@@ -84,7 +84,10 @@ class PagesController < ApplicationController
       url: Rails.application.routes.url_helpers.user_url(self.id),
       contactPoint: {
         email: 'a.rousseau@protonmail.com'
-      }
+      },
+      sameAs: [
+        'https://www.linkedin.com/in/alexandre-rousseau-a55a9464/'
+      ]
     }
 
     {
