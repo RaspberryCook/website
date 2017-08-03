@@ -31,6 +31,13 @@ namespace "pictures"  do
       end
     end
   end
+
+  desc "Optimize images"
+  task :optimize do
+    Dir.glob('public/uploads/**/*.{jpg,gif,jepg,png}').each do |file|
+      system "convert '#{file}' -strip -sampling-factor 4:2:0 '#{file}'"
+    end
+  end
 end
 
 namespace "crawl" do
