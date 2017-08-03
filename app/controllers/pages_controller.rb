@@ -2,24 +2,14 @@
 class PagesController < ApplicationController
   before_filter :authenticate, :only =>  [:feeds]
 
-  JSONLD = {
-    "@context": "http://schema.org",
-    "@type": "Organization",
-    "name": "Raspberry Cook",
-    "url": "http://raspberry-cook.fr",
-    "sameAs": [
-      "https://www.facebook.com/raspberrycook",
-      "https://github.com/RaspberryCook",
-      "https://www.instagram.com/raspberry_cook",
-    ]
-  }
+  
 
   # GET /home
   # GET /pages/home
   # a web page to present Raspberry Cook
   def home
     @description = 'Des recettes. Partout. Tout plein!'
-    @jsonld = JSONLD
+    @jsonld = home_jsonld
 
     @recipes = Recipe.where.not(image: nil).order(id: 'DESC').limit(3)
   end
@@ -31,7 +21,7 @@ class PagesController < ApplicationController
   def about
     @title = "A propos de Raspberry Cook"
     @description = 'Des recettes. Partout. Tout plein!'
-    @jsonld = JSONLD
+    @jsonld = home_jsonld
     @recipes = Recipe.where.not(image: nil).order(id: 'DESC').limit(3)
   end
 
@@ -42,7 +32,7 @@ class PagesController < ApplicationController
   def credits
     @title = 'credits'
     @description = 'Un grand merci à toi, lecteur.'
-    @jsonld = JSONLD
+    @jsonld = home_jsonld
   end
 
 
@@ -81,6 +71,38 @@ class PagesController < ApplicationController
       recipes = Recipe.all
     end
     @recipes = recipes.paginate :page => params[:page]
+  end
+
+  private
+
+  def home_jsonld
+    author = {
+      "@context" => "http://schema.org/",
+      "@type": "Person",
+      givenName: 'Alexandre',
+      familyName: 'Rousseau',
+      url: Rails.application.routes.url_helpers.user_url(self.id),
+      contactPoint: {
+        email: 'a.rousseau@protonmail.com'
+      }
+    }
+
+    {
+      "@context": "http://schema.org",
+      "@type": "WebSite",
+      name: "Raspberry Cook",
+      url: "http://raspberry-cook.fr",
+      author: author,
+      funder: author,
+      sameAs: [
+        "https://www.facebook.com/raspberrycook",
+        "https://github.com/RaspberryCook",
+        "https://www.instagram.com/raspberry_cook",
+      ],
+      contactPoint: {
+        email: 'a.rousseau@protonmail.com'
+      }
+    }
   end
 
 end
