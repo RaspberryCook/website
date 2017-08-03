@@ -353,6 +353,8 @@ class Recipe < ActiveRecord::Base
   #
   # @return [Hash]
   def to_jsonld
+    author = self.user ? self.user.to_jsonld : ''
+
     {
       "@context" => "http://schema.org/",
       "@type": "Recipe",
@@ -362,10 +364,10 @@ class Recipe < ActiveRecord::Base
 
       url: Rails.application.routes.url_helpers.recipe_url(self.id),
 
-      author: self.user.to_jsonld,
-      creator: self.user.to_jsonld,
-      editor: self.user.to_jsonld,
-      contributor: self.user.to_jsonld,
+      author: author,
+      creator: author,
+      editor: author,
+      contributor: author,
 
       dateCreated: self.created_at,
       datePublished: self.created_at,
@@ -375,7 +377,7 @@ class Recipe < ActiveRecord::Base
       # isBasedOn: ''
 
       image: ApplicationController.helpers.image_url(self.true_image_url),
-      # thumbnailUrl
+      thumbnailUrl: ApplicationController.helpers.image_url(self.true_thumb_image_url),
       
       "aggregateRating": {
         "@type" => "AggregateRating",
