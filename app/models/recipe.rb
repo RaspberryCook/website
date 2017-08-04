@@ -361,7 +361,7 @@ class Recipe < ActiveRecord::Base
       author =  RaspberryCookFundation.to_jsonld 'Organization'
     end
 
-    @jsonld =  {
+    jsonld =  {
       "@context" => "http://schema.org/",
       "@type": "Recipe",
 
@@ -389,12 +389,14 @@ class Recipe < ActiveRecord::Base
       "prepTime": Time.at(self.cooking * 60).utc.strftime('%H:%M:%S'),
       "totalTime": Time.at(self.sum_of_times * 60).utc.strftime('%H:%M:%S'),
       # "recipeYield": "8",
-      "recipeIngredient": self.ingredients.split(/\r\n/),
-      "recipeInstructions": self.steps.split(/\r\n/)
+
     }
 
+    jsonld["recipeIngredient"] = self.ingredients.split(/\r\n/) if self.ingredients
+    jsonld["recipeInstructions"] = self.steps.split(/\r\n/) if self.steps
+
     if self.comments.count != 0
-      @jsonld["aggregateRating"] = {
+      jsonld["aggregateRating"] = {
         "@context" => "http://schema.org/",
         "@type" => "AggregateRating",
         ratingValue: self.rate,
@@ -404,7 +406,7 @@ class Recipe < ActiveRecord::Base
       }
     end
 
-    return @jsonld
+    return jsonld
   end
 
   private
