@@ -349,16 +349,23 @@ class Recipe < ActiveRecord::Base
   end
 
 
-  # Format to json_ld 
+  # Format to json_ld
   #
   # @return [Hash]
   def to_jsonld
-    author = self.user ? self.user.to_jsonld : ''
+    # setup user or Raspberry Cook society
+    author = {}
+    if self.user
+      author =  self.user.to_jsonld
+    else
+      author =  RaspberryCookFundation.to_jsonld 'Organization'
+    end
 
-    {
+    @jsonld =  {
       "@context" => "http://schema.org/",
       "@type": "Recipe",
 
+      position: self.id,
       name: self.name,
       description: self.pretty_description,
 
@@ -366,8 +373,8 @@ class Recipe < ActiveRecord::Base
 
       author: author,
       creator: author,
-      editor: author,
-      contributor: author,
+      # editor: author,
+      # contributor: author,
 
       dateCreated: self.created_at,
       datePublished: self.created_at,
@@ -378,20 +385,26 @@ class Recipe < ActiveRecord::Base
 
       image: ApplicationController.helpers.image_url(self.true_image_url),
       thumbnailUrl: ApplicationController.helpers.image_url(self.true_thumb_image_url),
-      
-      "aggregateRating": {
-        "@type" => "AggregateRating",
-        ratingValue: self.rate,
-        reviewCount: self.comments.count,
-        bestRating: 5,
-        worstRating: 1
-      },
+
       "prepTime": Time.at(self.cooking * 60).utc.strftime('%H:%M:%S'),
       "totalTime": Time.at(self.sum_of_times * 60).utc.strftime('%H:%M:%S'),
       # "recipeYield": "8",
       "recipeIngredient": self.ingredients.split(/\r\n/),
       "recipeInstructions": self.steps.split(/\r\n/)
     }
+
+    if self.comments.count != 0
+      @jsonld["aggregateRating"] = {
+        "@context" => "http://schema.org/",
+        "@type" => "AggregateRating",
+        ratingValue: self.rate,
+        reviewCount: self.comments.count,
+        bestRating: 5,
+        worstRating: 1
+      }
+    end
+
+    return @jsonld
   end
 
   private

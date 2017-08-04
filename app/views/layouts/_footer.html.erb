@@ -1,5 +1,10 @@
 <footer class="footer col-md-10 col-md-offset-1">
 
+    <% if Rails.env == "development" and @jsonld %>
+      <h3>JSON-LD</h3>
+      <pre><%= JSON.pretty_generate @jsonld %></pre>
+    <% end %>
+
     <div class="container">
 
     <ul class="list-inline">
