@@ -2,14 +2,14 @@
 class PagesController < ApplicationController
   before_filter :authenticate, :only =>  [:feeds]
 
-  
+
 
   # GET /home
   # GET /pages/home
   # a web page to present Raspberry Cook
   def home
     @description = 'Des recettes. Partout. Tout plein!'
-    @jsonld = home_jsonld
+    @jsonld = RaspberryCookFundation.to_jsonld 'WebSite'
 
     @recipes = Recipe.where.not(image: nil).order(id: 'DESC').limit(3)
   end
@@ -21,7 +21,7 @@ class PagesController < ApplicationController
   def about
     @title = "A propos de Raspberry Cook"
     @description = 'Des recettes. Partout. Tout plein!'
-    @jsonld = home_jsonld
+    @jsonld = RaspberryCookFundation.to_jsonld 'WebSite'
     @recipes = Recipe.where.not(image: nil).order(id: 'DESC').limit(3)
   end
 
@@ -32,7 +32,7 @@ class PagesController < ApplicationController
   def credits
     @title = 'credits'
     @description = 'Un grand merci à toi, lecteur.'
-    @jsonld = home_jsonld
+    @jsonld = RaspberryCookFundation.to_jsonld 'WebSite'
   end
 
 
@@ -73,39 +73,6 @@ class PagesController < ApplicationController
     @recipes = recipes.paginate :page => params[:page]
   end
 
-  private
 
-  def home_jsonld
-    author = {
-      "@context" => "http://schema.org/",
-      "@type": "Person",
-      givenName: 'Alexandre',
-      familyName: 'Rousseau',
-      url: 'http://rousseau-alexandre.fr',
-      contactPoint: {
-        email: 'a.rousseau@protonmail.com'
-      },
-      sameAs: [
-        'https://www.linkedin.com/in/alexandre-rousseau-a55a9464/'
-      ]
-    }
-
-    {
-      "@context": "http://schema.org",
-      "@type": "WebSite",
-      name: "Raspberry Cook",
-      url: "http://raspberry-cook.fr",
-      author: author,
-      funder: author,
-      sameAs: [
-        "https://www.facebook.com/raspberrycook",
-        "https://github.com/RaspberryCook",
-        "https://www.instagram.com/raspberry_cook",
-      ],
-      contactPoint: {
-        email: 'a.rousseau@protonmail.com'
-      }
-    }
-  end
 
 end
