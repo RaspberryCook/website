@@ -101,7 +101,14 @@ class RecipesController < ApplicationController
 
     @recipes = Recipe.search params
     respond_to do |format|
-      format.html { render "index" }
+      format.html {
+        @jsonld = {
+          "@context":"http://schema.org",
+          "@type":"ItemList",
+          "itemListElement": @recipes.map{|recipe| recipe.to_jsonld}
+        } if @recipes
+        render "index"
+      }
       format.json { render json: @recipes  }
     end
   end
