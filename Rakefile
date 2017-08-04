@@ -32,6 +32,8 @@ namespace "pictures"  do
     end
   end
 
+  # need to install image magick
+  # `$ sudo apt-get install imagemagick`
   desc "Optimize images"
   task :optimize do
     Dir.glob('public/uploads/**/*.{jpg,gif,jepg,png}').each do |file|
