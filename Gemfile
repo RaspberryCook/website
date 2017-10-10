@@ -56,6 +56,7 @@ group :development , :test do
   gem 'simplecov', :require => false
 
   gem 'faker', github: 'stympy/faker'
+  gem 'wkhtmltopdf-binary' # this disn't work on raspberry pi
 end
 
 gem 'authlogic'
