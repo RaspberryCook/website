@@ -1,45 +1,33 @@
 <!DOCTYPE html>
 <html>
-
-<head><%= render 'layouts/head' %></head>
-<body>
-
-<script type="text/javascript">
-	// a function to use in .html.erb view to run jquery query when it was loaded
-	function defer(method) {
-		if (window.jQuery)
-			method();
-		else
-			setTimeout(function() { defer(method) }, 50);
-	}
-</script>
-
-	<%= render 'layouts/navigation' %>
-
-	<div id="main-container" class="container">
-
-		<%= render 'layouts/flash' %>
-
-		<div class="row">
-			<%= yield %>
-		</div>
-
-		<%= render 'layouts/footer' %>
-	</div>
-
-
-	<%= javascript_include_tag 'application' %>
-	<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-	<noscript id="deferred-styles">
-		<%= stylesheet_link_tag 'application' , :media => "all" %>
-	</noscript>
-
-	<% if @jsonld %>
-		<script type="application/ld+json">
-			<%= @jsonld.to_json.html_safe %>
-		</script>
-	<% end %>
-
-	</body>
+  <head><%= render 'layouts/head' %></head>
+  <body>
+    <script type="text/javascript">
+      // a function to use in .html.erb view to run jquery query when it was loaded
+      function defer(method) {
+      	if (window.jQuery)
+      		method();
+      	else
+      		setTimeout(function() { defer(method) }, 50);
+      }
+    </script>
+    <%= render 'layouts/navigation' %>
+    <div id="main-container" class="container">
+      <%= render 'layouts/flash' %>
+      <div class="row">
+        <%= yield %>
+      </div>
+      <%= render 'layouts/footer' %>
+    </div>
+    <%= javascript_include_tag 'application' %>
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <noscript id="deferred-styles">
+      <%= stylesheet_link_tag 'application' , :media => "all" %>
+    </noscript>
+    <% if @jsonld %>
+      <script type="application/ld+json">
+        <%= @jsonld.to_json.html_safe %>
+      </script>
+    <% end %>
+  </body>
 </html>
