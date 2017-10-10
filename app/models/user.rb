@@ -15,7 +15,7 @@ class User < ActiveRecord::Base
 
   attr_accessible :username, :firstname, :lastname, :email,
     :password, :password_confirmation, :crypted_password
-  
+
 
   has_many :recipes , :dependent => :destroy
   has_many :comments , :dependent => :destroy
@@ -83,13 +83,17 @@ class User < ActiveRecord::Base
 
   # Generate an image source from an email
   #
-  # @return [String] as image url
+  # @return [String|Nil] as image url
   def gravatar_url
-    gravatar = Digest::MD5::hexdigest(self.email).downcase
-    return "https://gravatar.com/avatar/#{gravatar}.png"
+    if self.email
+      gravatar = Digest::MD5::hexdigest(self.email).downcase
+      return "https://gravatar.com/avatar/#{gravatar}.png"
+    else
+      return nil
+    end
   end
 
-  # Format to json_ld 
+  # Format to json_ld
   #
   # @return [Hash]
   def to_jsonld

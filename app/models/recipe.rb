@@ -361,7 +361,7 @@ class Recipe < ActiveRecord::Base
       author =  RaspberryCookFundation.to_jsonld 'Organization'
     end
 
-    @jsonld =  {
+    jsonld = {
       "@context" => "http://schema.org/",
       "@type": "Recipe",
 
@@ -386,25 +386,31 @@ class Recipe < ActiveRecord::Base
       image: ApplicationController.helpers.image_url(self.true_image_url),
       thumbnailUrl: ApplicationController.helpers.image_url(self.true_thumb_image_url),
 
-      "prepTime": Time.at(self.cooking * 60).utc.strftime('%H:%M:%S'),
-      "totalTime": Time.at(self.sum_of_times * 60).utc.strftime('%H:%M:%S'),
-      # "recipeYield": "8",
-      "recipeIngredient": self.ingredients.split(/\r\n/),
-      "recipeInstructions": self.steps.split(/\r\n/)
-    }
-
-    if self.comments.count != 0
-      @jsonld["aggregateRating"] = {
-        "@context" => "http://schema.org/",
+      aggregateRating: {
         "@type" => "AggregateRating",
         ratingValue: self.rate,
         reviewCount: self.comments.count,
         bestRating: 5,
         worstRating: 1
-      }
-    end
+      },
+      prepTime: Time.at(self.cooking * 60).utc.strftime('%H:%M:%S'),
+      totalTime: Time.at(self.sum_of_times * 60).utc.strftime('%H:%M:%S'),
+      # "recipeYield": "8",
+    }
 
-    return @jsonld
+    jsonld[:recipeIngredient] = self.ingredients.split(/\r\n/) if self.ingredients
+    jsonld[:recipeInstructions] = self.steps.split(/\r\n/) if self.steps
+
+    jsonld[:aggregateRating] = {
+      "@context" => "http://schema.org/",
+      "@type" => "AggregateRating",
+      ratingValue: self.rate,
+      reviewCount: self.comments.count,
+      bestRating: 5,
+      worstRating: 1
+    } if self.comments.count != 0
+
+    return jsonld
   end
 
   private

@@ -4,7 +4,7 @@ lock '3.7.2'
 set :default_env, { rvm_bin_path: '~/.rvm/bin' }
 
 set :application, 'raspberry_cook'
-set :repo_url, 'https://github.com/madeindjs/raspberry_cook.git'
+set :repo_url, 'https://github.com/raspberry_cook/website.git'
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
