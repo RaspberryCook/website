@@ -104,13 +104,20 @@ class RecipeTest < ActiveSupport::TestCase
     recipe = Recipe.create name: 'test', user_id: 1
 
     assert_difference('recipe.views.count',1) do
-     assert recipe.add_view 1
+      assert recipe.add_view 1
     end
   end
 
 
   test "should get most viewed recipe" do
     Recipe.order(views: :desc)
+  end
+
+
+  test "should export recipe to jsonld" do
+    recipe = Recipe.new
+    recipe.id = 1
+    recipe.to_jsonld
   end
 
 end
