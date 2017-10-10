@@ -349,13 +349,13 @@ class Recipe < ActiveRecord::Base
   end
 
 
-  # Format to json_ld 
+  # Format to json_ld
   #
   # @return [Hash]
   def to_jsonld
     author = self.user ? self.user.to_jsonld : ''
 
-    {
+    jsonld = {
       "@context" => "http://schema.org/",
       "@type": "Recipe",
 
@@ -378,20 +378,23 @@ class Recipe < ActiveRecord::Base
 
       image: ApplicationController.helpers.image_url(self.true_image_url),
       thumbnailUrl: ApplicationController.helpers.image_url(self.true_thumb_image_url),
-      
-      "aggregateRating": {
+
+      aggregateRating: {
         "@type" => "AggregateRating",
         ratingValue: self.rate,
         reviewCount: self.comments.count,
         bestRating: 5,
         worstRating: 1
       },
-      "prepTime": Time.at(self.cooking * 60).utc.strftime('%H:%M:%S'),
-      "totalTime": Time.at(self.sum_of_times * 60).utc.strftime('%H:%M:%S'),
+      prepTime: Time.at(self.cooking * 60).utc.strftime('%H:%M:%S'),
+      totalTime: Time.at(self.sum_of_times * 60).utc.strftime('%H:%M:%S'),
       # "recipeYield": "8",
-      "recipeIngredient": self.ingredients.split(/\r\n/),
-      "recipeInstructions": self.steps.split(/\r\n/)
     }
+
+    jsonld[:recipeIngredient] = self.ingredients.split(/\r\n/) if self.ingredients
+    jsonld[:recipeInstructions] = self.steps.split(/\r\n/) if self.steps
+
+    return jsonld
   end
 
   private

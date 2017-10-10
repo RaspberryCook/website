@@ -39,4 +39,10 @@ class UserTest < ActiveSupport::TestCase
   end
 
 
+  test "should export user to jsonld" do
+    user = User.new
+    user.id = 1
+    user.to_jsonld
+  end
+
 end
