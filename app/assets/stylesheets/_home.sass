@@ -7,17 +7,31 @@ div.home
 	background-size: auto 100%
 	text-align: center
 
-	min-height: 600px
+	padding-top: 10rem
+	padding-bottom: 10rem
 
-	padding-top: 20px
-	padding-bottom: 20px
+	h2
+		font-family: 'Pacifico', cursive
+		font-size: 4rem
+		padding-bottom: 5rem
 
 
 	.input-group
 		width: 100%
 
-	p
-		font-size: 24px
+
+	li,
+	p.home
+		font-size: 2rem
+
+	p.home
+		margin: 0px
+		padding-top: 2rem
+		padding-bottom: 2rem
+		background-color: $light_gray// The Fallback
+		background-color: rgba($light_gray, 0.5)
+		color: $second_color
+
 
 	@media only screen and (max-width: 640px)
 		padding-left: 10px
@@ -35,13 +49,6 @@ div.home
 	h1
 		color: $white
 		text-align: center
-
-
-	blockquote
-		font-size: 24px
-
-		footer
-			font-size: 18px
 
 
 	&:first-child
@@ -68,9 +75,11 @@ div.first-home
 	min-height: 100vh
 
 	p.lead
-		padding-top: 200px
-		color: white
-		font-size: 22px
+		font-family: 'Pacifico', cursive
+		padding-top: 1rem
+		padding-bottom: 100px
+		color: $light_gray
+		font-size: 4rem
 
 	input.btn.btn-default
-		background-color: white
+		background-color: $white

@@ -1,39 +1,64 @@
 <div class="col-xs-12 home first-home" style="background-image: url('<%= image_url "raspberry_cook" %>');background-position: -100px ;  ">
 	<h1>Raspberry Cook</h1>
 
-	<p class="lead text-center">Cherchez une recette</p>
+	<p class="lead">Partage de recettes libres</p>
 
 	<%= bootstrap_form_tag url: recipes_path, method: :get do |f| %>
 	  <%= f.text_field :name, hide_label: true, append: f.submit('chercher',class: "btn btn-default"), input_group_class: 'input-group-lg' %>
 	<% end %>
+	<ul class="list-inline">
+		<li><%= link_to 'Parcourir les recettes', recipes_path %></p></li>
+		<% if current_user %>
+			<li><%= link_to 'Ajouter une recette', recipes_path %></p></li>
+		<% end %>
+	</ul>
+
+</div>
+
+<div class="col-xs-12 home" style="background-image: url('<%= image_url "icons/fat_guy" %>')">
+	<h2>Un organisme à but gourmand</h2>
+	<blockquote>
+		<p>Notre seul but est que tout le monde soit <strong>gros</strong> et <strong>heureux</strong>.</p>
+		<footer>Mr. Raspberry Cook lors de la <cite title="Licence MIT">la conférence de libération des recettes de cuisines</cite></footer>
+	</blockquote>
+	<p class="home">Là ou certains sites <%= link_to "s'approprient vos recettes publiées sur leurs sites", 'http://www.marmiton.org/pratique/conditions-generales-d-utilisation.aspx' %>, nous distribuons vos recettes sous <%= link_to 'licence libre', 'https://creativecommons.org/licenses/by-sa/2.0/fr/' %>. Vos recettes sont accessibles <strong>gratuitement</strong>, <strong>partout</strong> et <strong>sans conditions restrictives</strong>.</p>
+	<p class="text-center">
+		<%= image_tag 'icons/free', height: 50, alt: 'Logo gratuit', title: 'Gratuit' %>
+		<%= image_tag 'icons/data', height: 50, alt: 'Logo "pas de collecte de données"', title: 'Protection de votre vie privée' %>
+		<%= image_tag 'icons/no_ads', height: 50, alt: 'Logo sans publicité', title: 'Pas de publicité' %>
+	</p>
+</div>
 
 </div>
 
 <div class="col-xs-12 home" style="background-image: url('<%= image_url "icons/people_eating" %>'); background-position: right">
 	<h2>Les recettes du moment</h2>
-	<%= render 'shared/recipes' , :recipes => Recipe.most_viewed(3) %>
+	<%= render 'shared/recipes' , :recipes => Recipe.random(3) %>
 </div>
 
 
-
 <div class="col-xs-12 home" style="background-image: url('<%= image_url "icons/robot" %>'); background-position: -200px">
-	<h2>Créez votre recette</h2>
+	<h2>Ne soyez pas égoistes, rendez nous heureux</h2>
 
-	<p class="lead"><strong>Importez</strong> une recette depuis un "<i>site partenaire</i>".</p>
+
+	<p class="home"><%= link_to 'Créez-vous un compte gratuitement', signup_path %> et partagez dès à présent vos recettes de cuisine.</p>
 
 	<%= render 'recipes/new_recipe_form', recipe: Recipe.new %>
+	<blockquote>
+		<p>Ne pas partager une bonne recette est un crime punis par la lois.</p>
+		<footer>Droits de l'homme</footer>
+	</blockquote>
 </div>
 
 
 
 <div class="col-xs-12 home" style="background-image: url('<%= image_url "charity" %>')">
-	<h2>Participez à l'avènement d'un site <strong>révolutionnaire</strong></h2>
-	<p>Nous n'avons qu'un seul but: que tout le monde soit gros et heureux!</p>
-	<p><strong>Partagez</strong> et/ou <strong>contribuez</strong> au projet!</p>
+	<h2>Participez à l'avènement d'un site révolutionnaire</h2>
+	<p>Raspberry Cook est un projet <strong>collaboratif</strong></p>
 	<ul class="list-inline share">
-		<li><%= link_to(image_tag("icons/fb", alt: 'Logo de Facebook',size: '40'),'https://www.facebook.com/raspberrycook')%>La page <strong>Facebook</strong></li>
-		<li><%= link_to(image_tag("icons/intgr", alt: 'Logo d\'Instagram', size: '40'),'https://www.instagram.com/raspberry_cook/')%>La chaine <strong>Instagram</strong></li>
-		<li><%= link_to(image_tag("icons/github-icon", alt: 'Logo de Github', size: '40'),'https://github.com/madeindjs/raspberry_cook')%>Le <strong>projet Github</strong></li>
+		<li>Rejoignez nous<%= link_to(image_tag("icons/fb", alt: 'Logo de Facebook',size: '40'),'https://www.facebook.com/raspberrycook')%></li>
+		<li>Salivez devant nos photo<%= link_to(image_tag("icons/intgr", alt: 'Logo d\'Instagram', size: '40'),'https://www.instagram.com/raspberry_cook/')%></li>
+		<li>Codez le site<%= link_to(image_tag("icons/github-icon", alt: 'Logo de Github', size: '40'),'https://github.com/madeindjs/raspberry_cook')%></li>
 	</ul>
 </div>
 
