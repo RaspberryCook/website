@@ -20,6 +20,7 @@ RaspberryCook::Application.routes.draw do
   match '/fridge' ,   to: 'pages#fridge', as: 'fridge', :via => :all
 
   get '/home', to: 'pages#home', as: 'home'
+  get '/legal', to: 'pages#legal', as: 'legal'
   get '/about', to: 'pages#about', as: 'about'
   get '/feeds', to: 'pages#feeds', as: 'feeds'
   get '/infos', to: 'pages#infos', as: 'infos'

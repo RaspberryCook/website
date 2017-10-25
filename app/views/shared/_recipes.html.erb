@@ -1,10 +1,7 @@
 <% begin %>
-
-	<% recipes.each do |recipe| %>
-		<%= render 'shared/recipe' , :recipe => recipe %>
-	<% end %>
-		
+  <% recipes.each do |recipe| %>
+    <%= render 'shared/recipe' , recipe: recipe if recipe.is_a? Recipe %>
+  <% end %>
 <% rescue NoMethodError => e # In case of nil%>
-		<p>Aucune recette n'a été trouvée</p>
+    <p>Aucune recette n'a été trouvée</p>
 <% end %>
-

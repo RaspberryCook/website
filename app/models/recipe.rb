@@ -353,12 +353,19 @@ class Recipe < ActiveRecord::Base
   #
   # @return [Hash]
   def to_jsonld
-    author = self.user ? self.user.to_jsonld : ''
+    # setup user or Raspberry Cook society
+    author = {}
+    if self.user
+      author =  self.user.to_jsonld
+    else
+      author =  RaspberryCookFundation.to_jsonld 'Organization'
+    end
 
     jsonld = {
       "@context" => "http://schema.org/",
       "@type": "Recipe",
 
+      position: self.id,
       name: self.name,
       description: self.pretty_description,
 
@@ -366,8 +373,8 @@ class Recipe < ActiveRecord::Base
 
       author: author,
       creator: author,
-      editor: author,
-      contributor: author,
+      # editor: author,
+      # contributor: author,
 
       dateCreated: self.created_at,
       datePublished: self.created_at,
@@ -393,6 +400,15 @@ class Recipe < ActiveRecord::Base
 
     jsonld[:recipeIngredient] = self.ingredients.split(/\r\n/) if self.ingredients
     jsonld[:recipeInstructions] = self.steps.split(/\r\n/) if self.steps
+
+    jsonld[:aggregateRating] = {
+      "@context" => "http://schema.org/",
+      "@type" => "AggregateRating",
+      ratingValue: self.rate,
+      reviewCount: self.comments.count,
+      bestRating: 5,
+      worstRating: 1
+    } if self.comments.count != 0
 
     return jsonld
   end

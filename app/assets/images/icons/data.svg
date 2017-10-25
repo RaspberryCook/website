@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="200"
+   height="200"
+   viewBox="0 0 199.99999 199.99999"
+   id="svg4675"
+   version="1.1"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="data.svg">
+  <defs
+     id="defs4677" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.76"
+     inkscape:cx="-205"
+     inkscape:cy="-65.111184"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     units="px"
+     inkscape:window-width="1568"
+     inkscape:window-height="873"
+     inkscape:window-x="32"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata4680">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Calque 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,-852.36223)">
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:22.5px;line-height:100%;font-family:'Tlwg Mono';-inkscape-font-specification:'Tlwg Mono Bold';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="99.988266"
+       y="911.05225"
+       id="text5246"
+       sodipodi:linespacing="100%"><tspan
+         sodipodi:role="line"
+         id="tspan5248"
+         x="99.988266"
+         y="911.05225"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:59.99999237px;line-height:100%;font-family:'Tlwg Mono';-inkscape-font-specification:'Tlwg Mono Bold';text-align:center;text-anchor:middle;fill:#2c3e50;fill-opacity:1">01010</tspan><tspan
+         sodipodi:role="line"
+         x="99.988266"
+         y="971.05225"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:59.99999237px;line-height:100%;font-family:'Tlwg Mono';-inkscape-font-specification:'Tlwg Mono Bold';text-align:center;text-anchor:middle;fill:#2c3e50;fill-opacity:1"
+         id="tspan5269">10101</tspan><tspan
+         sodipodi:role="line"
+         x="99.988266"
+         y="1031.0522"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:59.99999237px;line-height:100%;font-family:'Tlwg Mono';-inkscape-font-specification:'Tlwg Mono Bold';text-align:center;text-anchor:middle;fill:#2c3e50;fill-opacity:1"
+         id="tspan5271">01010</tspan></text>
+    <ellipse
+       style="fill:none;fill-opacity:0.34016395;stroke:#96281b;stroke-width:22.00029182;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="path5223"
+       cx="119.82219"
+       cy="949.19672"
+       rx="89.179184"
+       ry="89.144867"
+       transform="matrix(0.99960406,0.02813743,-0.02083315,0.99978297,0,0)" />
+    <rect
+       style="fill:none;fill-opacity:0.34016395;stroke:#96281b;stroke-width:18.87580872;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect5244"
+       width="12.418295"
+       height="170.46931"
+       x="-776.42004"
+       y="-654.24164"
+       transform="matrix(-0.6749466,-0.73786658,0.73786658,-0.6749466,0,0)" />
+  </g>
+</svg>

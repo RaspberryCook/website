@@ -7,49 +7,34 @@ class RecipesController < ApplicationController
 
   # GET /recipes/1
   def show
-    session['recipes_viewed'] = 0 unless session.has_key? 'recipes_viewed'
+    @recipe = Recipe.includes(:allergens, :user, :views).friendly.find(params[:id])
+    @recipe.add_view
 
-    # if user is connected or user have consulted less than 5 recipes
-    # if current_user or session['recipes_viewed'] < 5
+    @recipe.save unless @recipe.slug?
 
-      @recipe = Recipe.includes(:allergens, :user, :views).friendly.find(params[:id])
-      @recipe.add_view
-      @jsonld = @recipe.to_jsonld
+    respond_to do |format|
+      format.json { render json: @recipe  }
+      format.html {
+        @comment = Comment.new
+        @title = @recipe.name
+        @jsonld = @recipe.to_jsonld
 
-      @recipe.save  unless @recipe.slug?
+        if @recipe.user
+          @description = 'Une delicieuse recette de %s.' % @recipe.user.firstname
+        else
+          @description = @recipe.description
+        end
 
-      respond_to do |format|
-        format.json { render json: @recipe  }
-        format.html {
-          @comment = Comment.new
-          @title = @recipe.name
+        if current_user
+          @recipe.mark_as_read! :for => current_user
+          @recipe.comments.each { |com| com.mark_as_read! :for => current_user }
 
-          if @recipe.user
-            @description = 'Une delicieuse recette de %s.' % @recipe.user.firstname
-          else
-            @description = @recipe.description
-          end
-
-          if current_user
-            @recipe.mark_as_read! :for => current_user
-            @recipe.comments.each { |com| com.mark_as_read! :for => current_user }
-
-          else current_user
-            flash[:info] = "%s ou %s pour faire vivre Raspberry Cook <3." % [view_context.link_to("Connectez-vous", signin_path), view_context.link_to("créez un compte", signup_path)]
-            session['recipes_viewed'] += 1
-          end
-          render "show"
-        }
-      end
-
-    # else
-    #   flash[:warning] = "Vous avez déjà consulté %s recettes. Vous devez vous %s, %s ou bien revenir plus tard." % [
-    #     session['recipes_viewed'] ,
-    #     view_context.link_to("connecter", signin_path),
-    #     view_context.link_to("créer un compte", signup_path)
-    #   ]
-    #   redirect_to signin_path
-    # end
+        else current_user
+          flash[:info] = "%s ou %s pour faire vivre Raspberry Cook <3." % [view_context.link_to("Connectez-vous", signin_path), view_context.link_to("créez un compte", signup_path)]
+        end
+        render "show"
+      }
+    end
   end
 
 
@@ -116,7 +101,14 @@ class RecipesController < ApplicationController
 
     @recipes = Recipe.search params
     respond_to do |format|
-      format.html { render "index" }
+      format.html {
+        @jsonld = {
+          "@context":"http://schema.org",
+          "@type":"ItemList",
+          "itemListElement": @recipes.map{|recipe| recipe.to_jsonld}
+        } if @recipes
+        render "index"
+      }
       format.json { render json: @recipes  }
     end
   end

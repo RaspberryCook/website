@@ -1,17 +1,22 @@
 <footer class="footer col-md-10 col-md-offset-1">
 
-		<div class="container">
+    <% if Rails.env == "development" and @jsonld %>
+      <h3>JSON-LD</h3>
+      <pre><%= JSON.pretty_generate @jsonld %></pre>
+    <% end %>
 
-		<ul class="list-inline">
-			<li><%= link_to image_tag("icons/fb.svg", alt: 'Logo de Facebook', size: '20'),'https://www.facebook.com/raspberrycook' %></li>
-			<li><%= link_to image_tag("icons/intgr.svg", alt: 'Logo d\'Instagram', size: '20'),'https://www.instagram.com/raspberry_cook/' %></li>
-			<li><%= link_to image_tag("icons/github-icon.svg", alt: 'Logo de Github', size: '20'),'https://github.com/RaspberryCook/website' %></li>
-			<li><%= link_to 'Contactez-moi' , "mailto:RousseauAlexandre.Lyon@gmail.com?subject=Raspberry%20Cook" %></li>
-			<li><%= link_to 'Licence MIT' , "https://opensource.org/licenses/MIT" %></li>
-			<li><%= link_to "A propos" , about_path %></li>
-			<li><%= link_to "Crédits" , credits_path %></li>
-		</ul>
+    <div class="container">
 
-	</div>
+    <ul class="list-inline">
+      <li><%= link_to image_tag("icons/fb.svg", alt: 'Logo de Facebook', size: '20'),'https://www.facebook.com/raspberrycook' %></li>
+      <li><%= link_to image_tag("icons/intgr.svg", alt: 'Logo d\'Instagram', size: '20'),'https://www.instagram.com/raspberry_cook/' %></li>
+      <li><%= link_to image_tag("icons/github-icon.svg", alt: 'Logo de Github', size: '20'),'https://github.com/RaspberryCook/website' %></li>
+      <li><%= link_to 'Contactez-moi' , "mailto:a.rousseau@protonmail.com?subject=Raspberry%20Cook" %></li>
+      <li><%= link_to 'Mentions légales' , legal_path %></li>
+      <li><%= link_to "A propos" , about_path %></li>
+      <li><%= link_to "Crédits" , credits_path %></li>
+    </ul>
+
+  </div>
 
 </footer>
