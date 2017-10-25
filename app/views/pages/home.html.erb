@@ -42,20 +42,17 @@
   </div>
   <p class="text-center"><%= link_to "Explorez les autres recettes", recipes_path, class: 'btn btn-lg btn-default' %></p>
 </div>
-<div class="col-xs-12 home" style="background-image: url('<%= image_url "icons/salt" %>'); background-position: -200px">
-  <h2>Ajoutez votre grain de sel</h2>
-  <p class="home">Toutes les recettes peuvent être améliorées à l'aide de <strong>variantes</strong>. Voici un exemple:</p>
-  <div class="col-xs-12">
-    <%= render 'shared/recipes' , recipes: @forked_recipe %>
+<% if @root_recipe %>
+  <div class="col-xs-12 home" style="background-image: url('<%= image_url "icons/salt" %>'); background-position: -200px">
+    <h2>Ajoutez votre grain de sel</h2>
+    <p class="home">Toutes les recettes peuvent être améliorées à l'aide de <strong>variantes</strong>. Voici un exemple:</p>
+    <div class="col-xs-12">
+      <%= render 'shared/recipes' , recipes: @forked_recipe %>
+    </div>
+    <p class="home">En un <i>click</i>, la recette vous appartient et vous en faite ce que voulez.</p>
+    <p class="text-center"><%= link_to "Créer une variante de \"#{@root_recipe.name}\" ", fork_recipe_path(id: @root_recipe.id), class: 'btn btn-lg btn-default' %></p>
   </div>
-  <p class="home">En un <i>click</i>, la recette vous appartient et vous en faite ce que voulez.</p>
-  <p class="text-center"><%= link_to "Créer une variante de \"#{@root_recipe.name}\" ", fork_recipe_path(id: @root_recipe.id), class: 'btn btn-lg btn-default' %></p>
-  <%#= render 'recipes/new_recipe_form', recipe: Recipe.new %>
-  <!-- <blockquote>
-    <p>Ne pas partager une bonne recette est un crime punis par la lois.</p>
-    <footer>Droits de l'homme</footer>
-  </blockquote> -->
-</div>
+<% end %>
 <div class="col-xs-12 home" style="background-image: url('<%= image_url "charity" %>')">
   <h2>Participez au projet</h2>
   <p>Raspberry Cook est un projet <strong>collaboratif</strong>. N'hésitez pas à <strong>contribuer</strong> au projet et ainsi rendre le monde meilleur!</p>
