@@ -33,27 +33,6 @@ So this project start with PHP / SQL / HTML / CCS on my **Linux** Mint laptop. I
 
 When I was happy of my work. I broke all result to convert it into **Ruby On Rails** Framework to have the greatest website on hearth, of course !!
 
-My configuration
-------------------------
-
-### My personal computer
-
-* HP Pavillon G72-a55sf
-* Linux Mint 17.3 Cinnamon 64-bit
-* Ruby 2.1.5p273
-* Rails 4.2.7.1
-* Sublime Text 3
-* Firefox 44
-
-
-### My Raspberry
-* Raspberry Pi B+
-* Raspian
-* Ruby 2.2.1p85
-* Rails 4.0.13
-* VIM
-* SD Card 32go
-
 
 Development
 -----------------------
@@ -68,7 +47,6 @@ Development
 
 * [will_paginate](https://github.com/mislav/will_paginate) for pagination
 * [carrierwave](https://github.com/carrierwaveuploader/carrierwave) & [rmagick](https://github.com/rmagick/rmagick) for upload picture and resizing *( may need to install libmagickwand-dev `sudo apt-get install libmagickwand-dev`)*
-* [pdfkit](https://github.com/pdfkit/pdfkit) to build pdf of recipes *( need to install **wkhtmltopdf** `sudo apt-get install wkhtmltopdf`)*
 * [sitemap_generator](https://github.com/christianhellsten/sitemap-generator) to build automatically a beautiful Site Map `ruby config/sitemap.rb`
 * [authlogic](https://github.com/binarylogic/authlogic) for authentication
 * [unread](https://github.com/ledermann/unread) for notifications system
@@ -81,15 +59,6 @@ Things I want to do
 * [ ] add connection with **Instagram** & **Facebook**
 
 
-License
------------
-
-[MIT](https://opensource.org/licenses/MIT)
-
-
-Author
-----------
-
-[Rousseau Alexandre](https://github.com/madeindjs)
+[License MIT](https://opensource.org/licenses/MIT) | [Rousseau Alexandre](https://github.com/madeindjs)
 
 

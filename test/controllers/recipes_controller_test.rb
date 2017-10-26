@@ -106,11 +106,6 @@ class RecipesControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "should get save" do
-    get :save, id: @recipe
-    assert_response :success
-  end
-
 
   test "should be redirect to signin_path on  Recipes#Edit" do
     get :edit, id: @recipe
