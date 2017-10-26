@@ -51,7 +51,7 @@ class Recipe < ActiveRecord::Base
 
 
   TIME_LABELS = {
-    baking: 'préparation', cooling: 'refrigération', cooking: 'cuisson', rest: 'repos'
+    baking: 'cuisson', cooling: 'refrigération', cooking: 'préparation', rest: 'repos'
   }
 
   # Get a given number of record
