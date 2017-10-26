@@ -17,7 +17,6 @@ SitemapGenerator::Sitemap.create do
   add recipes_shuffle_path
   Recipe.all.each do |recipe|
     add recipe_path(recipe), lastmod: recipe.updated_at
-    add save_recipe_path(recipe.id), lastmod: recipe.updated_at
   end
 
   add users_path

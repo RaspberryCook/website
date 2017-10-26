@@ -8,7 +8,6 @@ class PagesController < ApplicationController
   # GET /pages/home
   # a web page to present Raspberry Cook
   def home
-    @description = 'Des recettes. Partout. Tout plein!'
     @jsonld = RaspberryCookFundation.to_jsonld 'WebSite'
 
     @recipes = Recipe.where.not(image: nil).order(id: 'DESC').limit(3)
@@ -23,7 +22,8 @@ class PagesController < ApplicationController
   # a web page to present Raspberry Cook
   def about
     @title = "A propos de Raspberry Cook"
-    @description = 'Des recettes. Partout. Tout plein!'
+    @description = "Apprenez en d'avantages à propos du projet Raspberry Cook"
+
     @jsonld = RaspberryCookFundation.to_jsonld 'WebSite'
     @recipes = Recipe.where.not(image: nil).order(id: 'DESC').limit(3)
   end
@@ -33,8 +33,9 @@ class PagesController < ApplicationController
   # GET /pages/credits
   # a web page to thank all contributors on this amazing project
   def credits
-    @title = 'credits'
-    @description = 'Un grand merci à toi, lecteur.'
+    @title = 'Crédits'
+    @description = "Raspberry Cook est le fruit de vous tous!"
+
     @jsonld = RaspberryCookFundation.to_jsonld 'WebSite'
   end
 
@@ -43,8 +44,9 @@ class PagesController < ApplicationController
   # GET /pages/feeds
   # allow usser to consult what he missed on Raspberry Cook
   def feeds
-    @title = 'actualités'
+    @title = 'Actualités'
     @description = 'Tout ce que vous n\'avez pas ecore vu'
+
     @recipes_feeds = Recipe.unread_by(current_user).paginate(:page => params[:page]).order('id DESC')
     @unread_comments = Comment.unread_by(current_user)
     Comment.mark_as_read! :all, for: current_user

@@ -8,7 +8,6 @@ RaspberryCook::Application.routes.draw do
   resources :recipes, :only => [:show, :index, :new , :create , :destroy , :edit, :update]
   match 'recipes/:id/fork', as: 'fork_recipe', to: 'recipes#fork', id: /[0-9]+/, via: [:get, :post]
   get 'shuffle', to: 'recipes#shuffle', as: 'recipes_shuffle'
-  get 'recipes/:id/save', as: 'save_recipe', to: 'recipes#save', id: /[0-9]+/
 
   resources :sessions, :only => [:new , :create , :destroy ]
   match '/signin' , to: 'sessions#new', :via => [:get, :post]

@@ -140,18 +140,6 @@ class RecipesController < ApplicationController
   end
 
 
-  # GET /recipes/1/save
-  # Generate a PDF document about this recipe and serve it to user
-  def save
-    @title = "save recipe"
-    @recipe = Recipe.friendly.find(params[:id])
-    html = render_to_string(:action => 'save', :encoding => "UTF-8" , :layout => false)
-    doc = PDFKit.new( html )
-    send_data( doc.to_pdf ,
-               :filename => "#{@recipe.name}.pdf",
-               :disposition => 'attachment')
-  end
-
 
   # GET /recipes/shuffle
   # get a random recipe and redirect user on this

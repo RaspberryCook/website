@@ -53,7 +53,7 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
-    @title = 'editer vos infos'
+    @title = 'Editer vos infos'
     @description = "Dites nous en un peu plus sur vous. Votre p'tit firstname, toussa, toussa."
     @user = User.find(params[:id])
   end

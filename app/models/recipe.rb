@@ -51,7 +51,7 @@ class Recipe < ActiveRecord::Base
 
 
   TIME_LABELS = {
-    baking: 'préparation', cooling: 'refrigération', cooking: 'cuisson', rest: 'repos'
+    baking: 'cuisson', cooling: 'refrigération', cooking: 'préparation', rest: 'repos'
   }
 
   # Get a given number of record
@@ -251,7 +251,8 @@ class Recipe < ActiveRecord::Base
   # @return [Recipe] as original recipe or self if it's the original
   def root_recipe
     if self.root_recipe_id != 0
-      return Recipe.find self.root_recipe_id
+      return Recipe.find self.root_recipe_id rescue ActiveRecord::RecordNotFound
+      return self
     else
       return self
     end
