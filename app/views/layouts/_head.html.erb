@@ -1,6 +1,5 @@
-<% @title = "Raspberry Cook" unless @title %>
-<% @description = "Partage de recettes sous licence libres. Vos recettes sont accessibles gratuitement, partout et sans conditions restrictives." unless @description %>
-<title><%= @title %></title>
 <link rel="icon" type="image/png" href="<%= image_url 'favicon' %>" />
 <%= csrf_meta_tags %>
 <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<%= render 'layouts/ceo' %>
+<meta name=viewport content="width=device-width, initial-scale=1">
