@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:og="http://ogp.me/ns#">
   <head><%= render 'layouts/head' %></head>
   <body>
     <script type="text/javascript">
       // a function to use in .html.erb view to run jquery query when it was loaded
       function defer(method) {
-      	if (window.jQuery)
-      		method();
-      	else
-      		setTimeout(function() { defer(method) }, 50);
+        if (window.jQuery)
+          method();
+        else
+          setTimeout(function() { defer(method) }, 50);
       }
     </script>
     <%= render 'layouts/navigation' %>

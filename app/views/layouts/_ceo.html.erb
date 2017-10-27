@@ -1,0 +1,39 @@
+<% @title = "Raspberry Cook" unless @title %>
+<% @description = "Partage de recettes sous licence libres. Vos recettes sont accessibles gratuitement, partout et sans conditions restrictives." unless @description %>
+<!-- title -->
+<title><%= @title %></title>
+<meta property="og:title" content="<%= @title %>">
+<!-- description -->
+<meta name="description" content="<%= @description %>" />
+<meta property="og:description" content="<%= @description %>" >
+<!-- language -->
+<meta name="language" content="fr_FR" />
+<meta name="og:locale" content="fr_FR" />
+<!-- keys words -->
+<meta 
+	name="keywords" 
+	content="<%= @meta + ', ' if @meta %>cuisine, recettes, partage, creative-common, open-source, libre "
+>
+<!-- my informations -->
+<meta name="email" content="contact@rousseau-alexandre.fr">
+<meta name="author" content="ROUSSEAU Alexandre">
+<meta name="publisher" content="ROUSSEAU Alexandre">
+<!-- social networks ID -->
+<meta property="fb:app_id" content="1672575099670561">
+<!-- Open Graph required fields -->
+<meta property="og:site_name" content="Raspberry Cook">
+<meta property="og:url" content="Raspberry Cook">
+<% if @recipe %>
+  <!-- thumbnail -->
+  <meta property="og:image" content="<%= image_url @recipe.image_url %>" >
+  <meta name="thumbnail" content="<%= image_url @recipe.image_url %>" />
+  <meta property="og:type" content="website"/>
+<% else %>
+  <!-- thumbnail -->
+  <meta name="thumbnail" content="<%= image_url 'og_image' %>" />
+  <meta property="og:image" content="<%= image_url 'og_image' %>">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="500">
+  <meta property="og:image:height" content="500">
+  <meta property="og:type" content="website"/>
+<% end %>

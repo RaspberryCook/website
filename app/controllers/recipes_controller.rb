@@ -10,12 +10,16 @@ class RecipesController < ApplicationController
     @recipe = Recipe.includes(:allergens, :user, :views).friendly.find(params[:id])
     @recipe.add_view
 
+    # regen slug if don't already set
     @recipe.save unless @recipe.slug?
+
 
     respond_to do |format|
       format.json { render json: @recipe  }
       format.html {
         @comment = Comment.new
+
+        # CEO stuff
         @title = @recipe.name
         @jsonld = @recipe.to_jsonld
 
@@ -24,6 +28,13 @@ class RecipesController < ApplicationController
         else
           @description = @recipe.description
         end
+
+        @meta = @recipe.allergens.map{|allergen| allergen.name}.join(', ')
+
+        if @meta
+          @description += '(' + @meta  + ')'
+        end
+
 
         if current_user
           @recipe.mark_as_read! :for => current_user
