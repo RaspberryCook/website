@@ -1,12 +1,11 @@
 <footer class="footer col-md-10 col-md-offset-1">
-
-    <% if Rails.env == "development" and @jsonld %>
-      <h3>JSON-LD</h3>
-      <pre><%= JSON.pretty_generate @jsonld %></pre>
-    <% end %>
-
-    <div class="container">
-
+  <% if Rails.env == "development" and @jsonld %>
+    <h3>meta</h3>
+    <textarea style="width:100%; font-family: Monospace"><%= render 'layouts/meta' %></textarea>
+    <h3>JSON-LD</h3>
+    <textarea style="width:100%; font-family: Monospace"><%= JSON.pretty_generate @jsonld %></textarea>
+  <% end %>
+  <div class="container">
     <ul class="list-inline">
       <li><%= link_to image_tag("icons/fb.svg", alt: 'Logo de Facebook', size: '20'),'https://www.facebook.com/raspberrycook' %></li>
       <li><%= link_to image_tag("icons/intgr.svg", alt: 'Logo d\'Instagram', size: '20'),'https://www.instagram.com/raspberry_cook/' %></li>
@@ -16,7 +15,5 @@
       <li><%= link_to "A propos" , about_path %></li>
       <li><%= link_to "Crédits" , credits_path %></li>
     </ul>
-
   </div>
-
 </footer>
