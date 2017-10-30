@@ -146,7 +146,6 @@ GEM
     net-ssh (4.1.0)
     nokogiri (1.7.0.1)
       mini_portile2 (~> 2.1.0)
-    pdfkit (0.8.2)
     protected_attributes (1.1.3)
       activemodel (>= 4.0.1, < 5.0)
     quiet_assets (1.1.0)
@@ -265,7 +264,6 @@ DEPENDENCIES
   json!
   mysql2
   net-ssh
-  pdfkit
   protected_attributes
   quiet_assets
   rack-cache
