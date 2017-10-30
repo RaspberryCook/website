@@ -50,7 +50,7 @@
       <%= render 'shared/recipes' , recipes: @forked_recipe %>
     </div>
     <p class="home">En un <i>click</i>, la recette vous appartient et vous en faite ce que voulez.</p>
-    <p class="text-center"><%= link_to "Créer une variante de \"#{@root_recipe.name}\" ", fork_recipe_path(id: @root_recipe.id), class: 'btn btn-lg btn-default' %></p>
+    <p class="text-center"><%= link_to "Créer ma variante", fork_recipe_path(id: @root_recipe.id), class: 'btn btn-lg btn-default' %></p>
   </div>
 <% end %>
 <div class="col-xs-12 home" style="background-image: url('<%= image_url "charity" %>')">
@@ -68,6 +68,6 @@
 <script type="text/javascript">
   // only on this view, we delete the padding on the main-container
   defer(function(){
-  	$("#main-container").attr('class', 'main-container container-fluid');
+    $("#main-container").attr('class', 'main-container container-fluid');
   });
 </script>
