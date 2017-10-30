@@ -1,7 +1,7 @@
 <footer class="footer col-md-10 col-md-offset-1">
   <% if Rails.env == "development" and @jsonld %>
     <h3>meta</h3>
-    <textarea style="width:100%; font-family: Monospace"><%= render 'layouts/meta' %></textarea>
+    <textarea style="width:100%; font-family: Monospace"><%= render 'layouts/ceo' %></textarea>
     <h3>JSON-LD</h3>
     <textarea style="width:100%; font-family: Monospace"><%= JSON.pretty_generate @jsonld %></textarea>
   <% end %>
