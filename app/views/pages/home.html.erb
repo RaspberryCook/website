@@ -1,6 +1,8 @@
 <div class="col-xs-12 home first-home" style="background-image: url('<%= image_url "raspberry_cook" %>');background-position: -100px ;  ">
-  <h1>Raspberry Cook</h1>
-  <p class="lead">Partage de recettes libres</p>
+  <div class="title">
+    <h1>Raspberry Cook</h1>
+    <p class="lead">Partage de recettes libres</p>
+  </div>
   <%= bootstrap_form_tag url: recipes_path, method: :get do |f| %>
     <%= f.text_field :name, hide_label: true, append: f.submit('chercher',class: "btn btn-default"), input_group_class: 'input-group-lg' %>
   <% end %>
@@ -10,16 +12,14 @@
         <%= glyphicon 'road' %> Parcourir les recettes
       <% end %>
     </li>
-  </li>
-  <% if current_user %>
-    <li>
-      <%= link_to recipes_path, class: 'btn btn-default' do %>
-        <%= glyphicon 'plus' %> Ajouter une recette
-      <% end %>
-    </li>
-  </li>
-<% end %>
-</ul>
+    <% if current_user %>
+      <li>
+        <%= link_to recipes_path, class: 'btn btn-default' do %>
+          <%= glyphicon 'plus' %> Ajouter une recette
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
 </div>
 <div class="col-xs-12 home" style="background-image: url('<%= image_url "icons/fat_guy" %>')">
   <h2>Un organisme à but gourmand</h2>
@@ -33,7 +33,6 @@
     <%= image_tag 'icons/data', height: 50, alt: 'Logo "pas de collecte de données"', title: 'Protection de votre vie privée' %>
     <%= image_tag 'icons/no_ads', height: 50, alt: 'Logo sans publicité', title: 'Pas de publicité' %>
   </p>
-</div>
 </div>
 <div class="col-xs-12 home" style="background-image: url('<%= image_url "icons/people_eating" %>'); background-position: right">
   <h2>Les recettes du moment</h2>
@@ -50,7 +49,7 @@
       <%= render 'shared/recipes' , recipes: @forked_recipe %>
     </div>
     <p class="home">En un <i>click</i>, la recette vous appartient et vous en faite ce que voulez.</p>
-    <p class="text-center"><%= link_to "Créer une variante de \"#{@root_recipe.name}\" ", fork_recipe_path(id: @root_recipe.id), class: 'btn btn-lg btn-default' %></p>
+    <p class="text-center"><%= link_to "Créer ma variante", fork_recipe_path(id: @root_recipe.id), class: 'btn btn-lg btn-default' %></p>
   </div>
 <% end %>
 <div class="col-xs-12 home" style="background-image: url('<%= image_url "charity" %>')">
@@ -68,6 +67,8 @@
 <script type="text/javascript">
   // only on this view, we delete the padding on the main-container
   defer(function(){
-  	$("#main-container").attr('class', 'main-container container-fluid');
+    var container = $("#main-container");
+    container.attr('class', 'main-container container-fluid');
+    container.css('padding', '0px');
   });
 </script>

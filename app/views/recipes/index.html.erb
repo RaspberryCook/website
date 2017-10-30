@@ -1,68 +1,52 @@
 <div class="page-header">
-	<h1>Bibliothèque</h1>
+  <h1>Bibliothèque</h1>
 </div>
-
-
 <!-- buttons -->
-<div class="row">
-
-	<div id="recipe-search-tools">
-		<ul class="nav nav-pills" >
-			<li><%= link_to 'Toutes', recipes_path %></li>
-			<% Recipe.types.each do |type| %>
-				<li><%= link_to type, recipes_path(type: type) %></li>
-			<% end %>
-		</ul>
-
-		<div class="btn-group">
-
-			<div class="btn-group" role="group">
-				<button id="filter" type="button" class="btn btn-default"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> Recherche</button>
-			</div>
-
-			<!-- Vider mon frigo -->
-			<div class="btn-group" role="group">
-			<%= link_to fridge_path, class: "btn btn-default" do %>
-				<span class="glyphicon glyphicon-piggy-bank" aria-hidden="true"></span> Vider mon frigo
-			<% end %>
-			</div>
-
-			<!-- Recette au hasard -->
-			<div class="btn-group" role="group">
-			<%= link_to recipes_shuffle_path, class: "btn btn-default" do %>
-				<span class="glyphicon glyphicon-random" aria-hidden="true"></span> Recette au hasard
-			<% end %>
-			</div>
-
-			<!-- Ajouter un recette -->
-			<div class="btn-group" role="group">
-			<%= link_to new_recipe_path, class: "btn btn-default" do %>
-				<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Ajouter une recette
-			<% end %>
-			</div>
-		</div>
-
-	</div>
+<div class="col-xs-12">
+  <div id="recipe-search-tools">
+    <ul class="nav nav-pills" >
+      <li><%= link_to 'Toutes', recipes_path %></li>
+      <% Recipe.types.each do |type| %>
+        <li><%= link_to type, recipes_path(type: type) %></li>
+      <% end %>
+    </ul>
+    <div class="btn-group">
+      <div class="btn-group" role="group">
+        <button id="filter" type="button" class="btn btn-default"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> Recherche</button>
+      </div>
+      <!-- Vider mon frigo -->
+      <div class="btn-group" role="group">
+        <%= link_to fridge_path, class: "btn btn-default" do %>
+          <span class="glyphicon glyphicon-piggy-bank" aria-hidden="true"></span> Vider mon frigo
+        <% end %>
+      </div>
+      <!-- Recette au hasard -->
+      <div class="btn-group" role="group">
+        <%= link_to recipes_shuffle_path, class: "btn btn-default" do %>
+          <span class="glyphicon glyphicon-random" aria-hidden="true"></span> Recette au hasard
+        <% end %>
+      </div>
+      <!-- Ajouter un recette -->
+      <div class="btn-group" role="group">
+        <%= link_to new_recipe_path, class: "btn btn-default" do %>
+          <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Ajouter une recette
+        <% end %>
+      </div>
+    </div>
+  </div>
 </div>
-
-
-<div class="row">
-	<%= render 'search_form' %>
+<div class="col-xs-12">
+  <%= render 'search_form' %>
 </div>
-
-<div class="row">
-	<%= render 'shared/recipes' , :recipes => @recipes %>
+<div class="col-xs-12">
+  <%= render 'shared/recipes' , :recipes => @recipes %>
 </div>
-
-<div class="row">
-	<div class="col-xs-12">
-		<%= will_paginate @recipes , renderer: BootstrapPagination::Rails, class: "pagination" %>
-	</div>
+<div class="col-xs-12">
+  <%= will_paginate @recipes , renderer: BootstrapPagination::Rails, class: "pagination" %>
 </div>
-
-<div class="row">
-	<p class="alert alert-info" role="alert">
-		Trop de choix? Trouvez des <%= link_to "recettes avec ce qu'il vous reste dans votre frigo" , fridge_path, class: 'alert-link' %>
-		ou bien laissez vous tenter par <%= link_to "une recette au hasard" , recipes_shuffle_path, class: 'alert-link' %>
-	</p>
+<div class="col-xs-12">
+  <p class="alert alert-info" role="alert">
+    Trop de choix? Trouvez des <%= link_to "recettes avec ce qu'il vous reste dans votre frigo" , fridge_path, class: 'alert-link' %>
+    ou bien laissez vous tenter par <%= link_to "une recette au hasard" , recipes_shuffle_path, class: 'alert-link' %>
+  </p>
 </div>
