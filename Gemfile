@@ -43,20 +43,9 @@ gem 'rack-cache'
 gem 'sitemap_generator'
 gem 'whenever', :require => false
 
+gem 'openfoodfacts'
 
-group :development , :test do
-  # Use Capistrano for deployment
-  gem 'net-ssh'
-  gem 'capistrano',   require: false
-  gem 'capistrano-rvm',   require: false
-  gem 'capistrano-rails',   require: false
-  gem 'capistrano-bundler',   require: false
-  gem 'quiet_assets'
-  gem 'simplecov', :require => false
 
-  gem 'faker', github: 'stympy/faker'
-  gem 'wkhtmltopdf-binary' # this disn't work on raspberry pi
-end
 
 gem 'authlogic'
 
@@ -71,18 +60,28 @@ gem 'sitemap_generator',        require: false
 gem 'carrierwave'
 gem 'rmagick' # sudo apt-get install libmagickwand-dev
 
-#to build pdf
-
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder'
 
-
 # to slugify routes
 gem 'friendly_id', '~> 5.1.0'
 
+group :development , :test do
+  # Use Capistrano for deployment
+  gem 'net-ssh'
+  gem 'capistrano',   require: false
+  gem 'capistrano-rvm',   require: false
+  gem 'capistrano-rails',   require: false
+  gem 'capistrano-bundler',   require: false
+  gem 'quiet_assets'
+  gem 'simplecov', :require => false
+
+  gem 'faker', github: 'stympy/faker'
+  gem 'wkhtmltopdf-binary' # this disn't work on raspberry pi
+end
 
 group :production do
   gem 'mysql2'  #need to install libmysqlclient-dev
