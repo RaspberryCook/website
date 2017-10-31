@@ -1,0 +1,64 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Open food fact:</strong>
+  <%= @ingredient.open_food_fact_id %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @ingredient.name %>
+</p>
+
+<p>
+  <strong>Quantity:</strong>
+  <%= @ingredient.quantity %>
+</p>
+
+<p>
+  <strong>Sugars:</strong>
+  <%= @ingredient.sugars %>
+</p>
+
+<p>
+  <strong>Sodium:</strong>
+  <%= @ingredient.sodium %>
+</p>
+
+<p>
+  <strong>Carbohydrates:</strong>
+  <%= @ingredient.carbohydrates %>
+</p>
+
+<p>
+  <strong>Proteins:</strong>
+  <%= @ingredient.proteins %>
+</p>
+
+<p>
+  <strong>Fat:</strong>
+  <%= @ingredient.fat %>
+</p>
+
+<p>
+  <strong>Saturated fat:</strong>
+  <%= @ingredient.saturated_fat %>
+</p>
+
+<p>
+  <strong>Salt:</strong>
+  <%= @ingredient.salt %>
+</p>
+
+<p>
+  <strong>Fiber:</strong>
+  <%= @ingredient.fiber %>
+</p>
+
+<p>
+  <strong>Energy:</strong>
+  <%= @ingredient.energy %>
+</p>
+
+<%= link_to 'Edit', edit_ingredient_path(@ingredient) %> |
+<%= link_to 'Back', ingredients_path %>

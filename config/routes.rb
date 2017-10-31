@@ -1,5 +1,6 @@
 RaspberryCook::Application.routes.draw do
 
+  resources :ingredients
   resources :comments, :only => [:new , :create , :update, :destroy , :edit]
 
   resources :users

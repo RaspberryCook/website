@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170628103711) do
+ActiveRecord::Schema.define(version: 20171031115557) do
 
   create_table "allergens", force: :cascade do |t|
     t.string   "name"
@@ -35,6 +35,23 @@ ActiveRecord::Schema.define(version: 20170628103711) do
     t.datetime "updated_at"
     t.integer  "recipe_id"
     t.integer  "rate",       default: 5
+  end
+
+  create_table "ingredients", force: :cascade do |t|
+    t.integer  "open_food_fact_id"
+    t.string   "name"
+    t.float    "quantity"
+    t.float    "sugars"
+    t.float    "sodium"
+    t.float    "carbohydrates"
+    t.float    "proteins"
+    t.float    "fat"
+    t.float    "saturated_fat"
+    t.float    "salt"
+    t.float    "fiber"
+    t.float    "energy"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
   end
 
   create_table "read_marks", force: :cascade do |t|
@@ -73,6 +90,13 @@ ActiveRecord::Schema.define(version: 20170628103711) do
   end
 
   add_index "recipes", ["slug"], name: "index_recipes_on_slug", unique: true
+
+  create_table "tags", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "recipe_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "username"

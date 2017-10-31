@@ -1,0 +1,29 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  open_food_fact_id: 1
+  name: MyString
+  quantity: 1.5
+  sugars: 1.5
+  sodium: 1.5
+  carbohydrates: 1.5
+  proteins: 1.5
+  fat: 1.5
+  saturated_fat: 1.5
+  salt: 1.5
+  fiber: 1.5
+  energy: 1.5
+
+two:
+  open_food_fact_id: 1
+  name: MyString
+  quantity: 1.5
+  sugars: 1.5
+  sodium: 1.5
+  carbohydrates: 1.5
+  proteins: 1.5
+  fat: 1.5
+  saturated_fat: 1.5
+  salt: 1.5
+  fiber: 1.5
+  energy: 1.5

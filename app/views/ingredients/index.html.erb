@@ -1,0 +1,49 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Ingredients</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Open food fact</th>
+      <th>Name</th>
+      <th>Quantity</th>
+      <th>Sugars</th>
+      <th>Sodium</th>
+      <th>Carbohydrates</th>
+      <th>Proteins</th>
+      <th>Fat</th>
+      <th>Saturated fat</th>
+      <th>Salt</th>
+      <th>Fiber</th>
+      <th>Energy</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @ingredients.each do |ingredient| %>
+      <tr>
+        <td><%= ingredient.open_food_fact_id %></td>
+        <td><%= ingredient.name %></td>
+        <td><%= ingredient.quantity %></td>
+        <td><%= ingredient.sugars %></td>
+        <td><%= ingredient.sodium %></td>
+        <td><%= ingredient.carbohydrates %></td>
+        <td><%= ingredient.proteins %></td>
+        <td><%= ingredient.fat %></td>
+        <td><%= ingredient.saturated_fat %></td>
+        <td><%= ingredient.salt %></td>
+        <td><%= ingredient.fiber %></td>
+        <td><%= ingredient.energy %></td>
+        <td><%= link_to 'Show', ingredient %></td>
+        <td><%= link_to 'Edit', edit_ingredient_path(ingredient) %></td>
+        <td><%= link_to 'Destroy', ingredient, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Ingredient', new_ingredient_path %>

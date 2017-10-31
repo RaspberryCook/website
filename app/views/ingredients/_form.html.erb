@@ -1,0 +1,65 @@
+<%= form_for(@ingredient) do |f| %>
+  <% if @ingredient.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@ingredient.errors.count, "error") %> prohibited this ingredient from being saved:</h2>
+
+      <ul>
+      <% @ingredient.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :open_food_fact_id %><br>
+    <%= f.number_field :open_food_fact_id %>
+  </div>
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :quantity %><br>
+    <%= f.text_field :quantity %>
+  </div>
+  <div class="field">
+    <%= f.label :sugars %><br>
+    <%= f.text_field :sugars %>
+  </div>
+  <div class="field">
+    <%= f.label :sodium %><br>
+    <%= f.text_field :sodium %>
+  </div>
+  <div class="field">
+    <%= f.label :carbohydrates %><br>
+    <%= f.text_field :carbohydrates %>
+  </div>
+  <div class="field">
+    <%= f.label :proteins %><br>
+    <%= f.text_field :proteins %>
+  </div>
+  <div class="field">
+    <%= f.label :fat %><br>
+    <%= f.text_field :fat %>
+  </div>
+  <div class="field">
+    <%= f.label :saturated_fat %><br>
+    <%= f.text_field :saturated_fat %>
+  </div>
+  <div class="field">
+    <%= f.label :salt %><br>
+    <%= f.text_field :salt %>
+  </div>
+  <div class="field">
+    <%= f.label :fiber %><br>
+    <%= f.text_field :fiber %>
+  </div>
+  <div class="field">
+    <%= f.label :energy %><br>
+    <%= f.text_field :energy %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
