@@ -1,17 +1,18 @@
 <h1 class="recipe"><%= @recipe.name  %></h1>
-<%= bootstrap_form_for @recipe , :html => {:multipart => true } do |f| %>
-  <%= render 'shared/error_messages', :object => f.object %>
+<%= bootstrap_form_for @recipe , html: {multipart: true} do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+  <!-- Informations principales -->
   <div class="col-xs-12">
     <div class="panel panel-default">
       <div class="panel-heading">Informations principales</div>
       <div class="panel-body">
-        <!-- if the recipe is forked, insert a text field for variant_name of another-->
         <%= f.text_field :variant_name , placeholder: "ex: Sans fruits rouges" , label: "Nom de la variante" if @recipe.forked? %>
         <%= f.text_field :description , placeholder: "entrez une description" %>
         <%= f.file_field :image %>
       </div>
     </div>
   </div>
+  <!-- A propos de la recette -->
   <div class="col-xs-12">
     <div class="panel panel-default">
       <div class="panel-heading">A propos de la recette</div>
@@ -21,6 +22,7 @@
       </div>
     </div>
   </div>
+  <!-- Temps -->
   <div class="col-xs-12">
     <div class="panel panel-default">
       <div class="panel-heading">Temps</div>
@@ -31,6 +33,22 @@
       </div>
     </div>
   </div>
+  <!-- ingredients -->
+  <div class="col-xs-12">
+    <div class="panel panel-default">
+      <div class="panel-heading">Ingrédients <%= link_to 'Open Food Facts', 'https://fr.openfoodfacts.org' %></div>
+      <div class="panel-body">
+        <%= alert 'info', 'Liez vos vos recette au produits OpenFoodFact et estimez l\'apport énergétique de vos recettes ' %>
+        <%= text_field_tag 'ingredient[name]' , nil,
+                placeholder: "courgettes",
+                label: "Ingrédients", 
+                class: 'form-control',
+                data: {url: search_ingredients_path}
+        %>
+      </div>
+    </div>
+  </div>
+  <!-- Contenu -->
   <div class="col-xs-12">
     <div class="panel panel-default">
       <div class="panel-heading">Contenu</div>
@@ -40,6 +58,7 @@
       </div>
     </div>
   </div>
+  <!-- Allergènes -->
   <div class="col-xs-12">
     <div class="panel panel-default">
       <div class="panel-heading">Allergènes</div>

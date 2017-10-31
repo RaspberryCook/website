@@ -1,16 +1,16 @@
 class IngredientsController < ApplicationController
-  before_action :set_ingredient, only: [:show, :edit, :update, :destroy]
+  before_action :set_ingredient, only: [:edit, :update, :destroy]
 
-  # GET /ingredients
-  # GET /ingredients.json
-  def index
-    @ingredients = Ingredient.all
+
+  def search
+    ingredient_params
+
+    products = Openfoodfacts::Product.search ingredient_params[:name]
+
+    render json: products.map{|product| product.product_name}
   end
 
-  # GET /ingredients/1
-  # GET /ingredients/1.json
-  def show
-  end
+
 
   # GET /ingredients/new
   def new
@@ -62,13 +62,13 @@ class IngredientsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_ingredient
-      @ingredient = Ingredient.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_ingredient
+    @ingredient = Ingredient.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def ingredient_params
-      params.require(:ingredient).permit(:open_food_fact_id, :name, :quantity, :sugars, :sodium, :carbohydrates, :proteins, :fat, :saturated_fat, :salt, :fiber, :energy)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def ingredient_params
+    params.require(:ingredient).permit(:open_food_fact_id, :name, :quantity, :sugars, :sodium, :carbohydrates, :proteins, :fat, :saturated_fat, :salt, :fiber, :energy)
+  end
 end

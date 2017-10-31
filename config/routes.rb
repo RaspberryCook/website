@@ -1,5 +1,6 @@
 RaspberryCook::Application.routes.draw do
 
+  post '/ingredients/search' ,   to: 'ingredients#search', as: 'search_ingredients'
   resources :ingredients
   resources :comments, :only => [:new , :create , :update, :destroy , :edit]
 
