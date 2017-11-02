@@ -22,7 +22,6 @@
         <%= render "users/image", user: @recipe.user %>
       <% end %>
       <h1 class="recipe"><%= @recipe.pretty_name %></h1>
-      <pre><%=  %></pre>
       <% if @recipe.rate.to_i != 0 %>
         <%= render 'shared/stars', stars: @recipe.rate.to_i %>
       <% end %>

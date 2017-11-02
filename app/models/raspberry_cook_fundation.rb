@@ -1,6 +1,6 @@
 module RaspberryCookFundation
 
-  RASPERRY_COOK_URL = 'http://raspberry-cook.fr'
+  RASPERRY_COOK_URL = 'https://raspberry-cook.fr'
 
   # Create JSONLD of Raspberry Cook
   #
@@ -47,7 +47,7 @@ module RaspberryCookFundation
 
   def self.contact_point
     {
-      email: 'a.rousseau@protonmail.com',
+      email: 'contact@rousseau-alexandre.fr',
       contactType: 'customer service',
       url: 'http://rousseau-alexandre.fr'
     }

@@ -9,7 +9,6 @@ gem 'json', github: 'flori/json', branch: 'v1.8'
 
 #Database
 gem 'sqlite3'# Use sqlite3 as the database for Active Record
-gem 'mysql2'  #need to install libmysqlclient-dev
 
 #for avatar
 gem 'gravatar'
@@ -83,6 +82,12 @@ gem 'jbuilder'
 
 # to slugify routes
 gem 'friendly_id', '~> 5.1.0'
+
+
+group :production do
+  gem 'mysql2'  #need to install libmysqlclient-dev
+end
+
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
