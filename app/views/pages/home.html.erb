@@ -19,6 +19,18 @@
     <% end %>
   </ul>
 </div>
+<!-- Les recettes du moment -->
+<div class="col-xs-12 home" style="background-image: url('<%= image_url "icons/people_eating" %>'); background-position: right">
+  <h2>Les recettes du moment</h2>
+  <div class="col-xs-12">
+    <%= render 'shared/recipes' , recipes: @recipes %>
+  </div>
+  <p class="text-center">
+    <%= link_to recipes_path, class: 'btn btn-lg btn-default' do %>
+      <%= glyphicon 'road' %> Explorez les autres recettes
+    <% end %>
+  </p>
+</div>
 <div class="col-xs-12 home" style="background-image: url('<%= image_url "icons/fat_guy" %>')">
   <h2>Un organisme à but gourmand</h2>
   <blockquote>
@@ -32,15 +44,8 @@
     <%= image_tag 'icons/no_ads', height: 50, alt: 'Logo sans publicité', title: 'Pas de publicité' %>
   </p>
 </div>
-<div class="col-xs-12 home" style="background-image: url('<%= image_url "icons/people_eating" %>'); background-position: right">
-  <h2>Les recettes du moment</h2>
-  <div class="col-xs-12">
-    <%= render 'shared/recipes' , recipes: @recipes %>
-  </div>
-  <p class="text-center"><%= link_to "Explorez les autres recettes", recipes_path, class: 'btn btn-lg btn-default' %></p>
-</div>
 <% if @root_recipe %>
-  <div class="col-xs-12 home" style="background-image: url('<%= image_url "icons/salt" %>'); background-position: -200px">
+  <div class="col-xs-12 home" style="background-image: url('<%= image_url "icons/salt" %>'); background-position: right">
     <h2>Ajoutez votre grain de sel</h2>
     <p class="home">Toutes les recettes peuvent être améliorées à l'aide de <strong>variantes</strong>. Voici un exemple:</p>
     <div class="col-xs-12">

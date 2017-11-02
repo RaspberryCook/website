@@ -10,7 +10,7 @@ class PagesController < ApplicationController
   def home
     @jsonld = RaspberryCookFundation.to_jsonld 'WebSite'
 
-    @recipes = Recipe.where.not(image: nil).order(id: 'DESC').limit(3)
+    @recipes = Recipe.order(id: 'DESC').limit(20)
     forked_recipe = Recipe.where.not(root_recipe_id: 0).order(id: 'DESC').take
     @root_recipe = forked_recipe.root_recipe if forked_recipe
     @forked_recipe = [@root_recipe, forked_recipe]
