@@ -1,5 +1,5 @@
 # Set the host name for URL creation
-SitemapGenerator::Sitemap.default_host = 'http://raspberry-cook.fr'
+SitemapGenerator::Sitemap.default_host = 'https://raspberry-cook.fr'
 
 SitemapGenerator::Sitemap.create do
   add home_path
