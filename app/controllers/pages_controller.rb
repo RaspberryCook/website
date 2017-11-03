@@ -1,6 +1,7 @@
 #
 class PagesController < ApplicationController
-  before_filter :authenticate, :only =>  [:feeds]
+  before_filter :authenticate, only:  [:feeds]
+  before_filter :set_last_recipe_cache, only: [:home]
 
 
 

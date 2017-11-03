@@ -45,6 +45,7 @@ class RecipesController < ApplicationController
         else current_user
           flash[:info] = "%s ou %s pour faire vivre Raspberry Cook <3." % [view_context.link_to("Connectez-vous", signin_path), view_context.link_to("créez un compte", signup_path)]
         end
+        fresh_when last_modified: @recipe.updated_at.utc, etag: @recipe
         render "show"
       }
     end
@@ -113,6 +114,10 @@ class RecipesController < ApplicationController
     end
 
     @recipes = Recipe.search params
+
+
+
+
     respond_to do |format|
       format.html {
         @jsonld = {

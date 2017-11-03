@@ -121,12 +121,12 @@
   <% if @recipe.forked_recipes.length > 0 %>
     <div class="col-xs-12">
       <h2>Variantes disponnibles</h2>
-      <%= render 'shared/recipes' , recipes: @recipe.forked_recipes %>
+      <%= render 'shared/recipes' , recipes: @recipe.forked_recipes, cached: true %>
     </div>
   <% elsif @recipe.forked?  %>
     <div class="col-xs-12">
       <h2>Recette originelle</h2>
-      <%= render 'shared/recipe' , recipe: @recipe.root_recipe %>
+      <%= render 'shared/recipe' , recipe: @recipe.root_recipe, cached: true %>
     </div>
   <% end %>
 </div>
@@ -134,13 +134,13 @@
 <div class="row">
   <div class="col-xs-12 recipe-comments">
     <h2>Commentaires</h2>
-    <%= render 'shared/comments', comments: @recipe.comments %>
+    <%= render 'shared/comments', comments: @recipe.comments, cached: true %>
   </div>
 </div>
 <div class="row">
   <div class="col-xs-12">
     <h3>Vous pouriez aussi aimer</h3>
-    <%= render 'shared/recipes' , recipes: @recipes.to_a %>
+    <%= render 'shared/recipes' , recipes: @recipes.to_a, cached: true %>
   </div>
   <!--/ .col-xs-12 (buttons)-->
 </div>

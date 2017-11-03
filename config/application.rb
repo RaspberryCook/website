@@ -24,6 +24,8 @@ module RaspberryCook
 
     config.active_record.raise_in_transactional_callbacks = true
 
+    config.cache_store = :file_store, "hello"
+
 
     # config.middleware.use PDFKit::Middleware, :print_media_type => true , :page_size => 'A4'
   end

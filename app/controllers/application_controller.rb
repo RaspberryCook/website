@@ -4,6 +4,19 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
 
 
+  protected
+
+
+  # Set last modification recipe as ETAG & last_modified date
+  def set_last_recipe_cache
+    sql = "SELECT updated_at from recipes ORDER BY updated_at DESC LIMIT 1"
+    result_last_mods = ActiveRecord::Base.connection.execute(sql)
+    last_mod = result_last_mods[0]['updated_at']
+    last_mod_utc = DateTime.parse(last_mod).utc
+    fresh_when last_modified: DateTime.parse(last_mod).utc, etag: Digest::MD5.hexdigest(last_mod), public: true
+  end
+
+
   private
 
   def current_user_session
