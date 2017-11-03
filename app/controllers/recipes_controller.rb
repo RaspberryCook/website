@@ -2,8 +2,9 @@ require 'uri'
 
 # Recipe controller permit to CRUD recipes
 class RecipesController < ApplicationController
-  before_filter :authenticate, :only =>  [:destroy , :update , :edit ,:new, :add, :create, :fork, :import]
-  before_filter :check_recipe_owner, :only =>  [:destroy , :update , :edit]
+  before_filter :authenticate, only: [:destroy , :update , :edit ,:new, :add, :create, :fork, :import]
+  before_filter :check_recipe_owner, only: [:destroy , :update , :edit]
+
 
   # GET /recipes/1
   def show
@@ -17,6 +18,7 @@ class RecipesController < ApplicationController
     respond_to do |format|
       format.json { render json: @recipe  }
       format.html {
+        @recipes = Recipe.random(3)
         @comment = Comment.new
 
         # CEO stuff
@@ -189,7 +191,7 @@ class RecipesController < ApplicationController
 
   def check_recipe_owner
     @recipe = Recipe.friendly.find(params[:id])
-    redirect_to root_path , :info => "Petit-coquin!" unless current_user.id == @recipe.user_id
+    redirect_to root_path , info: "Petit-coquin!" unless current_user.id == @recipe.user_id
   end
 
 
