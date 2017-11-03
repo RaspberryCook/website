@@ -24,7 +24,6 @@ RaspberryCook::Application.routes.draw do
   get '/legal', to: 'pages#legal', as: 'legal'
   get '/about', to: 'pages#about', as: 'about'
   get '/feeds', to: 'pages#feeds', as: 'feeds'
-  get '/infos', to: 'pages#infos', as: 'infos'
   get '/credits', to: 'pages#credits', as: 'credits'
 
   root to: 'pages#home'

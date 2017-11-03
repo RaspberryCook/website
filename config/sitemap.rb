@@ -3,7 +3,6 @@ SitemapGenerator::Sitemap.default_host = 'https://raspberry-cook.fr'
 
 SitemapGenerator::Sitemap.create do
   add home_path
-  add infos_path
   add credits_path
   add about_path
 
