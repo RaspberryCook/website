@@ -4,4 +4,4 @@
 # User-agent: *
 # Disallow: /
 
-Sitemap: http://raspberry-cook.fr/sitemap.xml.gz
+Sitemap: https://raspberry-cook.fr/sitemap.xml.gz
