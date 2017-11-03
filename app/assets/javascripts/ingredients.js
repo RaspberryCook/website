@@ -1,17 +1,31 @@
-$('#ingredient_name').on('input', function(e){
-    var input = $(this);
-    var url = input.attr('data-url');
-    $.ajax({
+var input = $('#ingredient_name');
 
-        url: url,
-        type: 'POST',
-        data: {
-            "ingredient[name]": input.val(),
-        },
-        success: function(data){
-            input.autocomplete({
-                source: data
-            })
-        }
-    });
+
+input.autocomplete({
+    source: [],
+    response: function(event, ui){
+        $.ajax({
+
+            url: input.attr('data-url'),
+            type: 'POST',
+            data: {
+                "ingredient[name]": input.val(),
+            },
+            success: function(products){
+
+                var productsNames = [];
+
+                products.forEach(function(product) {
+                  productsNames.push({label: product.name, value: product._id});
+                });
+
+
+                input.autocomplete({
+                    source: productsNames
+                });
+            }
+        });// ajax
+    }// end change
 });
+
+

@@ -5,9 +5,9 @@ class IngredientsController < ApplicationController
   def search
     ingredient_params
 
-    products = Openfoodfacts::Product.search ingredient_params[:name]
+    products = Openfoodfacts::Product.search(ingredient_params[:name])
 
-    render json: products.map{|product| product.product_name}
+    render json: products.map{|product| { id: product._id, name: product.product_name } }
   end
 
 
