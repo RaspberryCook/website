@@ -44,5 +44,5 @@
 </nav>
 <!-- .navbar-form -->
 <%= form_tag  recipes_path, method: "GET", id: "search-recipe-form", class: 'form-inline',role: "search" do  %>
-  <%= text_field_tag 'name' , nil, :placeholder => "rechercher", class: 'form-control' %>
+  <%= text_field_tag 'name' , nil, :placeholder => "rechercher", class: 'form-control', id: 'navigation_name_search' %>
 <% end %><!--/.navbar-form -->

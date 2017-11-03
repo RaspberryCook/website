@@ -1,5 +1,5 @@
 <div class="sheet">
-  <!-- times -->
+  <!-- TIMES -->
   <% if @recipe.sum_of_times != 0%>
     <div class="row">
       <div class="col-xs-12">
@@ -8,27 +8,19 @@
             <% time_value = @recipe.send time %>
             <div class="recipe-time progress-bar progress-bar-<%= color %>" style="width: <%= @recipe.percentage_time time %>%">
               <span><span class="recipe-time-title"><%= Recipe::TIME_LABELS[time.to_sym] %></span> <%= @recipe.send time %>"</span>
-            </div>
+            </div><!-- progress-bar -->
           <% end %>
-        </div>
+        </div><!-- progress-bar -->
       </div>
-    </div>
-    <!-- end of image-->
-  <% end %>
-  <!-- title of recipe -->
+    </div><!-- row -->
+  <% end %><!-- END OF TIMES-->
+  <!-- TITLE OF RECIPE -->
   <div class="row page-header recipe">
     <div class="col-xs-12 <%= 'col-md-8' if @recipe.has_image? %>">
-      <% if @recipe.user %>
-        <%= render "users/image", user: @recipe.user %>
-      <% end %>
+      <%= render "users/image", user: @recipe.user if @recipe.user %>
       <h1 class="recipe"><%= @recipe.pretty_name %></h1>
-      <% if @recipe.rate.to_i != 0 %>
-        <%= render 'shared/stars', stars: @recipe.rate.to_i %>
-      <% end %>
-      <!-- allergens -->
-      <p class="lead">
-        <%= render 'recipes/allergens', recipe: @recipe %>
-      </p>
+      <%= render 'shared/stars', stars: @recipe.rate.to_i if @recipe.rate.to_i != 0 %>
+      <p class="lead"><%= render 'recipes/allergens', recipe: @recipe %></p>
       <p><%= @recipe.description %></p>
     </div>
     <!-- image -->
@@ -37,11 +29,11 @@
         <%= image_tag @recipe.true_image_url , class: "img img-responsive full-width recipe-image"%>
       </div>
     <% end %>
-  </div>
-  <!-- ingredients and steps -->
+  </div><!-- page-header -->
+  <!-- INGREDIENTS AND STEPS -->
   <div class="row">
     <div class="col-sm-4">
-      <!-- ingrédients -->
+      <!-- INGREDIENTS -->
       <% if @recipe.ingredients %>
         <div id="ingredients" class="row">
           <div class="col-xs-12">
@@ -55,27 +47,23 @@
             </ul>
           </div>
         </div>
-        <!-- #ingredients -->
-      <% end %><!--/ ingrédients -->
+      <% end %><!-- INGREDIENTS -->
+      <!-- INFORMATIONS -->
       <div id="informations">
         <h2 class="visible-md-block visible-sm-block">Informations</h2>
         <div class="recipe-information col-sm-12 col-xs-3">
-          <strong>Vues</strong>
-          <%= image_tag 'icons/views.svg', class: 'views', alt: "Lunettes", height: 60 %><br/><%= @recipe.count_views %> fois
+          <strong>Vues</strong><%= image_tag 'icons/views.svg', class: 'views', alt: "Lunettes", height: 60 %><br/><%= @recipe.count_views %> fois
           </div>
           <div class="recipe-information col-sm-12 col-xs-3">
-            <strong>Type</strong>
-            <%= recipe_label_type @recipe  %>
+            <strong>Type</strong><%= recipe_label_type @recipe  %>
           </div>
           <div class="recipe-information col-sm-12 col-xs-3">
-            <strong>Saison</strong>
-            <%= recipe_label_season @recipe %>
+            <strong>Saison</strong><%= recipe_label_season @recipe %>
           </div>
         </div>
-        <!-- / #informations -->
+        <!-- INFORMATIONS -->
       </div>
-      <!--/ .col-sm-3 -->
-      <!-- steps -->
+      <!-- STEPS -->
       <% if @recipe.steps %>
         <div id="steps" class="col-sm-8">
           <h2>Préparation</h2>
@@ -85,7 +73,7 @@
           <p class="alert alert-info" role="alert">Cette recette vous a paru trop grasse? <%= link_to "Créez votre variante" , fork_recipe_path( :id => @recipe.id), class: 'alert-link' %>!</p>
         </div>
         <!--/ #steps -->
-      <% end %>
+      <% end %><!-- STEPS -->
     </div>
   </div>
   <!-- actions buttons -->
