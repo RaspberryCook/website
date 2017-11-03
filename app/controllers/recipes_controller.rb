@@ -115,9 +115,6 @@ class RecipesController < ApplicationController
 
     @recipes = Recipe.search params
 
-
-
-
     respond_to do |format|
       format.html {
         @jsonld = {

@@ -132,7 +132,7 @@ class Recipe < ActiveRecord::Base
     sql_query = sql_query_parts.join ' AND '
 
 
-    self.joins("
+    self.includes(:user, :comments).joins("
       LEFT JOIN allergens_recipes ON allergens_recipes.recipe_id = recipes.id
       LEFT JOIN allergens ON allergens_recipes.allergen_id = allergens.id
     ").where(sql_query , *params_query).group(:id).paginate( :page => params[:page] ).order('created_at DESC')
