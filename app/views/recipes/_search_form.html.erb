@@ -10,9 +10,12 @@
       %>
       <div class="allergen well well-sm col-xs-6 col-sm-4 col-md-3 <%= 'checked' if checked %>">
         <%= label_tag input_name do %>
-          <span class="col-xs-4 picture">
-            <%= image_tag "allergens/#{allergen.icon}", size: '50', alt: allergen.name %>
-          </span>
+          <% allergen_image_path = "allergens/#{allergen.icon}" %>
+          <% unless Rails.application.assets.find_asset(allergen_image_path).nil? %>
+            <span class="col-xs-4 picture">
+              <%= image_tag allergen_image_path, size: '50', alt: allergen.name %>
+            </span>
+          <% end %>
           <span class="col-xs-8 text">
             <%= allergen.name %>
           </span>
