@@ -362,6 +362,9 @@ class Recipe < ActiveRecord::Base
       author =  RaspberryCookFundation.to_jsonld 'Organization'
     end
 
+
+    comments_count = self.comments.count
+
     jsonld = {
       "@context" => "http://schema.org/",
       "@type": "Recipe",
@@ -390,7 +393,7 @@ class Recipe < ActiveRecord::Base
       aggregateRating: {
         "@type" => "AggregateRating",
         ratingValue: self.rate,
-        reviewCount: self.comments.count,
+        reviewCount: comments_count,
         bestRating: 5,
         worstRating: 1
       },
@@ -405,11 +408,12 @@ class Recipe < ActiveRecord::Base
     jsonld[:aggregateRating] = {
       "@context" => "http://schema.org/",
       "@type" => "AggregateRating",
+      # TODO: create uniq SQL query instead of load each objects
       ratingValue: self.rate,
-      reviewCount: self.comments.count,
+      reviewCount: comments_count,
       bestRating: 5,
       worstRating: 1
-    } if self.comments.count != 0
+    } if comments_count != 0
 
     return jsonld
   end
