@@ -231,10 +231,10 @@ class Recipe < ActiveRecord::Base
   #
   # @return [Integer] as rate
   def rate
-    sql = "SELECT AVG(rate) as rate FROM comments WHERE recipe_id = :recipe_id"
+    sql = "SELECT AVG(rate) as rate FROM comments WHERE recipe_id = ?"
     statement  = ActiveRecord::Base.connection.raw_connection.prepare sql
-    results = statement.execute({recipe_id: self.id})
-    average = results.first['rate'].to_i
+    result = statement.execute([self.id]).first
+    average = result == [nil] ? 0 : result['rate'].to_i
     statement.close
     return average
   end
