@@ -14,101 +14,101 @@
 ActiveRecord::Schema.define(version: 20170628103711) do
 
   create_table "allergens", force: :cascade do |t|
-    t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string   "icon"
+    t.string   "name",       limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.string   "icon",       limit: 255
   end
 
   create_table "allergens_recipes", id: false, force: :cascade do |t|
-    t.integer  "recipe_id"
-    t.integer  "allergen_id"
+    t.integer  "recipe_id",   limit: 4
+    t.integer  "allergen_id", limit: 4
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "comments", force: :cascade do |t|
-    t.string   "title"
-    t.string   "content"
-    t.integer  "user_id"
+    t.string   "title",      limit: 255
+    t.string   "content",    limit: 255
+    t.integer  "user_id",    limit: 4
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "recipe_id"
-    t.integer  "rate",       default: 5
+    t.integer  "recipe_id",  limit: 4
+    t.integer  "rate",       limit: 4,   default: 5
   end
 
   create_table "read_marks", force: :cascade do |t|
-    t.integer  "readable_id"
-    t.string   "readable_type", null: false
-    t.integer  "reader_id"
-    t.string   "reader_type",   null: false
+    t.integer  "readable_id",   limit: 4
+    t.string   "readable_type", limit: 255, null: false
+    t.integer  "reader_id",     limit: 4
+    t.string   "reader_type",   limit: 255, null: false
     t.datetime "timestamp"
   end
 
-  add_index "read_marks", ["reader_id", "reader_type", "readable_type", "readable_id"], name: "read_marks_reader_readable_index", unique: true
+  add_index "read_marks", ["reader_id", "reader_type", "readable_type", "readable_id"], name: "read_marks_reader_readable_index", unique: true, using: :btree
 
   create_table "recipes", force: :cascade do |t|
-    t.string   "name"
-    t.integer  "user_id"
+    t.string   "name",           limit: 255
+    t.integer  "user_id",        limit: 4
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.text     "description"
-    t.text     "ingredients"
-    t.text     "steps"
-    t.string   "season"
+    t.text     "description",    limit: 65535
+    t.text     "ingredients",    limit: 65535
+    t.text     "steps",          limit: 65535
+    t.string   "season",         limit: 255
     t.time     "t_baking"
     t.time     "t_cooling"
     t.time     "t_cooking"
     t.time     "t_rest"
-    t.string   "photo"
-    t.string   "image"
-    t.integer  "root_recipe_id", default: 0
-    t.string   "variant_name"
-    t.string   "rtype"
-    t.string   "slug"
-    t.integer  "baking",         default: 0
-    t.integer  "cooling",        default: 0
-    t.integer  "rest",           default: 0
-    t.integer  "cooking",        default: 0
+    t.string   "photo",          limit: 255
+    t.string   "image",          limit: 255
+    t.integer  "root_recipe_id", limit: 4,     default: 0
+    t.string   "variant_name",   limit: 255
+    t.string   "rtype",          limit: 255
+    t.string   "slug",           limit: 255
+    t.integer  "baking",         limit: 4,     default: 0
+    t.integer  "cooling",        limit: 4,     default: 0
+    t.integer  "rest",           limit: 4,     default: 0
+    t.integer  "cooking",        limit: 4,     default: 0
   end
 
-  add_index "recipes", ["slug"], name: "index_recipes_on_slug", unique: true
+  add_index "recipes", ["slug"], name: "index_recipes_on_slug", unique: true, using: :btree
 
   create_table "users", force: :cascade do |t|
-    t.string   "username"
-    t.string   "email"
+    t.string   "username",            limit: 255
+    t.string   "email",               limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "photo"
-    t.string   "lastname"
-    t.string   "firstname"
-    t.string   "persistence_token"
-    t.string   "crypted_password"
-    t.string   "password_salt"
-    t.string   "single_access_token"
-    t.string   "perishable_token"
-    t.integer  "login_count",         default: 0, null: false
-    t.integer  "failed_login_count",  default: 0, null: false
+    t.string   "photo",               limit: 255
+    t.string   "lastname",            limit: 255
+    t.string   "firstname",           limit: 255
+    t.string   "persistence_token",   limit: 255
+    t.string   "crypted_password",    limit: 255
+    t.string   "password_salt",       limit: 255
+    t.string   "single_access_token", limit: 255
+    t.string   "perishable_token",    limit: 255
+    t.integer  "login_count",         limit: 4,   default: 0, null: false
+    t.integer  "failed_login_count",  limit: 4,   default: 0, null: false
     t.datetime "last_request_at"
     t.datetime "current_login_at"
     t.datetime "last_login_at"
-    t.string   "current_login_ip"
-    t.string   "last_login_ip"
+    t.string   "current_login_ip",    limit: 255
+    t.string   "last_login_ip",       limit: 255
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
 
   create_table "views", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer  "user_id"
-    t.integer  "recipe_id"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+    t.integer  "user_id",    limit: 4
+    t.integer  "recipe_id",  limit: 4
   end
 
   create_table "votes", force: :cascade do |t|
-    t.integer  "user_id"
-    t.integer  "recipe_id"
-    t.integer  "value"
+    t.integer  "user_id",    limit: 4
+    t.integer  "recipe_id",  limit: 4
+    t.integer  "value",      limit: 4
     t.datetime "created_at"
     t.datetime "updated_at"
   end

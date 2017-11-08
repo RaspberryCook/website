@@ -3,31 +3,27 @@
     <%= f.text_field :name , value: params[:name], placeholder: "Titre", label: 'Nom'  %>
     <%= f.select :type, options_for_select((Recipe.types+["Toutes"]) , params[:type]), label: 'Saison'  %>
     <%= f.select :season, options_for_select( Recipe.seasons, params[:season]), label: 'Saison' %>
-
-
-
     <% Allergen.all.each do |allergen| %>
       <%
       input_name = "[allergens][#{allergen.id}]"
       checked    = params['allergens'] && params['allergens'][allergen.id.to_s] == "1"
       %>
-
       <div class="allergen well well-sm col-xs-6 col-sm-4 col-md-3 <%= 'checked' if checked %>">
-
         <%= label_tag input_name do %>
-          <div class="col-xs-4 picture">
-            <%= image_tag "allergens/#{allergen.icon}", size: '50', alt: allergen.name %>
-          </div>
-          <div class="col-xs-8 text">
+          <% allergen_image_path = "allergens/#{allergen.icon}" %>
+          <% unless Rails.application.assets.find_asset(allergen_image_path).nil? %>
+            <span class="col-xs-4 picture">
+              <%= image_tag allergen_image_path, size: '50', alt: allergen.name %>
+            </span>
+          <% end %>
+          <span class="col-xs-8 text">
             <%= allergen.name %>
-          </div>
+          </span>
           <%= check_box_tag input_name, 1, checked %>
         <% end %>
       </div>
     <% end %>
-
     <div class="clearfix"></div>
-
     <%= f.submit "Rechercher" %>
   </div>
 <% end %>

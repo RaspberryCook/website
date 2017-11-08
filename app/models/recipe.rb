@@ -231,9 +231,12 @@ class Recipe < ActiveRecord::Base
   #
   # @return [Integer] as rate
   def rate
-    rates = []
-    self.comments.each{|com| rates.append com.rate}
-    return rates.size > 0 ? rates.reduce(:+) / rates.size.to_f : 0
+    sql = "SELECT AVG(rate) as rate FROM comments WHERE recipe_id = ?"
+    statement  = ActiveRecord::Base.connection.raw_connection.prepare sql
+    result = statement.execute([self.id]).first
+    average = result == [nil] ? 0 : result['rate'].to_i
+    statement.close
+    return average
   end
 
 
@@ -344,6 +347,7 @@ class Recipe < ActiveRecord::Base
   # @return [String] as a JSON object
   def to_json option
     data = self.attributes
+    # TODO: create uniq SQL query instead of load each objects
     data[:allergens] = self.allergens.map{ |allergen| {name: allergen.name, icon: allergen.icon_url} }
 
     return data.to_json
@@ -361,6 +365,9 @@ class Recipe < ActiveRecord::Base
     else
       author =  RaspberryCookFundation.to_jsonld 'Organization'
     end
+
+
+    comments_count = self.comments.count
 
     jsonld = {
       "@context" => "http://schema.org/",
@@ -390,7 +397,7 @@ class Recipe < ActiveRecord::Base
       aggregateRating: {
         "@type" => "AggregateRating",
         ratingValue: self.rate,
-        reviewCount: self.comments.count,
+        reviewCount: comments_count,
         bestRating: 5,
         worstRating: 1
       },
@@ -406,10 +413,10 @@ class Recipe < ActiveRecord::Base
       "@context" => "http://schema.org/",
       "@type" => "AggregateRating",
       ratingValue: self.rate,
-      reviewCount: self.comments.count,
+      reviewCount: comments_count,
       bestRating: 5,
       worstRating: 1
-    } if self.comments.count != 0
+    } if comments_count != 0
 
     return jsonld
   end
