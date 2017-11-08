@@ -4,7 +4,7 @@ _paq.push(["setDocumentTitle", document.domain + "/" + document.title]);
 _paq.push(['trackPageView']);
 _paq.push(['enableLinkTracking']);
 (function() {
-  var u="http://piwik.rousseau-alexandre.fr/";
+  var u="//piwik.raspberry-cook.fr/";
   _paq.push(['setTrackerUrl', u+'piwik.php']);
   _paq.push(['setSiteId', '1']);
   var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
