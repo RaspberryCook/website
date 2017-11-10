@@ -24,7 +24,12 @@
       <%= stylesheet_link_tag 'application' , :media => "all" %>
     </noscript>
     <%= javascript_include_tag 'application' %>
-    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/lazyload@2.0.0-beta.2/lazyload.js"></script>
+    <script type="text/javascript">
+      lazyload();
+    </script>
     <% if @jsonld %>
       <script type="application/ld+json">
         <%= @jsonld.to_json.html_safe %>
