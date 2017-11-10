@@ -1,16 +1,12 @@
-
 <div class="user-thumb col-xs-6">
-
-	<% if user %>
-		<%= image_tag gravatar_url( user.email, 100) , class: 'img-responsive img-rounded' %>
-		<p>
-			<strong> <%= link_to user.username , user %></strong>
-			<br/>
-			<%= pluralize user.rank, "point" %>
-		</p>
-
-	<% else %>
-		<strong>Utilisateur non trouvé</strong>
-	<% end %>
-
+  <% if user %>
+    <%= lazy_image_tag gravatar_url( user.email, 100) , class: 'img-responsive img-rounded' %>
+    <p>
+      <strong> <%= link_to user.username , user %></strong>
+      <br/>
+      <%= pluralize user.rank, "point" %>
+    </p>
+  <% else %>
+    <strong>Utilisateur non trouvé</strong>
+  <% end %>
 </div>
