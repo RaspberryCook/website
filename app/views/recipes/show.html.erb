@@ -26,7 +26,7 @@
     <!-- image -->
     <% if @recipe.has_image? %>
       <div class="col-xs-12 col-md-4">
-        <%= image_tag @recipe.true_image_url , class: "img img-responsive full-width recipe-image"%>
+        <%= lazy_image_tag @recipe.true_image_url , class: "img img-responsive full-width recipe-image"%>
       </div>
     <% end %>
   </div><!-- page-header -->
