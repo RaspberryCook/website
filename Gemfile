@@ -36,6 +36,9 @@ gem 'bootstrap_form'
 gem 'will_paginate'#https://github.com/mislav/will_paginate
 gem 'will_paginate-bootstrap'
 
+# SEO stuff
+gem 'canonical-rails', github: 'jumph4x/canonical-rails'
+
 # cache system
 gem 'rack-cache'
 
