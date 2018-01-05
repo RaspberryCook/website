@@ -105,7 +105,7 @@ class RecipesController < ApplicationController
   # GET /recipes
   def index
     if search_params.count > 0
-      @title = "Résultats de votre recherche %s" % [search_params.values.join(' ')]
+      @title = 'Résultats de votre recherche "%s"' % [search_params.values.join(' ')]
       @description = 'Beaucoup d\'excllentes recettes (oui, oui).'
     else
       @title = "liste des recettes"

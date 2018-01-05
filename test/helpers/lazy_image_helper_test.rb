@@ -1,5 +1,4 @@
 require 'test_helper'
-require '/home/arousseau/dev/ruby/raspberry_cook/app/helpers/lazy_image_helper.rb'
 
 class RecipeHelperTest < ActionView::TestCase
 
