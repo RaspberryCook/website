@@ -192,7 +192,7 @@ GEM
     rb-fsevent (0.10.3)
     rb-inotify (0.9.10)
       ffi (>= 0.5.0, < 2)
-    rdoc (6.0.4)
+    rdoc (6.3.2)
     recipe_scraper (2.2.2)
       nokogiri
     request_store (1.4.1)
